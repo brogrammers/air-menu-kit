@@ -1,8 +1,5 @@
 # AirMenuKit
 
-[![Version](http://cocoapod-badges.herokuapp.com/v/AirMenuKit/badge.png)](http://cocoadocs.org/docsets/AirMenuKit)
-[![Platform](http://cocoapod-badges.herokuapp.com/p/AirMenuKit/badge.png)](http://cocoadocs.org/docsets/AirMenuKit)
-
 ## Usage
 
 To run the example project; clone the repo, and run `pod install` from the Project directory first.
@@ -18,7 +15,7 @@ it simply add the following line to your Podfile:
 
 ## Author
 
-robertlis, robert.lis2@mail.dcu.ie
+Robert Lis, robert.lis2@mail.dcu.ie
 
 ## License
 
