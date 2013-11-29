@@ -5,7 +5,7 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>9ADF2E41-39CC-4A9D-883E-C225DEE6E1FC</string>
+	<string>524F6BEE-ACAD-4273-95E8-54F713864C55</string>
 	<key>IDESourceControlProjectName</key>
 	<string>AirMenuKit</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
@@ -14,11 +14,11 @@
 		<string>https://github.com/brogrammers/air-menu-kit.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Project/AirMenuKit/AirMenuKit.xcodeproj/project.xcworkspace</string>
+	<string>Project/AirMenuKit.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>F1599E8C-0ABD-41B4-BB6C-41A53A4F7E1E</key>
-		<string>../../../..</string>
+		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/brogrammers/air-menu-kit.git</string>
