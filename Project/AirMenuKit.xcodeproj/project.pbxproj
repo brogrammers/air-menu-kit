@@ -8,14 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		7132E44E1848EA8A00B2E356 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7132E44D1848EA8A00B2E356 /* Foundation.framework */; };
-		7132E4531848EA8A00B2E356 /* AirMenuKit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7132E4521848EA8A00B2E356 /* AirMenuKit.h */; };
-		7132E4551848EA8A00B2E356 /* AirMenuKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 7132E4541848EA8A00B2E356 /* AirMenuKit.m */; };
 		7132E45C1848EA8A00B2E356 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7132E45B1848EA8A00B2E356 /* XCTest.framework */; };
 		7132E45D1848EA8A00B2E356 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7132E44D1848EA8A00B2E356 /* Foundation.framework */; };
 		7132E45F1848EA8A00B2E356 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7132E45E1848EA8A00B2E356 /* UIKit.framework */; };
 		7132E4621848EA8A00B2E356 /* libAirMenuKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7132E44A1848EA8A00B2E356 /* libAirMenuKit.a */; };
 		7132E4681848EA8A00B2E356 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7132E4661848EA8A00B2E356 /* InfoPlist.strings */; };
 		7132E46A1848EA8A00B2E356 /* AirMenuKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7132E4691848EA8A00B2E356 /* AirMenuKitTests.m */; };
+		7132E47B1848FA4600B2E356 /* AirMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 7132E47A1848FA4600B2E356 /* AirMenu.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +34,6 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				7132E4531848EA8A00B2E356 /* AirMenuKit.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,15 +42,14 @@
 /* Begin PBXFileReference section */
 		7132E44A1848EA8A00B2E356 /* libAirMenuKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAirMenuKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7132E44D1848EA8A00B2E356 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		7132E4511848EA8A00B2E356 /* AirMenuKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AirMenuKit-Prefix.pch"; sourceTree = "<group>"; };
-		7132E4521848EA8A00B2E356 /* AirMenuKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AirMenuKit.h; sourceTree = "<group>"; };
-		7132E4541848EA8A00B2E356 /* AirMenuKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AirMenuKit.m; sourceTree = "<group>"; };
 		7132E45A1848EA8A00B2E356 /* AirMenuKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AirMenuKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7132E45B1848EA8A00B2E356 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		7132E45E1848EA8A00B2E356 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		7132E4651848EA8A00B2E356 /* AirMenuKitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AirMenuKitTests-Info.plist"; sourceTree = "<group>"; };
 		7132E4671848EA8A00B2E356 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7132E4691848EA8A00B2E356 /* AirMenuKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AirMenuKitTests.m; sourceTree = "<group>"; };
+		7132E4791848FA4600B2E356 /* AirMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AirMenu.h; path = ../Classes/AirMenu.h; sourceTree = "<group>"; };
+		7132E47A1848FA4600B2E356 /* AirMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AirMenu.m; path = ../Classes/AirMenu.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +78,8 @@
 		7132E4411848EA8A00B2E356 = {
 			isa = PBXGroup;
 			children = (
-				7132E44F1848EA8A00B2E356 /* AirMenuKit */,
+				7132E4791848FA4600B2E356 /* AirMenu.h */,
+				7132E47A1848FA4600B2E356 /* AirMenu.m */,
 				7132E4631848EA8A00B2E356 /* AirMenuKitTests */,
 				7132E44C1848EA8A00B2E356 /* Frameworks */,
 				7132E44B1848EA8A00B2E356 /* Products */,
@@ -105,24 +103,6 @@
 				7132E45E1848EA8A00B2E356 /* UIKit.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		7132E44F1848EA8A00B2E356 /* AirMenuKit */ = {
-			isa = PBXGroup;
-			children = (
-				7132E4521848EA8A00B2E356 /* AirMenuKit.h */,
-				7132E4541848EA8A00B2E356 /* AirMenuKit.m */,
-				7132E4501848EA8A00B2E356 /* Supporting Files */,
-			);
-			path = AirMenuKit;
-			sourceTree = "<group>";
-		};
-		7132E4501848EA8A00B2E356 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				7132E4511848EA8A00B2E356 /* AirMenuKit-Prefix.pch */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		7132E4631848EA8A00B2E356 /* AirMenuKitTests */ = {
@@ -224,7 +204,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7132E4551848EA8A00B2E356 /* AirMenuKit.m in Sources */,
+				7132E47B1848FA4600B2E356 /* AirMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,6 +314,11 @@
 				DSTROOT = /tmp/AirMenuKit.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AirMenuKit/AirMenuKit-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(BUILT_PRODUCTS_DIR)/../Classes",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -346,6 +331,11 @@
 				DSTROOT = /tmp/AirMenuKit.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AirMenuKit/AirMenuKit-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(BUILT_PRODUCTS_DIR)/../Classes",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -409,6 +399,7 @@
 				7132E46F1848EA8A00B2E356 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7132E4701848EA8A00B2E356 /* Build configuration list for PBXNativeTarget "AirMenuKitTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +408,7 @@
 				7132E4721848EA8A00B2E356 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
