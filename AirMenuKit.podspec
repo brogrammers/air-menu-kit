@@ -10,9 +10,8 @@ Pod::Spec.new do |s|
   s.license      = 'MIT'
   s.author       = { "robertlis" => "robert.lis2@mail.dcu.ie" }
   s.source       = { :git => "https://github.com/brogrammers/air-menu-kit.git", :tag => s.version.to_s }
-  s.platform     = :ios, '7.0'
-  s.ios.deployment_target = '7.0'
-  s.osx.deployment_target = '10.9'
+  s.platform     = :ios, '7.1'
+  s.ios.deployment_target = '7.1'
   s.requires_arc = true
   s.source_files = 'Classes'
   s.frameworks = 'Foundation'
