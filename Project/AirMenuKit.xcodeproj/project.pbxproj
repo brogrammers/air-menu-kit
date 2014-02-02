@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		710AD6CB189EE47B00AA1038 /* AirMenuClient.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 71D32BCB189ED1C50049B367 /* AirMenuClient.h */; };
 		7132E44E1848EA8A00B2E356 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7132E44D1848EA8A00B2E356 /* Foundation.framework */; };
 		7132E45C1848EA8A00B2E356 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7132E45B1848EA8A00B2E356 /* XCTest.framework */; };
 		7132E45D1848EA8A00B2E356 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7132E44D1848EA8A00B2E356 /* Foundation.framework */; };
@@ -34,6 +35,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				710AD6CB189EE47B00AA1038 /* AirMenuClient.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
