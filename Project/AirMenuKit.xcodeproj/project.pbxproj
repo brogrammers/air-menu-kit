@@ -50,6 +50,7 @@
 		7132E4691848EA8A00B2E356 /* AirMenuKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AirMenuKitTests.m; sourceTree = "<group>"; };
 		71D32BCB189ED1C50049B367 /* AirMenuClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirMenuClient.h; sourceTree = "<group>"; };
 		71D32BCC189ED1C50049B367 /* AirMenuClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirMenuClient.m; sourceTree = "<group>"; };
+		71D32BCE189ED2E70049B367 /* AirMenuKit-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AirMenuKit-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +134,7 @@
 		71D32BCA189ED10B0049B367 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				71D32BCE189ED2E70049B367 /* AirMenuKit-Prefix.pch */,
 				71D32BCB189ED1C50049B367 /* AirMenuClient.h */,
 				71D32BCC189ED1C50049B367 /* AirMenuClient.m */,
 			);
