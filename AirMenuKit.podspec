@@ -9,6 +9,6 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '7.1'
   s.ios.deployment_target = '7.1'
   s.requires_arc = true
-  s.source_files = 'Project/AirMenuKit/Classes/*.{h,m}'
+  s.source_files = 'Project/AirMenuKit/Classes/*'
   s.frameworks = 'Foundation'
 end
