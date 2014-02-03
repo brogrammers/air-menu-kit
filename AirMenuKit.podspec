@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '7.0'
   s.ios.deployment_target = '7.0'
   s.requires_arc = true
-  s.source_files = 'Classes/*.{m,h}'
+  s.source_files = 'Classes/**/*.{m,h}'
   s.frameworks = 'Foundation'
   s.dependency 'Mantle', '~> 1.3.1'
   s.dependency 'AFNetworking', '~> 2.1.0'
