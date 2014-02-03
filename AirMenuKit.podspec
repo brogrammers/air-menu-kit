@@ -11,4 +11,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.source_files = 'Classes/*.{m,h}'
   s.frameworks = 'Foundation'
+  s.dependency 'Mantle', '~> 1.3.1'
+  s.dependency 'AFNetworking', '~> 2.1.0'
+  s.dependency 'ObjectiveSugar', '~> 1.1.0' 
 end
