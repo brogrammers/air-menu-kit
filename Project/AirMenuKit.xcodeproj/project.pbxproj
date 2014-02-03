@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		710AD71D189FDF6400AA1038 /* AirMenuClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 710AD71C189FDF6400AA1038 /* AirMenuClient.m */; };
+		710AD72018A0268800AA1038 /* AMCompany.m in Sources */ = {isa = PBXBuildFile; fileRef = 710AD71F18A0268800AA1038 /* AMCompany.m */; };
+		710AD72318A0269F00AA1038 /* AMRestaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = 710AD72218A0269F00AA1038 /* AMRestaurant.m */; };
+		710AD72618A026B900AA1038 /* AMMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 710AD72518A026B900AA1038 /* AMMenu.m */; };
+		710AD72918A026CC00AA1038 /* AMMenuSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 710AD72818A026CC00AA1038 /* AMMenuSection.m */; };
+		710AD72C18A026D600AA1038 /* AMMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 710AD72B18A026D600AA1038 /* AMMenuItem.m */; };
 		7132E44E1848EA8A00B2E356 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7132E44D1848EA8A00B2E356 /* Foundation.framework */; };
 		7132E45C1848EA8A00B2E356 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7132E45B1848EA8A00B2E356 /* XCTest.framework */; };
 		7132E45D1848EA8A00B2E356 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7132E44D1848EA8A00B2E356 /* Foundation.framework */; };
@@ -46,6 +51,16 @@
 		710AD714189F2FBE00AA1038 /* AirMenuKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AirMenuKit-Prefix.pch"; sourceTree = "<group>"; };
 		710AD71B189FDF6400AA1038 /* AirMenuClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirMenuClient.h; sourceTree = "<group>"; };
 		710AD71C189FDF6400AA1038 /* AirMenuClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirMenuClient.m; sourceTree = "<group>"; };
+		710AD71E18A0268800AA1038 /* AMCompany.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMCompany.h; sourceTree = "<group>"; };
+		710AD71F18A0268800AA1038 /* AMCompany.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMCompany.m; sourceTree = "<group>"; };
+		710AD72118A0269F00AA1038 /* AMRestaurant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMRestaurant.h; sourceTree = "<group>"; };
+		710AD72218A0269F00AA1038 /* AMRestaurant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMRestaurant.m; sourceTree = "<group>"; };
+		710AD72418A026B900AA1038 /* AMMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMMenu.h; sourceTree = "<group>"; };
+		710AD72518A026B900AA1038 /* AMMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMMenu.m; sourceTree = "<group>"; };
+		710AD72718A026CC00AA1038 /* AMMenuSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMMenuSection.h; sourceTree = "<group>"; };
+		710AD72818A026CC00AA1038 /* AMMenuSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMMenuSection.m; sourceTree = "<group>"; };
+		710AD72A18A026D600AA1038 /* AMMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMMenuItem.h; sourceTree = "<group>"; };
+		710AD72B18A026D600AA1038 /* AMMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMMenuItem.m; sourceTree = "<group>"; };
 		7132E44A1848EA8A00B2E356 /* libAirMenuKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAirMenuKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7132E44D1848EA8A00B2E356 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7132E45A1848EA8A00B2E356 /* AirMenuKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AirMenuKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,6 +118,16 @@
 		710AD71A189FDF1C00AA1038 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				710AD71E18A0268800AA1038 /* AMCompany.h */,
+				710AD71F18A0268800AA1038 /* AMCompany.m */,
+				710AD72118A0269F00AA1038 /* AMRestaurant.h */,
+				710AD72218A0269F00AA1038 /* AMRestaurant.m */,
+				710AD72418A026B900AA1038 /* AMMenu.h */,
+				710AD72518A026B900AA1038 /* AMMenu.m */,
+				710AD72718A026CC00AA1038 /* AMMenuSection.h */,
+				710AD72818A026CC00AA1038 /* AMMenuSection.m */,
+				710AD72A18A026D600AA1038 /* AMMenuItem.h */,
+				710AD72B18A026D600AA1038 /* AMMenuItem.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -273,6 +298,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				710AD71D189FDF6400AA1038 /* AirMenuClient.m in Sources */,
+				710AD72018A0268800AA1038 /* AMCompany.m in Sources */,
+				710AD72618A026B900AA1038 /* AMMenu.m in Sources */,
+				710AD72C18A026D600AA1038 /* AMMenuItem.m in Sources */,
+				710AD72318A0269F00AA1038 /* AMRestaurant.m in Sources */,
+				710AD72918A026CC00AA1038 /* AMMenuSection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
