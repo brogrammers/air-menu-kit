@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		710AD6CB189EE47B00AA1038 /* AirMenuClient.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 71D32BCB189ED1C50049B367 /* AirMenuClient.h */; };
+		710AD717189F2FC800AA1038 /* AirMenuClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 710AD716189F2FC800AA1038 /* AirMenuClient.m */; };
 		7132E44E1848EA8A00B2E356 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7132E44D1848EA8A00B2E356 /* Foundation.framework */; };
 		7132E45C1848EA8A00B2E356 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7132E45B1848EA8A00B2E356 /* XCTest.framework */; };
 		7132E45D1848EA8A00B2E356 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7132E44D1848EA8A00B2E356 /* Foundation.framework */; };
@@ -15,7 +15,6 @@
 		7132E4621848EA8A00B2E356 /* libAirMenuKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7132E44A1848EA8A00B2E356 /* libAirMenuKit.a */; };
 		7132E4681848EA8A00B2E356 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7132E4661848EA8A00B2E356 /* InfoPlist.strings */; };
 		7132E46A1848EA8A00B2E356 /* AirMenuKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7132E4691848EA8A00B2E356 /* AirMenuKitTests.m */; };
-		71D32BCD189ED1C50049B367 /* AirMenuClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D32BCC189ED1C50049B367 /* AirMenuClient.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,13 +34,15 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				710AD6CB189EE47B00AA1038 /* AirMenuClient.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		710AD714189F2FBE00AA1038 /* AirMenuKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AirMenuKit-Prefix.pch"; sourceTree = "<group>"; };
+		710AD715189F2FC800AA1038 /* AirMenuClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirMenuClient.h; sourceTree = "<group>"; };
+		710AD716189F2FC800AA1038 /* AirMenuClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirMenuClient.m; sourceTree = "<group>"; };
 		7132E44A1848EA8A00B2E356 /* libAirMenuKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAirMenuKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7132E44D1848EA8A00B2E356 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7132E45A1848EA8A00B2E356 /* AirMenuKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AirMenuKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,9 +51,6 @@
 		7132E4651848EA8A00B2E356 /* AirMenuKitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AirMenuKitTests-Info.plist"; sourceTree = "<group>"; };
 		7132E4671848EA8A00B2E356 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7132E4691848EA8A00B2E356 /* AirMenuKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AirMenuKitTests.m; sourceTree = "<group>"; };
-		71D32BCB189ED1C50049B367 /* AirMenuClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirMenuClient.h; sourceTree = "<group>"; };
-		71D32BCC189ED1C50049B367 /* AirMenuClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirMenuClient.m; sourceTree = "<group>"; };
-		71D32BCE189ED2E70049B367 /* AirMenuKit-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AirMenuKit-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,10 +76,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		710AD713189F2F7600AA1038 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				710AD714189F2FBE00AA1038 /* AirMenuKit-Prefix.pch */,
+				710AD715189F2FC800AA1038 /* AirMenuClient.h */,
+				710AD716189F2FC800AA1038 /* AirMenuClient.m */,
+			);
+			name = Classes;
+			path = ../Classes;
+			sourceTree = "<group>";
+		};
 		7132E4411848EA8A00B2E356 = {
 			isa = PBXGroup;
 			children = (
-				71D32BC9189ED1040049B367 /* AirMenuKit */,
+				710AD713189F2F7600AA1038 /* Classes */,
 				7132E4631848EA8A00B2E356 /* AirMenuKitTests */,
 				7132E44C1848EA8A00B2E356 /* Frameworks */,
 				7132E44B1848EA8A00B2E356 /* Products */,
@@ -123,24 +132,6 @@
 				7132E4661848EA8A00B2E356 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		71D32BC9189ED1040049B367 /* AirMenuKit */ = {
-			isa = PBXGroup;
-			children = (
-				71D32BCA189ED10B0049B367 /* Classes */,
-			);
-			path = AirMenuKit;
-			sourceTree = "<group>";
-		};
-		71D32BCA189ED10B0049B367 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				71D32BCE189ED2E70049B367 /* AirMenuKit-Prefix.pch */,
-				71D32BCB189ED1C50049B367 /* AirMenuClient.h */,
-				71D32BCC189ED1C50049B367 /* AirMenuClient.m */,
-			);
-			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,7 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71D32BCD189ED1C50049B367 /* AirMenuClient.m in Sources */,
+				710AD717189F2FC800AA1038 /* AirMenuClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
