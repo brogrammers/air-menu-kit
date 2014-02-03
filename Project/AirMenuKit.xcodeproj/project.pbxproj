@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		710AD717189F2FC800AA1038 /* AirMenuClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 710AD716189F2FC800AA1038 /* AirMenuClient.m */; };
-		710AD718189F31AF00AA1038 /* AirMenuClient.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 710AD715189F2FC800AA1038 /* AirMenuClient.h */; };
 		7132E44E1848EA8A00B2E356 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7132E44D1848EA8A00B2E356 /* Foundation.framework */; };
 		7132E45C1848EA8A00B2E356 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7132E45B1848EA8A00B2E356 /* XCTest.framework */; };
 		7132E45D1848EA8A00B2E356 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7132E44D1848EA8A00B2E356 /* Foundation.framework */; };
@@ -35,7 +33,6 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				710AD718189F31AF00AA1038 /* AirMenuClient.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,8 +40,6 @@
 
 /* Begin PBXFileReference section */
 		710AD714189F2FBE00AA1038 /* AirMenuKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AirMenuKit-Prefix.pch"; sourceTree = "<group>"; };
-		710AD715189F2FC800AA1038 /* AirMenuClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirMenuClient.h; sourceTree = "<group>"; };
-		710AD716189F2FC800AA1038 /* AirMenuClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirMenuClient.m; sourceTree = "<group>"; };
 		7132E44A1848EA8A00B2E356 /* libAirMenuKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAirMenuKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7132E44D1848EA8A00B2E356 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7132E45A1848EA8A00B2E356 /* AirMenuKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AirMenuKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,8 +77,6 @@
 			isa = PBXGroup;
 			children = (
 				710AD714189F2FBE00AA1038 /* AirMenuKit-Prefix.pch */,
-				710AD715189F2FC800AA1038 /* AirMenuClient.h */,
-				710AD716189F2FC800AA1038 /* AirMenuClient.m */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -217,7 +210,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				710AD717189F2FC800AA1038 /* AirMenuClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
