@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface AirMenuClient : NSObject
-
++(void)doSomething;
 @end

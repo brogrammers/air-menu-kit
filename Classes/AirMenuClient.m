@@ -9,5 +9,8 @@
 #import "AirMenuClient.h"
 
 @implementation AirMenuClient
-
++(void)doSomething
+{
+    NSLog(@"Doing something");
+}
 @end
