@@ -16,9 +16,19 @@ describe(@"AMCompany", ^{
     context(@"object", ^{
         
         __block AMCompany *company;
+        __block AMAddress *address;
         
         beforeAll(^{
             company = [[AMCompany alloc] init];
+            address = [[AMAddress alloc] init];            
+            [company setValuesForKeysWithDictionary:@{
+                                                        @"identifier" : @"1",
+                                                        @"createdAt" : [NSDate dateWithTimeIntervalSince1970:1],
+                                                        @"updatedAt" : [NSDate dateWithTimeIntervalSince1970:1],
+                                                        @"name" : @"a name",
+                                                        @"address" : address,
+                                                        @"website" : [NSURL URLWithString:@"https://www.example.com"]
+                                                      }];
         });
         
         it(@"subclasses MTLModel", ^{
@@ -29,21 +39,29 @@ describe(@"AMCompany", ^{
             [[company should] conformToProtocol:@protocol(MTLJSONSerializing)];
         });
         
-        //    it(@"has identifier", ^{
-        //        [[company.identifier should] beKindOfClass:[NSString class]];
-        //    });
-        //
-        //    it(@"has name", ^{
-        //        [[company.name should] beKindOfClass:[NSString class]];
-        //    });
-        //
-        //    it(@"has address", ^{
-        //        [[company.address should] beKindOfClass:[AMAddress class]];
-        //    });
-        //
-        //    it(@"has website", ^{
-        //        [[company.website should] beKindOfClass:[NSURL class]];
-        //    });
+        it(@"has identifier attribute", ^{
+            [[company.identifier should] equal:@"1"];
+        });
+        
+        it(@"has created at attribute", ^{
+            [[company.createdAt should] equal:[NSDate dateWithTimeIntervalSince1970:1]];
+        });
+
+        it(@"has updated at attribute", ^{
+            [[company.updatedAt should] equal:[NSDate dateWithTimeIntervalSince1970:1]];
+        });
+        
+        it(@"has name attribute", ^{
+            [[company.name should] equal:@"a name"];
+        });
+
+        it(@"has address attribute", ^{
+            [[company.address should] equal:address];
+        });
+
+        it(@"has website", ^{
+            [[company.website should] equal:[NSURL URLWithString:@"https://www.example.com"]];
+        });
     });
     
     context(@"class", ^{
