@@ -10,4 +10,10 @@
 
 @implementation AMMenuSection
 
+#pragma mark - Mantle framework mapping hooks
+
++(NSDictionary *)JSONKeyPathsByPropertyKey
+{
+    return nil;
+}
 @end
