@@ -16,6 +16,7 @@
 		710AD72C18A026D600AA1038 /* AMMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 710AD72B18A026D600AA1038 /* AMMenuItem.m */; };
 		71173FA118A067F400DF24EB /* NSDateFormatter+AirMenuTimestamp.m in Sources */ = {isa = PBXBuildFile; fileRef = 71173FA018A067F400DF24EB /* NSDateFormatter+AirMenuTimestamp.m */; };
 		71173FA418A06AF300DF24EB /* AMAddressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71173FA318A06AF300DF24EB /* AMAddressTests.m */; };
+		71173FA618A17BAB00DF24EB /* AMMenuItemTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71173FA518A17BAB00DF24EB /* AMMenuItemTests.m */; };
 		7132E44E1848EA8A00B2E356 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7132E44D1848EA8A00B2E356 /* Foundation.framework */; };
 		7132E45C1848EA8A00B2E356 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7132E45B1848EA8A00B2E356 /* XCTest.framework */; };
 		7132E45D1848EA8A00B2E356 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7132E44D1848EA8A00B2E356 /* Foundation.framework */; };
@@ -79,6 +80,7 @@
 		71173F9F18A067F400DF24EB /* NSDateFormatter+AirMenuTimestamp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDateFormatter+AirMenuTimestamp.h"; path = "../NSDateFormatter+AirMenuTimestamp.h"; sourceTree = "<group>"; };
 		71173FA018A067F400DF24EB /* NSDateFormatter+AirMenuTimestamp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDateFormatter+AirMenuTimestamp.m"; path = "../NSDateFormatter+AirMenuTimestamp.m"; sourceTree = "<group>"; };
 		71173FA318A06AF300DF24EB /* AMAddressTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMAddressTests.m; sourceTree = "<group>"; };
+		71173FA518A17BAB00DF24EB /* AMMenuItemTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMMenuItemTests.m; sourceTree = "<group>"; };
 		7132E44A1848EA8A00B2E356 /* libAirMenuKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAirMenuKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7132E44D1848EA8A00B2E356 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7132E45A1848EA8A00B2E356 /* AirMenuKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AirMenuKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -204,6 +206,7 @@
 			children = (
 				713F953118A0328400623CA8 /* AMCompanyTests.m */,
 				71173FA318A06AF300DF24EB /* AMAddressTests.m */,
+				71173FA518A17BAB00DF24EB /* AMMenuItemTests.m */,
 				7132E4641848EA8A00B2E356 /* Supporting Files */,
 			);
 			path = AirMenuKitTests;
@@ -383,6 +386,7 @@
 			files = (
 				71173FA418A06AF300DF24EB /* AMAddressTests.m in Sources */,
 				713F953218A0328400623CA8 /* AMCompanyTests.m in Sources */,
+				71173FA618A17BAB00DF24EB /* AMMenuItemTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

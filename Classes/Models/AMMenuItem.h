@@ -10,5 +10,11 @@
 #import <Mantle/Mantle.h>
 
 @interface AMMenuItem : MTLModel
-
+@property (nonatomic, strong, readonly) NSString *identifier;
+@property (nonatomic, strong, readonly) NSDate *createdAt;
+@property (nonatomic, strong, readonly) NSDate *updatedAt;
+@property (nonatomic, strong, readonly) NSString *name;
+@property (nonatomic, strong, readonly) NSString *details;
+@property (nonatomic, strong, readonly) NSNumber *price;
+@property (nonatomic, strong, readonly) NSString *currency;
 @end
