@@ -17,17 +17,12 @@
 {
     return @{
                 @"identifier" : @"id",
-                @"createdAt" : @"createdAt",
-                @"updatedAt" : @"updatedAt",
+                @"createdAt" : @"created_at",
+                @"updatedAt" : @"updated_at",
                 @"name" : @"name",
                 @"address" : @"address",
                 @"website" : @"website"
              };
-}
-
-+(NSValueTransformer *)addressJSONTransfomer
-{
-    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:[AMAddress class]];
 }
 
 +(NSValueTransformer *)createdAtJSONTransformer
@@ -47,4 +42,16 @@
         return [[NSDateFormatter sharedAirMenuFormatter] stringFromDate:date];
     }];
 }
+
++(NSValueTransformer *)addressJSONTransformer
+{
+    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[AMAddress class]];
+}
+
+
++(NSValueTransformer *)websiteJSONTransformer
+{
+    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
+}
+
 @end

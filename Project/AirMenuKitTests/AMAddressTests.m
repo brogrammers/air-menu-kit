@@ -9,6 +9,7 @@
 #import <Kiwi/Kiwi.h>
 #import <objc/message.h>
 #import "AMAddress.h"
+#import "NSDateFormatter+AirMenuTimestamp.h"
 
 SPEC_BEGIN(AMAddressTests)
 
@@ -79,10 +80,10 @@ describe(@"AMAddress", ^{
             NSDictionary *mapping = [AMAddress JSONKeyPathsByPropertyKey];
             NSDictionary *expectedMapping = @{
                                                 @"identifier" : @"id",
-                                                @"createdAt" : @"createdAt",
-                                                @"updatedAt" : @"updatedAt",
-                                                @"addressLine1" : @"addressLine1",
-                                                @"addressLine2" : @"addressLine2",
+                                                @"createdAt" : @"created_at",
+                                                @"updatedAt" : @"updated_at",
+                                                @"addressLine1" : @"address_line_1",
+                                                @"addressLine2" : @"address_line_2",
                                                 @"city" : @"city",
                                                 @"county" : @"county",
                                                 @"country": @"country"
@@ -110,7 +111,33 @@ describe(@"AMAddress", ^{
             // TODO (Robert Lis): Write test that ensures date can be transformed with this transformer
         });
     });
+    
+    context(@"mappings", ^{
+       it(@"map parsed address JSON to AMAddress object", ^{
+           NSDictionary *parsedAddressJSON = @{@"id" : @"1",
+                                               @"created_at" : @"2011-04-05T11:29:14Z",
+                                               @"updated_at" : @"2011-04-05T11:29:14Z",
+                                               @"address_line_1" : @"line one",
+                                               @"address_line_2" : @"line two",
+                                               @"city" : @"Dublin",
+                                               @"county": @"Dublin",
+                                               @"country" : @"Ireland"};
+           AMAddress *address = [MTLJSONAdapter modelOfClass:[AMAddress class] fromJSONDictionary:parsedAddressJSON error:nil];
+           [[address.identifier should] equal:@"1"];
+           [[address.createdAt should] equal:[[NSDateFormatter sharedAirMenuFormatter] dateFromString:@"2011-04-05T11:29:14Z"]];
+           [[address.updatedAt should] equal:[[NSDateFormatter sharedAirMenuFormatter] dateFromString:@"2011-04-05T11:29:14Z"]];
+           [[address.addressLine1 should] equal:@"line one"];
+           [[address.addressLine2 should] equal:@"line two"];
+           [[address.city should] equal:@"Dublin"];
+           [[address.county should] equal:@"Dublin"];
+           [[address.country should] equal:@"Ireland"];
+       });
+    });
 });
 
-
 SPEC_END
+
+
+
+
+

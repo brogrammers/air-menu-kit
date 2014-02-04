@@ -17,10 +17,10 @@
 {
     return @{
                 @"identifier" : @"id",
-                @"createdAt" : @"createdAt",
-                @"updatedAt" : @"updatedAt",
-                @"addressLine1" : @"addressLine1",
-                @"addressLine2" : @"addressLine2",
+                @"createdAt" : @"created_at",
+                @"updatedAt" : @"updated_at",
+                @"addressLine1" : @"address_line_1",
+                @"addressLine2" : @"address_line_2",
                 @"city" : @"city",
                 @"county" : @"county",
                 @"country": @"country"
