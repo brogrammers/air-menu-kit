@@ -26,7 +26,8 @@ describe(@"AMMenuSection", ^{
                                                       @"createdAt" : [NSDate dateWithTimeIntervalSince1970:1],
                                                       @"updatedAt" : [NSDate dateWithTimeIntervalSince1970:1],
                                                       @"name" : @"a name",
-                                                      @"details" : @"a description"}];
+                                                      @"details" : @"a description",
+                                                      @"menuItems" : @[[[AMMenuItem alloc] init],[[AMMenuItem alloc] init]]}];
         });
         
         it(@"subclasses MTLModel", ^{
@@ -56,10 +57,50 @@ describe(@"AMMenuSection", ^{
         it(@"has details attribute", ^{
             [[section.details should] equal:@"a description"];
         });
+        
+        it(@"has menu items attribute", ^{
+            [[section.menuItems should] equal:@[[[AMMenuItem alloc] init],[[AMMenuItem alloc] init]]];
+        });
+        
     });
     
     context(@"class", ^{
         it(@"returns correct mapping from JSONKeyPathsByPropertyKey", ^{
+            NSDictionary *mapping = [AMMenuSection JSONKeyPathsByPropertyKey];
+            NSDictionary *expectedMapping = @{@"identifier" : @"id",
+                                              @"createdAt" : @"created_at",
+                                              @"updatedAt" : @"updated_at",
+                                              @"name" : @"name",
+                                              @"details" : @"description",
+                                              @"menuItems" : @"menu_items"};
+            [[mapping should] equal:expectedMapping];
+        });
+        
+        it(@"implemenets createdAtJSONTransformer", ^{
+            [[[AMMenuSection class] should] respondToSelector:NSSelectorFromString(@"createdAtJSONTransformer")];
+        });
+        
+        it(@"returns NSDate transformer from createdAtJSONTransformer", ^{
+            NSValueTransformer *valueTransfomer = objc_msgSend([AMMenuSection class], NSSelectorFromString(@"createdAtJSONTransformer"));
+            [[valueTransfomer shouldNot] beNil];
+        });
+        
+        it(@"implements updatedAtJSONTransformer", ^{
+            [[[AMMenuSection class] should] respondToSelector:NSSelectorFromString(@"updatedAtJSONTransformer")];
+        });
+        
+        it(@"returns NSDate transformer from updatedAtJSONTransformer", ^{
+            NSValueTransformer *valueTransformer = objc_msgSend([AMMenuSection class], NSSelectorFromString(@"updatedAtJSONTransformer"));
+            [[valueTransformer shouldNot] beNil];
+        });
+        
+        it(@"implemenets menuItemsJSONTransformer", ^{
+            [[[AMMenuSection class] should] respondToSelector:NSSelectorFromString(@"menuItemsJSONTransformer")];
+        });
+        
+        it(@"returns array of AMMenuItem transformer from menuItemsJSONTransformer", ^{
+            NSValueTransformer *transformer = objc_msgSend([AMMenuSection class], NSSelectorFromString(@"menuItemsJSONTransformer"));
+            [[transformer shouldNot] beNil];
         });
     });
     

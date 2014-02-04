@@ -15,4 +15,5 @@
 @property (nonatomic, strong, readonly) NSDate *updatedAt;
 @property (nonatomic, strong, readonly) NSString *name;
 @property (nonatomic, strong, readonly) NSString *details;
+@property (nonatomic, strong, readonly) NSArray *menuItems;
 @end

@@ -79,7 +79,7 @@ describe(@"AMCompany", ^{
             [[AMCompany should] respondToSelector:NSSelectorFromString(@"addressJSONTransformer")];
         });
         
-        it(@"returns AMAddress transformer from addressJSONTransfomer", ^{
+        it(@"returns dictionary AMAddress transformer from addressJSONTransfomer", ^{
             NSValueTransformer *valueTransfomer = objc_msgSend([AMCompany class], NSSelectorFromString(@"addressJSONTransformer"));
             [[valueTransfomer shouldNot] beNil];
             // TODO (Robert Lis): Write test that ensures address can be transformed with this transformer
