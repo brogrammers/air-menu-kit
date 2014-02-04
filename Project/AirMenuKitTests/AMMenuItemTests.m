@@ -27,6 +27,15 @@ describe(@"AMMenuItem", ^{
                                                        @"currency" : @"EUR"}];
         });
         
+        
+        it(@"subclasses MTLModel", ^{
+            [[menuItem should] beKindOfClass:[MTLModel class]];
+        });
+        
+        it(@"conforms to MTLJSONSerializing protocol", ^{
+            [[menuItem should] conformToProtocol:@protocol(MTLJSONSerializing)];
+        });
+        
         it(@"has identifier attribute", ^{
             [[menuItem.identifier should] equal:@"1"];
         });
@@ -53,6 +62,47 @@ describe(@"AMMenuItem", ^{
         
         it(@"has currency property", ^{
             [[menuItem.currency should] equal:@"EUR"];
+        });
+    });
+    
+    context(@"class", ^{
+        it(@"returns correct mapping from JSONKeyPathsByPropertyKey", ^{
+            NSDictionary *mapping = [AMMenuItem JSONKeyPathsByPropertyKey];
+            NSDictionary *expectedMapping = @{@"identifier" : @"id",
+                                              @"createdAt" : @"created_at",
+                                              @"updatedAt" : @"updated_at",
+                                              @"name" : @"name",
+                                              @"details" : @"details",
+                                              @"price" : @"price",
+                                              @"currency" : @"currency"};
+            [[mapping should] equal:expectedMapping];
+        });
+        
+        it(@"implements createdAtJSONTransformer", ^{
+            [[[AMMenuItem class] should] respondToSelector:NSSelectorFromString(@"createdAtJSONTransformer")];
+        });
+    
+        it(@"returns NSDate transformer from createdAtJSONTransformer", ^{
+            NSValueTransformer *transformer = objc_msgSend([AMMenuItem class], NSSelectorFromString(@"createdAtJSONTransformer"));
+            [[transformer shouldNot] beNil];
+        });
+        
+        it(@"implements updatedAtJSONTransformer", ^{
+            [[[AMMenuItem class] should] respondToSelector:NSSelectorFromString(@"updatedAtJSONTransformer")];
+        });
+        
+        it(@"returns NSDate transformer from updatedAtJSONTransformer", ^{
+            NSValueTransformer *transformer = objc_msgSend([AMMenuItem class], NSSelectorFromString(@"updatedAtJSONTransformer"));
+            [[transformer shouldNot] beNil];
+        });
+        
+        it(@"implements priceJSONTransformer", ^{
+            [[[AMMenuItem class] should] respondToSelector:NSSelectorFromString(@"priceJSONTransformer")];
+        });
+        
+        it(@"returns NSNumber transformer from priceJSONTransformer", ^{
+            NSValueTransformer *transformer = objc_msgSend([AMMenuItem class], NSSelectorFromString(@"priceJSONTransformer"));
+            [[transformer shouldNot] beNil];
         });
     });
 });

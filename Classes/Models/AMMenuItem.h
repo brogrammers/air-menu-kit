@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <Mantle/Mantle.h>
 
-@interface AMMenuItem : MTLModel
+@interface AMMenuItem : MTLModel <MTLJSONSerializing>
 @property (nonatomic, strong, readonly) NSString *identifier;
 @property (nonatomic, strong, readonly) NSDate *createdAt;
 @property (nonatomic, strong, readonly) NSDate *updatedAt;

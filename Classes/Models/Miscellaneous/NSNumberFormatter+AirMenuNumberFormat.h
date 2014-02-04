@@ -1,5 +1,5 @@
 //
-//  NSDateFormatter+AirMenuTimestamp.h
+//  NSNumberFormatter+AirMenuNumberFormat.h
 //  AirMenuKit
 //
 //  Created by Robert Lis on 04/02/2014.
@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSDateFormatter (AirMenuTimestamp)
-+ (NSDateFormatter *)sharedAirMenuFormatter;
+@interface NSNumberFormatter (AirMenuNumberFormat)
++(NSNumberFormatter *)sharedAirMenuFormatter;
 @end
