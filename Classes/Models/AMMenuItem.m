@@ -20,7 +20,7 @@
              @"createdAt" : @"created_at",
              @"updatedAt" : @"updated_at",
              @"name" : @"name",
-             @"details" : @"details",
+             @"details" : @"description",
              @"price" : @"price",
              @"currency" : @"currency"};
 }

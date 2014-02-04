@@ -10,6 +10,7 @@
 #import <objc/message.h>
 #import "AMMenuItem.h"
 #import "NSDateFormatter+AirMenuTimestamp.h"
+#import "NSNumberFormatter+AirMenuNumberFormat.h"
 
 SPEC_BEGIN(AMMenuItemTests)
 describe(@"AMMenuItem", ^{
@@ -72,7 +73,7 @@ describe(@"AMMenuItem", ^{
                                               @"createdAt" : @"created_at",
                                               @"updatedAt" : @"updated_at",
                                               @"name" : @"name",
-                                              @"details" : @"details",
+                                              @"details" : @"description",
                                               @"price" : @"price",
                                               @"currency" : @"currency"};
             [[mapping should] equal:expectedMapping];
@@ -103,6 +104,26 @@ describe(@"AMMenuItem", ^{
         it(@"returns NSNumber transformer from priceJSONTransformer", ^{
             NSValueTransformer *transformer = objc_msgSend([AMMenuItem class], NSSelectorFromString(@"priceJSONTransformer"));
             [[transformer shouldNot] beNil];
+        });
+    });
+    
+    context(@"mapping", ^{
+        it(@"maps parsed menu item JSON to AMMenuItem object", ^{
+            NSDictionary *parsedMenuItemJson = @{@"id" : @"1",
+                                                 @"created_at" : @"2011-04-05T11:29:14Z",
+                                                 @"updated_at" : @"2011-04-05T11:29:14Z",
+                                                 @"name" : @"Large fries",
+                                                 @"description" : @"Tasty home made fries",
+                                                 @"price" : @"1.28",
+                                                 @"currency" : @"EUR"};
+            AMMenuItem *menuItem = [MTLJSONAdapter modelOfClass:[AMMenuItem class] fromJSONDictionary:parsedMenuItemJson error:nil];
+            [[menuItem.identifier should] equal:@"1"];
+            [[menuItem.createdAt should] equal:[[NSDateFormatter sharedAirMenuFormatter] dateFromString:@"2011-04-05T11:29:14Z"]];
+            [[menuItem.updatedAt should] equal:[[NSDateFormatter sharedAirMenuFormatter] dateFromString:@"2011-04-05T11:29:14Z"]];
+            [[menuItem.name should] equal:@"Large fries"];
+            [[menuItem.details should] equal:@"Tasty home made fries"];
+            [[menuItem.price should] equal:@(1.28)];
+            [[menuItem.currency should] equal:@"EUR"];
         });
     });
 });
