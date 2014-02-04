@@ -8,7 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <Mantle/Mantle.h>
+#import "AMAddress.h"
 
-@interface AMCompany : MTLModel
-
+@interface AMCompany : MTLModel <MTLJSONSerializing>
+@property (nonatomic, strong, readonly) NSString *identifier;
+@property (nonatomic, strong, readonly) NSDate *createdAt;
+@property (nonatomic, strong, readonly) NSDate *updatedAt;
+@property (nonatomic, strong, readonly) NSString *name;
+@property (nonatomic, strong, readonly) AMAddress *address;
+@property (nonatomic, strong, readonly) NSURL *website;
 @end
