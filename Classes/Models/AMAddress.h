@@ -17,5 +17,5 @@
 @property (nonatomic, strong, readonly) NSString *addressLine2;
 @property (nonatomic, strong, readonly) NSString *city;
 @property (nonatomic, strong, readonly) NSString *county;
-@property (nonatomic, strong, readonly) NSString *country;
+@property (nonatomic, strong, readonly) NSString *country; 
 @end

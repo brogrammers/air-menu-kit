@@ -7,6 +7,7 @@
 //
 
 #import <Kiwi/Kiwi.h>
+#import <objc/message.h>
 #import "AMAddress.h"
 
 SPEC_BEGIN(AMAddressTests)
@@ -74,7 +75,40 @@ describe(@"AMAddress", ^{
     });
     
     context(@"class", ^{
+        it(@"returns correct mapping from +JSONKeyPathsByPropertyKey",^{
+            NSDictionary *mapping = [AMAddress JSONKeyPathsByPropertyKey];
+            NSDictionary *expectedMapping = @{
+                                                @"identifier" : @"id",
+                                                @"createdAt" : @"createdAt",
+                                                @"updatedAt" : @"updatedAt",
+                                                @"addressLine1" : @"addressLine1",
+                                                @"addressLine2" : @"addressLine2",
+                                                @"city" : @"city",
+                                                @"county" : @"county",
+                                                @"country": @"country"
+                                              };
+            [[mapping should] equal:expectedMapping];
+        });
         
+        it(@"implements createdAtJSONTransformer", ^{
+            [[[AMAddress class] should] respondToSelector:NSSelectorFromString(@"createdAtJSONTransformer")];
+        });
+        
+        it(@"returns NSDate transformer from createdAtJSONTransformer", ^{
+            NSValueTransformer *valueTransformer = objc_msgSend([AMAddress class], NSSelectorFromString(@"createdAtJSONTransformer"));
+            [[valueTransformer shouldNot] beNil];
+            // TODO (Robert Lis): Write test that ensures date can be transformed with this transformer
+        });
+        
+        it(@"implements updatedAtJSONTransformer", ^{
+            [[[AMAddress class] should] respondToSelector:NSSelectorFromString(@"updatedAtJSONTransformer")];
+        });
+        
+        it(@"returns NSDate transformer from updatedAtJSONTransformer", ^{
+            NSValueTransformer *valueTransformer = objc_msgSend([AMAddress class], NSSelectorFromString(@"updatedAtJSONTransformer"));
+            [[valueTransformer shouldNot] beNil];
+            // TODO (Robert Lis): Write test that ensures date can be transformed with this transformer
+        });
     });
 });
 
