@@ -105,7 +105,50 @@ describe(@"AMMenuSection", ^{
     });
     
     context(@"mapping", ^{
+        __block AMMenuSection *section;
+        __block NSDictionary *parsedMenuSectionJSON;
+        __block NSArray *parsedMenuItemsJSON;
         
+        beforeAll(^{
+            
+            NSDictionary *parsedMenuItemJSON = @{@"id" : @"1",
+                                                 @"created_at" : @"2011-04-05T11:29:14Z",
+                                                 @"updated_at" : @"2011-04-05T11:29:14Z",
+                                                 @"name" : @"Large fries",
+                                                 @"description" : @"Tasty home made fries",
+                                                 @"price" : @"1.28",
+                                                 @"currency" : @"EUR"};
+            parsedMenuItemsJSON = @[[parsedMenuItemJSON copy], [parsedMenuItemJSON copy]];
+            parsedMenuSectionJSON = @{@"id" : @"1",
+                                      @"created_at" : @"2011-04-05T11:29:14Z",
+                                      @"updated_at" : @"2011-04-05T11:29:14Z",
+                                      @"name" : @"Main Courses",
+                                      @"description" : @"Tasty & Cheap main courses",
+                                      @"menu_items" : parsedMenuItemsJSON};
+            section = [MTLJSONAdapter modelOfClass:[AMMenuSection class] fromJSONDictionary:parsedMenuSectionJSON error:nil];
+        });
+        
+        it(@"maps parsed menu section JSON to AMMenuSection object", ^{
+            [[section.identifier should] equal:@"1"];
+            [[section.createdAt should] equal:[[NSDateFormatter sharedAirMenuFormatter] dateFromString:@"2011-04-05T11:29:14Z"]];
+            [[section.updatedAt should] equal:[[NSDateFormatter sharedAirMenuFormatter] dateFromString:@"2011-04-05T11:29:14Z"]];
+            [[section.name should] equal:@"Main Courses"];
+            [[section.details should] equal:@"Tasty & Cheap main courses"];
+        });
+        
+        it(@"maps parsed menu item JSON and hooks it up to AMMenuSection object", ^{
+            [[section.menuItems should] haveCountOf:2];
+            for(AMMenuItem *item in section.menuItems)
+            {
+                [[[item identifier] should] equal:@"1"];
+                [[[item createdAt] should] equal:[[NSDateFormatter sharedAirMenuFormatter] dateFromString:@"2011-04-05T11:29:14Z"]];
+                [[[item updatedAt] should] equal:[[NSDateFormatter sharedAirMenuFormatter] dateFromString:@"2011-04-05T11:29:14Z"]];
+                [[[item name] should] equal:@"Large fries"];
+                [[[item details] should] equal:@"Tasty home made fries"];
+                [[[item price] should] equal:@(1.28)];
+                [[[item currency] should] equal:@"EUR"];
+            }
+        });
     });
 });
 
