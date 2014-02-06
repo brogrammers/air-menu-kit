@@ -32,6 +32,7 @@
 		713F953B18A040F500623CA8 /* AMAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 713F953A18A040F500623CA8 /* AMAddress.m */; };
 		716C573318A197C800D95228 /* NSDateFormatter+AirMenuTimestamp.m in Sources */ = {isa = PBXBuildFile; fileRef = 716C573218A197C800D95228 /* NSDateFormatter+AirMenuTimestamp.m */; };
 		716C573518A1A40D00D95228 /* AMMenuSectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 716C573418A1A40D00D95228 /* AMMenuSectionTests.m */; };
+		716C573718A1BEB800D95228 /* AMMenuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 716C573618A1BEB800D95228 /* AMMenuTests.m */; };
 		DDE23A49A56D45DCA98C334A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00826E59288A4EBC8E2108B7 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +97,7 @@
 		716C572F18A1969400D95228 /* NSNumberFormatter+AirMenuNumberFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumberFormatter+AirMenuNumberFormat.h"; sourceTree = "<group>"; };
 		716C573218A197C800D95228 /* NSDateFormatter+AirMenuTimestamp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+AirMenuTimestamp.m"; sourceTree = "<group>"; };
 		716C573418A1A40D00D95228 /* AMMenuSectionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMMenuSectionTests.m; sourceTree = "<group>"; };
+		716C573618A1BEB800D95228 /* AMMenuTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMMenuTests.m; sourceTree = "<group>"; };
 		811AF5E1705D4DD596C51C97 /* Pods-AirMenuKitTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AirMenuKitTests.xcconfig"; path = "Pods/Pods-AirMenuKitTests.xcconfig"; sourceTree = "<group>"; };
 		C4D6450282584DFB83C8BE38 /* libPods-AirMenuKitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AirMenuKitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -215,6 +217,7 @@
 				71173FA318A06AF300DF24EB /* AMAddressTests.m */,
 				71173FA518A17BAB00DF24EB /* AMMenuItemTests.m */,
 				716C573418A1A40D00D95228 /* AMMenuSectionTests.m */,
+				716C573618A1BEB800D95228 /* AMMenuTests.m */,
 				7132E4641848EA8A00B2E356 /* Supporting Files */,
 			);
 			path = AirMenuKitTests;
@@ -397,6 +400,7 @@
 				713F953218A0328400623CA8 /* AMCompanyTests.m in Sources */,
 				716C573518A1A40D00D95228 /* AMMenuSectionTests.m in Sources */,
 				71173FA618A17BAB00DF24EB /* AMMenuItemTests.m in Sources */,
+				716C573718A1BEB800D95228 /* AMMenuTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
