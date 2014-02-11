@@ -10,4 +10,18 @@
 
 @implementation AMRestaurant
 
++(NSDictionary *)JSONKeyPathsByPropertyKey
+{
+    return @{@"identifier" : @"id",
+             @"name" : @"name",
+             @"remoteOrder" : @"remote_order",
+             @"conversionRate" : @"conversion_rate",
+             @"address" : @"address"};
+}
+
++(NSValueTransformer *)addressJSONTransformer
+{
+    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[AMAddress class]];
+}
+
 @end

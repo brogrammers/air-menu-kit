@@ -8,7 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <Mantle/Mantle.h>
+#import "AMAddress.h"
 
-@interface AMRestaurant : MTLModel
-
+@interface AMRestaurant : MTLModel <MTLJSONSerializing>
+@property (nonatomic, strong, readonly) NSString *identifier;
+@property (nonatomic, strong, readonly) NSString *name;
+@property (nonatomic, strong, readonly) NSNumber *remoteOrder;
+@property (nonatomic, strong, readonly) NSNumber *conversionRate;
+@property (nonatomic, strong, readonly) AMAddress *address;
 @end
