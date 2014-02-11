@@ -8,6 +8,6 @@
 
 #import "AFHTTPSessionManager.h"
 
-@interface AirMenuClient : AFHTTPSessionManager
+@interface AMAirMenuClient : AFHTTPSessionManager
 
 @end
