@@ -25,7 +25,8 @@ describe(@"AMRestaurant", ^{
                                                          @"name" : @"a name",
                                                          @"remoteOrder" : @YES,
                                                          @"conversionRate" : @0.1,
-                                                         @"address" : [AMAddress new]}];
+                                                         @"address" : [AMAddress new],
+                                                         @"loyality" : @YES}];
         });
         
         it(@"subclasses MTLModel", ^{
@@ -44,6 +45,10 @@ describe(@"AMRestaurant", ^{
             [[restaurant.name should] equal:@"a name"];
         });
         
+        it(@"has loyality attribute", ^{
+            [[restaurant.loyality should] equal:@YES];
+        });
+        
         it(@"has remote_order attribute", ^{
             [[restaurant.remoteOrder should] equal:@YES];
         });
@@ -55,6 +60,7 @@ describe(@"AMRestaurant", ^{
         it(@"has address attribute", ^{
             [[restaurant.address should] equal:[AMAddress new]];
         });
+        
     });
     
     context(@"class", ^{
@@ -80,6 +86,47 @@ describe(@"AMRestaurant", ^{
     
     context(@"mapping", ^{
         
+        __block AMRestaurant *restaurant;
+        __block NSDictionary *parsedRestaurantJSON;
+        __block NSDictionary *parsedAddressJSON;
+        
+        beforeAll(^{
+            parsedAddressJSON = @{@"id" : @"1",
+                                  @"created_at" : @"2011-04-05T11:29:14Z",
+                                  @"updated_at" : @"2011-04-05T11:29:14Z",
+                                  @"address_line_1" : @"line one",
+                                  @"address_line_2" : @"line two",
+                                  @"city" : @"Dublin",
+                                  @"county": @"Dublin",
+                                  @"country" : @"Ireland"};
+            
+            parsedRestaurantJSON = @{@"id": @"1",
+                                     @"name" : @"Nandos",
+                                     @"loyality" : @NO,
+                                     @"remote_order": @NO,
+                                     @"conversion_rate": @0.5,
+                                     @"address" : parsedAddressJSON};
+            restaurant = [MTLJSONAdapter modelOfClass:[AMRestaurant class] fromJSONDictionary:parsedRestaurantJSON error:nil];
+        });
+        
+        it(@"maps parsed menu JSON to AMMenu object", ^{
+            [[restaurant.identifier should] equal:@"1"];
+            [[restaurant.name should] equal:@"Nandos"];
+            [[restaurant.remoteOrder should] equal:@NO];
+            [[restaurant.loyality should] equal:@NO];
+            [[restaurant.conversionRate should] equal:@0.5];
+        });
+        
+        it(@"maps parsed address JSON hooks it up to AMRestaurant object", ^{
+            [[restaurant.address.identifier should] equal:@"1"];
+            [[restaurant.address.createdAt should] equal:[[NSDateFormatter sharedAirMenuFormatter] dateFromString:@"2011-04-05T11:29:14Z"]];
+            [[restaurant.address.updatedAt should] equal:[[NSDateFormatter sharedAirMenuFormatter] dateFromString:@"2011-04-05T11:29:14Z"]];
+            [[restaurant.address.addressLine1 should] equal:@"line one"];
+            [[restaurant.address.addressLine2 should] equal:@"line two"];
+            [[restaurant.address.city should] equal:@"Dublin"];
+            [[restaurant.address.county should] equal:@"Dublin"];
+            [[restaurant.address.country should] equal:@"Ireland"];
+        });
     });
 });
 

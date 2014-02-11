@@ -13,6 +13,7 @@
 @interface AMRestaurant : MTLModel <MTLJSONSerializing>
 @property (nonatomic, strong, readonly) NSString *identifier;
 @property (nonatomic, strong, readonly) NSString *name;
+@property (nonatomic, strong, readonly) NSNumber *loyality;
 @property (nonatomic, strong, readonly) NSNumber *remoteOrder;
 @property (nonatomic, strong, readonly) NSNumber *conversionRate;
 @property (nonatomic, strong, readonly) AMAddress *address;
