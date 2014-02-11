@@ -35,6 +35,9 @@
 		716C573718A1BEB800D95228 /* AMMenuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 716C573618A1BEB800D95228 /* AMMenuTests.m */; };
 		71710E6418A436C200A2390B /* AMRestaurantTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71710E6318A436C200A2390B /* AMRestaurantTests.m */; };
 		7174341A18AA76C200A83C61 /* AMOAuthToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 7174341918AA76C200A83C61 /* AMOAuthToken.m */; };
+		71E3FD7B18AA784700BD00C2 /* AMOAuthTokenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E3FD7A18AA784700BD00C2 /* AMOAuthTokenTests.m */; };
+		71E3FD7E18AACB6F00BD00C2 /* AMOAuthApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E3FD7D18AACB6F00BD00C2 /* AMOAuthApplication.m */; };
+		71E3FD8018AACB8D00BD00C2 /* AMOAuthApplicationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E3FD7F18AACB8D00BD00C2 /* AMOAuthApplicationTests.m */; };
 		DDE23A49A56D45DCA98C334A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00826E59288A4EBC8E2108B7 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -103,6 +106,10 @@
 		71710E6318A436C200A2390B /* AMRestaurantTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMRestaurantTests.m; sourceTree = "<group>"; };
 		7174341818AA76C200A83C61 /* AMOAuthToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMOAuthToken.h; sourceTree = "<group>"; };
 		7174341918AA76C200A83C61 /* AMOAuthToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMOAuthToken.m; sourceTree = "<group>"; };
+		71E3FD7A18AA784700BD00C2 /* AMOAuthTokenTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMOAuthTokenTests.m; sourceTree = "<group>"; };
+		71E3FD7C18AACB6F00BD00C2 /* AMOAuthApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMOAuthApplication.h; sourceTree = "<group>"; };
+		71E3FD7D18AACB6F00BD00C2 /* AMOAuthApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMOAuthApplication.m; sourceTree = "<group>"; };
+		71E3FD7F18AACB8D00BD00C2 /* AMOAuthApplicationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMOAuthApplicationTests.m; sourceTree = "<group>"; };
 		811AF5E1705D4DD596C51C97 /* Pods-AirMenuKitTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AirMenuKitTests.xcconfig"; path = "Pods/Pods-AirMenuKitTests.xcconfig"; sourceTree = "<group>"; };
 		C4D6450282584DFB83C8BE38 /* libPods-AirMenuKitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AirMenuKitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -149,6 +156,8 @@
 				710AD71C189FDF6400AA1038 /* AMAirMenuClient.m */,
 				7174341818AA76C200A83C61 /* AMOAuthToken.h */,
 				7174341918AA76C200A83C61 /* AMOAuthToken.m */,
+				71E3FD7C18AACB6F00BD00C2 /* AMOAuthApplication.h */,
+				71E3FD7D18AACB6F00BD00C2 /* AMOAuthApplication.m */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -252,6 +261,8 @@
 		71E3FD7918AA771600BD00C2 /* Netowrking */ = {
 			isa = PBXGroup;
 			children = (
+				71E3FD7A18AA784700BD00C2 /* AMOAuthTokenTests.m */,
+				71E3FD7F18AACB8D00BD00C2 /* AMOAuthApplicationTests.m */,
 			);
 			name = Netowrking;
 			path = Networking;
@@ -414,6 +425,7 @@
 				710AD72C18A026D600AA1038 /* AMMenuItem.m in Sources */,
 				710AD72318A0269F00AA1038 /* AMRestaurant.m in Sources */,
 				710AD72918A026CC00AA1038 /* AMMenuSection.m in Sources */,
+				71E3FD7E18AACB6F00BD00C2 /* AMOAuthApplication.m in Sources */,
 				7174341A18AA76C200A83C61 /* AMOAuthToken.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,9 +436,11 @@
 			files = (
 				71710E6418A436C200A2390B /* AMRestaurantTests.m in Sources */,
 				71173FA418A06AF300DF24EB /* AMAddressTests.m in Sources */,
+				71E3FD8018AACB8D00BD00C2 /* AMOAuthApplicationTests.m in Sources */,
 				713F953218A0328400623CA8 /* AMCompanyTests.m in Sources */,
 				716C573518A1A40D00D95228 /* AMMenuSectionTests.m in Sources */,
 				71173FA618A17BAB00DF24EB /* AMMenuItemTests.m in Sources */,
+				71E3FD7B18AA784700BD00C2 /* AMOAuthTokenTests.m in Sources */,
 				716C573718A1BEB800D95228 /* AMMenuTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

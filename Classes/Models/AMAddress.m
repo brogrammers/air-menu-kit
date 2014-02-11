@@ -33,7 +33,8 @@
         return [[NSDateFormatter sharedAirMenuFormatter] dateFromString:str];
     } reverseBlock:^(NSDate *date) {
         return [[NSDateFormatter sharedAirMenuFormatter] stringFromDate:date];
-    }];}
+    }];
+}
 
 +(NSValueTransformer *)updatedAtJSONTransformer
 {

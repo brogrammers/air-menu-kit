@@ -6,8 +6,29 @@
 //  Copyright (c) 2014 air-menu. All rights reserved.
 //
 
-#import "MTLModel.h"
+#import <Mantle/Mantle.h>
 
-@interface AMOAuthToken : MTLModel
+typedef NS_ENUM(NSUInteger, AMOAuthTokenType)
+{
+    AMOAuthTokenTypeBearer
+};
 
+typedef NS_ENUM(NSUInteger, AMOAuthScope)
+{
+    AMOAuthScopeBasic,
+    AMOAuthScopeUser,
+    AMOAuthScopeAdmin,
+    AMOAuthScopeCreateCompany
+};
+
+@interface AMOAuthToken : MTLModel <MTLJSONSerializing>
+@property (nonatomic, strong, readonly) NSString *token;
+@property (nonatomic, strong, readonly) NSString *refreshToken;
+@property (nonatomic, strong, readonly) NSString *type;
+@property (nonatomic, strong, readonly) NSDate *expiresAt;
+@property (nonatomic, strong, readonly) NSArray *scopes;
+-(BOOL)hasScope:(AMOAuthScope)scope;
+-(BOOL)isOfType:(AMOAuthTokenType)type;
 @end
+
+
