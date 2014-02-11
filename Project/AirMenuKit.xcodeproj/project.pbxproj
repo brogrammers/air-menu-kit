@@ -222,12 +222,6 @@
 			children = (
 				71E3FD7918AA771600BD00C2 /* Netowrking */,
 				71E3FD7818AA771100BD00C2 /* Models */,
-				713F953118A0328400623CA8 /* AMCompanyTests.m */,
-				71173FA318A06AF300DF24EB /* AMAddressTests.m */,
-				71173FA518A17BAB00DF24EB /* AMMenuItemTests.m */,
-				716C573418A1A40D00D95228 /* AMMenuSectionTests.m */,
-				716C573618A1BEB800D95228 /* AMMenuTests.m */,
-				71710E6318A436C200A2390B /* AMRestaurantTests.m */,
 				7132E4641848EA8A00B2E356 /* Supporting Files */,
 			);
 			path = AirMenuKitTests;
@@ -245,8 +239,14 @@
 		71E3FD7818AA771100BD00C2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				713F953118A0328400623CA8 /* AMCompanyTests.m */,
+				71173FA318A06AF300DF24EB /* AMAddressTests.m */,
+				71173FA518A17BAB00DF24EB /* AMMenuItemTests.m */,
+				716C573418A1A40D00D95228 /* AMMenuSectionTests.m */,
+				716C573618A1BEB800D95228 /* AMMenuTests.m */,
+				71710E6318A436C200A2390B /* AMRestaurantTests.m */,
 			);
-			name = Models;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		71E3FD7918AA771600BD00C2 /* Netowrking */ = {
@@ -254,6 +254,7 @@
 			children = (
 			);
 			name = Netowrking;
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
