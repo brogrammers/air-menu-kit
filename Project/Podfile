@@ -1,3 +1,8 @@
 platform :ios, '7.0'
 
 podspec :path => "../AirMenuKit.podspec"
+
+target :AirMenuKitTests, :exclusive => true do
+	pod 'Kiwi/XCTest', '~> 2.2.3'
+	pod 'Nocilla', '~> 0.8.1'
+end
