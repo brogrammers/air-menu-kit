@@ -35,6 +35,11 @@
 		716C573718A1BEB800D95228 /* AMMenuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 716C573618A1BEB800D95228 /* AMMenuTests.m */; };
 		71710E6418A436C200A2390B /* AMRestaurantTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71710E6318A436C200A2390B /* AMRestaurantTests.m */; };
 		7174341A18AA76C200A83C61 /* AMOAuthToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 7174341918AA76C200A83C61 /* AMOAuthToken.m */; };
+		71A0D3A218AC33220070465E /* AMClient+Company.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A0D3A118AC33220070465E /* AMClient+Company.m */; };
+		71A0D3A518AC33280070465E /* AMClient+Restaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A0D3A418AC33280070465E /* AMClient+Restaurant.m */; };
+		71A0D3A818AC33310070465E /* AMClient+Menu.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A0D3A718AC33310070465E /* AMClient+Menu.m */; };
+		71A0D3AB18AC33390070465E /* AMClient+MenuSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A0D3AA18AC33390070465E /* AMClient+MenuSection.m */; };
+		71A0D3AE18AC335E0070465E /* AMClient+MenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A0D3AD18AC335E0070465E /* AMClient+MenuItem.m */; };
 		71E3FD7B18AA784700BD00C2 /* AMOAuthTokenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E3FD7A18AA784700BD00C2 /* AMOAuthTokenTests.m */; };
 		71E3FD7E18AACB6F00BD00C2 /* AMOAuthApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E3FD7D18AACB6F00BD00C2 /* AMOAuthApplication.m */; };
 		71E3FD8018AACB8D00BD00C2 /* AMOAuthApplicationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E3FD7F18AACB8D00BD00C2 /* AMOAuthApplicationTests.m */; };
@@ -110,6 +115,16 @@
 		71710E6318A436C200A2390B /* AMRestaurantTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMRestaurantTests.m; sourceTree = "<group>"; };
 		7174341818AA76C200A83C61 /* AMOAuthToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMOAuthToken.h; sourceTree = "<group>"; };
 		7174341918AA76C200A83C61 /* AMOAuthToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMOAuthToken.m; sourceTree = "<group>"; };
+		71A0D3A018AC33220070465E /* AMClient+Company.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AMClient+Company.h"; sourceTree = "<group>"; };
+		71A0D3A118AC33220070465E /* AMClient+Company.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AMClient+Company.m"; sourceTree = "<group>"; };
+		71A0D3A318AC33280070465E /* AMClient+Restaurant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AMClient+Restaurant.h"; sourceTree = "<group>"; };
+		71A0D3A418AC33280070465E /* AMClient+Restaurant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AMClient+Restaurant.m"; sourceTree = "<group>"; };
+		71A0D3A618AC33310070465E /* AMClient+Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AMClient+Menu.h"; sourceTree = "<group>"; };
+		71A0D3A718AC33310070465E /* AMClient+Menu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AMClient+Menu.m"; sourceTree = "<group>"; };
+		71A0D3A918AC33390070465E /* AMClient+MenuSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AMClient+MenuSection.h"; sourceTree = "<group>"; };
+		71A0D3AA18AC33390070465E /* AMClient+MenuSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AMClient+MenuSection.m"; sourceTree = "<group>"; };
+		71A0D3AC18AC335E0070465E /* AMClient+MenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AMClient+MenuItem.h"; sourceTree = "<group>"; };
+		71A0D3AD18AC335E0070465E /* AMClient+MenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AMClient+MenuItem.m"; sourceTree = "<group>"; };
 		71E3FD7A18AA784700BD00C2 /* AMOAuthTokenTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMOAuthTokenTests.m; sourceTree = "<group>"; };
 		71E3FD7C18AACB6F00BD00C2 /* AMOAuthApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMOAuthApplication.h; sourceTree = "<group>"; };
 		71E3FD7D18AACB6F00BD00C2 /* AMOAuthApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMOAuthApplication.m; sourceTree = "<group>"; };
@@ -263,6 +278,16 @@
 		71A0D39F18AC32540070465E /* Model Additions */ = {
 			isa = PBXGroup;
 			children = (
+				71A0D3A018AC33220070465E /* AMClient+Company.h */,
+				71A0D3A118AC33220070465E /* AMClient+Company.m */,
+				71A0D3A318AC33280070465E /* AMClient+Restaurant.h */,
+				71A0D3A418AC33280070465E /* AMClient+Restaurant.m */,
+				71A0D3A618AC33310070465E /* AMClient+Menu.h */,
+				71A0D3A718AC33310070465E /* AMClient+Menu.m */,
+				71A0D3A918AC33390070465E /* AMClient+MenuSection.h */,
+				71A0D3AA18AC33390070465E /* AMClient+MenuSection.m */,
+				71A0D3AC18AC335E0070465E /* AMClient+MenuItem.h */,
+				71A0D3AD18AC335E0070465E /* AMClient+MenuItem.m */,
 			);
 			path = "Model Additions";
 			sourceTree = "<group>";
@@ -460,15 +485,20 @@
 				71E3FD8B18AB10D200BD00C2 /* AMObjectBuilder.m in Sources */,
 				71173FA118A067F400DF24EB /* NSNumberFormatter+AirMenuNumberFormat.m in Sources */,
 				716C573318A197C800D95228 /* NSDateFormatter+AirMenuTimestamp.m in Sources */,
+				71A0D3AB18AC33390070465E /* AMClient+MenuSection.m in Sources */,
 				710AD71D189FDF6400AA1038 /* AMClient.m in Sources */,
 				710AD72018A0268800AA1038 /* AMCompany.m in Sources */,
+				71A0D3A818AC33310070465E /* AMClient+Menu.m in Sources */,
 				713F953B18A040F500623CA8 /* AMAddress.m in Sources */,
 				710AD72618A026B900AA1038 /* AMMenu.m in Sources */,
 				710AD72C18A026D600AA1038 /* AMMenuItem.m in Sources */,
 				710AD72318A0269F00AA1038 /* AMRestaurant.m in Sources */,
+				71A0D3A218AC33220070465E /* AMClient+Company.m in Sources */,
 				710AD72918A026CC00AA1038 /* AMMenuSection.m in Sources */,
+				71A0D3A518AC33280070465E /* AMClient+Restaurant.m in Sources */,
 				71E3FD7E18AACB6F00BD00C2 /* AMOAuthApplication.m in Sources */,
 				7174341A18AA76C200A83C61 /* AMOAuthToken.m in Sources */,
+				71A0D3AE18AC335E0070465E /* AMClient+MenuItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
