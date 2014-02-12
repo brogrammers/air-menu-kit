@@ -92,7 +92,7 @@ describe(@"AMOAuthToken", ^{
             accessToken = [MTLJSONAdapter modelOfClass:[AMOAuthToken class] fromJSONDictionary:parsedTokenJSON error:nil];
         });
         
-        it(@"map parsed address JSON to AMAddress object", ^{
+        it(@"maps parsed address JSON to AMAddress object", ^{
             [[accessToken.token should] equal:@"6f5066bdf7cc53d088cf0cc967b6cf4b69205887437590aa8448bc0a1d8aff17"];
             [[accessToken.refreshToken should] equal:@"0eeff0f2615d026cacd5637158cbd6c31edf63bc4abbec284982a28800f639ab"];
             [[accessToken.type should] equal:@"bearer"];

@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 air-menu. All rights reserved.
 //
 
-#import "AMAirMenuClient.h"
+#import "AMClient.h"
 
-@implementation AMAirMenuClient
+@implementation AMClient
 
 @end

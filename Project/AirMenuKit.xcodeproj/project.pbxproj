@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		35C6636F86084676A8F03BCF /* libPods-AirMenuKitTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4D6450282584DFB83C8BE38 /* libPods-AirMenuKitTests.a */; };
-		710AD71D189FDF6400AA1038 /* AMAirMenuClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 710AD71C189FDF6400AA1038 /* AMAirMenuClient.m */; };
+		710AD71D189FDF6400AA1038 /* AMClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 710AD71C189FDF6400AA1038 /* AMClient.m */; };
 		710AD72018A0268800AA1038 /* AMCompany.m in Sources */ = {isa = PBXBuildFile; fileRef = 710AD71F18A0268800AA1038 /* AMCompany.m */; };
 		710AD72318A0269F00AA1038 /* AMRestaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = 710AD72218A0269F00AA1038 /* AMRestaurant.m */; };
 		710AD72618A026B900AA1038 /* AMMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 710AD72518A026B900AA1038 /* AMMenu.m */; };
@@ -28,7 +28,7 @@
 		713F953518A03B0900623CA8 /* AMMenu.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 710AD72418A026B900AA1038 /* AMMenu.h */; };
 		713F953618A03B0900623CA8 /* AMMenuSection.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 710AD72718A026CC00AA1038 /* AMMenuSection.h */; };
 		713F953718A03B0900623CA8 /* AMMenuItem.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 710AD72A18A026D600AA1038 /* AMMenuItem.h */; };
-		713F953818A03B0900623CA8 /* AMAirMenuClient.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 710AD71B189FDF6400AA1038 /* AMAirMenuClient.h */; };
+		713F953818A03B0900623CA8 /* AMClient.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 710AD71B189FDF6400AA1038 /* AMClient.h */; };
 		713F953B18A040F500623CA8 /* AMAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 713F953A18A040F500623CA8 /* AMAddress.m */; };
 		716C573318A197C800D95228 /* NSDateFormatter+AirMenuTimestamp.m in Sources */ = {isa = PBXBuildFile; fileRef = 716C573218A197C800D95228 /* NSDateFormatter+AirMenuTimestamp.m */; };
 		716C573518A1A40D00D95228 /* AMMenuSectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 716C573418A1A40D00D95228 /* AMMenuSectionTests.m */; };
@@ -38,6 +38,7 @@
 		71E3FD7B18AA784700BD00C2 /* AMOAuthTokenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E3FD7A18AA784700BD00C2 /* AMOAuthTokenTests.m */; };
 		71E3FD7E18AACB6F00BD00C2 /* AMOAuthApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E3FD7D18AACB6F00BD00C2 /* AMOAuthApplication.m */; };
 		71E3FD8018AACB8D00BD00C2 /* AMOAuthApplicationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E3FD7F18AACB8D00BD00C2 /* AMOAuthApplicationTests.m */; };
+		71E3FD8518AAF0F700BD00C2 /* AMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E3FD8418AAF0F700BD00C2 /* AMUser.m */; };
 		DDE23A49A56D45DCA98C334A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00826E59288A4EBC8E2108B7 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -63,7 +64,7 @@
 				713F953518A03B0900623CA8 /* AMMenu.h in CopyFiles */,
 				713F953618A03B0900623CA8 /* AMMenuSection.h in CopyFiles */,
 				713F953718A03B0900623CA8 /* AMMenuItem.h in CopyFiles */,
-				713F953818A03B0900623CA8 /* AMAirMenuClient.h in CopyFiles */,
+				713F953818A03B0900623CA8 /* AMClient.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,8 +74,8 @@
 		00826E59288A4EBC8E2108B7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5144A829ACC149479E467E2A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		710AD714189F2FBE00AA1038 /* AirMenuKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AirMenuKit-Prefix.pch"; sourceTree = "<group>"; };
-		710AD71B189FDF6400AA1038 /* AMAirMenuClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMAirMenuClient.h; sourceTree = "<group>"; };
-		710AD71C189FDF6400AA1038 /* AMAirMenuClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMAirMenuClient.m; sourceTree = "<group>"; };
+		710AD71B189FDF6400AA1038 /* AMClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMClient.h; sourceTree = "<group>"; };
+		710AD71C189FDF6400AA1038 /* AMClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMClient.m; sourceTree = "<group>"; };
 		710AD71E18A0268800AA1038 /* AMCompany.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMCompany.h; sourceTree = "<group>"; };
 		710AD71F18A0268800AA1038 /* AMCompany.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMCompany.m; sourceTree = "<group>"; };
 		710AD72118A0269F00AA1038 /* AMRestaurant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMRestaurant.h; sourceTree = "<group>"; };
@@ -110,6 +111,8 @@
 		71E3FD7C18AACB6F00BD00C2 /* AMOAuthApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMOAuthApplication.h; sourceTree = "<group>"; };
 		71E3FD7D18AACB6F00BD00C2 /* AMOAuthApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMOAuthApplication.m; sourceTree = "<group>"; };
 		71E3FD7F18AACB8D00BD00C2 /* AMOAuthApplicationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMOAuthApplicationTests.m; sourceTree = "<group>"; };
+		71E3FD8318AAF0F700BD00C2 /* AMUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMUser.h; sourceTree = "<group>"; };
+		71E3FD8418AAF0F700BD00C2 /* AMUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMUser.m; sourceTree = "<group>"; };
 		811AF5E1705D4DD596C51C97 /* Pods-AirMenuKitTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AirMenuKitTests.xcconfig"; path = "Pods/Pods-AirMenuKitTests.xcconfig"; sourceTree = "<group>"; };
 		C4D6450282584DFB83C8BE38 /* libPods-AirMenuKitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AirMenuKitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -141,6 +144,7 @@
 		710AD713189F2F7600AA1038 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				71E3FD8118AAF0A500BD00C2 /* General */,
 				710AD71A189FDF1C00AA1038 /* Models */,
 				710AD719189FDF1400AA1038 /* Networking */,
 				710AD714189F2FBE00AA1038 /* AirMenuKit-Prefix.pch */,
@@ -152,8 +156,8 @@
 		710AD719189FDF1400AA1038 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				710AD71B189FDF6400AA1038 /* AMAirMenuClient.h */,
-				710AD71C189FDF6400AA1038 /* AMAirMenuClient.m */,
+				710AD71B189FDF6400AA1038 /* AMClient.h */,
+				710AD71C189FDF6400AA1038 /* AMClient.m */,
 				7174341818AA76C200A83C61 /* AMOAuthToken.h */,
 				7174341918AA76C200A83C61 /* AMOAuthToken.m */,
 				71E3FD7C18AACB6F00BD00C2 /* AMOAuthApplication.h */,
@@ -178,6 +182,8 @@
 				710AD72818A026CC00AA1038 /* AMMenuSection.m */,
 				710AD72A18A026D600AA1038 /* AMMenuItem.h */,
 				710AD72B18A026D600AA1038 /* AMMenuItem.m */,
+				71E3FD8318AAF0F700BD00C2 /* AMUser.h */,
+				71E3FD8418AAF0F700BD00C2 /* AMUser.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -266,6 +272,13 @@
 			);
 			name = Netowrking;
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		71E3FD8118AAF0A500BD00C2 /* General */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = General;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -418,8 +431,9 @@
 			files = (
 				71173FA118A067F400DF24EB /* NSNumberFormatter+AirMenuNumberFormat.m in Sources */,
 				716C573318A197C800D95228 /* NSDateFormatter+AirMenuTimestamp.m in Sources */,
-				710AD71D189FDF6400AA1038 /* AMAirMenuClient.m in Sources */,
+				710AD71D189FDF6400AA1038 /* AMClient.m in Sources */,
 				710AD72018A0268800AA1038 /* AMCompany.m in Sources */,
+				71E3FD8518AAF0F700BD00C2 /* AMUser.m in Sources */,
 				713F953B18A040F500623CA8 /* AMAddress.m in Sources */,
 				710AD72618A026B900AA1038 /* AMMenu.m in Sources */,
 				710AD72C18A026D600AA1038 /* AMMenuItem.m in Sources */,

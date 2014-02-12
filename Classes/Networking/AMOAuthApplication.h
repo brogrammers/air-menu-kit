@@ -6,8 +6,12 @@
 //  Copyright (c) 2014 air-menu. All rights reserved.
 //
 
-#import "MTLModel.h"
+#import <Mantle/Mantle.h>
 
-@interface AMOAuthApplication : MTLModel
-
+@interface AMOAuthApplication : MTLModel <MTLJSONSerializing>
+@property (nonatomic, strong, readonly) NSString *identifier;
+@property (nonatomic, strong, readonly) NSString *name;
+@property (nonatomic, strong, readonly) NSURL *redirectUri;
+@property (nonatomic, strong, readonly) NSString *clientId;
+@property (nonatomic, strong, readonly) NSString *clientSecret;
 @end

@@ -15,10 +15,16 @@ typedef NS_ENUM(NSUInteger, AMOAuthTokenType)
 
 typedef NS_ENUM(NSUInteger, AMOAuthScope)
 {
-    AMOAuthScopeBasic,
-    AMOAuthScopeUser,
-    AMOAuthScopeAdmin,
-    AMOAuthScopeCreateCompany
+    AMOAuthScopeNone = 0,
+    AMOAuthScopeBasic = 1 << 0,
+    AMOAuthScopeUser = 1 << 1,
+    AMOAuthScopeAdmin = 1 << 2,
+    AMOAuthScopeCreateCompany = 1 << 3
+};
+
+typedef NS_ENUM(NSUInteger, AMOAuthGrantType) {
+    AMOAuthGrantTypePassword,
+    AMOAuthGrantTypeCredential,
 };
 
 @interface AMOAuthToken : MTLModel <MTLJSONSerializing>

@@ -45,6 +45,10 @@
 {
     switch (scope)
     {
+        case AMOAuthScopeNone:
+            return nil;
+        break;
+            
         case AMOAuthScopeBasic:
             return @"basic";
         break;

@@ -10,4 +10,24 @@
 
 @implementation AMOAuthApplication
 
+#pragma mark - Mantle framework mapping hooks
+
++(NSDictionary *)JSONKeyPathsByPropertyKey
+{
+    return @{@"identifier" : @"id",
+             @"name" : @"name",
+             @"redirectUri": @"redirect_uri",
+             @"clientId" : @"client_id",
+             @"clientSecret" : @"client_secret"};;
+}
+
++(NSValueTransformer *)redirectUriJSONTransformer
+{
+    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSString *str) {
+        return [NSURL URLWithString:str];
+    } reverseBlock:^(NSURL *url) {
+        return url.absoluteString;
+    }];
+}
+
 @end
