@@ -11,9 +11,18 @@
 #import "AMOAuthToken.h"
 #import "AMUser.h"
 
+static NSString *baseURL = @"https://stage.air-menu.com/api/v1/";
+
 @interface AMClient : AFHTTPSessionManager
--(void)authenticateApplication:(AMOAuthApplication *)application
-                      withUser:(AMUser *)user
-                         scope:(AMOAuthScope)scope
-                     grantType:(AMOAuthGrantType)grantType;
+@property (nonatomic, strong, readonly) id <AMUser> currentUser;
+
++(instancetype)sharedClient;
+
+-(NSURLSessionDataTask *)authenticateWithClientID:(NSString *)clientID
+                                     clientSecret:(NSString *)clientSecret
+                                         username:(NSString *)username
+                                         password:(NSString *)password
+                                            scope:(NSString *)scope
+                                          success:(void(^)(AMOAuthToken *token))success
+                                          failure:(void(^)(NSError *error))failure;
 @end
