@@ -14,6 +14,7 @@
 {
     return @{@"identifier" : @"id",
              @"name" : @"name",
+             @"loyalty" : @"loyalty",
              @"remoteOrder" : @"remote_order",
              @"conversionRate" : @"conversion_rate",
              @"address" : @"address"};

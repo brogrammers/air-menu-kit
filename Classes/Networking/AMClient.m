@@ -72,7 +72,18 @@
     return [super GET:URLString
            parameters:parameters
               success:^(NSURLSessionDataTask *task, id responseObject){
-                  if(success) success(task, responseObject);
+                  NSHTTPURLResponse *urlResponse = (NSHTTPURLResponse *)task.response;
+                  if (urlResponse.statusCode == 200)
+                  {
+                      success(task, responseObject);
+                  }
+                  else
+                  {
+                      if(failure) failure(task, [NSError errorWithDomain:airMenuApiErrorDomain
+                                                                    code:urlResponse.statusCode
+                                                                userInfo:@{@"request" : task.originalRequest,
+                                                                           @"response" : task.response}]);
+                  }
               }
               failure:^(NSURLSessionDataTask *task, NSError *error){
                   if(failure) failure(task, error);
@@ -108,8 +119,20 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     return [super POST:URLString
             parameters:parameters
                success:^(NSURLSessionDataTask *task, id responseObject) {
-                   if(success) success(task, responseObject);
-               } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                   NSHTTPURLResponse *urlResponse = (NSHTTPURLResponse *)task.response;
+                   if (urlResponse.statusCode == 200)
+                   {
+                       success(task, responseObject);
+                   }
+                   else
+                   {
+                       if(failure) failure(task, [NSError errorWithDomain:airMenuApiErrorDomain
+                                                                     code:urlResponse.statusCode
+                                                                 userInfo:@{@"request" : task.originalRequest,
+                                                                            @"response" : task.response}]);
+                   }
+               }
+               failure:^(NSURLSessionDataTask *task, NSError *error) {
                    if(failure) failure(task, error);
                }];
 }

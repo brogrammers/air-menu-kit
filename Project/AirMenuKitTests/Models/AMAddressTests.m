@@ -22,9 +22,7 @@ describe(@"AMAddress", ^{
         beforeAll(^{
             address = [[AMAddress alloc] init];
             [address setValuesForKeysWithDictionary:@{
-                                                      @"identifier" : @"1",
-                                                      @"createdAt" : [NSDate dateWithTimeIntervalSince1970:1],
-                                                      @"updatedAt" : [NSDate dateWithTimeIntervalSince1970:1],
+                                                      @"identifier" : @1,
                                                       @"addressLine1" : @"line one",
                                                       @"addressLine2" : @"line two",
                                                       @"city" : @"a city",
@@ -42,15 +40,7 @@ describe(@"AMAddress", ^{
         });
         
         it(@"has identifier attribute", ^{
-            [[address.identifier should] equal:@"1"];
-        });
-        
-        it(@"has created at attribute", ^{
-            [[address.createdAt should] equal:[NSDate dateWithTimeIntervalSince1970:1]];
-        });
-        
-        it(@"has updated at attribute", ^{
-            [[address.updatedAt should] equal:[NSDate dateWithTimeIntervalSince1970:1]];
+            [[address.identifier should] equal:@1];
         });
         
         it(@"has address line 1 attribute", ^{
@@ -80,52 +70,26 @@ describe(@"AMAddress", ^{
             NSDictionary *mapping = [AMAddress JSONKeyPathsByPropertyKey];
             NSDictionary *expectedMapping = @{
                                                 @"identifier" : @"id",
-                                                @"createdAt" : @"created_at",
-                                                @"updatedAt" : @"updated_at",
-                                                @"addressLine1" : @"address_line_1",
-                                                @"addressLine2" : @"address_line_2",
+                                                @"addressLine1" : @"address_1",
+                                                @"addressLine2" : @"address_2",
                                                 @"city" : @"city",
                                                 @"county" : @"county",
                                                 @"country": @"country"
                                               };
             [[mapping should] equal:expectedMapping];
         });
-        
-        it(@"implements createdAtJSONTransformer", ^{
-            [[[AMAddress class] should] respondToSelector:NSSelectorFromString(@"createdAtJSONTransformer")];
-        });
-        
-        it(@"returns NSDate transformer from createdAtJSONTransformer", ^{
-            NSValueTransformer *valueTransformer = objc_msgSend([AMAddress class], NSSelectorFromString(@"createdAtJSONTransformer"));
-            [[valueTransformer shouldNot] beNil];
-            // TODO (Robert Lis): Write test that ensures date can be transformed with this transformer
-        });
-        
-        it(@"implements updatedAtJSONTransformer", ^{
-            [[[AMAddress class] should] respondToSelector:NSSelectorFromString(@"updatedAtJSONTransformer")];
-        });
-        
-        it(@"returns NSDate transformer from updatedAtJSONTransformer", ^{
-            NSValueTransformer *valueTransformer = objc_msgSend([AMAddress class], NSSelectorFromString(@"updatedAtJSONTransformer"));
-            [[valueTransformer shouldNot] beNil];
-            // TODO (Robert Lis): Write test that ensures date can be transformed with this transformer
-        });
     });
     
     context(@"mappings", ^{
        it(@"map parsed address JSON to AMAddress object", ^{
-           NSDictionary *parsedAddressJSON = @{@"id" : @"1",
-                                               @"created_at" : @"2011-04-05T11:29:14Z",
-                                               @"updated_at" : @"2011-04-05T11:29:14Z",
-                                               @"address_line_1" : @"line one",
-                                               @"address_line_2" : @"line two",
+           NSDictionary *parsedAddressJSON = @{@"id" : @1,
+                                               @"address_1" : @"line one",
+                                               @"address_2" : @"line two",
                                                @"city" : @"Dublin",
                                                @"county": @"Dublin",
                                                @"country" : @"Ireland"};
            AMAddress *address = [MTLJSONAdapter modelOfClass:[AMAddress class] fromJSONDictionary:parsedAddressJSON error:nil];
-           [[address.identifier should] equal:@"1"];
-           [[address.createdAt should] equal:[[NSDateFormatter sharedAirMenuFormatter] dateFromString:@"2011-04-05T11:29:14Z"]];
-           [[address.updatedAt should] equal:[[NSDateFormatter sharedAirMenuFormatter] dateFromString:@"2011-04-05T11:29:14Z"]];
+           [[address.identifier should] equal:@1];
            [[address.addressLine1 should] equal:@"line one"];
            [[address.addressLine2 should] equal:@"line two"];
            [[address.city should] equal:@"Dublin"];

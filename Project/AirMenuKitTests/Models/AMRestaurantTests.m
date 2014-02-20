@@ -26,7 +26,7 @@ describe(@"AMRestaurant", ^{
                                                          @"remoteOrder" : @YES,
                                                          @"conversionRate" : @0.1,
                                                          @"address" : [AMAddress new],
-                                                         @"loyality" : @YES}];
+                                                         @"loyalty" : @YES}];
         });
         
         it(@"subclasses MTLModel", ^{
@@ -46,7 +46,7 @@ describe(@"AMRestaurant", ^{
         });
         
         it(@"has loyality attribute", ^{
-            [[restaurant.loyality should] equal:@YES];
+            [[restaurant.loyalty should] equal:@YES];
         });
         
         it(@"has remote_order attribute", ^{
@@ -68,6 +68,7 @@ describe(@"AMRestaurant", ^{
             NSDictionary *mapping = [AMRestaurant JSONKeyPathsByPropertyKey];
             NSDictionary *expectedMapping = @{@"identifier" : @"id",
                                               @"name" : @"name",
+                                              @"loyalty" : @"loyalty",
                                               @"remoteOrder" : @"remote_order",
                                               @"conversionRate" : @"conversion_rate",
                                               @"address" : @"address"};
@@ -92,17 +93,15 @@ describe(@"AMRestaurant", ^{
         
         beforeAll(^{
             parsedAddressJSON = @{@"id" : @"1",
-                                  @"created_at" : @"2011-04-05T11:29:14Z",
-                                  @"updated_at" : @"2011-04-05T11:29:14Z",
-                                  @"address_line_1" : @"line one",
-                                  @"address_line_2" : @"line two",
+                                  @"address_1" : @"line one",
+                                  @"address_2" : @"line two",
                                   @"city" : @"Dublin",
                                   @"county": @"Dublin",
                                   @"country" : @"Ireland"};
             
             parsedRestaurantJSON = @{@"id": @"1",
                                      @"name" : @"Nandos",
-                                     @"loyality" : @NO,
+                                     @"loyalty" : @NO,
                                      @"remote_order": @NO,
                                      @"conversion_rate": @0.5,
                                      @"address" : parsedAddressJSON};
@@ -113,14 +112,12 @@ describe(@"AMRestaurant", ^{
             [[restaurant.identifier should] equal:@"1"];
             [[restaurant.name should] equal:@"Nandos"];
             [[restaurant.remoteOrder should] equal:@NO];
-            [[restaurant.loyality should] equal:@NO];
+            [[restaurant.loyalty should] equal:@NO];
             [[restaurant.conversionRate should] equal:@0.5];
         });
         
         it(@"maps parsed address JSON hooks it up to AMRestaurant object", ^{
             [[restaurant.address.identifier should] equal:@"1"];
-            [[restaurant.address.createdAt should] equal:[[NSDateFormatter sharedAirMenuFormatter] dateFromString:@"2011-04-05T11:29:14Z"]];
-            [[restaurant.address.updatedAt should] equal:[[NSDateFormatter sharedAirMenuFormatter] dateFromString:@"2011-04-05T11:29:14Z"]];
             [[restaurant.address.addressLine1 should] equal:@"line one"];
             [[restaurant.address.addressLine2 should] equal:@"line two"];
             [[restaurant.address.city should] equal:@"Dublin"];

@@ -8,11 +8,17 @@
 
 #import "AMObjectBuilder.h"
 #import "AMOAuthToken.h"
+#import "AMCompany.h"
+#import "AMRestaurant.h"
 
 static NSString *const kAMOAuthToken = @"access_token";
+static NSString *const kAMCompany = @"company";
+static NSString *const kAMRestaurant = @"restaurant";
+static NSString *const kAMRestaurants = @"restaurants";
 
 @interface AMObjectBuilder()
 @property (nonatomic, strong) NSDictionary *classByJSONKey;
+@property (nonatomic, strong) NSDictionary *classByJSONArrayKey;
 @end
 
 @implementation AMObjectBuilder
@@ -30,26 +36,47 @@ static NSString *const kAMOAuthToken = @"access_token";
 {
     if(!_classByJSONKey)
     {
-        _classByJSONKey = @{kAMOAuthToken : [AMOAuthToken class]};
+        _classByJSONKey = @{kAMOAuthToken : [AMOAuthToken class],
+                            kAMCompany : [AMCompany class],
+                            kAMRestaurant : [AMRestaurant class]};
     }
     return _classByJSONKey;
+}
+
+-(NSDictionary *)classByJSONArrayKey
+{
+    if (!_classByJSONArrayKey)
+    {
+        _classByJSONArrayKey = @{kAMRestaurants : [AMRestaurant class]};
+    }
+    return _classByJSONArrayKey;
 }
 
 -(id)objectFromJSON:(NSDictionary *)json
 {
     NSString *type = json.allKeys.firstObject;
-    Class objectClass = self.classByJSONKey[type];
-    NSAssert(objectClass, @"Could not determine the class corresponding to the key in json");
-    
-    NSError *error;
-    id object = [MTLJSONAdapter modelOfClass:objectClass fromJSONDictionary:json error:&error];
-    if(error)
+    if([[json valueForKey:type] isKindOfClass:[NSArray class]])
     {
-        return nil;
+        Class objectClass = self.classByJSONArrayKey[type];
+        NSAssert(objectClass, @"Could not determine the class corresponding to the key in json");
+        NSValueTransformer *transformer = [MTLValueTransformer mtl_JSONArrayTransformerWithModelClass:objectClass];
+        return [transformer transformedValue:json[type]];
     }
     else
     {
-        return object;
+        Class objectClass = self.classByJSONKey[type];
+        NSAssert(objectClass, @"Could not determine the class corresponding to the key in json");
+        
+        NSError *error;
+        id object = [MTLJSONAdapter modelOfClass:objectClass fromJSONDictionary:json[type] error:&error];
+        if(error)
+        {
+            return nil;
+        }
+        else
+        {
+            return object;
+        }
     }
 }
 @end

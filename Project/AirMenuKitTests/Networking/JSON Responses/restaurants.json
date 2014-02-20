@@ -1,0 +1,38 @@
+{
+    "restaurants": [
+        {
+            "id": 2,
+            "name": "The Church 2",
+            "loyalty": false,
+            "remote_order": false,
+            "conversion_rate": 0,
+            "address": {
+                "id": 5,
+                "address_1": "blah",
+                "address_2": "blah",
+                "city": "Dublin",
+                "county": "Dublin",
+                "state": "Dublin",
+                "country": "Ireland"
+            },
+            "menu": null
+        },
+        {
+            "id": 3,
+            "name": "The Church 3",
+            "loyalty": false,
+            "remote_order": false,
+            "conversion_rate": 0,
+            "address": {
+                "id": 6,
+                "address_1": "blah",
+                "address_2": "blah",
+                "city": "Dublin",
+                "county": "Dublin",
+                "state": "Dublin",
+                "country": "Ireland"
+            },
+            "menu": null
+        }
+    ]
+}

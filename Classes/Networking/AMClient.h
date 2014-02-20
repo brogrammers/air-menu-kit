@@ -11,7 +11,8 @@
 #import "AMOAuthToken.h"
 #import "AMUser.h"
 
-static NSString *baseURL = @"https://stage.air-menu.com/api/v1/";
+static NSString *baseURL = @"https://stage-api.air-menu.com/api/v1/";
+static NSString *airMenuApiErrorDomain = @"com.air-menu.api";
 
 @interface AMClient : AFHTTPSessionManager
 @property (nonatomic, strong, readonly) id <AMUser> currentUser;

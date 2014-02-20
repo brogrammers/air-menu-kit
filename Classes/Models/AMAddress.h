@@ -10,9 +10,7 @@
 #import <Mantle/Mantle.h>
 
 @interface AMAddress : MTLModel <MTLJSONSerializing>
-@property (nonatomic, strong, readonly) NSString *identifier;
-@property (nonatomic, strong, readonly) NSDate *createdAt;
-@property (nonatomic, strong, readonly) NSDate *updatedAt;
+@property (nonatomic, strong, readonly) NSNumber *identifier;
 @property (nonatomic, strong, readonly) NSString *addressLine1;
 @property (nonatomic, strong, readonly) NSString *addressLine2;
 @property (nonatomic, strong, readonly) NSString *city;

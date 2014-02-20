@@ -17,32 +17,12 @@
 {
     return @{
                 @"identifier" : @"id",
-                @"createdAt" : @"created_at",
-                @"updatedAt" : @"updated_at",
-                @"addressLine1" : @"address_line_1",
-                @"addressLine2" : @"address_line_2",
+                @"addressLine1" : @"address_1",
+                @"addressLine2" : @"address_2",
                 @"city" : @"city",
                 @"county" : @"county",
                 @"country": @"country"
-             };;
-}
-
-+(NSValueTransformer *)createdAtJSONTransformer
-{
-    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSString *str) {
-        return [[NSDateFormatter sharedAirMenuFormatter] dateFromString:str];
-    } reverseBlock:^(NSDate *date) {
-        return [[NSDateFormatter sharedAirMenuFormatter] stringFromDate:date];
-    }];
-}
-
-+(NSValueTransformer *)updatedAtJSONTransformer
-{
-    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSString *str) {
-        return [[NSDateFormatter sharedAirMenuFormatter] dateFromString:str];
-    } reverseBlock:^(NSDate *date) {
-        return [[NSDateFormatter sharedAirMenuFormatter] stringFromDate:date];
-    }];
+             };
 }
 
 @end

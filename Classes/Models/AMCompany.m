@@ -24,25 +24,6 @@
                 @"website" : @"website"
              };
 }
-
-+(NSValueTransformer *)createdAtJSONTransformer
-{
-    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSString *str) {
-        return [[NSDateFormatter sharedAirMenuFormatter] dateFromString:str];
-    } reverseBlock:^(NSDate *date) {
-        return [[NSDateFormatter sharedAirMenuFormatter] stringFromDate:date];
-    }];
-}
-
-+(NSValueTransformer *)updatedAtJSONTransformer
-{
-    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSString *str) {
-        return [[NSDateFormatter sharedAirMenuFormatter] dateFromString:str];
-    } reverseBlock:^(NSDate *date) {
-        return [[NSDateFormatter sharedAirMenuFormatter] stringFromDate:date];
-    }];
-}
-
 +(NSValueTransformer *)addressJSONTransformer
 {
     return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[AMAddress class]];

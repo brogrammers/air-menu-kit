@@ -7,6 +7,7 @@
 //
 
 #import "AMClient.h"
+#import "AMMenu.h"
 
 @interface AMClient (Restaurant)
 
