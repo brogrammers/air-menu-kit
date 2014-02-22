@@ -8,7 +8,21 @@
 
 #import "AMClient.h"
 #import "AMMenu.h"
+#import "AMRestaurant.h"
+
+typedef void (^RestaurantCompletion) (AMRestaurant *restaurant, NSError *error);
+typedef void (^RestaurantMenuCompletion) (AMMenu *menu, NSError *error);
+typedef void (^RestaurantMenusCompletion) (NSArray *menus, NSError *error);
 
 @interface AMClient (Restaurant)
+-(NSURLSessionDataTask *)findRestaurantWithIdentifier:(NSString *)identifier
+                                           completion:(RestaurantCompletion)completion;
 
+-(NSURLSessionDataTask *)findMenusOfRestaurant:(AMRestaurant *)restaurant
+                                    completion:(RestaurantMenusCompletion)completion;
+
+-(NSURLSessionDataTask *)createMenuOfRestaurant:(AMRestaurant *)restaurant
+                                       withName:(NSString *)name
+                                         active:(BOOL)active
+                                     completion:(RestaurantMenuCompletion)completion;
 @end

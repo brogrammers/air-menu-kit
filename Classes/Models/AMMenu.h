@@ -11,8 +11,6 @@
 
 @interface AMMenu : MTLModel <MTLJSONSerializing>
 @property (nonatomic, strong, readonly) NSString *identifier;
-@property (nonatomic, strong, readonly) NSDate *createdAt;
-@property (nonatomic, strong, readonly) NSDate *updatedAt;
 @property (nonatomic, strong, readonly) NSString *name;
 @property (nonatomic, strong, readonly) NSArray *menuSections;
 @end

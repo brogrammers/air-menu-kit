@@ -10,4 +10,9 @@
 
 @interface TestToolBox : NSObject
 +(NSDictionary *)bodyOfRequest:(NSURLRequest *)request;
++(void)stubRequestWithURL:(NSString *)url
+               httpMethod:(NSString *)httpMethod
+       nameOfResponseFile:(NSString *)fileName
+             responseCode:(int)code;
++(id)objectFromJSONFromFile:(NSString *)jsonFileName;
 @end

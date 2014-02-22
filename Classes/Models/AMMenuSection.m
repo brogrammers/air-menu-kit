@@ -17,29 +17,9 @@
 +(NSDictionary *)JSONKeyPathsByPropertyKey
 {
     return  @{@"identifier" : @"id",
-              @"createdAt" : @"created_at",
-              @"updatedAt" : @"updated_at",
               @"name" : @"name",
               @"details" : @"description",
               @"menuItems" : @"menu_items"};
-}
-
-+(NSValueTransformer *)createdAtJSONTransformer
-{
-    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSString *str) {
-        return [[NSDateFormatter sharedAirMenuFormatter] dateFromString:str];
-    } reverseBlock:^(NSDate *date) {
-        return [[NSDateFormatter sharedAirMenuFormatter] stringFromDate:date];
-    }];
-}
-
-+(NSValueTransformer *)updatedAtJSONTransformer
-{
-    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSString *str) {
-        return [[NSDateFormatter sharedAirMenuFormatter] dateFromString:str];
-    } reverseBlock:^(NSDate *date) {
-        return [[NSDateFormatter sharedAirMenuFormatter] stringFromDate:date];
-    }];
 }
 
 +(NSValueTransformer *)menuItemsJSONTransformer

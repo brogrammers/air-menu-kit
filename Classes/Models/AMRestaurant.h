@@ -11,7 +11,7 @@
 #import "AMAddress.h"
 
 @interface AMRestaurant : MTLModel <MTLJSONSerializing>
-@property (nonatomic, strong, readonly) NSString *identifier;
+@property (nonatomic, strong, readonly) NSNumber *identifier;
 @property (nonatomic, strong, readonly) NSString *name;
 @property (nonatomic, strong, readonly) NSNumber *loyalty;
 @property (nonatomic, strong, readonly) NSNumber *remoteOrder;

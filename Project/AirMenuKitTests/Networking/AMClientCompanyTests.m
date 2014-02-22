@@ -23,18 +23,13 @@ describe(@"AMClient+Companies", ^{
             
             __block NSURLSessionDataTask *task;
             __block AMCompany *newCompany;
+            
             beforeAll(^{
                 
-                [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
-                    return [request.URL.absoluteString isEqualToString:@"https://stage-api.air-menu.com/api/v1/companies"] &&
-                           [request.HTTPMethod isEqualToString:@"POST"];
-                }
-                                    withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
-                                        return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFileInBundle(@"company.json", nil)
-                                                                                statusCode:200
-                                                                                   headers:@{@"Content-Type": @"text/json"}];
-                                    }
-                ];
+                [TestToolBox stubRequestWithURL:[baseURL stringByAppendingString:@"companies"]
+                                     httpMethod:@"POST"
+                             nameOfResponseFile:@"company.json"
+                                   responseCode:200];
                 
                 task =  [[AMClient sharedClient] createCompanyWithName:@"Some Company"
                                                                website:@"www.nandos.com"
@@ -54,15 +49,11 @@ describe(@"AMClient+Companies", ^{
             });
             
             it(@"calls /companies URL", ^{
-                [[task.originalRequest.URL.absoluteString should] equal:@"https://stage-api.air-menu.com/api/v1/companies"];
+                [[task.originalRequest.URL.absoluteString should] equal:[baseURL stringByAppendingString:@"companies"]];
             });
             
             it(@"creates a company object", ^{
-                NSData *companyJSON = [NSData dataWithContentsOfFile:OHPathForFileInBundle(@"company.json", nil)];
-                NSDictionary *parsedCompanyJSON = [NSJSONSerialization JSONObjectWithData:companyJSON
-                                                                                  options:0
-                                                                                    error:nil];
-                AMCompany *company = [MTLJSONAdapter modelOfClass:[AMCompany class] fromJSONDictionary:parsedCompanyJSON[@"company"] error:nil];
+                AMCompany *company = [TestToolBox objectFromJSONFromFile:@"company.json"];
                 [[expectFutureValue(newCompany) shouldEventually] equal:company];
             });
             
@@ -84,17 +75,11 @@ describe(@"AMClient+Companies", ^{
             __block AMCompany *foundCompany;
             
             beforeAll(^{
-                [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
-                                return [request.URL.absoluteString isEqualToString:@"https://stage-api.air-menu.com/api/v1/companies/1"] &&
-                                [request.HTTPMethod isEqualToString:@"GET"];
-                             }
-                                    withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
-                                        return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFileInBundle(@"companies-post-successful.json", nil)
-                                                                                statusCode:200
-                                                                                   headers:@{@"Content-Type": @"text/json"}];
-                                    }
-                ];
-                
+                [TestToolBox stubRequestWithURL:[baseURL stringByAppendingString:@"companies/1"]
+                                     httpMethod:@"GET"
+                             nameOfResponseFile:@"company.json"
+                                   responseCode:200];
+
                 task = [[AMClient sharedClient] findCompanyWithIdentifier:@"1" completion:^(AMCompany *company, NSError *error) {
                     foundCompany = company;
                 }];
@@ -105,18 +90,13 @@ describe(@"AMClient+Companies", ^{
             });
             
             it(@"calls /companies/1 URL", ^{
-                [[task.originalRequest.URL.absoluteString should] equal:@"https://stage-api.air-menu.com/api/v1/companies/1"];
+                [[task.originalRequest.URL.absoluteString should] equal:[baseURL stringByAppendingString:@"companies/1"]];
             });
             
             it(@"creates a company object", ^{
-                NSData *companyJSON = [NSData dataWithContentsOfFile:OHPathForFileInBundle(@"company.json", nil)];
-                NSDictionary *parsedCompanyJSON = [NSJSONSerialization JSONObjectWithData:companyJSON
-                                                                                  options:0
-                                                                                    error:nil];
-                AMCompany *company = [MTLJSONAdapter modelOfClass:[AMCompany class] fromJSONDictionary:parsedCompanyJSON[@"company"] error:nil];
+                AMCompany *company = [TestToolBox objectFromJSONFromFile:@"company.json"];
                 [[expectFutureValue(foundCompany) shouldEventually] equal:company];
             });
-            
         });
         
         context(@"on create restaurant", ^{
@@ -125,21 +105,11 @@ describe(@"AMClient+Companies", ^{
             __block AMCompany *companyOfRestaurant;
             
             beforeAll(^{
-                [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
-                    return [request.URL.absoluteString isEqualToString:@"https://stage-api.air-menu.com/api/v1/companies/1/restaurants"] &&
-                    [request.HTTPMethod isEqualToString:@"POST"];
-                } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
-                    return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFileInBundle(@"restaurant.json", nil)
-                                                           statusCode:200                                                              headers:@{@"Content-Type": @"text/json"}];
-                }];
-                
-                NSData *companyJSON = [NSData dataWithContentsOfFile:OHPathForFileInBundle(@"company.json", nil)];
-                NSDictionary *parsedCompanyJSON = [NSJSONSerialization JSONObjectWithData:companyJSON
-                                                                                  options:0
-                                                                                    error:nil];
-                companyOfRestaurant = [MTLJSONAdapter modelOfClass:[AMCompany class] fromJSONDictionary:parsedCompanyJSON[@"company"] error:nil];
-
-                
+                [TestToolBox stubRequestWithURL:[baseURL stringByAppendingString:@"companies/1/restaurants"]
+                                     httpMethod:@"POST"
+                             nameOfResponseFile:@"restaurant.json"
+                                   responseCode:200];
+                companyOfRestaurant = [TestToolBox objectFromJSONFromFile:@"company.json"];
                 task = [[AMClient sharedClient] createRestaurantOfCompany:companyOfRestaurant
                                                                  withName:@"The Church 2"
                                                                   loyalty:NO
@@ -163,15 +133,11 @@ describe(@"AMClient+Companies", ^{
             });
             
             it(@"calls companies/1/restaurants", ^{
-                [[task.originalRequest.URL.absoluteString should] equal:@"https://stage-api.air-menu.com/api/v1/companies/1/restaurants"];
+                [[task.originalRequest.URL.absoluteString should] equal:[baseURL stringByAppendingString:@"companies/1/restaurants"]];
             });
             
             it(@"creates a restaurant object", ^{
-                NSData *restaurantJSON = [NSData dataWithContentsOfFile:OHPathForFileInBundle(@"restaurant.json", nil)];
-                NSDictionary *parsedRestaurantJSON = [NSJSONSerialization JSONObjectWithData:restaurantJSON
-                                                                                  options:0
-                                                                                    error:nil];
-                AMRestaurant *restaurant = [MTLJSONAdapter modelOfClass:[AMRestaurant class] fromJSONDictionary:parsedRestaurantJSON[@"restaurant"] error:nil];
+                AMRestaurant *restaurant = [TestToolBox objectFromJSONFromFile:@"restaurant.json"];
                 [[expectFutureValue(newRestaurant) shouldEventually] equal:restaurant];
             });
             
@@ -195,20 +161,11 @@ describe(@"AMClient+Companies", ^{
             __block NSArray *foundRestaurants;
             
             beforeAll(^{
-                [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
-                    return [request.URL.absoluteString isEqualToString:@"https://stage-api.air-menu.com/api/v1/companies/1/restaurants"] &&
-                    [request.HTTPMethod isEqualToString:@"GET"];
-                } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
-                    return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFileInBundle(@"restaurants.json", nil)
-                                                            statusCode:200
-                                                               headers:@{@"Content-Type": @"text/json"}];
-                }];
-                
-                NSData *companyJSON = [NSData dataWithContentsOfFile:OHPathForFileInBundle(@"company.json", nil)];
-                NSDictionary *parsedCompanyJSON = [NSJSONSerialization JSONObjectWithData:companyJSON
-                                                                                  options:0
-                                                                                    error:nil];
-                company = [MTLJSONAdapter modelOfClass:[AMCompany class] fromJSONDictionary:parsedCompanyJSON[@"company"] error:nil];
+                [TestToolBox stubRequestWithURL:[baseURL stringByAppendingString:@"companies/1/restaurants"]
+                                     httpMethod:@"GET"
+                             nameOfResponseFile:@"restaurants.json"
+                                   responseCode:200];
+                company = [TestToolBox objectFromJSONFromFile:@"company.json"];
                 task = [[AMClient sharedClient] findRestaurantsOfCompany:company completion:^(NSArray *restaurants, NSError *error) {
                     foundRestaurants = restaurants;
                 }];
@@ -219,19 +176,15 @@ describe(@"AMClient+Companies", ^{
             });
             
             it(@"calls companies/1/restaurants", ^{
-                [[task.originalRequest.URL.absoluteString should] equal:@"https://stage-api.air-menu.com/api/v1/companies/1/restaurants"];
+                [[task.originalRequest.URL.absoluteString should] equal:[baseURL stringByAppendingString:@"companies/1/restaurants"]];
             });
             
             it(@"creates an array of restaurants", ^{
-                NSData *restaurantsJSON = [NSData dataWithContentsOfFile:OHPathForFileInBundle(@"restaurants.json", nil)];
-                NSDictionary *parsedRestaurantsJSON = [NSJSONSerialization JSONObjectWithData:restaurantsJSON options:0 error:nil];
-                NSValueTransformer *transformer = [MTLValueTransformer mtl_JSONArrayTransformerWithModelClass:[AMRestaurant class]];
-                NSArray *restaurants = [transformer transformedValue:parsedRestaurantsJSON[@"restaurants"]];
+                NSArray *restaurants = [TestToolBox objectFromJSONFromFile:@"restaurants.json"];
                 [[expectFutureValue(foundRestaurants) shouldEventually] equal:restaurants];
             });
         });
     });
-    
 });
 
 SPEC_END

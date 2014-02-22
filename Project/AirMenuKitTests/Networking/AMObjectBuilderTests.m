@@ -12,6 +12,7 @@
 #import "AMObjectBuilder.h"
 #import "AMOAuthToken.h"
 #import "AMRestaurant.h"
+#import "AMMenu.h"
 
 SPEC_BEGIN(AMObjectBuilderTests)
 
@@ -39,6 +40,22 @@ describe(@"AMObjectBuilder", ^{
         NSData *restaurantJSON = [NSData dataWithContentsOfFile:OHPathForFileInBundle(@"restaurant.json", nil)];
         NSDictionary *parsedRestaurantJSON = [NSJSONSerialization JSONObjectWithData:restaurantJSON options:0 error:nil];
         [[[[AMObjectBuilder sharedInstance] objectFromJSON:parsedRestaurantJSON ] should] beKindOfClass:[AMRestaurant class]];
+    });
+    
+    it(@"returns a menu when json root is menu", ^{
+        NSData *menuJSON = [NSData dataWithContentsOfFile:OHPathForFileInBundle(@"menu.json", nil)];
+        NSDictionary *parsedMenuJSON = [NSJSONSerialization JSONObjectWithData:menuJSON options:0 error:nil];
+        [[[[AMObjectBuilder sharedInstance] objectFromJSON:parsedMenuJSON] should] beKindOfClass:[AMMenu class]];
+    });
+    
+    it(@"retursn an array of menus when json root is menus", ^{
+        NSData *menusJSON = [NSData dataWithContentsOfFile:OHPathForFileInBundle(@"menus.json", nil)];
+        NSDictionary *parsedMenusJSON = [NSJSONSerialization JSONObjectWithData:menusJSON options:0 error:nil];
+        id menus = [[AMObjectBuilder sharedInstance] objectFromJSON:parsedMenusJSON];
+        [[menus should] beKindOfClass:[NSArray class]];
+        [[[menus objectAtIndex:0] should] beKindOfClass:[AMMenu class]];
+        [[[menus objectAtIndex:1] should] beKindOfClass:[AMMenu class]];
+        [[[menus objectAtIndex:2] should] beKindOfClass:[AMMenu class]];
     });
 });
 

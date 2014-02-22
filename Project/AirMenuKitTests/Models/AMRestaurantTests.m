@@ -21,7 +21,7 @@ describe(@"AMRestaurant", ^{
         __block AMRestaurant *restaurant;
         beforeAll(^{
             restaurant = [[AMRestaurant alloc] init];
-            [restaurant setValuesForKeysWithDictionary:@{@"identifier" : @"1",
+            [restaurant setValuesForKeysWithDictionary:@{@"identifier" : @1,
                                                          @"name" : @"a name",
                                                          @"remoteOrder" : @YES,
                                                          @"conversionRate" : @0.1,
@@ -38,7 +38,7 @@ describe(@"AMRestaurant", ^{
         });
         
         it(@"has identeifier attribute", ^{
-            [[restaurant.identifier should] equal:@"1"];
+            [[restaurant.identifier should] equal:@1];
         });
         
         it(@"has name attribute", ^{
@@ -92,14 +92,14 @@ describe(@"AMRestaurant", ^{
         __block NSDictionary *parsedAddressJSON;
         
         beforeAll(^{
-            parsedAddressJSON = @{@"id" : @"1",
+            parsedAddressJSON = @{@"id" : @1,
                                   @"address_1" : @"line one",
                                   @"address_2" : @"line two",
                                   @"city" : @"Dublin",
                                   @"county": @"Dublin",
                                   @"country" : @"Ireland"};
             
-            parsedRestaurantJSON = @{@"id": @"1",
+            parsedRestaurantJSON = @{@"id": @1,
                                      @"name" : @"Nandos",
                                      @"loyalty" : @NO,
                                      @"remote_order": @NO,
@@ -109,7 +109,7 @@ describe(@"AMRestaurant", ^{
         });
         
         it(@"maps parsed menu JSON to AMMenu object", ^{
-            [[restaurant.identifier should] equal:@"1"];
+            [[restaurant.identifier should] equal:@1];
             [[restaurant.name should] equal:@"Nandos"];
             [[restaurant.remoteOrder should] equal:@NO];
             [[restaurant.loyalty should] equal:@NO];
@@ -117,7 +117,7 @@ describe(@"AMRestaurant", ^{
         });
         
         it(@"maps parsed address JSON hooks it up to AMRestaurant object", ^{
-            [[restaurant.address.identifier should] equal:@"1"];
+            [[restaurant.address.identifier should] equal:@1];
             [[restaurant.address.addressLine1 should] equal:@"line one"];
             [[restaurant.address.addressLine2 should] equal:@"line two"];
             [[restaurant.address.city should] equal:@"Dublin"];

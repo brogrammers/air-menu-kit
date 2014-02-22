@@ -19,9 +19,7 @@ describe(@"AMMenuItem", ^{
         
         beforeAll(^{
             menuItem = [[AMMenuItem alloc] init];
-            [menuItem setValuesForKeysWithDictionary:@{@"identifier" : @"1",
-                                                       @"createdAt" : [NSDate dateWithTimeIntervalSince1970:1],
-                                                       @"updatedAt" : [NSDate dateWithTimeIntervalSince1970:1],
+            [menuItem setValuesForKeysWithDictionary:@{@"identifier" : @1,
                                                        @"name" : @"a name",
                                                        @"details" : @"a description",
                                                        @"price" : @(10),
@@ -38,15 +36,7 @@ describe(@"AMMenuItem", ^{
         });
         
         it(@"has identifier attribute", ^{
-            [[menuItem.identifier should] equal:@"1"];
-        });
-        
-        it(@"has createdAt attribute", ^{
-            [[menuItem.createdAt should] equal:[NSDate dateWithTimeIntervalSince1970:1]];
-        });
-        
-        it(@"has updatedAt attribute", ^{
-            [[menuItem.updatedAt should] equal:[NSDate dateWithTimeIntervalSince1970:1]];
+            [[menuItem.identifier should] equal:@1];
         });
         
         it(@"has name attribute", ^{
@@ -70,56 +60,23 @@ describe(@"AMMenuItem", ^{
         it(@"returns correct mapping from JSONKeyPathsByPropertyKey", ^{
             NSDictionary *mapping = [AMMenuItem JSONKeyPathsByPropertyKey];
             NSDictionary *expectedMapping = @{@"identifier" : @"id",
-                                              @"createdAt" : @"created_at",
-                                              @"updatedAt" : @"updated_at",
                                               @"name" : @"name",
                                               @"details" : @"description",
                                               @"price" : @"price",
                                               @"currency" : @"currency"};
             [[mapping should] equal:expectedMapping];
         });
-        
-        it(@"implements createdAtJSONTransformer", ^{
-            [[[AMMenuItem class] should] respondToSelector:NSSelectorFromString(@"createdAtJSONTransformer")];
-        });
-    
-        it(@"returns NSDate transformer from createdAtJSONTransformer", ^{
-            NSValueTransformer *transformer = objc_msgSend([AMMenuItem class], NSSelectorFromString(@"createdAtJSONTransformer"));
-            [[transformer shouldNot] beNil];
-        });
-        
-        it(@"implements updatedAtJSONTransformer", ^{
-            [[[AMMenuItem class] should] respondToSelector:NSSelectorFromString(@"updatedAtJSONTransformer")];
-        });
-        
-        it(@"returns NSDate transformer from updatedAtJSONTransformer", ^{
-            NSValueTransformer *transformer = objc_msgSend([AMMenuItem class], NSSelectorFromString(@"updatedAtJSONTransformer"));
-            [[transformer shouldNot] beNil];
-        });
-        
-        it(@"implements priceJSONTransformer", ^{
-            [[[AMMenuItem class] should] respondToSelector:NSSelectorFromString(@"priceJSONTransformer")];
-        });
-        
-        it(@"returns NSNumber transformer from priceJSONTransformer", ^{
-            NSValueTransformer *transformer = objc_msgSend([AMMenuItem class], NSSelectorFromString(@"priceJSONTransformer"));
-            [[transformer shouldNot] beNil];
-        });
     });
     
     context(@"mapping", ^{
         it(@"maps parsed menu item JSON to AMMenuItem object", ^{
-            NSDictionary *parsedMenuItemJson = @{@"id" : @"1",
-                                                 @"created_at" : @"2011-04-05T11:29:14Z",
-                                                 @"updated_at" : @"2011-04-05T11:29:14Z",
+            NSDictionary *parsedMenuItemJson = @{@"id" : @1,
                                                  @"name" : @"Large fries",
                                                  @"description" : @"Tasty home made fries",
-                                                 @"price" : @"1.28",
+                                                 @"price" : @1.28,
                                                  @"currency" : @"EUR"};
             AMMenuItem *menuItem = [MTLJSONAdapter modelOfClass:[AMMenuItem class] fromJSONDictionary:parsedMenuItemJson error:nil];
-            [[menuItem.identifier should] equal:@"1"];
-            [[menuItem.createdAt should] equal:[[NSDateFormatter sharedAirMenuFormatter] dateFromString:@"2011-04-05T11:29:14Z"]];
-            [[menuItem.updatedAt should] equal:[[NSDateFormatter sharedAirMenuFormatter] dateFromString:@"2011-04-05T11:29:14Z"]];
+            [[menuItem.identifier should] equal:@1];
             [[menuItem.name should] equal:@"Large fries"];
             [[menuItem.details should] equal:@"Tasty home made fries"];
             [[menuItem.price should] equal:@(1.28)];

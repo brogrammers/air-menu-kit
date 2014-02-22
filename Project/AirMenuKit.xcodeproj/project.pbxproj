@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		35C6636F86084676A8F03BCF /* libPods-AirMenuKitTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4D6450282584DFB83C8BE38 /* libPods-AirMenuKitTests.a */; };
 		7108AD9F18B5741B00A413DA /* restaurants.json in Resources */ = {isa = PBXBuildFile; fileRef = 7108AD9E18B5741B00A413DA /* restaurants.json */; };
+		7108ADA118B5846400A413DA /* AMClientRestaurantTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7108ADA018B5846400A413DA /* AMClientRestaurantTests.m */; };
+		7108ADA318B8E8CE00A413DA /* menus.json in Resources */ = {isa = PBXBuildFile; fileRef = 7108ADA218B8E8CE00A413DA /* menus.json */; };
 		710AD71D189FDF6400AA1038 /* AMClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 710AD71C189FDF6400AA1038 /* AMClient.m */; };
 		710AD72018A0268800AA1038 /* AMCompany.m in Sources */ = {isa = PBXBuildFile; fileRef = 710AD71F18A0268800AA1038 /* AMCompany.m */; };
 		710AD72318A0269F00AA1038 /* AMRestaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = 710AD72218A0269F00AA1038 /* AMRestaurant.m */; };
@@ -35,6 +37,8 @@
 		714C068A18B55982004EAD04 /* restaurant.json in Resources */ = {isa = PBXBuildFile; fileRef = 714C068918B55982004EAD04 /* restaurant.json */; };
 		71600A1C18B5069F00DFB9B6 /* AMClientCompanyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71600A1B18B5069F00DFB9B6 /* AMClientCompanyTests.m */; };
 		71600A1E18B506F000DFB9B6 /* company.json in Resources */ = {isa = PBXBuildFile; fileRef = 71600A1D18B506F000DFB9B6 /* company.json */; };
+		716863B818B8F012005D68B3 /* menu.json in Resources */ = {isa = PBXBuildFile; fileRef = 716863B718B8F012005D68B3 /* menu.json */; };
+		716863BA18B90C55005D68B3 /* AMClientMenuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 716863B918B90C55005D68B3 /* AMClientMenuTests.m */; };
 		716C573318A197C800D95228 /* NSDateFormatter+AirMenuTimestamp.m in Sources */ = {isa = PBXBuildFile; fileRef = 716C573218A197C800D95228 /* NSDateFormatter+AirMenuTimestamp.m */; };
 		716C573518A1A40D00D95228 /* AMMenuSectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 716C573418A1A40D00D95228 /* AMMenuSectionTests.m */; };
 		716C573718A1BEB800D95228 /* AMMenuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 716C573618A1BEB800D95228 /* AMMenuTests.m */; };
@@ -87,6 +91,8 @@
 		00826E59288A4EBC8E2108B7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5144A829ACC149479E467E2A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		7108AD9E18B5741B00A413DA /* restaurants.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = restaurants.json; sourceTree = "<group>"; };
+		7108ADA018B5846400A413DA /* AMClientRestaurantTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMClientRestaurantTests.m; sourceTree = "<group>"; };
+		7108ADA218B8E8CE00A413DA /* menus.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = menus.json; sourceTree = "<group>"; };
 		710AD714189F2FBE00AA1038 /* AirMenuKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AirMenuKit-Prefix.pch"; sourceTree = "<group>"; };
 		710AD71B189FDF6400AA1038 /* AMClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMClient.h; sourceTree = "<group>"; };
 		710AD71C189FDF6400AA1038 /* AMClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMClient.m; sourceTree = "<group>"; };
@@ -119,6 +125,8 @@
 		714C068918B55982004EAD04 /* restaurant.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = restaurant.json; sourceTree = "<group>"; };
 		71600A1B18B5069F00DFB9B6 /* AMClientCompanyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMClientCompanyTests.m; sourceTree = "<group>"; };
 		71600A1D18B506F000DFB9B6 /* company.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = company.json; sourceTree = "<group>"; };
+		716863B718B8F012005D68B3 /* menu.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = menu.json; sourceTree = "<group>"; };
+		716863B918B90C55005D68B3 /* AMClientMenuTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMClientMenuTests.m; sourceTree = "<group>"; };
 		716C572F18A1969400D95228 /* NSNumberFormatter+AirMenuNumberFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumberFormatter+AirMenuNumberFormat.h"; sourceTree = "<group>"; };
 		716C573218A197C800D95228 /* NSDateFormatter+AirMenuTimestamp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+AirMenuTimestamp.m"; sourceTree = "<group>"; };
 		716C573418A1A40D00D95228 /* AMMenuSectionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMMenuSectionTests.m; sourceTree = "<group>"; };
@@ -324,9 +332,11 @@
 				71E3FD8E18AC18C400BD00C2 /* JSON Responses */,
 				71E3FD7A18AA784700BD00C2 /* AMOAuthTokenTests.m */,
 				71E3FD7F18AACB8D00BD00C2 /* AMOAuthApplicationTests.m */,
+				71E3FD8C18AC0C7000BD00C2 /* AMObjectBuilderTests.m */,
 				71E3FD8718AB040A00BD00C2 /* AMClientTests.m */,
 				71600A1B18B5069F00DFB9B6 /* AMClientCompanyTests.m */,
-				71E3FD8C18AC0C7000BD00C2 /* AMObjectBuilderTests.m */,
+				7108ADA018B5846400A413DA /* AMClientRestaurantTests.m */,
+				716863B918B90C55005D68B3 /* AMClientMenuTests.m */,
 			);
 			name = Netowrking;
 			path = Networking;
@@ -345,7 +355,9 @@
 				71E3FD8F18AC197500BD00C2 /* oauth2:access_tokens_200 */,
 				71600A1D18B506F000DFB9B6 /* company.json */,
 				714C068918B55982004EAD04 /* restaurant.json */,
+				716863B718B8F012005D68B3 /* menu.json */,
 				7108AD9E18B5741B00A413DA /* restaurants.json */,
+				7108ADA218B8E8CE00A413DA /* menus.json */,
 			);
 			path = "JSON Responses";
 			sourceTree = "<group>";
@@ -424,11 +436,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7108ADA318B8E8CE00A413DA /* menus.json in Resources */,
 				714C068A18B55982004EAD04 /* restaurant.json in Resources */,
 				7108AD9F18B5741B00A413DA /* restaurants.json in Resources */,
 				7132E4681848EA8A00B2E356 /* InfoPlist.strings in Resources */,
 				71E3FD9018AC197500BD00C2 /* oauth2:access_tokens_200 in Resources */,
 				71600A1E18B506F000DFB9B6 /* company.json in Resources */,
+				716863B818B8F012005D68B3 /* menu.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,6 +541,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				71710E6418A436C200A2390B /* AMRestaurantTests.m in Sources */,
+				7108ADA118B5846400A413DA /* AMClientRestaurantTests.m in Sources */,
 				71E3FD8818AB040A00BD00C2 /* AMClientTests.m in Sources */,
 				71E3FD8D18AC0C7000BD00C2 /* AMObjectBuilderTests.m in Sources */,
 				71173FA418A06AF300DF24EB /* AMAddressTests.m in Sources */,
@@ -538,6 +553,7 @@
 				71173FA618A17BAB00DF24EB /* AMMenuItemTests.m in Sources */,
 				71E3FD7B18AA784700BD00C2 /* AMOAuthTokenTests.m in Sources */,
 				716C573718A1BEB800D95228 /* AMMenuTests.m in Sources */,
+				716863BA18B90C55005D68B3 /* AMClientMenuTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

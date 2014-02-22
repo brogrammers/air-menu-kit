@@ -9,5 +9,5 @@
 #import "AMClient.h"
 
 @interface AMClient (Menu)
-
+-(NSURLSessionDataTask *)
 @end
