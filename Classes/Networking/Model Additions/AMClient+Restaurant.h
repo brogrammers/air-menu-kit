@@ -15,6 +15,7 @@ typedef void (^RestaurantMenuCompletion) (AMMenu *menu, NSError *error);
 typedef void (^RestaurantMenusCompletion) (NSArray *menus, NSError *error);
 
 @interface AMClient (Restaurant)
+
 -(NSURLSessionDataTask *)findRestaurantWithIdentifier:(NSString *)identifier
                                            completion:(RestaurantCompletion)completion;
 
@@ -25,4 +26,5 @@ typedef void (^RestaurantMenusCompletion) (NSArray *menus, NSError *error);
                                        withName:(NSString *)name
                                          active:(BOOL)active
                                      completion:(RestaurantMenuCompletion)completion;
+
 @end

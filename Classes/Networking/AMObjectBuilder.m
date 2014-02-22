@@ -11,6 +11,7 @@
 #import "AMCompany.h"
 #import "AMRestaurant.h"
 #import "AMMenu.h"
+#import "AMMenuSection.h"
 
 static NSString *const kAMOAuthToken = @"access_token";
 static NSString *const kAMCompany = @"company";
@@ -18,7 +19,8 @@ static NSString *const kAMRestaurant = @"restaurant";
 static NSString *const kAMRestaurants = @"restaurants";
 static NSString *const kAMMenu = @"menu";
 static NSString *const kAMMenus = @"menus";
-
+static NSString *const kAMMenuSection = @"menu_section";
+static NSString *const kAMMenuSections = @"menu_sections";
 
 @interface AMObjectBuilder()
 @property (nonatomic, strong) NSDictionary *classByJSONKey;
@@ -43,7 +45,8 @@ static NSString *const kAMMenus = @"menus";
         _classByJSONKey = @{kAMOAuthToken : [AMOAuthToken class],
                             kAMCompany : [AMCompany class],
                             kAMRestaurant : [AMRestaurant class],
-                            kAMMenu : [AMMenu class]};
+                            kAMMenu : [AMMenu class],
+                            kAMMenuSection : [AMMenuSection class]};
     }
     return _classByJSONKey;
 }
@@ -53,7 +56,8 @@ static NSString *const kAMMenus = @"menus";
     if (!_classByJSONArrayKey)
     {
         _classByJSONArrayKey = @{kAMRestaurants : [AMRestaurant class],
-                                 kAMMenus : [AMMenu class]};
+                                 kAMMenus : [AMMenu class],
+                                 kAMMenuSections : [AMMenuSection class]};
     }
     return _classByJSONArrayKey;
 }

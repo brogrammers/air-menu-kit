@@ -7,7 +7,23 @@
 //
 
 #import "AMClient.h"
+#import "AMMenu.h"
+#import "AMMenuSection.h"
+
+typedef void (^MenuCompletion)(AMMenu *menu, NSError *error);
+typedef void (^MenuSectionCompletion)(AMMenuSection *section, NSError *error);
+typedef void (^MenuSectionsCompletion)(NSArray *sections, NSError *error);
 
 @interface AMClient (Menu)
--(NSURLSessionDataTask *)
+
+-(NSURLSessionDataTask *)findMenuWithIdentifier:(NSString *)identifier
+                                     completion:(MenuCompletion)completion;
+
+-(NSURLSessionDataTask *)createSectionOfMenu:(AMMenu *)menu
+                                    withName:(NSString *)name
+                                 description:(NSString *)description
+                                  completion:(MenuSectionCompletion)completion;
+
+-(NSURLSessionDataTask *)findSectionsOfMenu:(AMMenu *)menu
+                                 completion:(MenuSectionsCompletion)completion;
 @end

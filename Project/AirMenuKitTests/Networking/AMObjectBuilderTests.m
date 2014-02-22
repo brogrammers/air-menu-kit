@@ -13,6 +13,7 @@
 #import "AMOAuthToken.h"
 #import "AMRestaurant.h"
 #import "AMMenu.h"
+#import "AMMenuSection.h"
 
 SPEC_BEGIN(AMObjectBuilderTests)
 
@@ -48,7 +49,7 @@ describe(@"AMObjectBuilder", ^{
         [[[[AMObjectBuilder sharedInstance] objectFromJSON:parsedMenuJSON] should] beKindOfClass:[AMMenu class]];
     });
     
-    it(@"retursn an array of menus when json root is menus", ^{
+    it(@"returns an array of menus when json root is menus", ^{
         NSData *menusJSON = [NSData dataWithContentsOfFile:OHPathForFileInBundle(@"menus.json", nil)];
         NSDictionary *parsedMenusJSON = [NSJSONSerialization JSONObjectWithData:menusJSON options:0 error:nil];
         id menus = [[AMObjectBuilder sharedInstance] objectFromJSON:parsedMenusJSON];
@@ -57,6 +58,22 @@ describe(@"AMObjectBuilder", ^{
         [[[menus objectAtIndex:1] should] beKindOfClass:[AMMenu class]];
         [[[menus objectAtIndex:2] should] beKindOfClass:[AMMenu class]];
     });
+    
+    it(@"returns a menu section when json root is menu section", ^{
+        NSData *menuSectionJSON = [NSData dataWithContentsOfFile:OHPathForFileInBundle(@"menu_section.json", nil)];
+        NSDictionary *parsedMenuSectionJSON = [NSJSONSerialization JSONObjectWithData:menuSectionJSON options:0 error:nil];
+        id menuSection = [[AMObjectBuilder sharedInstance] objectFromJSON:parsedMenuSectionJSON];
+        [[menuSection should] beKindOfClass:[AMMenuSection class]];
+    });
+    
+    it(@"returns array of menu sections when json root is menu sections", ^{
+        NSData *menuSectionsData = [NSData dataWithContentsOfFile:OHPathForFileInBundle(@"menu_sections.json", nil)];
+        NSDictionary *parsedMenuSectionsJSON = [NSJSONSerialization JSONObjectWithData:menuSectionsData options:0 error:nil];
+        id menuSections = [[AMObjectBuilder sharedInstance] objectFromJSON:parsedMenuSectionsJSON];
+        [[menuSections should] beKindOfClass:[NSArray class]];
+        [[[menuSections objectAtIndex:0] should] beKindOfClass:[AMMenuSection class]];
+    });
+    
 });
 
 SPEC_END

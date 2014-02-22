@@ -39,6 +39,8 @@
 		71600A1E18B506F000DFB9B6 /* company.json in Resources */ = {isa = PBXBuildFile; fileRef = 71600A1D18B506F000DFB9B6 /* company.json */; };
 		716863B818B8F012005D68B3 /* menu.json in Resources */ = {isa = PBXBuildFile; fileRef = 716863B718B8F012005D68B3 /* menu.json */; };
 		716863BA18B90C55005D68B3 /* AMClientMenuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 716863B918B90C55005D68B3 /* AMClientMenuTests.m */; };
+		716863BC18B927DC005D68B3 /* menu_section.json in Resources */ = {isa = PBXBuildFile; fileRef = 716863BB18B927DC005D68B3 /* menu_section.json */; };
+		716863BE18B927E6005D68B3 /* menu_sections.json in Resources */ = {isa = PBXBuildFile; fileRef = 716863BD18B927E6005D68B3 /* menu_sections.json */; };
 		716C573318A197C800D95228 /* NSDateFormatter+AirMenuTimestamp.m in Sources */ = {isa = PBXBuildFile; fileRef = 716C573218A197C800D95228 /* NSDateFormatter+AirMenuTimestamp.m */; };
 		716C573518A1A40D00D95228 /* AMMenuSectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 716C573418A1A40D00D95228 /* AMMenuSectionTests.m */; };
 		716C573718A1BEB800D95228 /* AMMenuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 716C573618A1BEB800D95228 /* AMMenuTests.m */; };
@@ -127,6 +129,8 @@
 		71600A1D18B506F000DFB9B6 /* company.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = company.json; sourceTree = "<group>"; };
 		716863B718B8F012005D68B3 /* menu.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = menu.json; sourceTree = "<group>"; };
 		716863B918B90C55005D68B3 /* AMClientMenuTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMClientMenuTests.m; sourceTree = "<group>"; };
+		716863BB18B927DC005D68B3 /* menu_section.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = menu_section.json; sourceTree = "<group>"; };
+		716863BD18B927E6005D68B3 /* menu_sections.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = menu_sections.json; sourceTree = "<group>"; };
 		716C572F18A1969400D95228 /* NSNumberFormatter+AirMenuNumberFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumberFormatter+AirMenuNumberFormat.h"; sourceTree = "<group>"; };
 		716C573218A197C800D95228 /* NSDateFormatter+AirMenuTimestamp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+AirMenuTimestamp.m"; sourceTree = "<group>"; };
 		716C573418A1A40D00D95228 /* AMMenuSectionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMMenuSectionTests.m; sourceTree = "<group>"; };
@@ -358,6 +362,8 @@
 				716863B718B8F012005D68B3 /* menu.json */,
 				7108AD9E18B5741B00A413DA /* restaurants.json */,
 				7108ADA218B8E8CE00A413DA /* menus.json */,
+				716863BB18B927DC005D68B3 /* menu_section.json */,
+				716863BD18B927E6005D68B3 /* menu_sections.json */,
 			);
 			path = "JSON Responses";
 			sourceTree = "<group>";
@@ -438,8 +444,10 @@
 			files = (
 				7108ADA318B8E8CE00A413DA /* menus.json in Resources */,
 				714C068A18B55982004EAD04 /* restaurant.json in Resources */,
+				716863BC18B927DC005D68B3 /* menu_section.json in Resources */,
 				7108AD9F18B5741B00A413DA /* restaurants.json in Resources */,
 				7132E4681848EA8A00B2E356 /* InfoPlist.strings in Resources */,
+				716863BE18B927E6005D68B3 /* menu_sections.json in Resources */,
 				71E3FD9018AC197500BD00C2 /* oauth2:access_tokens_200 in Resources */,
 				71600A1E18B506F000DFB9B6 /* company.json in Resources */,
 				716863B818B8F012005D68B3 /* menu.json in Resources */,
