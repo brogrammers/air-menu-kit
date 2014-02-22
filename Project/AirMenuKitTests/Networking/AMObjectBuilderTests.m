@@ -14,6 +14,7 @@
 #import "AMRestaurant.h"
 #import "AMMenu.h"
 #import "AMMenuSection.h"
+#import "AMMenuItem.h"
 
 SPEC_BEGIN(AMObjectBuilderTests)
 
@@ -74,6 +75,20 @@ describe(@"AMObjectBuilder", ^{
         [[[menuSections objectAtIndex:0] should] beKindOfClass:[AMMenuSection class]];
     });
     
+    it(@"returns a menu item when json root is menu item", ^{
+        NSData *menuItemData = [NSData dataWithContentsOfFile:OHPathForFileInBundle(@"menu_item.json", nil)];
+        NSDictionary *parsedMenuItemJSON = [NSJSONSerialization JSONObjectWithData:menuItemData options:0 error:nil];
+        id menuItem = [[AMObjectBuilder sharedInstance] objectFromJSON:parsedMenuItemJSON];
+        [[menuItem should] beKindOfClass:[AMMenuItem class]];
+    });
+    
+    it(@"returns array of menu items when json root is menu items", ^{
+        NSData *menuItemsData = [NSData dataWithContentsOfFile:OHPathForFileInBundle(@"menu_items.json", nil)];
+        NSDictionary *persedMenuItemsJSON = [NSJSONSerialization JSONObjectWithData:menuItemsData options:0 error:nil];
+        id menuItems = [[AMObjectBuilder sharedInstance] objectFromJSON:persedMenuItemsJSON];
+        [[menuItems should] beKindOfClass:[NSArray class]];
+        [[[menuItems objectAtIndex:0] should] beKindOfClass:[AMMenuItem class]];
+    });
 });
 
 SPEC_END

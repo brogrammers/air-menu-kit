@@ -7,7 +7,26 @@
 //
 
 #import "AMClient.h"
+#import "AMMenuSection.h"
+#import "AMMenuItem.h"
+
+typedef void (^MenuSectionCompletion) (AMMenuSection *section, NSError *error);
+typedef void (^MenuSectionItemCompletion) (AMMenuItem *item, NSError *error);
+typedef void (^MenuSectionItemsCompletion) (NSArray *items, NSError *error);
 
 @interface AMClient (MenuSection)
+
+-(NSURLSessionDataTask *)findMenuSectionWithIdentifier:(NSString *)identifier
+                                            completion:(MenuSectionCompletion)completion;
+
+-(NSURLSessionDataTask *)createItemOfSection:(AMMenuSection *)section
+                                    withName:(NSString *)name
+                                 description:(NSString *)description
+                                       price:(NSNumber *)price
+                                    currency:(NSString *)currency
+                                  completion:(MenuSectionItemCompletion)completion;
+
+-(NSURLSessionDataTask *)findItemsOfSection:(AMMenuSection *)section
+                                 completion:(MenuSectionItemsCompletion)completion;
 
 @end

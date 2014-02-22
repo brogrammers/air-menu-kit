@@ -78,7 +78,7 @@ describe(@"AMClient+Menu", ^{
             
             it(@"sends parameters in HTTP body", ^{
                 [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"name" : @"another section",
-                                                                                 @"description" : @"blah"}];
+                                                                                   @"description" : @"blah"}];
             });
         });
         

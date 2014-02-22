@@ -12,6 +12,7 @@
 #import "AMRestaurant.h"
 #import "AMMenu.h"
 #import "AMMenuSection.h"
+#import "AMMenuItem.h"
 
 static NSString *const kAMOAuthToken = @"access_token";
 static NSString *const kAMCompany = @"company";
@@ -21,6 +22,8 @@ static NSString *const kAMMenu = @"menu";
 static NSString *const kAMMenus = @"menus";
 static NSString *const kAMMenuSection = @"menu_section";
 static NSString *const kAMMenuSections = @"menu_sections";
+static NSString *const kAMmenuItem = @"menu_item";
+static NSString *const kAMMenuItems = @"menu_items";
 
 @interface AMObjectBuilder()
 @property (nonatomic, strong) NSDictionary *classByJSONKey;
@@ -46,7 +49,8 @@ static NSString *const kAMMenuSections = @"menu_sections";
                             kAMCompany : [AMCompany class],
                             kAMRestaurant : [AMRestaurant class],
                             kAMMenu : [AMMenu class],
-                            kAMMenuSection : [AMMenuSection class]};
+                            kAMMenuSection : [AMMenuSection class],
+                            kAMmenuItem : [AMMenuItem class]};
     }
     return _classByJSONKey;
 }
@@ -57,7 +61,8 @@ static NSString *const kAMMenuSections = @"menu_sections";
     {
         _classByJSONArrayKey = @{kAMRestaurants : [AMRestaurant class],
                                  kAMMenus : [AMMenu class],
-                                 kAMMenuSections : [AMMenuSection class]};
+                                 kAMMenuSections : [AMMenuSection class],
+                                 kAMMenuItems : [AMMenuItem class]};
     }
     return _classByJSONArrayKey;
 }
