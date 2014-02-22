@@ -7,7 +7,13 @@
 //
 
 #import "AMClient.h"
+#import "AMMenuItem.h"
+
+typedef void (^MenuItemCompletion)(AMMenuItem *item, NSError *error);
 
 @interface AMClient (MenuItem)
+
+-(NSURLSessionDataTask *)findMenuItemWithIdentifier:(NSString *)identifier
+                                         completion:(MenuItemCompletion)completion;
 
 @end

@@ -44,6 +44,7 @@
 		716863C018B9388D005D68B3 /* AMClientMenuSectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 716863BF18B9388D005D68B3 /* AMClientMenuSectionTests.m */; };
 		716863C218B93C26005D68B3 /* menu_item.json in Resources */ = {isa = PBXBuildFile; fileRef = 716863C118B93C26005D68B3 /* menu_item.json */; };
 		716863C418B93C31005D68B3 /* menu_items.json in Resources */ = {isa = PBXBuildFile; fileRef = 716863C318B93C31005D68B3 /* menu_items.json */; };
+		716863C618B94FA1005D68B3 /* AMClientMenuItemTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 716863C518B94FA1005D68B3 /* AMClientMenuItemTests.m */; };
 		716C573318A197C800D95228 /* NSDateFormatter+AirMenuTimestamp.m in Sources */ = {isa = PBXBuildFile; fileRef = 716C573218A197C800D95228 /* NSDateFormatter+AirMenuTimestamp.m */; };
 		716C573518A1A40D00D95228 /* AMMenuSectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 716C573418A1A40D00D95228 /* AMMenuSectionTests.m */; };
 		716C573718A1BEB800D95228 /* AMMenuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 716C573618A1BEB800D95228 /* AMMenuTests.m */; };
@@ -60,7 +61,6 @@
 		71E3FD8818AB040A00BD00C2 /* AMClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E3FD8718AB040A00BD00C2 /* AMClientTests.m */; };
 		71E3FD8B18AB10D200BD00C2 /* AMObjectBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E3FD8A18AB10D200BD00C2 /* AMObjectBuilder.m */; };
 		71E3FD8D18AC0C7000BD00C2 /* AMObjectBuilderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E3FD8C18AC0C7000BD00C2 /* AMObjectBuilderTests.m */; };
-		71E3FD9018AC197500BD00C2 /* oauth2:access_tokens_200 in Resources */ = {isa = PBXBuildFile; fileRef = 71E3FD8F18AC197500BD00C2 /* oauth2:access_tokens_200 */; };
 		DDE23A49A56D45DCA98C334A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00826E59288A4EBC8E2108B7 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -137,6 +137,7 @@
 		716863BF18B9388D005D68B3 /* AMClientMenuSectionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMClientMenuSectionTests.m; sourceTree = "<group>"; };
 		716863C118B93C26005D68B3 /* menu_item.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = menu_item.json; sourceTree = "<group>"; };
 		716863C318B93C31005D68B3 /* menu_items.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = menu_items.json; sourceTree = "<group>"; };
+		716863C518B94FA1005D68B3 /* AMClientMenuItemTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMClientMenuItemTests.m; sourceTree = "<group>"; };
 		716C572F18A1969400D95228 /* NSNumberFormatter+AirMenuNumberFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumberFormatter+AirMenuNumberFormat.h"; sourceTree = "<group>"; };
 		716C573218A197C800D95228 /* NSDateFormatter+AirMenuTimestamp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+AirMenuTimestamp.m"; sourceTree = "<group>"; };
 		716C573418A1A40D00D95228 /* AMMenuSectionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMMenuSectionTests.m; sourceTree = "<group>"; };
@@ -163,7 +164,6 @@
 		71E3FD8918AB10D200BD00C2 /* AMObjectBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMObjectBuilder.h; sourceTree = "<group>"; };
 		71E3FD8A18AB10D200BD00C2 /* AMObjectBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMObjectBuilder.m; sourceTree = "<group>"; };
 		71E3FD8C18AC0C7000BD00C2 /* AMObjectBuilderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMObjectBuilderTests.m; sourceTree = "<group>"; };
-		71E3FD8F18AC197500BD00C2 /* oauth2:access_tokens_200 */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; path = "oauth2:access_tokens_200"; sourceTree = "<group>"; };
 		811AF5E1705D4DD596C51C97 /* Pods-AirMenuKitTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AirMenuKitTests.xcconfig"; path = "Pods/Pods-AirMenuKitTests.xcconfig"; sourceTree = "<group>"; };
 		C4D6450282584DFB83C8BE38 /* libPods-AirMenuKitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AirMenuKitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -348,6 +348,7 @@
 				7108ADA018B5846400A413DA /* AMClientRestaurantTests.m */,
 				716863B918B90C55005D68B3 /* AMClientMenuTests.m */,
 				716863BF18B9388D005D68B3 /* AMClientMenuSectionTests.m */,
+				716863C518B94FA1005D68B3 /* AMClientMenuItemTests.m */,
 			);
 			name = Netowrking;
 			path = Networking;
@@ -363,7 +364,6 @@
 		71E3FD8E18AC18C400BD00C2 /* JSON Responses */ = {
 			isa = PBXGroup;
 			children = (
-				71E3FD8F18AC197500BD00C2 /* oauth2:access_tokens_200 */,
 				71600A1D18B506F000DFB9B6 /* company.json */,
 				714C068918B55982004EAD04 /* restaurant.json */,
 				716863B718B8F012005D68B3 /* menu.json */,
@@ -459,7 +459,6 @@
 				7108AD9F18B5741B00A413DA /* restaurants.json in Resources */,
 				7132E4681848EA8A00B2E356 /* InfoPlist.strings in Resources */,
 				716863BE18B927E6005D68B3 /* menu_sections.json in Resources */,
-				71E3FD9018AC197500BD00C2 /* oauth2:access_tokens_200 in Resources */,
 				71600A1E18B506F000DFB9B6 /* company.json in Resources */,
 				716863B818B8F012005D68B3 /* menu.json in Resources */,
 			);
@@ -565,6 +564,7 @@
 				71E3FD8818AB040A00BD00C2 /* AMClientTests.m in Sources */,
 				71E3FD8D18AC0C7000BD00C2 /* AMObjectBuilderTests.m in Sources */,
 				71173FA418A06AF300DF24EB /* AMAddressTests.m in Sources */,
+				716863C618B94FA1005D68B3 /* AMClientMenuItemTests.m in Sources */,
 				71E3FD8018AACB8D00BD00C2 /* AMOAuthApplicationTests.m in Sources */,
 				713F953218A0328400623CA8 /* AMCompanyTests.m in Sources */,
 				71600A1C18B5069F00DFB9B6 /* AMClientCompanyTests.m in Sources */,
