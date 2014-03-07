@@ -45,17 +45,6 @@ describe(@"AMOAuthToken", ^{
         it(@"has scopes attribute", ^{
             [[accessToken.scopes should] equal:@[@"user", @"admin", @"basic", @"create_company"]];
         });
-        
-        it(@"correctly indicates presence of scopes", ^{
-            [[@([accessToken hasScope:AMOAuthScopeBasic]) should] equal:@YES];
-            [[@([accessToken hasScope:AMOAuthScopeUser]) should] equal:@YES];
-            [[@([accessToken hasScope:AMOAuthScopeAdmin]) should] equal:@YES];
-            [[@([accessToken hasScope:AMOAuthScopeCreateCompany]) should] equal:@YES];
-        });
-        
-        it(@"correctly indicates its type", ^{
-            [[@([accessToken isOfType:AMOAuthTokenTypeBearer]) should] equal:@YES];
-        });
     });
     
     context(@"class", ^{

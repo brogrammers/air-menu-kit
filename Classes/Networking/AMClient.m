@@ -34,32 +34,81 @@
                                      clientSecret:(NSString *)clientSecret
                                          username:(NSString *)username
                                          password:(NSString *)password
-                                            scope:(NSString *)scope
-                                          success:(void(^)(AMOAuthToken *token))success
-                                          failure:(void(^)(NSError *error))failure;
+                                           scopes:(AMOAuthScope)scopes
+                                       completion:(AuthenticateCompletion)completion
 {
     NSAssert(clientID, @"clientID cannot be nil");
     NSAssert(clientSecret, @"clientSecret cannot be nil");
     NSAssert(username, @"username cannot be nil");
     NSAssert(password, @"password cannot be nil");
-    NSAssert(scope, @"scope cannot be nil");
     
     NSDictionary *params = @{@"grant_type" : @"password",
                              @"client_id" : clientID,
                              @"client_secret": clientSecret,
                              @"username" : username,
                              @"password" : password,
-                             @"scope" : scope};
+                             @"scope" : [self evaluateScopesParameter:scopes]};
     
     return [self POST:@"/api/oauth2/access_tokens"
            parameters:params
               success:^(NSURLSessionDataTask *task, id responseObject) {
                   AMOAuthToken *token = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
-                  if(success) success(token);
+                  [self.requestSerializer setValue:[@"Bearer " stringByAppendingString:token.token] forHTTPHeaderField:@"Authorization"];
+                  if(completion) completion(token, nil);
               }
               failure:^(NSURLSessionDataTask *task, NSError *error) {
-                  if(failure) failure(error);
+                  if(completion) completion(nil, error);
               }];
+}
+
+-(NSString *)evaluateScopesParameter:(AMOAuthScope)scopes
+{
+    NSMutableString *scopesString = [[NSMutableString alloc] init];
+    if (scopes & AMOAuthScopeBasic)
+    {
+        [scopesString appendString:@"basic,"];
+    }
+    
+    if(scopes & AMOAuthScopeUser)
+    {
+        [scopesString appendString:@"user,"];
+    }
+    
+    if (scopes & AMOAuthScopeDeveloper)
+    {
+        [scopesString appendString:@"developer,"];
+    }
+    
+    if(scopes & AMOAuthScopeOwner)
+    {
+        [scopesString appendString:@"owner,"];
+    }
+    
+    if(scopes & AMOAuthScopeGetMenus)
+    {
+        [scopesString appendString:@"get_menus,"];
+    }
+    
+    if(scopes & AMOAuthScopeAddMenus)
+    {
+        [scopesString appendString:@"add_menus,"];
+    }
+    
+    if(scopes & AMOAuthScopeAddActiveMenus)
+    {
+        [scopesString appendString:@"add_active_menus,"];
+    }
+    
+    if(scopes & AMOAuthScopeTrusted)
+    {
+        [scopesString appendString:@"trusted,"];
+    }
+    
+    if (scopesString.length > 0) {
+        scopesString = [[scopesString substringToIndex:scopesString.length - 1] mutableCopy];
+    }
+    
+    return scopesString;
 }
 
 #pragma mark - HTTP method overrides to support common error handlers

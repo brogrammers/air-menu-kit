@@ -9,13 +9,13 @@
 #import "AFHTTPSessionManager.h"
 #import "AMOAuthApplication.h"
 #import "AMOAuthToken.h"
-#import "AMUser.h"
+
+typedef void (^AuthenticateCompletion)(AMOAuthToken *token, NSError *error);
 
 static NSString *baseURL = @"https://stage-api.air-menu.com/api/v1/";
 static NSString *airMenuApiErrorDomain = @"com.air-menu.api";
 
 @interface AMClient : AFHTTPSessionManager
-@property (nonatomic, strong, readonly) id <AMUser> currentUser;
 
 +(instancetype)sharedClient;
 
@@ -23,7 +23,7 @@ static NSString *airMenuApiErrorDomain = @"com.air-menu.api";
                                      clientSecret:(NSString *)clientSecret
                                          username:(NSString *)username
                                          password:(NSString *)password
-                                            scope:(NSString *)scope
-                                          success:(void(^)(AMOAuthToken *token))success
-                                          failure:(void(^)(NSError *error))failure;
+                                           scopes:(AMOAuthScope)scopes
+                                       completion:(AuthenticateCompletion)completion;
+
 @end

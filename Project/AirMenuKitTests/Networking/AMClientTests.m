@@ -8,32 +8,70 @@
 
 #import <objc/message.h>
 #import <Kiwi/Kiwi.h>
+#import "TestToolBox.h"
 #import "AMClient.h"
-
-#define DEFAULT_HEADERS withHeaders(@{ @"Accept-Language": @"en;q=1, fr;q=0.9, de;q=0.8, zh-Hans;q=0.7, zh-Hant;q=0.6, ja;q=0.5", @"Content-Length": @"219", @"Content-Type": @"application/x-www-form-urlencoded; charset=utf-8", @"User-Agent": @"(null)/(null) (iPhone Simulator; iOS 7.1; Scale/2.00)" })
+#import "AMClient+Restaurant.h"
 
 SPEC_BEGIN(AMClientTests)
 
 describe(@"AMMenuClient", ^{
     
-
-    
     it(@"implements sharedClient as singleton", ^{
         [[[AMClient sharedClient] should] beIdenticalTo:[AMClient sharedClient]];
     });
     
-    it(@"it executes sucess block and passes the token", ^{
-        
-        __block AMOAuthToken *accessToken;
-        [[AMClient sharedClient] authenticateWithClientID:@"1ea6342ac153d74ac305e04f949da93bad3eab7401d9160206e65288bfabee64"
-                                             clientSecret:@"541b2f36d19a717077195286212aa1e1cea63faea4cfa22963475512704a2684"
-                                                 username:@"rob"
-                                                 password:@"password123"
-                                                    scope:@"admin" success:^(AMOAuthToken *token) {
-                                                        accessToken = token;
-                                                    }
-                                                  failure:^(NSError *error){}];
-        //[[expectFutureValue(accessToken) shouldEventually] beNonNil];
+    context(@"on error free flow", ^{
+        context(@"on authenticate", ^{
+            __block NSURLSessionDataTask *task;
+            __block AMOAuthToken *newToken;
+            
+            beforeAll(^{
+                
+              [TestToolBox stubRequestWithURL:@"https://stage-api.air-menu.com/api/oauth2/access_tokens"
+                                   httpMethod:@"POST"
+                           nameOfResponseFile:@"access_token.json"
+                                 responseCode:200];
+                
+              task = [[AMClient sharedClient]
+                      authenticateWithClientID:@"1ea6342ac153d74ac305e04f949da93bad3eab7401d9160206e65288bfabee64"
+                      clientSecret:@"541b2f36d19a717077195286212aa1e1cea63faea4cfa22963475512704a2684"
+                      username:@"rob"
+                      password:@"password123"
+                      scopes:(AMOAuthScopeOwner|AMOAuthScopeTrusted)
+                      completion:^(AMOAuthToken *token, NSError *error) {
+                          newToken = token;
+                      }];
+                      
+            });
+           
+            it(@"uses POST method", ^{
+                [[task.originalRequest.HTTPMethod should] equal:@"POST"];
+            });
+            
+            
+            it(@"calls oauth2/access_tokens", ^{
+                [[task.originalRequest.URL.absoluteString should] equal:@"https://stage-api.air-menu.com/api/oauth2/access_tokens"];
+            });
+            
+            it(@"creates access token object", ^{
+                //[[expectFutureValue(newToken) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"access_token.json"]];
+            });
+            
+            it(@"sends parameters in HTTP body", ^{
+                [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"grant_type" : @"password",
+                                                                                   @"username" : @"rob",
+                                                                                   @"password" : @"password123",
+                                                                                   @"client_id" : @"1ea6342ac153d74ac305e04f949da93bad3eab7401d9160206e65288bfabee64",
+                                                                                   @"client_secret" : @"541b2f36d19a717077195286212aa1e1cea63faea4cfa22963475512704a2684",
+                                                                                   @"scope" : @"owner%2Ctrusted"}];
+            });
+            
+            it(@"sets token as Authorization HTTP header ", ^{
+                NSString *token = [[TestToolBox objectFromJSONFromFile:@"access_token.json"] token];
+                NSString *headerExpected = [@"Bearer " stringByAppendingString:token];
+                [[expectFutureValue([AMClient sharedClient].requestSerializer.HTTPRequestHeaders[@"Authorization"]) shouldEventually] equal:headerExpected];
+            });
+       });
     });
 });
 
