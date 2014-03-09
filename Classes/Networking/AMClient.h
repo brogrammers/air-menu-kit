@@ -25,5 +25,6 @@ static NSString *airMenuApiErrorDomain = @"com.air-menu.api";
                                          password:(NSString *)password
                                            scopes:(AMOAuthScope)scopes
                                        completion:(AuthenticateCompletion)completion;
+-(BOOL)isLoggedIn;
 
 @end

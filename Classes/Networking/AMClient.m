@@ -54,11 +54,27 @@
               success:^(NSURLSessionDataTask *task, id responseObject) {
                   AMOAuthToken *token = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
                   [self.requestSerializer setValue:[@"Bearer " stringByAppendingString:token.token] forHTTPHeaderField:@"Authorization"];
+                  [[NSUserDefaults standardUserDefaults] setObject:token.token forKey:@"acesss_token"];
+                  [[NSUserDefaults standardUserDefaults] synchronize];
                   if(completion) completion(token, nil);
               }
               failure:^(NSURLSessionDataTask *task, NSError *error) {
                   if(completion) completion(nil, error);
               }];
+}
+
+-(BOOL)isLoggedIn
+{
+    NSString *accessToken = [[NSUserDefaults standardUserDefaults] stringForKey:@"access_token"];
+    if(accessToken)
+    {
+        [self.requestSerializer setValue:[@"Bearer " stringByAppendingString:accessToken] forHTTPHeaderField:@"Authorization"];
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
 }
 
 -(NSString *)evaluateScopesParameter:(AMOAuthScope)scopes

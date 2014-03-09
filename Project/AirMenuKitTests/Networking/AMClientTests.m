@@ -43,6 +43,10 @@ describe(@"AMMenuClient", ^{
                       }];
                       
             });
+            
+            afterAll(^{
+                [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"accesss_token"];
+            });
            
             it(@"uses POST method", ^{
                 [[task.originalRequest.HTTPMethod should] equal:@"POST"];
@@ -71,7 +75,38 @@ describe(@"AMMenuClient", ^{
                 NSString *headerExpected = [@"Bearer " stringByAppendingString:token];
                 [[expectFutureValue([AMClient sharedClient].requestSerializer.HTTPRequestHeaders[@"Authorization"]) shouldEventually] equal:headerExpected];
             });
+            
+            it(@"saves current token to NSUerDefaults", ^{
+                NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:@"acesss_token"];
+                [[token should] equal:[[TestToolBox objectFromJSONFromFile:@"access_token.json"] token]];
+            });
        });
+        
+        context(@"when restoring session", ^{
+            
+            context(@"when token present", ^{
+                
+                beforeAll(^{
+                    [[NSUserDefaults standardUserDefaults] setObject:@"ABCD" forKey:@"access_token"];
+                    [[NSUserDefaults standardUserDefaults] synchronize];
+                });
+                
+                afterAll(^{
+                    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"access_token"];
+                    [[NSUserDefaults standardUserDefaults] synchronize];
+                });
+                
+                it(@"returns YES from isLoggedIn", ^{
+                    BOOL isLoggedIn = [[AMClient sharedClient] isLoggedIn];
+                    [[theValue(isLoggedIn) should] equal:theValue(YES)];
+                });
+                
+                it(@"sets access token on the client", ^{
+                    NSString *headerExpected = [@"Bearer " stringByAppendingString:@"ABCD"];
+                    [[expectFutureValue([AMClient sharedClient].requestSerializer.HTTPRequestHeaders[@"Authorization"]) shouldEventually] equal:headerExpected];
+                });
+            });
+        });
     });
 });
 
