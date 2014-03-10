@@ -37,6 +37,8 @@
 		71496A9218CD342100045AFD /* AMUserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71496A9118CD342100045AFD /* AMUserTests.m */; };
 		71496A9418CD3E7500045AFD /* me.json in Resources */ = {isa = PBXBuildFile; fileRef = 71496A9318CD3E7500045AFD /* me.json */; };
 		71496A9618CD3E7E00045AFD /* user.json in Resources */ = {isa = PBXBuildFile; fileRef = 71496A9518CD3E7E00045AFD /* user.json */; };
+		71496A9918CD40C800045AFD /* AMClient+User.m in Sources */ = {isa = PBXBuildFile; fileRef = 71496A9818CD40C800045AFD /* AMClient+User.m */; };
+		71496A9B18CD420500045AFD /* AMClientUserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71496A9A18CD420500045AFD /* AMClientUserTests.m */; };
 		714C068818B538A9004EAD04 /* TestToolBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 714C068718B538A9004EAD04 /* TestToolBox.m */; };
 		714C068A18B55982004EAD04 /* restaurant.json in Resources */ = {isa = PBXBuildFile; fileRef = 714C068918B55982004EAD04 /* restaurant.json */; };
 		71600A1C18B5069F00DFB9B6 /* AMClientCompanyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71600A1B18B5069F00DFB9B6 /* AMClientCompanyTests.m */; };
@@ -135,6 +137,9 @@
 		71496A9118CD342100045AFD /* AMUserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMUserTests.m; sourceTree = "<group>"; };
 		71496A9318CD3E7500045AFD /* me.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = me.json; sourceTree = "<group>"; };
 		71496A9518CD3E7E00045AFD /* user.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = user.json; sourceTree = "<group>"; };
+		71496A9718CD40C800045AFD /* AMClient+User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AMClient+User.h"; sourceTree = "<group>"; };
+		71496A9818CD40C800045AFD /* AMClient+User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AMClient+User.m"; sourceTree = "<group>"; };
+		71496A9A18CD420500045AFD /* AMClientUserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMClientUserTests.m; sourceTree = "<group>"; };
 		714C068618B538A9004EAD04 /* TestToolBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestToolBox.h; sourceTree = "<group>"; };
 		714C068718B538A9004EAD04 /* TestToolBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestToolBox.m; sourceTree = "<group>"; };
 		714C068918B55982004EAD04 /* restaurant.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = restaurant.json; sourceTree = "<group>"; };
@@ -330,6 +335,8 @@
 				71A0D3AA18AC33390070465E /* AMClient+MenuSection.m */,
 				71A0D3AC18AC335E0070465E /* AMClient+MenuItem.h */,
 				71A0D3AD18AC335E0070465E /* AMClient+MenuItem.m */,
+				71496A9718CD40C800045AFD /* AMClient+User.h */,
+				71496A9818CD40C800045AFD /* AMClient+User.m */,
 			);
 			path = "Model Additions";
 			sourceTree = "<group>";
@@ -361,6 +368,7 @@
 				716863B918B90C55005D68B3 /* AMClientMenuTests.m */,
 				716863BF18B9388D005D68B3 /* AMClientMenuSectionTests.m */,
 				716863C518B94FA1005D68B3 /* AMClientMenuItemTests.m */,
+				71496A9A18CD420500045AFD /* AMClientUserTests.m */,
 			);
 			name = Netowrking;
 			path = Networking;
@@ -588,10 +596,12 @@
 				71E3FD8018AACB8D00BD00C2 /* AMOAuthApplicationTests.m in Sources */,
 				713F953218A0328400623CA8 /* AMCompanyTests.m in Sources */,
 				71600A1C18B5069F00DFB9B6 /* AMClientCompanyTests.m in Sources */,
+				71496A9918CD40C800045AFD /* AMClient+User.m in Sources */,
 				714C068818B538A9004EAD04 /* TestToolBox.m in Sources */,
 				716C573518A1A40D00D95228 /* AMMenuSectionTests.m in Sources */,
 				71173FA618A17BAB00DF24EB /* AMMenuItemTests.m in Sources */,
 				71E3FD7B18AA784700BD00C2 /* AMOAuthTokenTests.m in Sources */,
+				71496A9B18CD420500045AFD /* AMClientUserTests.m in Sources */,
 				716C573718A1BEB800D95228 /* AMMenuTests.m in Sources */,
 				716863BA18B90C55005D68B3 /* AMClientMenuTests.m in Sources */,
 			);

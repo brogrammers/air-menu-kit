@@ -52,6 +52,8 @@
     return [self POST:@"/api/oauth2/access_tokens"
            parameters:params
               success:^(NSURLSessionDataTask *task, id responseObject) {
+                  NSString *oldAccessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"access_token"];
+                  [[NSUserDefaults standardUserDefaults] setObject:nil forKey:oldAccessToken];
                   AMOAuthToken *token = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
                   [self.requestSerializer setValue:[@"Bearer " stringByAppendingString:token.token] forHTTPHeaderField:@"Authorization"];
                   [[NSUserDefaults standardUserDefaults] setObject:token.token forKey:@"acesss_token"];

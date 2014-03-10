@@ -41,11 +41,17 @@ describe(@"AMMenuClient", ^{
                       completion:^(AMOAuthToken *token, NSError *error) {
                           newToken = token;
                       }];
+                
+                [[NSUserDefaults standardUserDefaults] setObject:@"ABCD" forKey:@"access_token"];
+                [[NSUserDefaults standardUserDefaults] setObject:@{} forKey:@"ABCD"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
                       
             });
             
             afterAll(^{
                 [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"accesss_token"];
+                [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"ABCD"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
             });
            
             it(@"uses POST method", ^{
@@ -76,7 +82,9 @@ describe(@"AMMenuClient", ^{
                 [[expectFutureValue([AMClient sharedClient].requestSerializer.HTTPRequestHeaders[@"Authorization"]) shouldEventually] equal:headerExpected];
             });
             
-            it(@"saves current token to NSUerDefaults", ^{
+            it(@"saves current token to NSUerDefaults and removes value under for old token from user defaults", ^{
+                NSString *oldToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"access_token"];
+                [[[[NSUserDefaults standardUserDefaults] objectForKey:oldToken] should] beNil];
                 NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:@"acesss_token"];
                 [[token should] equal:[[TestToolBox objectFromJSONFromFile:@"access_token.json"] token]];
             });
