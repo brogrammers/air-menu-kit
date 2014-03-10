@@ -61,11 +61,39 @@ describe(@"AMUser", ^{
     });
     
     context(@"class", ^{
-        
+        it(@"returns correct mapping from JSONKeyPathsByPropertyKey", ^{
+            NSDictionary *mapping = [AMUser JSONKeyPathsByPropertyKey];
+            NSDictionary *expectedMapping = @{@"identifier" : @"id",
+                                              @"name" : @"name",
+                                              @"username" : @"identity.username",
+                                              @"email" : @"identity.email",
+                                              @"type" : @"type",
+                                              @"scopes" : @"scopes"};
+            [[mapping should] equal:expectedMapping];
+        });
     });
     
     context(@"mapping", ^{
+        __block AMUser *user;
+        __block NSDictionary *parsedUserJSON;
         
+        beforeAll(^{
+           parsedUserJSON = @{@"id" : @(1),
+                              @"name" : @"Robert Lis",
+                              @"type" : @"Manager",
+                              @"identity" : @{@"username" : @"rob", @"email" : @"rob@gmail.com"},
+                              @"scopes" : @[@"Manager"]};
+            user = [MTLJSONAdapter modelOfClass:[AMUser class] fromJSONDictionary:parsedUserJSON error:nil];
+        });
+        
+        it(@"maps parsed user JSON to AMUser object", ^{
+            [[user.identifier should] equal:@(1)];
+            [[user.name should] equal:@"Robert Lis"];
+            [[user.type should] equal:@"Manager"];
+            [[user.username should] equal:@"rob"];
+            [[user.email should] equal:@"rob@gmail.com"];
+            [[user.scopes should] equal:@[@"Manager"]];
+        });
     });
 });
 

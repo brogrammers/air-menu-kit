@@ -13,6 +13,7 @@
 #import "AMMenu.h"
 #import "AMMenuSection.h"
 #import "AMMenuItem.h"
+#import "AMUser.h"
 
 static NSString *const kAMOAuthToken = @"access_token";
 static NSString *const kAMCompany = @"company";
@@ -24,6 +25,8 @@ static NSString *const kAMMenuSection = @"menu_section";
 static NSString *const kAMMenuSections = @"menu_sections";
 static NSString *const kAMmenuItem = @"menu_item";
 static NSString *const kAMMenuItems = @"menu_items";
+static NSString *const kAMUser = @"user";
+static NSString *const kAMMe = @"me";
 
 @interface AMObjectBuilder()
 @property (nonatomic, strong) NSDictionary *classByJSONKey;
@@ -50,7 +53,9 @@ static NSString *const kAMMenuItems = @"menu_items";
                             kAMRestaurant : [AMRestaurant class],
                             kAMMenu : [AMMenu class],
                             kAMMenuSection : [AMMenuSection class],
-                            kAMmenuItem : [AMMenuItem class]};
+                            kAMmenuItem : [AMMenuItem class],
+                            kAMUser : [AMUser class],
+                            kAMMe : [AMUser class]};
     }
     return _classByJSONKey;
 }

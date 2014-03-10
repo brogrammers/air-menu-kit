@@ -1,0 +1,15 @@
+{
+    "me": {
+        "id": 1,
+        "name": "Max Hoffmann",
+        "type": "Owner",
+        "identity": {
+            "username": "tsov",
+            "email": "tsov@me.com"
+        },
+        "scopes": [
+                   "basic",
+                   "user"
+                   ]
+    }
+}

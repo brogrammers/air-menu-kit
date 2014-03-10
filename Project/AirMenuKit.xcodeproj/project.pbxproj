@@ -35,6 +35,8 @@
 		713F953B18A040F500623CA8 /* AMAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 713F953A18A040F500623CA8 /* AMAddress.m */; };
 		71496A9018CD340E00045AFD /* AMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 71496A8F18CD340E00045AFD /* AMUser.m */; };
 		71496A9218CD342100045AFD /* AMUserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71496A9118CD342100045AFD /* AMUserTests.m */; };
+		71496A9418CD3E7500045AFD /* me.json in Resources */ = {isa = PBXBuildFile; fileRef = 71496A9318CD3E7500045AFD /* me.json */; };
+		71496A9618CD3E7E00045AFD /* user.json in Resources */ = {isa = PBXBuildFile; fileRef = 71496A9518CD3E7E00045AFD /* user.json */; };
 		714C068818B538A9004EAD04 /* TestToolBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 714C068718B538A9004EAD04 /* TestToolBox.m */; };
 		714C068A18B55982004EAD04 /* restaurant.json in Resources */ = {isa = PBXBuildFile; fileRef = 714C068918B55982004EAD04 /* restaurant.json */; };
 		71600A1C18B5069F00DFB9B6 /* AMClientCompanyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71600A1B18B5069F00DFB9B6 /* AMClientCompanyTests.m */; };
@@ -131,6 +133,8 @@
 		71496A8E18CD340E00045AFD /* AMUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMUser.h; sourceTree = "<group>"; };
 		71496A8F18CD340E00045AFD /* AMUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMUser.m; sourceTree = "<group>"; };
 		71496A9118CD342100045AFD /* AMUserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMUserTests.m; sourceTree = "<group>"; };
+		71496A9318CD3E7500045AFD /* me.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = me.json; sourceTree = "<group>"; };
+		71496A9518CD3E7E00045AFD /* user.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = user.json; sourceTree = "<group>"; };
 		714C068618B538A9004EAD04 /* TestToolBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestToolBox.h; sourceTree = "<group>"; };
 		714C068718B538A9004EAD04 /* TestToolBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestToolBox.m; sourceTree = "<group>"; };
 		714C068918B55982004EAD04 /* restaurant.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = restaurant.json; sourceTree = "<group>"; };
@@ -382,6 +386,8 @@
 				716863C118B93C26005D68B3 /* menu_item.json */,
 				716863C318B93C31005D68B3 /* menu_items.json */,
 				71DBA7C418BAC978001CBC32 /* access_token.json */,
+				71496A9318CD3E7500045AFD /* me.json */,
+				71496A9518CD3E7E00045AFD /* user.json */,
 			);
 			path = "JSON Responses";
 			sourceTree = "<group>";
@@ -469,7 +475,9 @@
 				7108AD9F18B5741B00A413DA /* restaurants.json in Resources */,
 				7132E4681848EA8A00B2E356 /* InfoPlist.strings in Resources */,
 				716863BE18B927E6005D68B3 /* menu_sections.json in Resources */,
+				71496A9418CD3E7500045AFD /* me.json in Resources */,
 				71600A1E18B506F000DFB9B6 /* company.json in Resources */,
+				71496A9618CD3E7E00045AFD /* user.json in Resources */,
 				716863B818B8F012005D68B3 /* menu.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

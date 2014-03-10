@@ -15,6 +15,7 @@
 #import "AMMenu.h"
 #import "AMMenuSection.h"
 #import "AMMenuItem.h"
+#import "AMUser.h"
 
 SPEC_BEGIN(AMObjectBuilderTests)
 
@@ -88,6 +89,20 @@ describe(@"AMObjectBuilder", ^{
         id menuItems = [[AMObjectBuilder sharedInstance] objectFromJSON:persedMenuItemsJSON];
         [[menuItems should] beKindOfClass:[NSArray class]];
         [[[menuItems objectAtIndex:0] should] beKindOfClass:[AMMenuItem class]];
+    });
+    
+    it(@"returns a user when json root is user", ^{
+        NSData *userData = [NSData dataWithContentsOfFile:OHPathForFileInBundle(@"user.json", nil)];
+        NSDictionary *parsedUserJSON = [NSJSONSerialization JSONObjectWithData:userData options:0 error:nil];
+        id user = [[AMObjectBuilder sharedInstance] objectFromJSON:parsedUserJSON];
+        [[user should] beKindOfClass:[AMUser class]];
+    });
+    
+    it(@"returns a user when json root is me", ^{
+        NSData *meData = [NSData dataWithContentsOfFile:OHPathForFileInBundle(@"me.json", nil)];
+        NSDictionary *meUserJSON = [NSJSONSerialization JSONObjectWithData:meData options:0 error:nil];
+        id me = [[AMObjectBuilder sharedInstance] objectFromJSON:meUserJSON];
+        [[me should] beKindOfClass:[AMUser class]];
     });
 });
 

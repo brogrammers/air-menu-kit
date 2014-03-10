@@ -10,4 +10,13 @@
 
 @implementation AMUser
 
++(NSDictionary *)JSONKeyPathsByPropertyKey
+{
+    return @{@"identifier" : @"id",
+             @"name" : @"name",
+             @"username" : @"identity.username",
+             @"email" : @"identity.email",
+             @"type" : @"type",
+             @"scopes" : @"scopes"};
+}
 @end
