@@ -59,7 +59,7 @@
                   }
                   AMOAuthToken *token = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
                   [self.requestSerializer setValue:[@"Bearer " stringByAppendingString:token.token] forHTTPHeaderField:@"Authorization"];
-                  [[NSUserDefaults standardUserDefaults] setObject:token.token forKey:@"acesss_token"];
+                  [[NSUserDefaults standardUserDefaults] setObject:token.token forKey:@"access_token"];
                   [[NSUserDefaults standardUserDefaults] synchronize];
                   if(completion) completion(token, nil);
               }
