@@ -11,7 +11,7 @@ To run the example project; clone the repo, and run `pod install` from the Proje
 AirMenuKit is available through [CocoaPods](http://cocoapods.org), to install
 it simply add the following line to your Podfile:
 
-    pod "AirMenuKit"
+    pod "AirMenuKit", :git => 'https://github.com/brogrammers/air-menu-kit.git'
 
 ## Author
 
