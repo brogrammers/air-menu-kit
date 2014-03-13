@@ -87,12 +87,12 @@
     NSMutableString *scopesString = [[NSMutableString alloc] init];
     if (scopes & AMOAuthScopeBasic)
     {
-        [scopesString appendString:@"basic,"];
+        [scopesString appendString:@"basic "];
     }
     
     if(scopes & AMOAuthScopeUser)
     {
-        [scopesString appendString:@"user,"];
+        [scopesString appendString:@"user "];
     }
     
     if (scopes & AMOAuthScopeDeveloper)
@@ -102,27 +102,27 @@
     
     if(scopes & AMOAuthScopeOwner)
     {
-        [scopesString appendString:@"owner,"];
+        [scopesString appendString:@"owner "];
     }
     
     if(scopes & AMOAuthScopeGetMenus)
     {
-        [scopesString appendString:@"get_menus,"];
+        [scopesString appendString:@"get_menus "];
     }
     
     if(scopes & AMOAuthScopeAddMenus)
     {
-        [scopesString appendString:@"add_menus,"];
+        [scopesString appendString:@"add_menus "];
     }
     
     if(scopes & AMOAuthScopeAddActiveMenus)
     {
-        [scopesString appendString:@"add_active_menus,"];
+        [scopesString appendString:@"add_active_menus "];
     }
     
     if(scopes & AMOAuthScopeTrusted)
     {
-        [scopesString appendString:@"trusted,"];
+        [scopesString appendString:@"trusted "];
     }
     
     if (scopesString.length > 0) {
