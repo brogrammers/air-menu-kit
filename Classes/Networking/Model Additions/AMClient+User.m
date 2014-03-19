@@ -8,6 +8,7 @@
 
 #import "AMClient+User.h"
 #import "AMObjectBuilder.h"
+#import "NSDictionary+NullReplacement.h"
 
 @implementation AMClient (User)
 -(NSURLSessionDataTask *)findUserWithIdentifier:(NSString *)identifier
@@ -43,7 +44,8 @@
                  success:^(NSURLSessionDataTask *task, id responseObject) {
                      AMUser *user = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
                      NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:@"access_token"];
-                     [[NSUserDefaults standardUserDefaults] setObject:responseObject forKey:token];
+                     [[NSUserDefaults standardUserDefaults] setObject:[responseObject dictionaryByReplacingNullsWithBlanks] forKey:token];
+                     [[NSUserDefaults standardUserDefaults] synchronize];
                      if(completion) completion(user, nil);
                  }
                  failure:^(NSURLSessionDataTask *task, NSError *error) {

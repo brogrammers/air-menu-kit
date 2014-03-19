@@ -73,7 +73,7 @@ describe(@"AMMenuClient", ^{
                                                                                    @"password" : @"password123",
                                                                                    @"client_id" : @"1ea6342ac153d74ac305e04f949da93bad3eab7401d9160206e65288bfabee64",
                                                                                    @"client_secret" : @"541b2f36d19a717077195286212aa1e1cea63faea4cfa22963475512704a2684",
-                                                                                   @"scope" : @"owner%2Ctrusted"}];
+                                                                                   @"scope" : @"owner trusted"}];
             });
             
             it(@"sets token as Authorization HTTP header ", ^{

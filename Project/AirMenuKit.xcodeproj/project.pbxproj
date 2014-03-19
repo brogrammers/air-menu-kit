@@ -11,6 +11,8 @@
 		7108AD9F18B5741B00A413DA /* restaurants.json in Resources */ = {isa = PBXBuildFile; fileRef = 7108AD9E18B5741B00A413DA /* restaurants.json */; };
 		7108ADA118B5846400A413DA /* AMClientRestaurantTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7108ADA018B5846400A413DA /* AMClientRestaurantTests.m */; };
 		7108ADA318B8E8CE00A413DA /* menus.json in Resources */ = {isa = PBXBuildFile; fileRef = 7108ADA218B8E8CE00A413DA /* menus.json */; };
+		7109CBF818DA58CC00D6003E /* NSArray+NullReplacement.m in Sources */ = {isa = PBXBuildFile; fileRef = 7109CBF718DA58CC00D6003E /* NSArray+NullReplacement.m */; };
+		7109CBFB18DA58D300D6003E /* NSDictionary+NullReplacement.m in Sources */ = {isa = PBXBuildFile; fileRef = 7109CBFA18DA58D300D6003E /* NSDictionary+NullReplacement.m */; };
 		710AD71D189FDF6400AA1038 /* AMClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 710AD71C189FDF6400AA1038 /* AMClient.m */; };
 		710AD72018A0268800AA1038 /* AMCompany.m in Sources */ = {isa = PBXBuildFile; fileRef = 710AD71F18A0268800AA1038 /* AMCompany.m */; };
 		710AD72318A0269F00AA1038 /* AMRestaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = 710AD72218A0269F00AA1038 /* AMRestaurant.m */; };
@@ -105,6 +107,10 @@
 		7108AD9E18B5741B00A413DA /* restaurants.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = restaurants.json; sourceTree = "<group>"; };
 		7108ADA018B5846400A413DA /* AMClientRestaurantTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMClientRestaurantTests.m; sourceTree = "<group>"; };
 		7108ADA218B8E8CE00A413DA /* menus.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = menus.json; sourceTree = "<group>"; };
+		7109CBF618DA58CC00D6003E /* NSArray+NullReplacement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+NullReplacement.h"; sourceTree = "<group>"; };
+		7109CBF718DA58CC00D6003E /* NSArray+NullReplacement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+NullReplacement.m"; sourceTree = "<group>"; };
+		7109CBF918DA58D300D6003E /* NSDictionary+NullReplacement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+NullReplacement.h"; sourceTree = "<group>"; };
+		7109CBFA18DA58D300D6003E /* NSDictionary+NullReplacement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+NullReplacement.m"; sourceTree = "<group>"; };
 		710AD714189F2FBE00AA1038 /* AirMenuKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AirMenuKit-Prefix.pch"; sourceTree = "<group>"; };
 		710AD71B189FDF6400AA1038 /* AMClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMClient.h; sourceTree = "<group>"; };
 		710AD71C189FDF6400AA1038 /* AMClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMClient.m; sourceTree = "<group>"; };
@@ -377,8 +383,12 @@
 		71E3FD8118AAF0A500BD00C2 /* General */ = {
 			isa = PBXGroup;
 			children = (
+				7109CBF618DA58CC00D6003E /* NSArray+NullReplacement.h */,
+				7109CBF718DA58CC00D6003E /* NSArray+NullReplacement.m */,
+				7109CBF918DA58D300D6003E /* NSDictionary+NullReplacement.h */,
+				7109CBFA18DA58D300D6003E /* NSDictionary+NullReplacement.m */,
 			);
-			name = General;
+			path = General;
 			sourceTree = "<group>";
 		};
 		71E3FD8E18AC18C400BD00C2 /* JSON Responses */ = {
@@ -566,6 +576,7 @@
 				71A0D3AB18AC33390070465E /* AMClient+MenuSection.m in Sources */,
 				710AD71D189FDF6400AA1038 /* AMClient.m in Sources */,
 				710AD72018A0268800AA1038 /* AMCompany.m in Sources */,
+				7109CBFB18DA58D300D6003E /* NSDictionary+NullReplacement.m in Sources */,
 				71A0D3A818AC33310070465E /* AMClient+Menu.m in Sources */,
 				713F953B18A040F500623CA8 /* AMAddress.m in Sources */,
 				710AD72618A026B900AA1038 /* AMMenu.m in Sources */,
@@ -573,6 +584,7 @@
 				710AD72318A0269F00AA1038 /* AMRestaurant.m in Sources */,
 				71A0D3A218AC33220070465E /* AMClient+Company.m in Sources */,
 				710AD72918A026CC00AA1038 /* AMMenuSection.m in Sources */,
+				7109CBF818DA58CC00D6003E /* NSArray+NullReplacement.m in Sources */,
 				71A0D3A518AC33280070465E /* AMClient+Restaurant.m in Sources */,
 				71E3FD7E18AACB6F00BD00C2 /* AMOAuthApplication.m in Sources */,
 				7174341A18AA76C200A83C61 /* AMOAuthToken.m in Sources */,
