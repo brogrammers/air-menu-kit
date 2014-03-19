@@ -17,7 +17,8 @@
              @"loyalty" : @"loyalty",
              @"remoteOrder" : @"remote_order",
              @"conversionRate" : @"conversion_rate",
-             @"address" : @"address"};
+             @"address" : @"address",
+             @"menu" : @"menu"};
 }
 
 +(NSValueTransformer *)addressJSONTransformer
@@ -25,4 +26,8 @@
     return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[AMAddress class]];
 }
 
++(NSValueTransformer *)menuJSONTransformer
+{
+    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[AMMenu class]];
+}
 @end

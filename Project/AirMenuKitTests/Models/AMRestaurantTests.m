@@ -26,7 +26,8 @@ describe(@"AMRestaurant", ^{
                                                          @"remoteOrder" : @YES,
                                                          @"conversionRate" : @0.1,
                                                          @"address" : [AMAddress new],
-                                                         @"loyalty" : @YES}];
+                                                         @"loyalty" : @YES,
+                                                         @"menu" : [AMMenu new]}];
         });
         
         it(@"subclasses MTLModel", ^{
@@ -61,6 +62,10 @@ describe(@"AMRestaurant", ^{
             [[restaurant.address should] equal:[AMAddress new]];
         });
         
+        it(@"has menu attribute", ^{
+            [[restaurant.menu should] equal:[AMMenu new]];
+        });
+        
     });
     
     context(@"class", ^{
@@ -71,7 +76,8 @@ describe(@"AMRestaurant", ^{
                                               @"loyalty" : @"loyalty",
                                               @"remoteOrder" : @"remote_order",
                                               @"conversionRate" : @"conversion_rate",
-                                              @"address" : @"address"};
+                                              @"address" : @"address",
+                                              @"menu" : @"menu"};
             [[mapping should] equal:expectedMapping];
         });
         
@@ -83,6 +89,15 @@ describe(@"AMRestaurant", ^{
             NSValueTransformer *valueTransformer = objc_msgSend([AMRestaurant class], NSSelectorFromString(@"addressJSONTransformer"));
             [[valueTransformer shouldNot] beNil];
         });
+        
+        it(@"implements menuJSONTransformer", ^{
+            [[[AMRestaurant class] should] respondToSelector:NSSelectorFromString(@"menuJSONTransformer")];
+        });
+        
+        it(@"returns dicionary AMMenu transformer from menuJSONTransformer", ^{
+            NSValueTransformer *valueTransformer = objc_msgSend([AMRestaurant class], NSSelectorFromString(@"menuJSONTransformer"));
+            [[valueTransformer shouldNot] beNil];
+        });
     });
     
     context(@"mapping", ^{
@@ -90,6 +105,7 @@ describe(@"AMRestaurant", ^{
         __block AMRestaurant *restaurant;
         __block NSDictionary *parsedRestaurantJSON;
         __block NSDictionary *parsedAddressJSON;
+        __block NSDictionary *parsedMenuJSON;
         
         beforeAll(^{
             parsedAddressJSON = @{@"id" : @1,
@@ -99,12 +115,17 @@ describe(@"AMRestaurant", ^{
                                   @"county": @"Dublin",
                                   @"country" : @"Ireland"};
             
+            parsedMenuJSON = @{@"id" : @1,
+                               @"name" : @"Main Menu"};
+            
             parsedRestaurantJSON = @{@"id": @1,
                                      @"name" : @"Nandos",
                                      @"loyalty" : @NO,
                                      @"remote_order": @NO,
                                      @"conversion_rate": @0.5,
-                                     @"address" : parsedAddressJSON};
+                                     @"address" : parsedAddressJSON,
+                                     @"menu" : parsedMenuJSON};
+            
             restaurant = [MTLJSONAdapter modelOfClass:[AMRestaurant class] fromJSONDictionary:parsedRestaurantJSON error:nil];
         });
         
@@ -123,6 +144,11 @@ describe(@"AMRestaurant", ^{
             [[restaurant.address.city should] equal:@"Dublin"];
             [[restaurant.address.county should] equal:@"Dublin"];
             [[restaurant.address.country should] equal:@"Ireland"];
+        });
+        
+        it(@"maps paresed menu JSON and hooks it up to the AMMenu object", ^{
+            [[restaurant.menu.identifier should] equal:@1];
+            [[restaurant.menu.name should] equal:@"Main Menu"];
         });
     });
 });

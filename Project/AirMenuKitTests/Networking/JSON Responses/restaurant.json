@@ -14,6 +14,9 @@
             "state": "Dublin",
             "country": "Ireland"
         },
-        "menu": null
+        "menu": {
+            "id" : 1,
+            "name" : "Main Menu"
+        }
     }
 }
