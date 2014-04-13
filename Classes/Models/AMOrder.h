@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 air-menu. All rights reserved.
 //
 
-#import "MTLModel.h"
+#import <Mantle/Mantle.h>
 
-@interface AMOrder : MTLModel
+@interface AMOrder : MTLModel <MTLJSONSerializing>
 
 @end

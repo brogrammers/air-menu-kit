@@ -38,7 +38,7 @@ describe(@"AMRestaurant", ^{
             [[restaurant should] conformToProtocol:@protocol(MTLJSONSerializing)];
         });
         
-        it(@"has identeifier attribute", ^{
+        it(@"has identifier attribute", ^{
             [[restaurant.identifier should] equal:@1];
         });
         
