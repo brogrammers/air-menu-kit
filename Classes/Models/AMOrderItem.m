@@ -7,7 +7,76 @@
 //
 
 #import "AMOrderItem.h"
+#import "NSDateFormatter+AirMenuTimestamp.h"
 
 @implementation AMOrderItem
++(NSDictionary *)JSONKeyPathsByPropertyKey
+{
+    return @{@"identifier" : @"id",
+             @"comment" : @"comment",
+             @"count" : @"count",
+             @"state" : @"state",
+             @"approvedAt" : @"approved_time",
+             @"declinedAt" : @"declined_time",
+             @"prepareTimeStart" : @"start_prepare_time",
+             @"prepareTimeEnd" : @"end_prepare_time",
+             @"servedAt" : @"served_time",
+             @"order" : @"order",
+             @"menuItem" : @"menu_item"};
+}
 
++(NSValueTransformer *)approvedAtJSONTransformer
+{
+    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSString *str) {
+        return [[NSDateFormatter sharedAirMenuFormatter] dateFromString:str];
+    } reverseBlock:^(NSDate *date) {
+        return [[NSDateFormatter sharedAirMenuFormatter] stringFromDate:date];
+    }];
+}
+
++(NSValueTransformer *)declinedAtJSONTransformer
+{
+    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSString *str) {
+        return [[NSDateFormatter sharedAirMenuFormatter] dateFromString:str];
+    } reverseBlock:^(NSDate *date) {
+        return [[NSDateFormatter sharedAirMenuFormatter] stringFromDate:date];
+    }];
+}
+
++(NSValueTransformer *)prepareTimeStartJSONTransformer
+{
+    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSString *str) {
+        return [[NSDateFormatter sharedAirMenuFormatter] dateFromString:str];
+    } reverseBlock:^(NSDate *date) {
+        return [[NSDateFormatter sharedAirMenuFormatter] stringFromDate:date];
+    }];
+}
+
++(NSValueTransformer *)prepareTimeEndJSONTransformer
+{
+    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSString *str) {
+        return [[NSDateFormatter sharedAirMenuFormatter] dateFromString:str];
+    } reverseBlock:^(NSDate *date) {
+        return [[NSDateFormatter sharedAirMenuFormatter] stringFromDate:date];
+    }];
+}
+
++(NSValueTransformer *)servedAtJSONTransformer
+{
+    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSString *str) {
+        return [[NSDateFormatter sharedAirMenuFormatter] dateFromString:str];
+    } reverseBlock:^(NSDate *date) {
+        return [[NSDateFormatter sharedAirMenuFormatter] stringFromDate:date];
+    }];
+}
+
++(NSValueTransformer *)orderJSONTransformer
+{
+    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[AMOrder class]];
+}
+
++(NSValueTransformer *)menuItemJSONTransformer
+{
+    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[AMMenuItem class]];
+}
 @end

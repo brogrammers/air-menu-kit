@@ -9,6 +9,7 @@
 #import <Kiwi/Kiwi.h>
 #import <Mantle/Mantle.h>
 #import "AMOrderItem.h"
+#import <objc/objc-runtime.h>
 
 SPEC_BEGIN(AMOrderItemTests)
 describe(@"AMOrderItem", ^{
@@ -83,7 +84,84 @@ describe(@"AMOrderItem", ^{
     });
     
     context(@"class", ^{
+        it(@"returns corret mapping from JSONKeyPathsByPropertyKey", ^{
+            NSDictionary *mapping = [[AMOrderItem class] JSONKeyPathsByPropertyKey];
+            NSDictionary *expectedMapping = @{@"identifier" : @"id",
+                                              @"comment" : @"comment",
+                                              @"count" : @"count",
+                                              @"state" : @"state",
+                                              @"approvedAt" : @"approved_time",
+                                              @"declinedAt" : @"declined_time",
+                                              @"prepareTimeStart" : @"start_prepare_time",
+                                              @"prepareTimeEnd" : @"end_prepare_time",
+                                              @"servedAt" : @"served_time",
+                                              @"order" : @"order",
+                                              @"menuItem" : @"menu_item"};
+            [[mapping should] equal:expectedMapping];
+        });
         
+        it(@"implements approvedAtJSONTransformer", ^{
+            [[[AMOrderItem class] should] respondToSelector:NSSelectorFromString(@"approvedAtJSONTransformer")];
+        });
+        
+        it(@"returns NSDate transfomer from approvedAtJSONTransformer", ^{
+            NSValueTransformer *transformer = objc_msgSend([AMOrderItem class], NSSelectorFromString(@"approvedAtJSONTransformer"));
+            [[transformer shouldNot] beNil];
+        });
+        
+        it(@"implements declinedAtJSONTransformer", ^{
+            [[[AMOrderItem class] should] respondToSelector:NSSelectorFromString(@"declinedAtJSONTransformer")];
+        });
+        
+        it(@"returns NSDate transformer from declinedAtJSONTransformer", ^{
+            NSValueTransformer *transformer = objc_msgSend([AMOrderItem class], NSSelectorFromString(@"declinedAtJSONTransformer"));
+            [[transformer shouldNot] beNil];
+        });
+        
+        it(@"implements prepareTimeStartJSONTransformer", ^{
+            [[[AMOrderItem class] should] respondToSelector:NSSelectorFromString(@"prepareTimeStartJSONTransformer")];
+        });
+        
+        it(@"returns NSDate transformer from prepareTimeStartJSONTransformer", ^{
+            NSValueTransformer *transformer = objc_msgSend([AMOrderItem class], NSSelectorFromString(@"prepareTimeStartJSONTransformer"));
+            [[transformer shouldNot] beNil];
+        });
+        
+        it(@"implements prepareTimeEndJSONTransformer", ^{
+            [[[AMOrderItem class] should] respondToSelector:NSSelectorFromString(@"prepareTimeEndJSONTransformer")];
+        });
+        
+        it(@"returns NSDate transformer from prepareTimeEndJSONTransformer", ^{
+            NSValueTransformer *transformer = objc_msgSend([AMOrderItem class], NSSelectorFromString(@"prepareTimeEndJSONTransformer"));
+            [[transformer shouldNot] beNil];
+        });
+        
+        it(@"implements servedAtJSONTransformer", ^{
+            [[[AMOrderItem class] should] respondToSelector:NSSelectorFromString(@"servedAtJSONTransformer")];
+        });
+        
+        it(@"returns NSDate transformer from servedAtJSONTransformer", ^{
+            NSValueTransformer *transformer = objc_msgSend([AMOrderItem class] , NSSelectorFromString(@"servedAtJSONTransformer"));
+            [[transformer shouldNot] beNil];
+        });
+        
+        it(@"implements orderJSONTransformer", ^{
+            [[[AMOrderItem class] should] respondToSelector:NSSelectorFromString(@"orderJSONTransformer")];
+        });
+        
+        it(@"returns dicionary AMOrder tansformer from orderJSONTransformer ", ^{
+            NSValueTransformer *transformer = objc_msgSend([AMOrderItem class], NSSelectorFromString(@"orderJSONTransformer"));
+            [[transformer shouldNot] beNil];
+        });
+        
+        it(@"implements menuItemJSONTransformer", ^{
+            [[[AMOrderItem class] should] respondToSelector:NSSelectorFromString(@"menuItemJSONTransformer")];
+        });
+        
+        it(@"returns dicionary AMMenuItem transformer from menuItemJSONTransformer", ^{
+            NSValueTransformer *transformer = objc_msgSend([AMOrderItem class], NSSelectorFromString(@"menuItemJSONTransformer"));
+            [[transformer shouldNot] beNil];
+        });
     });
     
     context(@"mapping", ^{
