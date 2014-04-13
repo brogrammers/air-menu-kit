@@ -7,7 +7,15 @@
 //
 
 #import <Mantle/Mantle.h>
+#import "AMRestaurant.h"
+#import "AMUser.h"
 
 @interface AMOrder : MTLModel <MTLJSONSerializing>
-
+@property (nonatomic, readonly, strong) NSNumber *identifier;
+@property (nonatomic, readonly, strong) NSString *state;
+@property (nonatomic, readonly, strong) NSDate *approvedAt;
+@property (nonatomic, readonly, strong) NSDate *servedAt;
+@property (nonatomic, readonly, strong) NSDate *cancelledAt;
+@property (nonatomic, readonly, strong) AMRestaurant *restaurant;
+@property (nonatomic, readonly, strong) AMUser *user;
 @end
