@@ -22,6 +22,20 @@
 		71173FA118A067F400DF24EB /* NSNumberFormatter+AirMenuNumberFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 71173FA018A067F400DF24EB /* NSNumberFormatter+AirMenuNumberFormat.m */; };
 		71173FA418A06AF300DF24EB /* AMAddressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71173FA318A06AF300DF24EB /* AMAddressTests.m */; };
 		71173FA618A17BAB00DF24EB /* AMMenuItemTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71173FA518A17BAB00DF24EB /* AMMenuItemTests.m */; };
+		7119582318FADAA30065BB3A /* AMOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7119582218FADAA30065BB3A /* AMOrder.m */; };
+		7119582618FADAB10065BB3A /* AMOrderItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7119582518FADAB10065BB3A /* AMOrderItem.m */; };
+		7119582918FADB070065BB3A /* AMStaffKind.m in Sources */ = {isa = PBXBuildFile; fileRef = 7119582818FADB070065BB3A /* AMStaffKind.m */; };
+		7119582C18FADB450065BB3A /* AMStaffMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 7119582B18FADB450065BB3A /* AMStaffMember.m */; };
+		7119582F18FADBA60065BB3A /* AMDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 7119582E18FADBA60065BB3A /* AMDevice.m */; };
+		7119583218FADBBD0065BB3A /* AMNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 7119583118FADBBD0065BB3A /* AMNotification.m */; };
+		7119583518FADBD90065BB3A /* AMGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 7119583418FADBD90065BB3A /* AMGroup.m */; };
+		7119583718FADC780065BB3A /* AMGroupTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7119583618FADC780065BB3A /* AMGroupTests.m */; };
+		7119583918FADC830065BB3A /* AMOrderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7119583818FADC830065BB3A /* AMOrderTests.m */; };
+		7119583B18FADCA00065BB3A /* AMOrderItemTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7119583A18FADCA00065BB3A /* AMOrderItemTests.m */; };
+		7119583D18FADFD80065BB3A /* AMStaffKindTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7119583C18FADFD80065BB3A /* AMStaffKindTests.m */; };
+		7119583F18FADFE40065BB3A /* AMStaffMemberTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7119583E18FADFE40065BB3A /* AMStaffMemberTests.m */; };
+		7119584118FAE0060065BB3A /* AMDeviceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7119584018FAE0060065BB3A /* AMDeviceTests.m */; };
+		7119584318FAE0290065BB3A /* AMNotificationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7119584218FAE0290065BB3A /* AMNotificationTests.m */; };
 		7132E44E1848EA8A00B2E356 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7132E44D1848EA8A00B2E356 /* Foundation.framework */; };
 		7132E45C1848EA8A00B2E356 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7132E45B1848EA8A00B2E356 /* XCTest.framework */; };
 		7132E45D1848EA8A00B2E356 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7132E44D1848EA8A00B2E356 /* Foundation.framework */; };
@@ -150,6 +164,27 @@
 		71173FA018A067F400DF24EB /* NSNumberFormatter+AirMenuNumberFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumberFormatter+AirMenuNumberFormat.m"; sourceTree = "<group>"; };
 		71173FA318A06AF300DF24EB /* AMAddressTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMAddressTests.m; sourceTree = "<group>"; };
 		71173FA518A17BAB00DF24EB /* AMMenuItemTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMMenuItemTests.m; sourceTree = "<group>"; };
+		7119582118FADAA30065BB3A /* AMOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMOrder.h; sourceTree = "<group>"; };
+		7119582218FADAA30065BB3A /* AMOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMOrder.m; sourceTree = "<group>"; };
+		7119582418FADAB10065BB3A /* AMOrderItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMOrderItem.h; sourceTree = "<group>"; };
+		7119582518FADAB10065BB3A /* AMOrderItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMOrderItem.m; sourceTree = "<group>"; };
+		7119582718FADB070065BB3A /* AMStaffKind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMStaffKind.h; sourceTree = "<group>"; };
+		7119582818FADB070065BB3A /* AMStaffKind.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMStaffKind.m; sourceTree = "<group>"; };
+		7119582A18FADB450065BB3A /* AMStaffMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMStaffMember.h; sourceTree = "<group>"; };
+		7119582B18FADB450065BB3A /* AMStaffMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMStaffMember.m; sourceTree = "<group>"; };
+		7119582D18FADBA60065BB3A /* AMDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMDevice.h; sourceTree = "<group>"; };
+		7119582E18FADBA60065BB3A /* AMDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMDevice.m; sourceTree = "<group>"; };
+		7119583018FADBBD0065BB3A /* AMNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMNotification.h; sourceTree = "<group>"; };
+		7119583118FADBBD0065BB3A /* AMNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMNotification.m; sourceTree = "<group>"; };
+		7119583318FADBD90065BB3A /* AMGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMGroup.h; sourceTree = "<group>"; };
+		7119583418FADBD90065BB3A /* AMGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMGroup.m; sourceTree = "<group>"; };
+		7119583618FADC780065BB3A /* AMGroupTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMGroupTests.m; sourceTree = "<group>"; };
+		7119583818FADC830065BB3A /* AMOrderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMOrderTests.m; sourceTree = "<group>"; };
+		7119583A18FADCA00065BB3A /* AMOrderItemTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMOrderItemTests.m; sourceTree = "<group>"; };
+		7119583C18FADFD80065BB3A /* AMStaffKindTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMStaffKindTests.m; sourceTree = "<group>"; };
+		7119583E18FADFE40065BB3A /* AMStaffMemberTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMStaffMemberTests.m; sourceTree = "<group>"; };
+		7119584018FAE0060065BB3A /* AMDeviceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMDeviceTests.m; sourceTree = "<group>"; };
+		7119584218FAE0290065BB3A /* AMNotificationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMNotificationTests.m; sourceTree = "<group>"; };
 		7132E44A1848EA8A00B2E356 /* libAirMenuKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAirMenuKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7132E44D1848EA8A00B2E356 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7132E45A1848EA8A00B2E356 /* AirMenuKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AirMenuKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -283,6 +318,20 @@
 				710AD72B18A026D600AA1038 /* AMMenuItem.m */,
 				71496A8E18CD340E00045AFD /* AMUser.h */,
 				71496A8F18CD340E00045AFD /* AMUser.m */,
+				7119583318FADBD90065BB3A /* AMGroup.h */,
+				7119583418FADBD90065BB3A /* AMGroup.m */,
+				7119582118FADAA30065BB3A /* AMOrder.h */,
+				7119582218FADAA30065BB3A /* AMOrder.m */,
+				7119582418FADAB10065BB3A /* AMOrderItem.h */,
+				7119582518FADAB10065BB3A /* AMOrderItem.m */,
+				7119582718FADB070065BB3A /* AMStaffKind.h */,
+				7119582818FADB070065BB3A /* AMStaffKind.m */,
+				7119582A18FADB450065BB3A /* AMStaffMember.h */,
+				7119582B18FADB450065BB3A /* AMStaffMember.m */,
+				7119582D18FADBA60065BB3A /* AMDevice.h */,
+				7119582E18FADBA60065BB3A /* AMDevice.m */,
+				7119583018FADBBD0065BB3A /* AMNotification.h */,
+				7119583118FADBBD0065BB3A /* AMNotification.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -381,6 +430,13 @@
 				716C573618A1BEB800D95228 /* AMMenuTests.m */,
 				71710E6318A436C200A2390B /* AMRestaurantTests.m */,
 				71496A9118CD342100045AFD /* AMUserTests.m */,
+				7119583618FADC780065BB3A /* AMGroupTests.m */,
+				7119583818FADC830065BB3A /* AMOrderTests.m */,
+				7119583A18FADCA00065BB3A /* AMOrderItemTests.m */,
+				7119583C18FADFD80065BB3A /* AMStaffKindTests.m */,
+				7119583E18FADFE40065BB3A /* AMStaffMemberTests.m */,
+				7119584018FAE0060065BB3A /* AMDeviceTests.m */,
+				7119584218FAE0290065BB3A /* AMNotificationTests.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -596,17 +652,24 @@
 			files = (
 				71E3FD8B18AB10D200BD00C2 /* AMObjectBuilder.m in Sources */,
 				71173FA118A067F400DF24EB /* NSNumberFormatter+AirMenuNumberFormat.m in Sources */,
+				7119583218FADBBD0065BB3A /* AMNotification.m in Sources */,
 				716C573318A197C800D95228 /* NSDateFormatter+AirMenuTimestamp.m in Sources */,
 				71A0D3AB18AC33390070465E /* AMClient+MenuSection.m in Sources */,
 				710AD71D189FDF6400AA1038 /* AMClient.m in Sources */,
 				710AD72018A0268800AA1038 /* AMCompany.m in Sources */,
+				7119583518FADBD90065BB3A /* AMGroup.m in Sources */,
 				7109CBFB18DA58D300D6003E /* NSDictionary+NullReplacement.m in Sources */,
+				7119582318FADAA30065BB3A /* AMOrder.m in Sources */,
 				71A0D3A818AC33310070465E /* AMClient+Menu.m in Sources */,
+				7119582618FADAB10065BB3A /* AMOrderItem.m in Sources */,
 				713F953B18A040F500623CA8 /* AMAddress.m in Sources */,
 				710AD72618A026B900AA1038 /* AMMenu.m in Sources */,
+				7119582C18FADB450065BB3A /* AMStaffMember.m in Sources */,
 				710AD72C18A026D600AA1038 /* AMMenuItem.m in Sources */,
+				7119582918FADB070065BB3A /* AMStaffKind.m in Sources */,
 				710AD72318A0269F00AA1038 /* AMRestaurant.m in Sources */,
 				71A0D3A218AC33220070465E /* AMClient+Company.m in Sources */,
+				7119582F18FADBA60065BB3A /* AMDevice.m in Sources */,
 				710AD72918A026CC00AA1038 /* AMMenuSection.m in Sources */,
 				7109CBF818DA58CC00D6003E /* NSArray+NullReplacement.m in Sources */,
 				71A0D3A518AC33280070465E /* AMClient+Restaurant.m in Sources */,
@@ -621,6 +684,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7119583918FADC830065BB3A /* AMOrderTests.m in Sources */,
 				71710E6418A436C200A2390B /* AMRestaurantTests.m in Sources */,
 				7108ADA118B5846400A413DA /* AMClientRestaurantTests.m in Sources */,
 				716863C018B9388D005D68B3 /* AMClientMenuSectionTests.m in Sources */,
@@ -636,9 +700,15 @@
 				714C068818B538A9004EAD04 /* TestToolBox.m in Sources */,
 				716C573518A1A40D00D95228 /* AMMenuSectionTests.m in Sources */,
 				71173FA618A17BAB00DF24EB /* AMMenuItemTests.m in Sources */,
+				7119583718FADC780065BB3A /* AMGroupTests.m in Sources */,
+				7119583B18FADCA00065BB3A /* AMOrderItemTests.m in Sources */,
 				71E3FD7B18AA784700BD00C2 /* AMOAuthTokenTests.m in Sources */,
 				71496A9B18CD420500045AFD /* AMClientUserTests.m in Sources */,
+				7119584118FAE0060065BB3A /* AMDeviceTests.m in Sources */,
+				7119583F18FADFE40065BB3A /* AMStaffMemberTests.m in Sources */,
+				7119584318FAE0290065BB3A /* AMNotificationTests.m in Sources */,
 				716C573718A1BEB800D95228 /* AMMenuTests.m in Sources */,
+				7119583D18FADFD80065BB3A /* AMStaffKindTests.m in Sources */,
 				716863BA18B90C55005D68B3 /* AMClientMenuTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
