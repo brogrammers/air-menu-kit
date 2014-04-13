@@ -11,6 +11,16 @@
 
 SPEC_BEGIN(AMOrderItemTests)
 describe(@"AMOrderItem", ^{
-
+    context(@"object", ^{
+        
+    });
+    
+    context(@"class", ^{
+        
+    });
+    
+    context(@"mapping", ^{
+        
+    });
 });
 SPEC_END

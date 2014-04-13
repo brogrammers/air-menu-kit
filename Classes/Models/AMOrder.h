@@ -18,4 +18,5 @@
 @property (nonatomic, readonly, strong) NSDate *cancelledAt;
 @property (nonatomic, readonly, strong) AMRestaurant *restaurant;
 @property (nonatomic, readonly, strong) AMUser *user;
+@property (nonatomic, readonly, strong) NSArray *orderItems;
 @end
