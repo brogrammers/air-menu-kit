@@ -146,7 +146,7 @@ describe(@"AMRestaurant", ^{
             [[restaurant.address.country should] equal:@"Ireland"];
         });
         
-        it(@"maps paresed menu JSON and hooks it up to the AMMenu object", ^{
+        it(@"maps parsed menu JSON and hooks it up to the AMMenu object", ^{
             [[restaurant.menu.identifier should] equal:@1];
             [[restaurant.menu.name should] equal:@"Main Menu"];
         });

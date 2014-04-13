@@ -35,7 +35,7 @@
 
 +(NSValueTransformer *)orderItemsJSONTransformer
 {
-    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[AMOrderItem class]];
+    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:[AMOrderItem class]];
 }
 
 +(NSValueTransformer *)approvedAtJSONTransformer

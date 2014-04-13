@@ -10,6 +10,7 @@
 #import <objc/message.h>
 #import "AMOrder.h"
 #import "AMOrderItem.h"
+#import "NSDateFormatter+AirMenuTimestamp.h"
 
 SPEC_BEGIN(AMOrderTests)
 
@@ -139,7 +140,54 @@ describe(@"AMOrder", ^{
     });
     
     context(@"mapping", ^{
+        __block AMOrder *order;
+        __block NSDictionary *parsedOrderJSON;
+        __block NSDictionary *parsedUserJSON;
+        __block NSDictionary *parsedRestaurantJSON;
+        __block NSArray *parsedOrderItemsJSON;
         
+        beforeAll(^{
+            parsedUserJSON = @{@"id" : @1,
+                               @"name" : @"Max Hoffmann",
+                               @"type" : @"Owner"};
+            parsedRestaurantJSON = @{@"id" : @1,
+                                     @"name" : @"The Church"};
+            parsedOrderItemsJSON = @[@{@"id": @1,
+                                      @"state": @"new"}];
+            parsedOrderJSON = @{@"id" : @1,
+                                @"state" : @"new",
+                                @"approved_time" : @"2014-04-12T23:24:53Z",
+                                @"served_time" : @"2014-04-12T23:24:53Z",
+                                @"cancelled_time" : @"2014-04-12T23:24:53Z",
+                                @"user" : parsedUserJSON,
+                                @"restaurant" : parsedRestaurantJSON,
+                                @"order_items" : parsedOrderItemsJSON};
+            order = [MTLJSONAdapter modelOfClass:[AMOrder class] fromJSONDictionary:parsedOrderJSON error:nil];
+        });
+        
+        it(@"maps parsed order JSON to AMOrder object", ^{
+            [[order.identifier should] equal:@1];
+            [[order.state should] equal:@"new"];
+            [[order.approvedAt should] equal:[[NSDateFormatter sharedAirMenuFormatter] dateFromString:@"2014-04-12T23:24:53Z"]];
+            [[order.servedAt should] equal:[[NSDateFormatter sharedAirMenuFormatter] dateFromString:@"2014-04-12T23:24:53Z"]];
+            [[order.cancelledAt should] equal:[[NSDateFormatter sharedAirMenuFormatter] dateFromString:@"2014-04-12T23:24:53Z"]];            
+        });
+        
+        it(@"maps parsed user JSON and hooks it up to AMOrder object", ^{
+            [[order.user.identifier should] equal:@1];
+            [[order.user.name should] equal:@"Max Hoffmann"];
+            [[order.user.type should] equal:@"Owner"];
+        });
+        
+        it(@"maps parsed restaurnt JSON and hooks it up to AMOrder object", ^{
+            [[order.restaurant.identifier should] equal:@1];
+            [[order.restaurant.name should] equal:@"The Church"];
+        });
+        
+        it(@"maps parsed order items JSON and hooks it up to AMMenu object", ^{
+            [[[order.orderItems[0] identifier] should] equal:@1];
+            [[[(AMOrderItem *)order.orderItems[0] state] should] equal:@"new"];
+        });
     });
 });
 
