@@ -10,6 +10,7 @@
 #import <Mantle/Mantle.h>
 #import "AMOrderItem.h"
 #import <objc/objc-runtime.h>
+#import "NSDateFormatter+AirMenuTimestamp.h"
 
 SPEC_BEGIN(AMOrderItemTests)
 describe(@"AMOrderItem", ^{
@@ -163,9 +164,73 @@ describe(@"AMOrderItem", ^{
             [[transformer shouldNot] beNil];
         });
     });
+
     
     context(@"mapping", ^{
+        __block AMOrderItem *orderItem;
+        __block NSDictionary *parsedOrderItemJSON;
+        __block NSDictionary *parsedOrderJSON;
+        __block NSDictionary *parsedMenuItemJSON;
+        beforeAll(^{
+            parsedOrderJSON = @{@"id": @1,
+                                @"state": @"new",
+                                @"approved_time": @"2014-04-12T23:24:53Z",
+                                @"served_time": @"2014-04-12T23:24:53Z",
+                                @"cancelled_time": @"2014-04-12T23:24:53Z"};
+            
+            parsedMenuItemJSON = @{@"id": @1,
+                                   @"name": @"Beef Burger",
+                                   @"description": @"Beef Burger with a small side salad.",
+                                   @"price": @12.9,
+                                   @"currency": @"EUR"};
+            
+            parsedOrderItemJSON = @{@"id": @1,
+                                    @"comment": @"Comment",
+                                    @"count": @1,
+                                    @"state": @"new",
+                                    @"approved_time": @"2014-04-12T23:24:53Z",
+                                    @"declined_time": @"2014-04-12T23:24:53Z",
+                                    @"start_prepare_time" : @"2014-04-12T23:24:53Z",
+                                    @"end_prepare_time" : @"2014-04-12T23:24:53Z",
+                                    @"served_time" : @"2014-04-12T23:24:53Z",
+                                    @"order" : parsedOrderJSON,
+                                    @"menu_item" : parsedMenuItemJSON};
+            
+            orderItem = [MTLJSONAdapter modelOfClass:[AMOrderItem class] fromJSONDictionary:parsedOrderItemJSON error:nil];
+        });
         
+        it(@"maps parsed order item json to AMOrderItem object", ^{
+            [[orderItem.identifier should] equal:@1];
+            [[orderItem.comment should] equal:@"Comment"];
+            [[orderItem.count should] equal:@1];
+            [[orderItem.state should] equal:@"new"];
+            [[orderItem.approvedAt should] equal:[[NSDateFormatter sharedAirMenuFormatter] dateFromString:@"2014-04-12T23:24:53Z"]];
+            [[orderItem.declinedAt should] equal:[[NSDateFormatter sharedAirMenuFormatter] dateFromString:@"2014-04-12T23:24:53Z"]];
+            [[orderItem.prepareTimeStart should] equal:[[NSDateFormatter sharedAirMenuFormatter] dateFromString:@"2014-04-12T23:24:53Z"]];
+            [[orderItem.prepareTimeEnd should] equal:[[NSDateFormatter sharedAirMenuFormatter] dateFromString:@"2014-04-12T23:24:53Z"]];
+            [[orderItem.servedAt should] equal:[[NSDateFormatter sharedAirMenuFormatter] dateFromString:@"2014-04-12T23:24:53Z"]];
+        });
+        
+        it(@"maps parsed menu item JSON and hooks it up to AMOrderItem object ", ^{
+            [[orderItem.menuItem.identifier should] equal:@1];
+            [[orderItem.menuItem.name should] equal:@"Beef Burger"];
+            [[orderItem.menuItem.details should] equal:@"Beef Burger with a small side salad."];
+            [[orderItem.menuItem.price should] equal:@12.9];
+            [[orderItem.menuItem.currency should] equal:@"EUR"];
+        });
+        
+        it(@"maps parsed order JSON and hooks it up to AMOrderItem object", ^{
+            [[orderItem.order.identifier should] equal:@1];
+            [[orderItem.order.state should] equal:@"new"];
+            [[orderItem.order.approvedAt should] equal:[[NSDateFormatter sharedAirMenuFormatter] dateFromString:@"2014-04-12T23:24:53Z"]];
+            [[orderItem.order.servedAt should] equal:[[NSDateFormatter sharedAirMenuFormatter] dateFromString:@"2014-04-12T23:24:53Z"]];
+            [[orderItem.order.cancelledAt should] equal:[[NSDateFormatter sharedAirMenuFormatter] dateFromString:@"2014-04-12T23:24:53Z"]];
+        });
     });
 });
 SPEC_END
+
+
+
+
+

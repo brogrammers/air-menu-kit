@@ -1,0 +1,27 @@
+{
+    "order_item": {
+        "id": 1,
+        "comment": "Comment",
+        "count": 1,
+        "state": "new",
+        "approved_time": "2014-04-12T23:24:53Z",
+        "declined_time": "2014-04-12T23:24:53Z",
+        "start_prepare_time": "2014-04-12T23:24:53Z",
+        "end_prepare_time": "2014-04-12T23:24:53Z",
+        "served_time": "2014-04-12T23:24:53Z",
+        "order": {
+            "id": 1,
+            "state": "new",
+            "approved_time": "2014-04-12T23:24:53Z",
+            "served_time": "2014-04-12T23:24:53Z",
+            "cancelled_time": "2014-04-12T23:24:53Z"
+        },
+        "menu_item": {
+            "id": 1,
+            "name": "Beef Burger",
+            "description": "Beef Burger with a small side salad.",
+            "price": 12.9,
+            "currency": "EUR"
+        }
+    }
+}

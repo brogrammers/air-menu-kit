@@ -41,6 +41,8 @@
 		7132E45D1848EA8A00B2E356 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7132E44D1848EA8A00B2E356 /* Foundation.framework */; };
 		7132E4621848EA8A00B2E356 /* libAirMenuKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7132E44A1848EA8A00B2E356 /* libAirMenuKit.a */; };
 		7132E4681848EA8A00B2E356 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7132E4661848EA8A00B2E356 /* InfoPlist.strings */; };
+		713F324018FB423E004E2F1F /* order_item.json in Resources */ = {isa = PBXBuildFile; fileRef = 713F323F18FB423E004E2F1F /* order_item.json */; };
+		713F324218FB427C004E2F1F /* order.json in Resources */ = {isa = PBXBuildFile; fileRef = 713F324118FB427C004E2F1F /* order.json */; };
 		713F953218A0328400623CA8 /* AMCompanyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 713F953118A0328400623CA8 /* AMCompanyTests.m */; };
 		713F953318A03B0900623CA8 /* AMCompany.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 710AD71E18A0268800AA1038 /* AMCompany.h */; };
 		713F953418A03B0900623CA8 /* AMRestaurant.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 710AD72118A0269F00AA1038 /* AMRestaurant.h */; };
@@ -192,6 +194,8 @@
 		7132E45E1848EA8A00B2E356 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		7132E4651848EA8A00B2E356 /* AirMenuKitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AirMenuKitTests-Info.plist"; sourceTree = "<group>"; };
 		7132E4671848EA8A00B2E356 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		713F323F18FB423E004E2F1F /* order_item.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = order_item.json; sourceTree = "<group>"; };
+		713F324118FB427C004E2F1F /* order.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = order.json; sourceTree = "<group>"; };
 		713F953118A0328400623CA8 /* AMCompanyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMCompanyTests.m; sourceTree = "<group>"; };
 		713F953918A040F500623CA8 /* AMAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMAddress.h; sourceTree = "<group>"; };
 		713F953A18A040F500623CA8 /* AMAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMAddress.m; sourceTree = "<group>"; };
@@ -488,6 +492,8 @@
 				71DBA7C418BAC978001CBC32 /* access_token.json */,
 				71496A9318CD3E7500045AFD /* me.json */,
 				71496A9518CD3E7E00045AFD /* user.json */,
+				713F323F18FB423E004E2F1F /* order_item.json */,
+				713F324118FB427C004E2F1F /* order.json */,
 			);
 			path = "JSON Responses";
 			sourceTree = "<group>";
@@ -571,8 +577,10 @@
 				714C068A18B55982004EAD04 /* restaurant.json in Resources */,
 				716863C418B93C31005D68B3 /* menu_items.json in Resources */,
 				71DBA7C518BAC978001CBC32 /* access_token.json in Resources */,
+				713F324018FB423E004E2F1F /* order_item.json in Resources */,
 				716863BC18B927DC005D68B3 /* menu_section.json in Resources */,
 				7108AD9F18B5741B00A413DA /* restaurants.json in Resources */,
+				713F324218FB427C004E2F1F /* order.json in Resources */,
 				7132E4681848EA8A00B2E356 /* InfoPlist.strings in Resources */,
 				716863BE18B927E6005D68B3 /* menu_sections.json in Resources */,
 				71496A9418CD3E7500045AFD /* me.json in Resources */,

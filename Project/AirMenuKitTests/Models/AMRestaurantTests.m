@@ -137,7 +137,7 @@ describe(@"AMRestaurant", ^{
             [[restaurant.conversionRate should] equal:@0.5];
         });
         
-        it(@"maps parsed address JSON hooks it up to AMRestaurant object", ^{
+        it(@"maps parsed address JSON and hooks it up to AMRestaurant object", ^{
             [[restaurant.address.identifier should] equal:@1];
             [[restaurant.address.addressLine1 should] equal:@"line one"];
             [[restaurant.address.addressLine2 should] equal:@"line two"];
