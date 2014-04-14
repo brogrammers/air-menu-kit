@@ -6,8 +6,12 @@
 //  Copyright (c) 2014 air-menu. All rights reserved.
 //
 
-#import "MTLModel.h"
+#import <Mantle/Mantle.h>
 
-@interface AMDevice : MTLModel
-
+@interface AMDevice : MTLModel <MTLJSONSerializing>
+@property (nonatomic, readonly, strong) NSNumber *identifier;
+@property (nonatomic, readonly, strong) NSString *name;
+@property (nonatomic, readonly, strong) NSString *uuid;
+@property (nonatomic, readonly, strong) NSString *token;
+@property (nonatomic, readonly, strong) NSString *platform;
 @end

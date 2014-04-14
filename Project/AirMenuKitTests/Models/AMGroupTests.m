@@ -11,5 +11,16 @@
 SPEC_BEGIN(AMGroupTests)
 describe(@"AMGroup", ^{
     
+    context(@"object", ^{
+
+    });
+    
+    context(@"class", ^{
+        
+    });
+    
+    context(@"mapping", ^{
+        
+    });
 });
 SPEC_END

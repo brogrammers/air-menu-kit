@@ -9,5 +9,12 @@
 #import "AMDevice.h"
 
 @implementation AMDevice
-
++(NSDictionary *)JSONKeyPathsByPropertyKey
+{
+    return @{@"identifier" : @"id",
+            @"name" : @"name",
+            @"uuid" : @"uuid",
+            @"token" : @"token",
+            @"platform" : @"platform"};
+}
 @end

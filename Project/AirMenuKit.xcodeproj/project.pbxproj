@@ -92,6 +92,8 @@
 		71A0D3AB18AC33390070465E /* AMClient+MenuSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A0D3AA18AC33390070465E /* AMClient+MenuSection.m */; };
 		71A0D3AE18AC335E0070465E /* AMClient+MenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A0D3AD18AC335E0070465E /* AMClient+MenuItem.m */; };
 		71DBA7C518BAC978001CBC32 /* access_token.json in Resources */ = {isa = PBXBuildFile; fileRef = 71DBA7C418BAC978001CBC32 /* access_token.json */; };
+		71DC140E18FB60C1001C8185 /* devices.json in Resources */ = {isa = PBXBuildFile; fileRef = 71DC140D18FB60C1001C8185 /* devices.json */; };
+		71DC141018FB60DF001C8185 /* device.json in Resources */ = {isa = PBXBuildFile; fileRef = 71DC140F18FB60DF001C8185 /* device.json */; };
 		71E3FD7B18AA784700BD00C2 /* AMOAuthTokenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E3FD7A18AA784700BD00C2 /* AMOAuthTokenTests.m */; };
 		71E3FD7E18AACB6F00BD00C2 /* AMOAuthApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E3FD7D18AACB6F00BD00C2 /* AMOAuthApplication.m */; };
 		71E3FD8018AACB8D00BD00C2 /* AMOAuthApplicationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E3FD7F18AACB8D00BD00C2 /* AMOAuthApplicationTests.m */; };
@@ -240,6 +242,8 @@
 		71A0D3AC18AC335E0070465E /* AMClient+MenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AMClient+MenuItem.h"; sourceTree = "<group>"; };
 		71A0D3AD18AC335E0070465E /* AMClient+MenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AMClient+MenuItem.m"; sourceTree = "<group>"; };
 		71DBA7C418BAC978001CBC32 /* access_token.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = access_token.json; sourceTree = "<group>"; };
+		71DC140D18FB60C1001C8185 /* devices.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = devices.json; sourceTree = "<group>"; };
+		71DC140F18FB60DF001C8185 /* device.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = device.json; sourceTree = "<group>"; };
 		71E3FD7A18AA784700BD00C2 /* AMOAuthTokenTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMOAuthTokenTests.m; sourceTree = "<group>"; };
 		71E3FD7C18AACB6F00BD00C2 /* AMOAuthApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMOAuthApplication.h; sourceTree = "<group>"; };
 		71E3FD7D18AACB6F00BD00C2 /* AMOAuthApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMOAuthApplication.m; sourceTree = "<group>"; };
@@ -494,6 +498,8 @@
 				71496A9518CD3E7E00045AFD /* user.json */,
 				713F323F18FB423E004E2F1F /* order_item.json */,
 				713F324118FB427C004E2F1F /* order.json */,
+				71DC140D18FB60C1001C8185 /* devices.json */,
+				71DC140F18FB60DF001C8185 /* device.json */,
 			);
 			path = "JSON Responses";
 			sourceTree = "<group>";
@@ -572,6 +578,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71DC141018FB60DF001C8185 /* device.json in Resources */,
 				7108ADA318B8E8CE00A413DA /* menus.json in Resources */,
 				716863C218B93C26005D68B3 /* menu_item.json in Resources */,
 				714C068A18B55982004EAD04 /* restaurant.json in Resources */,
@@ -579,6 +586,7 @@
 				71DBA7C518BAC978001CBC32 /* access_token.json in Resources */,
 				713F324018FB423E004E2F1F /* order_item.json in Resources */,
 				716863BC18B927DC005D68B3 /* menu_section.json in Resources */,
+				71DC140E18FB60C1001C8185 /* devices.json in Resources */,
 				7108AD9F18B5741B00A413DA /* restaurants.json in Resources */,
 				713F324218FB427C004E2F1F /* order.json in Resources */,
 				7132E4681848EA8A00B2E356 /* InfoPlist.strings in Resources */,
