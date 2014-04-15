@@ -16,6 +16,13 @@
 #import "AMMenuSection.h"
 #import "AMMenuItem.h"
 #import "AMUser.h"
+#import "AMOrder.h"
+#import "AMOrderItem.h"
+#import "AMGroup.h"
+#import "AMStaffKind.h"
+#import "AMStaffMember.h"
+#import "AMDevice.h"
+#import "AMNotification.h"
 
 SPEC_BEGIN(AMObjectBuilderTests)
 
@@ -103,6 +110,111 @@ describe(@"AMObjectBuilder", ^{
         NSDictionary *meUserJSON = [NSJSONSerialization JSONObjectWithData:meData options:0 error:nil];
         id me = [[AMObjectBuilder sharedInstance] objectFromJSON:meUserJSON];
         [[me should] beKindOfClass:[AMUser class]];
+    });
+    
+    it(@"returns a order when json root is order", ^{
+        NSData *orderData = [NSData dataWithContentsOfFile:OHPathForFileInBundle(@"order.json", nil)];
+        NSDictionary *orderJSON = [NSJSONSerialization JSONObjectWithData:orderData options:0 error:nil];
+        id order = [[AMObjectBuilder sharedInstance] objectFromJSON:orderJSON];
+        [[order should] beKindOfClass:[AMOrder class]];
+    });
+    
+    it(@"returns array of orders when json root is orders", ^{
+        NSData *ordersData = [NSData dataWithContentsOfFile:OHPathForFileInBundle(@"orders.json", nil)];
+        NSDictionary *ordersJSON = [NSJSONSerialization JSONObjectWithData:ordersData options:0 error:nil];
+        id orders = [[AMObjectBuilder sharedInstance] objectFromJSON:ordersJSON];
+        [[orders should] beKindOfClass:[NSArray class]];
+        [[[orders objectAtIndex:0] should] beKindOfClass:[AMOrder class]];
+    });
+    
+    it(@"returns order item when json root is order_item", ^{
+        NSData *orderItemData = [NSData dataWithContentsOfFile:OHPathForFileInBundle(@"order_item.json", nil)];
+        NSDictionary *orderItemJSON = [NSJSONSerialization JSONObjectWithData:orderItemData options:0 error:nil];
+        id orderItem = [[AMObjectBuilder sharedInstance] objectFromJSON:orderItemJSON];
+        [[orderItem should] beKindOfClass:[AMOrderItem class]];
+    });
+    
+    it(@"returns array of order items when json root is order_items", ^{
+        NSData *orderItemsData = [NSData dataWithContentsOfFile:OHPathForFileInBundle(@"order_items.json", nil)];
+        NSDictionary *orderItemsJSON = [NSJSONSerialization JSONObjectWithData:orderItemsData options:0 error:nil];
+        id orderItems = [[AMObjectBuilder sharedInstance] objectFromJSON:orderItemsJSON];
+        [[orderItems should] beKindOfClass:[NSArray class]];
+        [[[orderItems objectAtIndex:0] should] beKindOfClass:[AMOrderItem class]];
+    });
+    
+    it(@"returns group when json root is group ", ^{
+        NSData *groupData = [NSData dataWithContentsOfFile:OHPathForFileInBundle(@"group.json", nil)];
+        NSDictionary *groupJSON = [NSJSONSerialization JSONObjectWithData:groupData options:0 error:nil];
+        id group = [[AMObjectBuilder sharedInstance] objectFromJSON:groupJSON];
+        [[group should] beKindOfClass:[AMGroup class]];
+    });
+    
+    it(@"returns array of groups when json root is groups", ^{
+        NSData *groupsData = [NSData dataWithContentsOfFile:OHPathForFileInBundle(@"groups.json", nil)];
+        NSDictionary *groupsJSON = [NSJSONSerialization JSONObjectWithData:groupsData options:0 error:nil];
+        id groups = [[AMObjectBuilder sharedInstance] objectFromJSON:groupsJSON];
+        [[groups should] beKindOfClass:[NSArray class]];
+        [[[groups objectAtIndex:0] should] beKindOfClass:[AMGroup class]];
+    });
+    
+    it(@"returns staff kind when json root is staff_kind", ^{
+        NSData *staffKindData = [NSData dataWithContentsOfFile:OHPathForFileInBundle(@"staff_kind.json", nil)];
+        NSDictionary *staffKindJSON = [NSJSONSerialization JSONObjectWithData:staffKindData options:0 error:nil];
+        id staffKind = [[AMObjectBuilder sharedInstance] objectFromJSON:staffKindJSON];
+        [[staffKind should] beKindOfClass:[AMStaffKind class]];
+    });
+    
+    it(@"returns array of staff kinds when json root is staff_kinds", ^{
+        NSData *staffKindsData = [NSData dataWithContentsOfFile:OHPathForFileInBundle(@"staff_kinds.json", nil)];
+        NSDictionary *staffKindsJSON = [NSJSONSerialization JSONObjectWithData:staffKindsData options:0 error:nil];
+        id staffKinds = [[AMObjectBuilder sharedInstance] objectFromJSON:staffKindsJSON];
+        [[staffKinds should] beKindOfClass:[NSArray class]];
+        [[[staffKinds objectAtIndex:0] should] beKindOfClass:[AMStaffKind class]];
+    });
+    
+    it(@"returns staff member when json root is staff_member ", ^{
+        NSData *staffMemberData = [NSData dataWithContentsOfFile:OHPathForFileInBundle(@"staff_member.json", nil)];
+        NSDictionary *staffMemberJSON = [NSJSONSerialization JSONObjectWithData:staffMemberData options:0 error:nil];
+        id staffMember = [[AMObjectBuilder sharedInstance] objectFromJSON:staffMemberJSON];
+        [[staffMember should] beKindOfClass:[AMStaffMember class]];
+    });
+    
+    it(@"returns array of staff members when json staff_members", ^{
+        NSData *staffMembersData = [NSData dataWithContentsOfFile:OHPathForFileInBundle(@"staff_members.json", nil)];
+        NSDictionary *staffMembersJSON = [NSJSONSerialization JSONObjectWithData:staffMembersData options:0 error:nil];
+        id staffMembers = [[AMObjectBuilder sharedInstance] objectFromJSON:staffMembersJSON];
+        [[staffMembers should] beKindOfClass:[NSArray class]];
+        [[[staffMembers objectAtIndex:0] should] beKindOfClass:[AMStaffMember class]];
+    });
+    
+    it(@"returns device when json root is device", ^{
+        NSData *deviceData = [NSData dataWithContentsOfFile:OHPathForFileInBundle(@"device.json", nil)];
+        NSDictionary *deviceDataJSON = [NSJSONSerialization JSONObjectWithData:deviceData options:0 error:nil];
+        id device = [[AMObjectBuilder sharedInstance] objectFromJSON:deviceDataJSON];
+        [[device should] beKindOfClass:[AMDevice class]];
+    });
+    
+    it(@"returns array of devices when json root is devices", ^{
+        NSData *devicesData = [NSData dataWithContentsOfFile:OHPathForFileInBundle(@"devices.json", nil)];
+        NSDictionary *devicesJSON = [NSJSONSerialization JSONObjectWithData:devicesData options:0 error:nil];
+        id devices = [[AMObjectBuilder sharedInstance] objectFromJSON:devicesJSON];
+        [[devices should] beKindOfClass:[NSArray class]];
+        [[[devices objectAtIndex:0] should] beKindOfClass:[AMDevice class]];
+    });
+    
+    it(@"returns notification when json root is notification", ^{
+        NSData *notificationData = [NSData dataWithContentsOfFile:OHPathForFileInBundle(@"notification.json", nil)];
+        NSDictionary *notificationJSON = [NSJSONSerialization JSONObjectWithData:notificationData options:0 error:nil];
+        id notification = [[AMObjectBuilder sharedInstance] objectFromJSON:notificationJSON];
+        [[notification should] beKindOfClass:[AMNotification class]];
+    });
+    
+    it(@"returns aray notifications when json root is notificatons", ^{
+        NSData *notificationsData = [NSData dataWithContentsOfFile:OHPathForFileInBundle(@"notifications.json", nil)];
+        NSDictionary *notificationsJSON = [NSJSONSerialization JSONObjectWithData:notificationsData options:0 error:nil];
+        id notifications = [[AMObjectBuilder sharedInstance] objectFromJSON:notificationsJSON];
+        [[notifications should] beKindOfClass:[NSArray class]];
+        [[[notifications objectAtIndex:0] should] beKindOfClass:[AMNotification class]];
     });
 });
 

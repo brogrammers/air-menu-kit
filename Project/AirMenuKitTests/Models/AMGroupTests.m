@@ -87,13 +87,34 @@ describe(@"AMGroup", ^{
         __block NSArray *staffMembers;
         
         beforeAll(^{
-            parsedDeviceJSON = @{@"" : @""};
-            staffMembers = @[];
+            parsedDeviceJSON = @{@"id" : @3,
+                                 @"uuid" : @"a uuid",
+                                 @"token" : @"a token",
+                                 @"platform" : @"ios"};
+            staffMembers = @[@{@"id" : @2,
+                               @"name" : @"emma"}];
             parsedGroupJSON = @{@"id" : @1,
                                 @"name" : @"Waiters",
                                 @"device" : parsedDeviceJSON,
                                 @"staff_members" : staffMembers};
             group = [MTLJSONAdapter modelOfClass:[AMGroup class] fromJSONDictionary:parsedGroupJSON error:nil];
+        });
+        
+        it(@"correctly maps group JSON to AMGroup object", ^{
+            [[group.identifier should] equal:@1];
+            [[group.name should] equal:@"Waiters"];
+        });
+        
+        it(@"correctly maps staff members and hooks it up", ^{
+            [[[group.staffMembers[0] identifier] should] equal:@2];
+            [[[group.staffMembers[0] name] should] equal:@"emma"];
+        });
+        
+        it(@"corretly maps devices and hooks it up", ^{
+            [[group.device.identifier should] equal:@3];
+            [[group.device.uuid should] equal:@"a uuid"];
+            [[group.device.token should] equal:@"a token"];
+            [[group.device.platform should] equal:@"ios"];
         });
     });
 });

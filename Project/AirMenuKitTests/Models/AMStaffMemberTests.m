@@ -183,6 +183,11 @@ describe(@"AMStaffMember", ^{
             [[member.kind.identifier should] equal:@2];
             [[member.kind.name should] equal:@"Waitress"];
         });
+        
+        it(@"maps group JSON and hooks it up", ^{
+            [[member.group.identifier should] equal:@1];
+            [[member.group.name should] equal:@"Waitress"];
+        });
     });
 });
 SPEC_END
