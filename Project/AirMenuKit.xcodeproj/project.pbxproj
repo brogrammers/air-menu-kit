@@ -11,6 +11,10 @@
 		7108AD9F18B5741B00A413DA /* restaurants.json in Resources */ = {isa = PBXBuildFile; fileRef = 7108AD9E18B5741B00A413DA /* restaurants.json */; };
 		7108ADA118B5846400A413DA /* AMClientRestaurantTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7108ADA018B5846400A413DA /* AMClientRestaurantTests.m */; };
 		7108ADA318B8E8CE00A413DA /* menus.json in Resources */ = {isa = PBXBuildFile; fileRef = 7108ADA218B8E8CE00A413DA /* menus.json */; };
+		710928A218FD4922009760F2 /* staff_member.json in Resources */ = {isa = PBXBuildFile; fileRef = 710928A118FD4922009760F2 /* staff_member.json */; };
+		710928A418FD4931009760F2 /* staff_members.json in Resources */ = {isa = PBXBuildFile; fileRef = 710928A318FD4931009760F2 /* staff_members.json */; };
+		710928A618FD59DF009760F2 /* group.json in Resources */ = {isa = PBXBuildFile; fileRef = 710928A518FD59DF009760F2 /* group.json */; };
+		710928A818FD59E7009760F2 /* groups.json in Resources */ = {isa = PBXBuildFile; fileRef = 710928A718FD59E7009760F2 /* groups.json */; };
 		7109CBF818DA58CC00D6003E /* NSArray+NullReplacement.m in Sources */ = {isa = PBXBuildFile; fileRef = 7109CBF718DA58CC00D6003E /* NSArray+NullReplacement.m */; };
 		7109CBFB18DA58D300D6003E /* NSDictionary+NullReplacement.m in Sources */ = {isa = PBXBuildFile; fileRef = 7109CBFA18DA58D300D6003E /* NSDictionary+NullReplacement.m */; };
 		710AD71D189FDF6400AA1038 /* AMClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 710AD71C189FDF6400AA1038 /* AMClient.m */; };
@@ -106,6 +110,7 @@
 		71E3FD8818AB040A00BD00C2 /* AMClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E3FD8718AB040A00BD00C2 /* AMClientTests.m */; };
 		71E3FD8B18AB10D200BD00C2 /* AMObjectBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E3FD8A18AB10D200BD00C2 /* AMObjectBuilder.m */; };
 		71E3FD8D18AC0C7000BD00C2 /* AMObjectBuilderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E3FD8C18AC0C7000BD00C2 /* AMObjectBuilderTests.m */; };
+		71F3677818FD2D6500A6FE1E /* AMLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F3677718FD2D6500A6FE1E /* AMLocation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,6 +158,10 @@
 		7108AD9E18B5741B00A413DA /* restaurants.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = restaurants.json; sourceTree = "<group>"; };
 		7108ADA018B5846400A413DA /* AMClientRestaurantTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMClientRestaurantTests.m; sourceTree = "<group>"; };
 		7108ADA218B8E8CE00A413DA /* menus.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = menus.json; sourceTree = "<group>"; };
+		710928A118FD4922009760F2 /* staff_member.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = staff_member.json; sourceTree = "<group>"; };
+		710928A318FD4931009760F2 /* staff_members.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = staff_members.json; sourceTree = "<group>"; };
+		710928A518FD59DF009760F2 /* group.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = group.json; sourceTree = "<group>"; };
+		710928A718FD59E7009760F2 /* groups.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = groups.json; sourceTree = "<group>"; };
 		7109CBF618DA58CC00D6003E /* NSArray+NullReplacement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+NullReplacement.h"; sourceTree = "<group>"; };
 		7109CBF718DA58CC00D6003E /* NSArray+NullReplacement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+NullReplacement.m"; sourceTree = "<group>"; };
 		7109CBF918DA58D300D6003E /* NSDictionary+NullReplacement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+NullReplacement.h"; sourceTree = "<group>"; };
@@ -264,6 +273,8 @@
 		71E3FD8918AB10D200BD00C2 /* AMObjectBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMObjectBuilder.h; sourceTree = "<group>"; };
 		71E3FD8A18AB10D200BD00C2 /* AMObjectBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMObjectBuilder.m; sourceTree = "<group>"; };
 		71E3FD8C18AC0C7000BD00C2 /* AMObjectBuilderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMObjectBuilderTests.m; sourceTree = "<group>"; };
+		71F3677618FD2D6500A6FE1E /* AMLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMLocation.h; sourceTree = "<group>"; };
+		71F3677718FD2D6500A6FE1E /* AMLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMLocation.m; sourceTree = "<group>"; };
 		811AF5E1705D4DD596C51C97 /* Pods-AirMenuKitTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AirMenuKitTests.xcconfig"; path = "Pods/Pods-AirMenuKitTests.xcconfig"; sourceTree = "<group>"; };
 		C4D6450282584DFB83C8BE38 /* libPods-AirMenuKitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AirMenuKitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -364,6 +375,8 @@
 				716C573218A197C800D95228 /* NSDateFormatter+AirMenuTimestamp.m */,
 				716C572F18A1969400D95228 /* NSNumberFormatter+AirMenuNumberFormat.h */,
 				71173FA018A067F400DF24EB /* NSNumberFormatter+AirMenuNumberFormat.m */,
+				71F3677618FD2D6500A6FE1E /* AMLocation.h */,
+				71F3677718FD2D6500A6FE1E /* AMLocation.m */,
 			);
 			path = Miscellaneous;
 			sourceTree = "<group>";
@@ -498,8 +511,8 @@
 			children = (
 				71600A1D18B506F000DFB9B6 /* company.json */,
 				714C068918B55982004EAD04 /* restaurant.json */,
-				716863B718B8F012005D68B3 /* menu.json */,
 				7108AD9E18B5741B00A413DA /* restaurants.json */,
+				716863B718B8F012005D68B3 /* menu.json */,
 				7108ADA218B8E8CE00A413DA /* menus.json */,
 				716863BB18B927DC005D68B3 /* menu_section.json */,
 				716863BD18B927E6005D68B3 /* menu_sections.json */,
@@ -514,8 +527,12 @@
 				71DC141718FB74EB001C8185 /* orders.json */,
 				71DC140D18FB60C1001C8185 /* devices.json */,
 				71DC140F18FB60DF001C8185 /* device.json */,
+				710928A118FD4922009760F2 /* staff_member.json */,
+				710928A318FD4931009760F2 /* staff_members.json */,
 				71DC141118FB716F001C8185 /* notifications.json */,
 				71DC141318FB723F001C8185 /* notification.json */,
+				710928A518FD59DF009760F2 /* group.json */,
+				710928A718FD59E7009760F2 /* groups.json */,
 				71DC141918FB9D6D001C8185 /* staff_kind.json */,
 				71DC141B18FB9DC4001C8185 /* staff_kinds.json */,
 			);
@@ -600,6 +617,7 @@
 				7108ADA318B8E8CE00A413DA /* menus.json in Resources */,
 				716863C218B93C26005D68B3 /* menu_item.json in Resources */,
 				714C068A18B55982004EAD04 /* restaurant.json in Resources */,
+				710928A218FD4922009760F2 /* staff_member.json in Resources */,
 				716863C418B93C31005D68B3 /* menu_items.json in Resources */,
 				71DBA7C518BAC978001CBC32 /* access_token.json in Resources */,
 				71DC141C18FB9DC4001C8185 /* staff_kinds.json in Resources */,
@@ -611,8 +629,11 @@
 				7108AD9F18B5741B00A413DA /* restaurants.json in Resources */,
 				713F324218FB427C004E2F1F /* order.json in Resources */,
 				71DC141418FB723F001C8185 /* notification.json in Resources */,
+				710928A418FD4931009760F2 /* staff_members.json in Resources */,
 				7132E4681848EA8A00B2E356 /* InfoPlist.strings in Resources */,
 				71DC141618FB7281001C8185 /* order_items.json in Resources */,
+				710928A818FD59E7009760F2 /* groups.json in Resources */,
+				710928A618FD59DF009760F2 /* group.json in Resources */,
 				716863BE18B927E6005D68B3 /* menu_sections.json in Resources */,
 				71496A9418CD3E7500045AFD /* me.json in Resources */,
 				71DC141218FB716F001C8185 /* notifications.json in Resources */,
@@ -711,6 +732,7 @@
 				7119582918FADB070065BB3A /* AMStaffKind.m in Sources */,
 				710AD72318A0269F00AA1038 /* AMRestaurant.m in Sources */,
 				71A0D3A218AC33220070465E /* AMClient+Company.m in Sources */,
+				71F3677818FD2D6500A6FE1E /* AMLocation.m in Sources */,
 				7119582F18FADBA60065BB3A /* AMDevice.m in Sources */,
 				710AD72918A026CC00AA1038 /* AMMenuSection.m in Sources */,
 				7109CBF818DA58CC00D6003E /* NSArray+NullReplacement.m in Sources */,

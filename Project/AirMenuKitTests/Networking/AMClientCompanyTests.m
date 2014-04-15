@@ -99,6 +99,85 @@ describe(@"AMClient+Companies", ^{
             });
         });
         
+        context(@"on update company", ^{
+            __block NSURLSessionDataTask *task;
+            __block AMCompany *updatedCompany;
+            
+            beforeAll(^{
+                [TestToolBox stubRequestWithURL:[baseURL stringByAppendingString:@"companies/1"]
+                                     httpMethod:@"PUT"
+                             nameOfResponseFile:@"company.json"
+                                   responseCode:200];
+                
+                task = [[AMClient sharedClient] updateCompanyWithIdentifier:@"1"
+                                                               withNewName:@"new_name"
+                                                                newWebsite:@"new_website"
+                                                         newAddressLineOne:@"new_address_line_1"
+                                                         newAddressLineTwo:@"new_address_line_2"
+                                                                   newCity:@"new_city"
+                                                                 newCounty:@"new_county"
+                                                                  newState:@"new_state"
+                                                                newCountry:@"new_country"
+                                                                completion:^(AMCompany *company, NSError *error) {
+                                                                    updatedCompany = company;
+                                                                }];
+                
+            });
+            
+            it(@"uses PUT method", ^{
+                [[task.originalRequest.HTTPMethod should] equal:@"PUT"];
+            });
+            
+            it(@"calls /companies/1 URL", ^{
+                [[task.originalRequest.URL.absoluteString should] equal:[baseURL stringByAppendingString:@"companies/1"]];
+            });
+            
+            it(@"creates a company object", ^{
+                AMCompany *company = [TestToolBox objectFromJSONFromFile:@"company.json"];
+                [[expectFutureValue(updatedCompany) shouldEventually] equal:company];
+            });
+            
+            it(@"sends parameters in HTTP body", ^{
+                [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"name" : @"new_name",
+                                                                                   @"website" : @"new_website",
+                                                                                   @"address_1" : @"new_address_line_1",
+                                                                                   @"address_2" : @"new_address_line_2",
+                                                                                   @"city" : @"new_city",
+                                                                                   @"county" : @"new_county",
+                                                                                   @"country" : @"new_country",
+                                                                                   @"state" : @"new_state"}];
+            });
+        });
+        
+        
+        context(@"on delete company", ^{
+            __block NSURLSessionDataTask *task;
+            __block AMCompany *deletedCompany;
+            
+            beforeAll(^{
+               [TestToolBox stubRequestWithURL:[baseURL stringByAppendingString:@"companies/1"]
+                                    httpMethod:@"DELETE"
+                            nameOfResponseFile:@"company.json"
+                                  responseCode:200];
+                
+                task = [[AMClient sharedClient] deleteCompanyWithIdentifier:@"1" completion:^(AMCompany *company, NSError *error) {
+                    deletedCompany = company;
+                }];
+            });
+            
+            it(@"uses DELETE method", ^{
+                [[task.originalRequest.HTTPMethod should] equal:@"DELETE"];
+            });
+            
+            it(@"calls /companies/1 URL", ^{
+                [[task.originalRequest.URL.absoluteString should] equal:[baseURL stringByAppendingString:@"companies/1"]];
+            });
+            
+            it(@"creates a company object", ^{
+                [[expectFutureValue(deletedCompany) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"company.json"]];
+            });
+        });
+        
         context(@"on create restaurant", ^{
             __block NSURLSessionDataTask *task;
             __block AMRestaurant *newRestaurant;
@@ -121,6 +200,8 @@ describe(@"AMClient+Companies", ^{
                                                                    county:@"Dublin"
                                                                     state:@"Dublin"
                                                                   country:@"Ireland"
+                                                                 latitude:999.999
+                                                                longitude:999.999
                                                                completion:^(AMRestaurant *restaurant, NSError *error) {
                                                                    newRestaurant = restaurant;
                                                                }
@@ -151,7 +232,9 @@ describe(@"AMClient+Companies", ^{
                                                                                    @"city" : @"Dublin",
                                                                                    @"county" : @"Dublin",
                                                                                    @"state": @"Dublin",
-                                                                                   @"country" : @"Ireland"}];
+                                                                                   @"country" : @"Ireland",
+                                                                                   @"latitude" : @"999.999",
+                                                                                   @"longitude" : @"999.999"}];
             });
         });
         

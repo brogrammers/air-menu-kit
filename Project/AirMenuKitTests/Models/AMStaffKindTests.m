@@ -101,6 +101,11 @@ describe(@"AMStaffKind", ^{
             [[staffKind.name should] equal:@"Manager"];
             [[staffKind.scopes should] equal:@[@(AMOAuthScopeAddActiveMenus), @(AMOAuthScopeGetGroups)]];
         });
+        
+        it(@"maps parsed restaurant JSON to AMRestaurant and hooks it up", ^{
+            [[staffKind.restaurant.identifier should] equal:@1];
+            [[staffKind.restaurant.name should] equal:@"Nandos"];
+        });
     });
 });
 SPEC_END

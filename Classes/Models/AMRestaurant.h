@@ -10,6 +10,7 @@
 #import <Mantle/Mantle.h>
 #import "AMAddress.h"
 #import "AMMenu.h"
+#import "AMLocation.h"
 
 @interface AMRestaurant : MTLModel <MTLJSONSerializing>
 @property (nonatomic, strong, readonly) NSNumber *identifier;
@@ -19,4 +20,5 @@
 @property (nonatomic, strong, readonly) NSNumber *conversionRate;
 @property (nonatomic, strong, readonly) AMAddress *address;
 @property (nonatomic, strong, readonly) AMMenu *menu;
+@property (nonatomic, strong, readonly) AMLocation *location;
 @end

@@ -18,7 +18,8 @@
              @"remoteOrder" : @"remote_order",
              @"conversionRate" : @"conversion_rate",
              @"address" : @"address",
-             @"menu" : @"menu"};
+             @"menu" : @"menu",
+             @"location" : @"location"};
 }
 
 +(NSValueTransformer *)addressJSONTransformer
@@ -30,4 +31,15 @@
 {
     return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[AMMenu class]];
 }
+
++(NSValueTransformer *)locationJSONTransformer
+{
+    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSDictionary *location) {
+        return [[AMLocation alloc] initWithLatitude:[location[@"latitude"] doubleValue] longitude:[location[@"longitude"] doubleValue]];
+    } reverseBlock:^id(CLLocation *location) {
+        return @{@"latitude" : @(location.coordinate.latitude),
+                 @"longitude" : @(location.coordinate.longitude)};
+    }];
+}
+
 @end

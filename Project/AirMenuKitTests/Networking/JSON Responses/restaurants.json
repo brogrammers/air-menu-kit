@@ -15,7 +15,14 @@
                 "state": "Dublin",
                 "country": "Ireland"
             },
-            "menu": null
+            "menu": {
+                "id" : 1,
+                "name" : "Main Menu"
+            },
+            "location" : {
+                "latitude" : 999.999,
+                "longitude" : 999.999
+            }
         },
         {
             "id": 3,
@@ -32,7 +39,14 @@
                 "state": "Dublin",
                 "country": "Ireland"
             },
-            "menu": null
+            "menu": {
+                "id" : 1,
+                "name" : "Main Menu"
+            },
+            "location" : {
+                "latitude" : 999.999,
+                "longitude" : 999.999
+            }
         }
     ]
 }

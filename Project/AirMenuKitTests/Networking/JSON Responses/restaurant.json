@@ -17,6 +17,10 @@
         "menu": {
             "id" : 1,
             "name" : "Main Menu"
+        },
+        "location" : {
+            "latitude" : 999.999,
+            "longitude" : 999.999
         }
     }
 }

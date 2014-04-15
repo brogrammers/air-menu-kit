@@ -6,6 +6,8 @@
             "id": 1,
             "name": "The Church"
         },
-        "scopes": ["get_staff_kinds"]
+        "scopes": [
+            "get_staff_kinds"
+        ]
     }
 }

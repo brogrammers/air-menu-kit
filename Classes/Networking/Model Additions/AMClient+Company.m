@@ -55,6 +55,55 @@
              }];
 }
 
+
+-(NSURLSessionDataTask *)updateCompanyWithIdentifier:(NSString *)identifier
+                                         withNewName:(NSString *)name
+                                          newWebsite:(NSString *)website
+                                   newAddressLineOne:(NSString *)lineOne
+                                   newAddressLineTwo:(NSString *)lineTwo
+                                             newCity:(NSString *)city
+                                           newCounty:(NSString *)county
+                                            newState:(NSString *)state
+                                          newCountry:(NSString *)country
+                                          completion:(CompanyCompletion)completion
+{
+    NSString *urlString = [NSString stringWithFormat:@"companies/%@", identifier];
+    NSDictionary *params = @{@"name" : name,
+                             @"website" : website,
+                             @"address_1" : lineOne,
+                             @"address_2" : lineTwo,
+                             @"city" : city,
+                             @"county" : county,
+                             @"state" : state,
+                             @"country" : country};
+
+    return [self PUT:urlString
+          parameters:params
+             success:^(NSURLSessionDataTask *task, id responseObject) {
+                 AMCompany *company = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
+                 if(completion) completion(company, nil);
+             }
+             failure:^(NSURLSessionDataTask *task, NSError *error) {
+                 if(completion) completion(nil, error);
+             }];
+}
+
+
+-(NSURLSessionDataTask *)deleteCompanyWithIdentifier:(NSString *)identifier
+                                          completion:(CompanyCompletion)completion
+{
+    NSString *urlString = [NSString stringWithFormat:@"companies/%@", identifier];
+    return [self DELETE:urlString
+             parameters:nil
+                success:^(NSURLSessionDataTask *task, id responseObject) {
+                    AMCompany *company = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
+                    if(completion) completion(company, nil);
+                }
+                failure:^(NSURLSessionDataTask *task, NSError *error) {
+                    if(completion) completion(nil, error);
+                }];
+}
+
 -(NSURLSessionDataTask *)createRestaurantOfCompany:(AMCompany *)company
                                           withName:(NSString *)name
                                            loyalty:(BOOL)loyalty
@@ -66,6 +115,8 @@
                                             county:(NSString *)county
                                              state:(NSString *)state
                                            country:(NSString *)country
+                                          latitude:(double)latitude
+                                         longitude:(double)longitude
                                         completion:(CompanyRestaurantCompletion)completion
 {
     NSAssert(company.identifier, @"The company object must have a identifier present");
@@ -79,7 +130,9 @@
                                  @"city" : city,
                                  @"county" : county,
                                  @"state" : state,
-                                 @"country" : country};
+                                 @"country" : country,
+                                 @"latitude" : @(latitude),
+                                 @"longitude" : @(longitude)};
     return [self POST:urlString
            parameters:parameters
               success:^(NSURLSessionDataTask *task, id responseObject) {

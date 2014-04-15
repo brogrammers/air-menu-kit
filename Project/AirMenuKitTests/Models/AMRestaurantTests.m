@@ -27,7 +27,8 @@ describe(@"AMRestaurant", ^{
                                                          @"conversionRate" : @0.1,
                                                          @"address" : [AMAddress new],
                                                          @"loyalty" : @YES,
-                                                         @"menu" : [AMMenu new]}];
+                                                         @"menu" : [AMMenu new],
+                                                         @"location" : [CLRegion new]}];
         });
         
         it(@"subclasses MTLModel", ^{
@@ -66,6 +67,10 @@ describe(@"AMRestaurant", ^{
             [[restaurant.menu should] equal:[AMMenu new]];
         });
         
+        it(@"has location attribute", ^{
+            [[restaurant.location should] equal:[CLRegion new]];
+        });
+        
     });
     
     context(@"class", ^{
@@ -77,7 +82,8 @@ describe(@"AMRestaurant", ^{
                                               @"remoteOrder" : @"remote_order",
                                               @"conversionRate" : @"conversion_rate",
                                               @"address" : @"address",
-                                              @"menu" : @"menu"};
+                                              @"menu" : @"menu",
+                                              @"location" : @"location"};
             [[mapping should] equal:expectedMapping];
         });
         
@@ -97,6 +103,17 @@ describe(@"AMRestaurant", ^{
         it(@"returns dicionary AMMenu transformer from menuJSONTransformer", ^{
             NSValueTransformer *valueTransformer = objc_msgSend([AMRestaurant class], NSSelectorFromString(@"menuJSONTransformer"));
             [[valueTransformer shouldNot] beNil];
+        });
+        
+        it(@"implmenets locationJSONTransformer", ^{
+            [[[AMRestaurant class] should] respondToSelector:NSSelectorFromString(@"locationJSONTransformer")];
+        });
+        
+        it(@"returns dicionary CLRegion transformer from locationJSONTransformer", ^{
+            NSValueTransformer *valueTransformer = objc_msgSend([AMRestaurant class], NSSelectorFromString(@"locationJSONTransformer"));
+            NSDictionary *location = @{@"latitude" : @999.999,
+                                       @"longitude" : @999.999};
+            [[[valueTransformer reverseTransformedValue:[valueTransformer transformedValue:location]] should] equal:location];
         });
     });
     

@@ -29,6 +29,25 @@ typedef void (^CompanyRestaurantsCompletion) (NSArray *restaurants, NSError *err
 -(NSURLSessionDataTask *)findCompanyWithIdentifier:(NSString *)identifier
                                         completion:(CompanyCompletion)completion;
 
+-(NSURLSessionDataTask *)updateCompanyWithIdentifier:(NSString *)identifier
+                                         withNewName:(NSString *)name
+                                          newWebsite:(NSString *)website
+                                   newAddressLineOne:(NSString *)lineOne
+                                   newAddressLineTwo:(NSString *)lineTwo
+                                             newCity:(NSString *)city
+                                           newCounty:(NSString *)county
+                                            newState:(NSString *)state
+                                          newCountry:(NSString *)country
+                                          completion:(CompanyCompletion)completion;
+
+
+-(NSURLSessionDataTask *)deleteCompanyWithIdentifier:(NSString *)identifier
+                                          completion:(CompanyCompletion)completion;
+
+/*
+ Restaurants of company
+ */
+
 -(NSURLSessionDataTask *)createRestaurantOfCompany:(AMCompany *)company
                                           withName:(NSString *)name
                                            loyalty:(BOOL)loyalty
@@ -40,6 +59,8 @@ typedef void (^CompanyRestaurantsCompletion) (NSArray *restaurants, NSError *err
                                             county:(NSString *)county
                                              state:(NSString *)state
                                            country:(NSString *)country
+                                          latitude:(double)latitude
+                                         longitude:(double)longitude
                                         completion:(CompanyRestaurantCompletion)completion;
 
 -(NSURLSessionDataTask *)findRestaurantsOfCompany:(AMCompany *)company
