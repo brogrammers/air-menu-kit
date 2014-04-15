@@ -12,7 +12,7 @@
 
 typedef void (^AuthenticateCompletion)(AMOAuthToken *token, NSError *error);
 
-static NSString *baseURL = @"https://stage-api.air-menu.com/api/v1/";
+static NSString *baseURL = @"https://stage.air-menu.com/api/v1/";
 static NSString *airMenuApiErrorDomain = @"com.air-menu.api";
 
 @interface AMClient : AFHTTPSessionManager

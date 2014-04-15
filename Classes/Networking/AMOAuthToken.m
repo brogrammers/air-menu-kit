@@ -12,6 +12,84 @@
 @implementation AMOAuthToken
 
 #pragma mark - Mantle framework mapping hooks
++(NSDictionary *)numberToScopesMapping
+{
+    return @{
+                 @(AMOAuthScopeNone) : @"",
+                 @(AMOAuthScopeBasic) : @"basic",
+                 @(AMOAuthScopeAdmin) : @"admin",
+                 @(AMOAuthScopeTrusted) : @"trusted",
+                 @(AMOAuthScopeUser) : @"user",
+                 @(AMOAuthScopeDeveloper) : @"developer",
+                 @(AMOAuthScopeOwner) : @"owner",
+                 @(AMOAuthScopeGetMenus) : @"get_menus",
+                 @(AMOAuthScopeAddMenus) : @"add_menus",
+                 @(AMOAuthScopeAddActiveMenus) : @"add_active_menus",
+                 @(AMOAuthScopeGetCurrentOrders) : @"get_current_orders",
+                 @(AMOAuthScopeAddOrders) : @"add_orders",
+                 @(AMOAuthScopeUpdateOrders) : @"update_orders",
+                 @(AMOAuthScopeGetGroups) : @"get_groups",
+                 @(AMOAuthScopeCreateGroups) : @"create_groups",
+                 @(AMOAuthScopeGetDevices) : @"get_devices",
+                 @(AMOAuthScopeCreateDevices) : @"create_devices",
+                 @(AMOAuthScopeGetStaffKinds) : @"get_staff_kinds",
+                 @(AMOAuthScopeCreateStaffKinds) : @"create_staff_kinds",
+                 @(AMOAuthScopeGetStaffMembers) : @"get_staff_members",
+                 @(AMOAuthScopeCreateStaffMembers) : @"create_staff_members"
+             };
+}
+
++(NSDictionary *)scopesToNumberMapping
+{
+    return @{
+                 @"" : @(AMOAuthScopeNone),
+                 @"basic" : @(AMOAuthScopeBasic),
+                 @"admin" : @(AMOAuthScopeAdmin),
+                 @"trusted" : @(AMOAuthScopeTrusted),
+                 @"user" : @(AMOAuthScopeUser),
+                 @"developer" : @(AMOAuthScopeDeveloper),
+                 @"owner" : @(AMOAuthScopeOwner),
+                 @"get_menus" : @(AMOAuthScopeGetMenus),
+                 @"add_menus" :@(AMOAuthScopeAddMenus),
+                 @"add_active_menus" : @(AMOAuthScopeAddActiveMenus),
+                 @"get_current_orders" : @(AMOAuthScopeGetCurrentOrders),
+                 @"add_orders" : @(AMOAuthScopeAddOrders),
+                 @"update_orders" : @(AMOAuthScopeUpdateOrders),
+                 @"get_groups" : @(AMOAuthScopeGetGroups),
+                 @"create_groups" :  @(AMOAuthScopeCreateGroups),
+                 @"get_devices" :  @(AMOAuthScopeGetDevices),
+                 @"create_devices" : @(AMOAuthScopeCreateDevices),
+                 @"get_staff_kinds" : @(AMOAuthScopeGetStaffKinds),
+                 @"create_staff_kinds" : @(AMOAuthScopeCreateStaffKinds),
+                 @"get_staff_members" : @(AMOAuthScopeGetStaffMembers),
+                 @"create_staff_members" : @(AMOAuthScopeCreateStaffMembers)
+             };
+
+}
+
++(AMOAuthScope)allScopes
+{
+    return  AMOAuthScopeBasic &
+            AMOAuthScopeAdmin &
+            AMOAuthScopeTrusted &
+            AMOAuthScopeUser &
+            AMOAuthScopeDeveloper &
+            AMOAuthScopeOwner &
+            AMOAuthScopeGetMenus &
+            AMOAuthScopeAddMenus &
+            AMOAuthScopeAddActiveMenus &
+            AMOAuthScopeGetCurrentOrders &
+            AMOAuthScopeAddOrders &
+            AMOAuthScopeUpdateOrders &
+            AMOAuthScopeGetGroups &
+            AMOAuthScopeCreateGroups &
+            AMOAuthScopeGetDevices &
+            AMOAuthScopeCreateDevices &
+            AMOAuthScopeGetStaffKinds &
+            AMOAuthScopeCreateStaffKinds &
+            AMOAuthScopeGetStaffMembers &
+            AMOAuthScopeCreateStaffMembers;
+}
 
 +(NSDictionary *)JSONKeyPathsByPropertyKey
 {
@@ -30,4 +108,5 @@
         return @(0);
     }];
 }
+
 @end

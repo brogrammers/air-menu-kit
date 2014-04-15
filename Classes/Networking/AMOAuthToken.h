@@ -17,13 +17,25 @@ typedef NS_OPTIONS(NSUInteger, AMOAuthScope)
 {
     AMOAuthScopeNone = 0,
     AMOAuthScopeBasic = 1 << 0,
-    AMOAuthScopeUser = 1 << 1,
-    AMOAuthScopeDeveloper = 1 << 2,
-    AMOAuthScopeOwner = 1 << 3,
-    AMOAuthScopeGetMenus = 1 << 4,
-    AMOAuthScopeAddMenus = 1 << 5,
-    AMOAuthScopeAddActiveMenus = 1 << 6,
-    AMOAuthScopeTrusted = 1 << 7
+    AMOAuthScopeAdmin = 1 << 1,
+    AMOAuthScopeTrusted = 1 << 2,
+    AMOAuthScopeUser = 1 << 3,
+    AMOAuthScopeDeveloper = 1 << 4,
+    AMOAuthScopeOwner = 1 << 5,
+    AMOAuthScopeGetMenus = 1 << 6,
+    AMOAuthScopeAddMenus = 1 << 7,
+    AMOAuthScopeAddActiveMenus = 1 << 8,
+    AMOAuthScopeGetCurrentOrders = 1 << 9,
+    AMOAuthScopeAddOrders = 1 << 10,
+    AMOAuthScopeUpdateOrders = 1 << 11,
+    AMOAuthScopeGetGroups = 1 << 12,
+    AMOAuthScopeCreateGroups = 1 << 13,
+    AMOAuthScopeGetDevices = 1 << 14,
+    AMOAuthScopeCreateDevices = 1 << 15,
+    AMOAuthScopeGetStaffKinds = 1 <<  16,
+    AMOAuthScopeCreateStaffKinds = 1 << 17,
+    AMOAuthScopeGetStaffMembers = 1 << 18,
+    AMOAuthScopeCreateStaffMembers = 1 << 19
 };
 
 typedef NS_ENUM(NSUInteger, AMOAuthGrantType) {
@@ -37,6 +49,9 @@ typedef NS_ENUM(NSUInteger, AMOAuthGrantType) {
 @property (nonatomic, strong, readonly) NSString *type;
 @property (nonatomic, strong, readonly) NSDate *expiresAt;
 @property (nonatomic, strong, readonly) NSArray *scopes;
++(NSDictionary *)numberToScopesMapping;
++(NSDictionary *)scopesToNumberMapping;
++(AMOAuthScope)allScopes;
 @end
 
 

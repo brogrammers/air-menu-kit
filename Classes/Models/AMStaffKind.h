@@ -6,8 +6,12 @@
 //  Copyright (c) 2014 air-menu. All rights reserved.
 //
 
-#import "MTLModel.h"
+#import <Mantle/Mantle.h>
+#import "AMRestaurant.h"
 
-@interface AMStaffKind : MTLModel
-
+@interface AMStaffKind : MTLModel <MTLJSONSerializing>
+@property (nonatomic, readonly, strong) NSNumber *identifier;
+@property (nonatomic, readonly, strong) NSString *name;
+@property (nonatomic, readonly, strong) AMRestaurant *restaurant;
+@property (nonatomic, readonly, strong) NSArray *scopes;
 @end

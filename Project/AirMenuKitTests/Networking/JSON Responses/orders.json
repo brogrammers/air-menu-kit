@@ -1,0 +1,38 @@
+{
+    "orders": [
+               {
+                   "id": 1,
+                   "state": "new",
+                   "approved_time": "2014-04-12T23:24:53Z",
+                   "served_time": "2014-04-12T23:24:53Z",
+                   "cancelled_time": "2014-04-12T23:24:53Z",
+                   "user": {
+                       "id": 1,
+                       "name": "Max Hoffmann",
+                       "type": "Owner"
+                   },
+                   "restaurant": {
+                        "id": 1,
+                        "name": "The Church"
+                   },
+                   "order_items": []
+               },
+               {
+                   "id": 1,
+                   "state": "new",
+                   "approved_time": "2014-04-12T23:24:53Z",
+                   "served_time": "2014-04-12T23:24:53Z",
+                   "cancelled_time": "2014-04-12T23:24:53Z",
+                   "user": {
+                       "id": 1,
+                       "name": "Max Hoffmann",
+                       "type": "Owner"
+                   },
+                   "restaurant": {
+                        "id": 1,
+                        "name": "The Church"
+                   },
+                   "order_items": []
+               }
+    ]
+}

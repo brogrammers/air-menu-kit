@@ -1,0 +1,22 @@
+{
+    "staff_kinds": [
+            {
+                    "id": 1,
+                    "name": "Manager",
+                    "restaurant": {
+                        "id": 1,
+                        "name": "The Church"
+                    },
+                    "scopes": []
+            },
+            {
+                    "id": 2,
+                    "name": "Bar Staff",
+                    "restaurant": {
+                        "id": 1,
+                        "name": "The Church"
+                    },
+                    "scopes": []
+            }
+        ]
+}

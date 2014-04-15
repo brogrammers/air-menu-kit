@@ -9,5 +9,11 @@
 #import "AMStaffMember.h"
 
 @implementation AMStaffMember
-
++(NSDictionary *)JSONKeyPathsByPropertyKey
+{
+    return @{@"identifier" : @"id",
+             @"name" : @"name",
+             @"restaurant" : @"restaurant",
+             @"scopes" : @"scopes"};
+}
 @end

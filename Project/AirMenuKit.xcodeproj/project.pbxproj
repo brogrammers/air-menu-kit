@@ -94,6 +94,12 @@
 		71DBA7C518BAC978001CBC32 /* access_token.json in Resources */ = {isa = PBXBuildFile; fileRef = 71DBA7C418BAC978001CBC32 /* access_token.json */; };
 		71DC140E18FB60C1001C8185 /* devices.json in Resources */ = {isa = PBXBuildFile; fileRef = 71DC140D18FB60C1001C8185 /* devices.json */; };
 		71DC141018FB60DF001C8185 /* device.json in Resources */ = {isa = PBXBuildFile; fileRef = 71DC140F18FB60DF001C8185 /* device.json */; };
+		71DC141218FB716F001C8185 /* notifications.json in Resources */ = {isa = PBXBuildFile; fileRef = 71DC141118FB716F001C8185 /* notifications.json */; };
+		71DC141418FB723F001C8185 /* notification.json in Resources */ = {isa = PBXBuildFile; fileRef = 71DC141318FB723F001C8185 /* notification.json */; };
+		71DC141618FB7281001C8185 /* order_items.json in Resources */ = {isa = PBXBuildFile; fileRef = 71DC141518FB7281001C8185 /* order_items.json */; };
+		71DC141818FB74EB001C8185 /* orders.json in Resources */ = {isa = PBXBuildFile; fileRef = 71DC141718FB74EB001C8185 /* orders.json */; };
+		71DC141A18FB9D6D001C8185 /* staff_kind.json in Resources */ = {isa = PBXBuildFile; fileRef = 71DC141918FB9D6D001C8185 /* staff_kind.json */; };
+		71DC141C18FB9DC4001C8185 /* staff_kinds.json in Resources */ = {isa = PBXBuildFile; fileRef = 71DC141B18FB9DC4001C8185 /* staff_kinds.json */; };
 		71E3FD7B18AA784700BD00C2 /* AMOAuthTokenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E3FD7A18AA784700BD00C2 /* AMOAuthTokenTests.m */; };
 		71E3FD7E18AACB6F00BD00C2 /* AMOAuthApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E3FD7D18AACB6F00BD00C2 /* AMOAuthApplication.m */; };
 		71E3FD8018AACB8D00BD00C2 /* AMOAuthApplicationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E3FD7F18AACB8D00BD00C2 /* AMOAuthApplicationTests.m */; };
@@ -244,6 +250,12 @@
 		71DBA7C418BAC978001CBC32 /* access_token.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = access_token.json; sourceTree = "<group>"; };
 		71DC140D18FB60C1001C8185 /* devices.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = devices.json; sourceTree = "<group>"; };
 		71DC140F18FB60DF001C8185 /* device.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = device.json; sourceTree = "<group>"; };
+		71DC141118FB716F001C8185 /* notifications.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = notifications.json; sourceTree = "<group>"; };
+		71DC141318FB723F001C8185 /* notification.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = notification.json; sourceTree = "<group>"; };
+		71DC141518FB7281001C8185 /* order_items.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = order_items.json; sourceTree = "<group>"; };
+		71DC141718FB74EB001C8185 /* orders.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = orders.json; sourceTree = "<group>"; };
+		71DC141918FB9D6D001C8185 /* staff_kind.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = staff_kind.json; sourceTree = "<group>"; };
+		71DC141B18FB9DC4001C8185 /* staff_kinds.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = staff_kinds.json; sourceTree = "<group>"; };
 		71E3FD7A18AA784700BD00C2 /* AMOAuthTokenTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMOAuthTokenTests.m; sourceTree = "<group>"; };
 		71E3FD7C18AACB6F00BD00C2 /* AMOAuthApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMOAuthApplication.h; sourceTree = "<group>"; };
 		71E3FD7D18AACB6F00BD00C2 /* AMOAuthApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMOAuthApplication.m; sourceTree = "<group>"; };
@@ -497,9 +509,15 @@
 				71496A9318CD3E7500045AFD /* me.json */,
 				71496A9518CD3E7E00045AFD /* user.json */,
 				713F323F18FB423E004E2F1F /* order_item.json */,
+				71DC141518FB7281001C8185 /* order_items.json */,
 				713F324118FB427C004E2F1F /* order.json */,
+				71DC141718FB74EB001C8185 /* orders.json */,
 				71DC140D18FB60C1001C8185 /* devices.json */,
 				71DC140F18FB60DF001C8185 /* device.json */,
+				71DC141118FB716F001C8185 /* notifications.json */,
+				71DC141318FB723F001C8185 /* notification.json */,
+				71DC141918FB9D6D001C8185 /* staff_kind.json */,
+				71DC141B18FB9DC4001C8185 /* staff_kinds.json */,
 			);
 			path = "JSON Responses";
 			sourceTree = "<group>";
@@ -584,14 +602,20 @@
 				714C068A18B55982004EAD04 /* restaurant.json in Resources */,
 				716863C418B93C31005D68B3 /* menu_items.json in Resources */,
 				71DBA7C518BAC978001CBC32 /* access_token.json in Resources */,
+				71DC141C18FB9DC4001C8185 /* staff_kinds.json in Resources */,
 				713F324018FB423E004E2F1F /* order_item.json in Resources */,
 				716863BC18B927DC005D68B3 /* menu_section.json in Resources */,
 				71DC140E18FB60C1001C8185 /* devices.json in Resources */,
+				71DC141818FB74EB001C8185 /* orders.json in Resources */,
+				71DC141A18FB9D6D001C8185 /* staff_kind.json in Resources */,
 				7108AD9F18B5741B00A413DA /* restaurants.json in Resources */,
 				713F324218FB427C004E2F1F /* order.json in Resources */,
+				71DC141418FB723F001C8185 /* notification.json in Resources */,
 				7132E4681848EA8A00B2E356 /* InfoPlist.strings in Resources */,
+				71DC141618FB7281001C8185 /* order_items.json in Resources */,
 				716863BE18B927E6005D68B3 /* menu_sections.json in Resources */,
 				71496A9418CD3E7500045AFD /* me.json in Resources */,
+				71DC141218FB716F001C8185 /* notifications.json in Resources */,
 				71600A1E18B506F000DFB9B6 /* company.json in Resources */,
 				71496A9618CD3E7E00045AFD /* user.json in Resources */,
 				716863B818B8F012005D68B3 /* menu.json in Resources */,

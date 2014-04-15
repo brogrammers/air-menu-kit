@@ -6,8 +6,12 @@
 //  Copyright (c) 2014 air-menu. All rights reserved.
 //
 
-#import "MTLModel.h"
+#import <Mantle/Mantle.h>
 
-@interface AMNotification : MTLModel
-
+@interface AMNotification : MTLModel <MTLJSONSerializing>
+@property (nonatomic, readonly, strong) NSNumber *identifier;
+@property (nonatomic, readonly, strong) NSString *content;
+@property (nonatomic, readonly, strong) NSNumber *read;
+@property (nonatomic, readonly, strong) NSString *payload;
+@property (nonatomic, readonly, strong) NSDate *createdAt;
 @end
