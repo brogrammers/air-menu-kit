@@ -95,6 +95,8 @@
 		71A0D3A818AC33310070465E /* AMClient+Menu.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A0D3A718AC33310070465E /* AMClient+Menu.m */; };
 		71A0D3AB18AC33390070465E /* AMClient+MenuSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A0D3AA18AC33390070465E /* AMClient+MenuSection.m */; };
 		71A0D3AE18AC335E0070465E /* AMClient+MenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A0D3AD18AC335E0070465E /* AMClient+MenuItem.m */; };
+		71B2ABFA18FDCA5300238DC1 /* AMClient+Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B2ABF918FDCA5300238DC1 /* AMClient+Group.m */; };
+		71B2ABFC18FDDA2000238DC1 /* AMClientGroupTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71B2ABFB18FDDA2000238DC1 /* AMClientGroupTests.m */; };
 		71DBA7C518BAC978001CBC32 /* access_token.json in Resources */ = {isa = PBXBuildFile; fileRef = 71DBA7C418BAC978001CBC32 /* access_token.json */; };
 		71DC140E18FB60C1001C8185 /* devices.json in Resources */ = {isa = PBXBuildFile; fileRef = 71DC140D18FB60C1001C8185 /* devices.json */; };
 		71DC141018FB60DF001C8185 /* device.json in Resources */ = {isa = PBXBuildFile; fileRef = 71DC140F18FB60DF001C8185 /* device.json */; };
@@ -256,6 +258,9 @@
 		71A0D3AA18AC33390070465E /* AMClient+MenuSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AMClient+MenuSection.m"; sourceTree = "<group>"; };
 		71A0D3AC18AC335E0070465E /* AMClient+MenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AMClient+MenuItem.h"; sourceTree = "<group>"; };
 		71A0D3AD18AC335E0070465E /* AMClient+MenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AMClient+MenuItem.m"; sourceTree = "<group>"; };
+		71B2ABF818FDCA5300238DC1 /* AMClient+Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AMClient+Group.h"; sourceTree = "<group>"; };
+		71B2ABF918FDCA5300238DC1 /* AMClient+Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AMClient+Group.m"; sourceTree = "<group>"; };
+		71B2ABFB18FDDA2000238DC1 /* AMClientGroupTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMClientGroupTests.m; sourceTree = "<group>"; };
 		71DBA7C418BAC978001CBC32 /* access_token.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = access_token.json; sourceTree = "<group>"; };
 		71DC140D18FB60C1001C8185 /* devices.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = devices.json; sourceTree = "<group>"; };
 		71DC140F18FB60DF001C8185 /* device.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = device.json; sourceTree = "<group>"; };
@@ -451,6 +456,8 @@
 				71A0D3AD18AC335E0070465E /* AMClient+MenuItem.m */,
 				71496A9718CD40C800045AFD /* AMClient+User.h */,
 				71496A9818CD40C800045AFD /* AMClient+User.m */,
+				71B2ABF818FDCA5300238DC1 /* AMClient+Group.h */,
+				71B2ABF918FDCA5300238DC1 /* AMClient+Group.m */,
 			);
 			path = "Model Additions";
 			sourceTree = "<group>";
@@ -490,6 +497,7 @@
 				716863BF18B9388D005D68B3 /* AMClientMenuSectionTests.m */,
 				716863C518B94FA1005D68B3 /* AMClientMenuItemTests.m */,
 				71496A9A18CD420500045AFD /* AMClientUserTests.m */,
+				71B2ABFB18FDDA2000238DC1 /* AMClientGroupTests.m */,
 			);
 			name = Netowrking;
 			path = Networking;
@@ -738,6 +746,7 @@
 				7109CBF818DA58CC00D6003E /* NSArray+NullReplacement.m in Sources */,
 				71A0D3A518AC33280070465E /* AMClient+Restaurant.m in Sources */,
 				71E3FD7E18AACB6F00BD00C2 /* AMOAuthApplication.m in Sources */,
+				71B2ABFA18FDCA5300238DC1 /* AMClient+Group.m in Sources */,
 				7174341A18AA76C200A83C61 /* AMOAuthToken.m in Sources */,
 				71496A9018CD340E00045AFD /* AMUser.m in Sources */,
 				71A0D3AE18AC335E0070465E /* AMClient+MenuItem.m in Sources */,
@@ -752,6 +761,7 @@
 				71710E6418A436C200A2390B /* AMRestaurantTests.m in Sources */,
 				7108ADA118B5846400A413DA /* AMClientRestaurantTests.m in Sources */,
 				716863C018B9388D005D68B3 /* AMClientMenuSectionTests.m in Sources */,
+				71B2ABFC18FDDA2000238DC1 /* AMClientGroupTests.m in Sources */,
 				71496A9218CD342100045AFD /* AMUserTests.m in Sources */,
 				71E3FD8818AB040A00BD00C2 /* AMClientTests.m in Sources */,
 				71E3FD8D18AC0C7000BD00C2 /* AMObjectBuilderTests.m in Sources */,
