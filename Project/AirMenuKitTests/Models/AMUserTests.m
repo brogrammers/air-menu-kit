@@ -10,6 +10,7 @@
 #import <Kiwi/Kiwi.h>
 #import "AMUser.h"
 #import "NSDateFormatter+AirMenuTimestamp.h"
+#import "AMOrder.h"
 
 SPEC_BEGIN(AMUserTests)
 
@@ -58,6 +59,15 @@ describe(@"AMUser", ^{
         it(@"has scopes attribute", ^{
             [[user.scopes should] equal:@[@"add_menus", @"remove_orders"]];
         });
+        
+        it(@"has company attribute", ^{
+       //     [[user.company should] equal:[AMCompany new]];
+        });
+        
+        it(@"has current orders attribute", ^{
+        //    [[user.currentOrders should] equal:[AMOrder new]];
+        });
+        
     });
     
     context(@"class", ^{

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Mantle/Mantle.h>
+#import "AMCompany.h"
 
 @interface AMUser : MTLModel <MTLJSONSerializing>
 @property (nonatomic, readonly, strong) NSNumber *identifier;
@@ -16,4 +17,6 @@
 @property (nonatomic, readonly, strong) NSString *type;
 @property (nonatomic, readonly, strong) NSString *email;
 @property (nonatomic, readonly, strong) NSArray *scopes;
+@property (nonatomic, readonly, strong) AMCompany *company;
+@property (nonatomic, readonly, strong) NSArray *currentOrders;
 @end
