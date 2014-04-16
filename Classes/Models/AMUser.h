@@ -10,11 +10,15 @@
 #import <Mantle/Mantle.h>
 #import "AMCompany.h"
 
+typedef enum {AMUserTypeUser, AMUserTypeOwner, AMUserTypeStaffMember} AMUserType;
+
 @interface AMUser : MTLModel <MTLJSONSerializing>
 @property (nonatomic, readonly, strong) NSNumber *identifier;
 @property (nonatomic, readonly, strong) NSString *name;
 @property (nonatomic, readonly, strong) NSString *username;
-@property (nonatomic, readonly, strong) NSString *type;
+@property (nonatomic, readonly, strong) NSNumber *unreadCount;
+@property (nonatomic, readonly) AMUserType type;
+@property (nonatomic, readonly, strong) NSString *phoneNumber;
 @property (nonatomic, readonly, strong) NSString *email;
 @property (nonatomic, readonly, strong) NSArray *scopes;
 @property (nonatomic, readonly, strong) AMCompany *company;

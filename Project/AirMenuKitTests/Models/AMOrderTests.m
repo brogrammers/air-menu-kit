@@ -176,7 +176,7 @@ describe(@"AMOrder", ^{
         it(@"maps parsed user JSON and hooks it up to AMOrder object", ^{
             [[order.user.identifier should] equal:@1];
             [[order.user.name should] equal:@"Max Hoffmann"];
-            [[order.user.type should] equal:@"Owner"];
+            [[@(order.user.type) should] equal:@(AMUserTypeOwner)];
         });
         
         it(@"maps parsed restaurnt JSON and hooks it up to AMOrder object", ^{

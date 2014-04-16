@@ -11,6 +11,8 @@
 #import "AMUser.h"
 #import "NSDateFormatter+AirMenuTimestamp.h"
 #import "AMOrder.h"
+#import <objc/objc-runtime.h>
+#import "AMOAuthToken.h"
 
 SPEC_BEGIN(AMUserTests)
 
@@ -25,7 +27,11 @@ describe(@"AMUser", ^{
                                                    @"username" : @"Fox",
                                                    @"type" : @"Owner",
                                                    @"email" : @"rob@mail.ie",
-                                                   @"scopes" : @[@"add_menus", @"remove_orders"]}];
+                                                   @"scopes" : @[@"add_menus", @"remove_orders"],
+                                                   @"unreadCount" : @1,
+                                                   @"phoneNumber" : @"12345",
+                                                   @"company" : [AMCompany new],
+                                                   @"currentOrders" : @[[AMOrder new]]}];
         });
         
         it(@"subclasses MTLModel", ^{
@@ -49,7 +55,7 @@ describe(@"AMUser", ^{
         });
         
         it(@"has type attribute", ^{
-            [[user.type should] equal:@"Owner"];
+            [[@(user.type) should] equal:@(AMUserTypeUser)];
         });
         
         it(@"has email attribute", ^{
@@ -60,12 +66,20 @@ describe(@"AMUser", ^{
             [[user.scopes should] equal:@[@"add_menus", @"remove_orders"]];
         });
         
+        it(@"has phone attribute", ^{
+            [[user.phoneNumber should] equal:@"12345"];
+        });
+        
+        it(@"unread_count attribute", ^{
+            [[user.unreadCount should] equal:@1];
+        });
+        
         it(@"has company attribute", ^{
-       //     [[user.company should] equal:[AMCompany new]];
+            [[user.company should] equal:[AMCompany new]];
         });
         
         it(@"has current orders attribute", ^{
-        //    [[user.currentOrders should] equal:[AMOrder new]];
+            [[user.currentOrders should] equal:@[[AMOrder new]]];
         });
         
     });
@@ -78,31 +92,95 @@ describe(@"AMUser", ^{
                                               @"username" : @"identity.username",
                                               @"email" : @"identity.email",
                                               @"type" : @"type",
-                                              @"scopes" : @"scopes"};
+                                              @"scopes" : @"scopes",
+                                              @"phoneNumber" : @"phone",
+                                              @"currentOrders" : @"current_orders",
+                                              @"company" : @"company",
+                                              @"unreadCount" : @"unread_count"};
             [[mapping should] equal:expectedMapping];
         });
+        
+        
+        it(@"implements typeJSONTransformer", ^{
+            [[[AMUser class] should] respondToSelector:NSSelectorFromString(@"typeJSONTransformer")];
+        });
+        
+        it(@"returns string transformer from typeJSONTransformer", ^{
+            NSValueTransformer *valueTransformer = objc_msgSend([AMUser class], NSSelectorFromString(@"typeJSONTransformer"));
+            NSString *type = @"StaffMember";
+            [[[valueTransformer reverseTransformedValue:[valueTransformer transformedValue:type]] should] equal:@"StaffMember"];
+        });
+        
+        it(@"implements scopesJSONTransformer", ^{
+            [[[AMUser class] should] respondToSelector:NSSelectorFromString(@"scopesJSONTransformer")];
+        });
+        
+        it(@"returns array transfromer from scopesJSONTransformer", ^{
+            NSValueTransformer *valueTransformer = objc_msgSend([AMUser class], NSSelectorFromString(@"scopesJSONTransformer"));
+            [[[valueTransformer transformedValue:@[@"update_orders"]] should] equal:@[@(AMOAuthScopeUpdateOrders)]];
+            [[[valueTransformer reverseTransformedValue:@[@(AMOAuthScopeUpdateOrders)]] should] equal:@[@"update_orders"]];
+        });
+        
+        it(@"implements companyJSONTransformer", ^{
+            [[[AMUser class] should] respondToSelector:NSSelectorFromString(@"companyJSONTransformer")];
+        });
+        
+        it(@"returns dicionary company transformer from companyJSONTransformer", ^{
+            NSValueTransformer *valueTransformer = objc_msgSend([AMUser class], NSSelectorFromString(@"companyJSONTransformer"));
+            [[valueTransformer shouldNot] beNil];
+        });
+        
+        it(@"implements currentOrdersJSONTransformer", ^{
+            [[[AMUser class] should] respondToSelector:NSSelectorFromString(@"currentOrdersJSONTransformer")];
+        });
+        
+        it(@"returns array orders tansformer from currentOrdersJSONTransformer", ^{
+            NSValueTransformer *valueTransformer = objc_msgSend([AMUser class], NSSelectorFromString(@"currentOrdersJSONTransformer"));
+            [[valueTransformer shouldNot] beNil];
+        });
+        
     });
     
     context(@"mapping", ^{
         __block AMUser *user;
         __block NSDictionary *parsedUserJSON;
+        __block NSDictionary *companyParsedJSON;
+        __block NSDictionary *orderParsedJSON;
+        
         
         beforeAll(^{
-           parsedUserJSON = @{@"id" : @(1),
+            companyParsedJSON = @{@"id" : @1, @"name" : @"acompany"};
+            orderParsedJSON = @{@"id" : @1 , @"state" : @"new"};
+            
+            parsedUserJSON = @{@"id" : @(1),
                               @"name" : @"Robert Lis",
-                              @"type" : @"Manager",
+                              @"type" : @"Owner",
                               @"identity" : @{@"username" : @"rob", @"email" : @"rob@gmail.com"},
-                              @"scopes" : @[@"Manager"]};
+                              @"scopes" : @[@"update_orders", @"create_groups"],
+                              @"current_orders" : @[orderParsedJSON],
+                              @"company" : companyParsedJSON };
+            
             user = [MTLJSONAdapter modelOfClass:[AMUser class] fromJSONDictionary:parsedUserJSON error:nil];
         });
         
         it(@"maps parsed user JSON to AMUser object", ^{
             [[user.identifier should] equal:@(1)];
             [[user.name should] equal:@"Robert Lis"];
-            [[user.type should] equal:@"Manager"];
+            [[@(user.type) should] equal:@(AMUserTypeOwner)];
             [[user.username should] equal:@"rob"];
             [[user.email should] equal:@"rob@gmail.com"];
-            [[user.scopes should] equal:@[@"Manager"]];
+            [[user.scopes should] equal:@[@(AMOAuthScopeUpdateOrders), @(AMOAuthScopeCreateGroups)]];
+        });
+        
+        it(@"it maps parsed company JSON and hooks it up", ^{
+            [[user.company.identifier should] equal:@1];
+            [[user.company.name should] equal:@"acompany"];
+        });
+        
+        it(@"it maps parsed order JSON and hooks it up", ^{
+            AMOrder *order = user.currentOrders[0];
+            [[order.identifier should] equal:@1];
+            [[order.state should] equal:@"new"];
         });
     });
 });

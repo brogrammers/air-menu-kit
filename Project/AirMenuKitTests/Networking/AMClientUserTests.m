@@ -91,9 +91,9 @@ describe(@"AMClient+User", ^{
           beforeAll(^{
               NSDictionary *parsedUserJSON = @{@"id" : @(1),
                                                @"name" : @"Robert Lis",
-                                               @"type" : @"Manager",
+                                               @"type" : @"Owner",
                                                @"identity" : @{@"username" : @"rob", @"email" : @"rob@gmail.com"},
-                                               @"scopes" : @[@"Manager"]};
+                                               @"scopes" : @[@"update_groups"]};
               
               [[NSUserDefaults standardUserDefaults] setObject:@"ABCD" forKey:@"access_token"];
               [[NSUserDefaults standardUserDefaults] setObject:@{@"me" : parsedUserJSON} forKey:@"ABCD"];
@@ -115,8 +115,6 @@ describe(@"AMClient+User", ^{
               [[expectFutureValue(currentFoundUser) shouldEventually] equal:savedUser];              
           });
        });
-       
-       
        
        context(@"on create user", ^{
            __block NSURLSessionDataTask *task;
@@ -151,6 +149,19 @@ describe(@"AMClient+User", ^{
                                                                                   @"username" : @"tsov",
                                                                                   @"password" : @"pass123"}];
            });
+       });
+       
+       context(@"on find davice of current user", ^{
+           
+           
+       });
+       
+       context(@"on create device of current user", ^{
+           
+       });
+       
+       context(@"on find notifiations of currrent user", ^{
+           
        });
    });
 });

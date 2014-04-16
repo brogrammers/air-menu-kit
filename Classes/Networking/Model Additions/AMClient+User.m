@@ -73,4 +73,23 @@
                   if(completion) completion(nil, error);
               }];
 }
+
+-(NSURLSessionDataTask *)findDevicesOfCurrentUser:(UserDevicesCompletion)completiom
+{
+    return nil;
+}
+
+-(NSURLSessionDataTask *)createDeviceOfCurrentUserWithName:(NSString *)name
+                                                      uuid:(NSString *)uuid
+                                                     token:(NSString *)token
+                                                  platform:(NSString *)platform
+                                                completion:(UserDevicesCompletion)completion
+{
+    return nil;
+}
+
+-(NSURLSessionDataTask *)findNotificationsOfCurrentUser:(UserNotificationsCompletion)completion
+{
+    return nil;
+}
 @end
