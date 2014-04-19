@@ -23,6 +23,7 @@ describe(@"AMMenu", ^{
             menu = [[AMMenu alloc] init];
             [menu setValuesForKeysWithDictionary:@{@"identifier" : @"1",
                                                    @"name" : @"a name",
+                                                   @"isActive" : @YES,
                                                    @"menuSections" : @[[AMMenuSection new], [AMMenuSection new]]}];
         });
         
@@ -45,6 +46,10 @@ describe(@"AMMenu", ^{
         it(@"has menu sections attribute", ^{
             [[menu.menuSections should] equal:@[[AMMenuSection new], [AMMenuSection new]]];
         });
+        
+        it(@"has isActive attribute", ^{
+            [[menu.isActive should] equal:@YES];
+        });
     });
     
     context(@"class", ^{
@@ -52,7 +57,8 @@ describe(@"AMMenu", ^{
             NSDictionary *mapping = [AMMenu JSONKeyPathsByPropertyKey];
             NSDictionary *expectedMapping = @{@"identifier" : @"id",
                                               @"name" : @"name",
-                                              @"menuSections": @"menu_sections"};
+                                              @"menuSections": @"menu_sections",
+                                              @"isActive" : @"active"};
             [[mapping should] equal:expectedMapping];
         });
         
@@ -80,13 +86,15 @@ describe(@"AMMenu", ^{
             
             parsedMenuJSON = @{@"id" : @"1",
                                @"name" : @"Sunday menu",
-                               @"menu_sections" : parsedMenuSectionsJSON};
+                               @"menu_sections" : parsedMenuSectionsJSON,
+                               @"active" : @YES};
             menu = [MTLJSONAdapter modelOfClass:[AMMenu class] fromJSONDictionary:parsedMenuJSON error:nil];
         });
         
         it(@"maps parsed menu JSON to AMMenu object", ^{
             [[menu.identifier should] equal:@"1"];
             [[menu.name should] equal:@"Sunday menu"];
+            [[menu.isActive should] equal:@YES];
         });
         
         it(@"maps parsed menu section JSON hoops it up to AMMenu object", ^{

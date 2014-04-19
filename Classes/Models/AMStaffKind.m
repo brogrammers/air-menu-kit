@@ -15,7 +15,9 @@
     return @{@"identifier" : @"id",
              @"name" : @"name",
              @"restaurant" : @"restaurant",
-             @"scopes" : @"scopes"};
+             @"scopes" : @"scopes",
+             @"acceptsOrders" : @"accept_orders",
+             @"acceptsOrderItems" : @"accept_order_items"};
 }
 
 +(NSValueTransformer *)restaurantJSONTransformer

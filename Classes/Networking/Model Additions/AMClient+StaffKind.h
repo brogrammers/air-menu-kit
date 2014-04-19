@@ -19,6 +19,8 @@ typedef void (^StaffKindCompletion)(AMStaffKind *staffKind, NSError *error);
 -(NSURLSessionDataTask *)updateStaffKind:(AMStaffKind *)staffKind
                              withNewName:(NSString *)name
                                newScopes:(AMOAuthScope)scopes
+                        newAcceptsOrders:(BOOL)acceptsOrders
+                    newAcceptsOrderItems:(BOOL)acceptsOrderitems
                               completion:(StaffKindCompletion)completion;
 
 -(NSURLSessionDataTask *)deleteStaffKind:(AMStaffKind *)staffKind

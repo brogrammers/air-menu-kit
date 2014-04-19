@@ -13,4 +13,5 @@
 @property (nonatomic, strong, readonly) NSNumber *identifier;
 @property (nonatomic, strong, readonly) NSString *name;
 @property (nonatomic, strong, readonly) NSArray *menuSections;
+@property (nonatomic, strong, readonly) NSNumber *isActive;
 @end

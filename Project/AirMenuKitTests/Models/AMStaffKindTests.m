@@ -22,7 +22,9 @@ describe(@"AMStaffKind", ^{
             [staffKind setValuesForKeysWithDictionary:@{@"identifier" : @1,
                                                         @"name" : @"a name",
                                                         @"restaurant" : [AMRestaurant new],
-                                                        @"scopes" : @[@(AMOAuthScopeUser)]}];
+                                                        @"scopes" : @[@(AMOAuthScopeUser)],
+                                                        @"acceptsOrders" : @YES,
+                                                        @"acceptsOrderItems" : @NO}];
         });
         
         it(@"subclasses MTLModel", ^{
@@ -48,6 +50,14 @@ describe(@"AMStaffKind", ^{
         it(@"has scopes attribute", ^{
             [[staffKind.scopes should] equal:@[@(AMOAuthScopeUser)]];
         });
+        
+        it(@"has accepts orders attriute", ^{
+            [[staffKind.acceptsOrders should] equal:@YES];
+        });
+        
+        it(@"has accepts order items attribute", ^{
+            [[staffKind.acceptsOrderItems should] equal:@NO];
+        });
     });
     
     context(@"class", ^{
@@ -56,7 +66,9 @@ describe(@"AMStaffKind", ^{
             NSDictionary *expectedMapping = @{@"identifier" : @"id",
                                               @"name" : @"name",
                                               @"restaurant" : @"restaurant",
-                                              @"scopes" : @"scopes"};
+                                              @"scopes" : @"scopes",
+                                              @"acceptsOrders" : @"accept_orders",
+                                              @"acceptsOrderItems" : @"accept_order_items"};
             [[mapping should] equal:expectedMapping];
         });
         
@@ -92,6 +104,8 @@ describe(@"AMStaffKind", ^{
             parsedStaffKindJSON = @{@"id" : @1,
                                     @"name" : @"Manager",
                                     @"restaurant" : parsedRestaurantJSON,
+                                    @"accept_order_items" : [NSNumber numberWithBool:NO],
+                                    @"accept_orders" : [NSNumber numberWithBool:YES],
                                     @"scopes" : @[@"add_active_menus", @"get_groups"]};
             staffKind = [MTLJSONAdapter modelOfClass:[AMStaffKind class] fromJSONDictionary:parsedStaffKindJSON error:nil];
         });
@@ -100,6 +114,8 @@ describe(@"AMStaffKind", ^{
             [[staffKind.identifier should] equal:@1];
             [[staffKind.name should] equal:@"Manager"];
             [[staffKind.scopes should] equal:@[@(AMOAuthScopeAddActiveMenus), @(AMOAuthScopeGetGroups)]];
+            [[staffKind.acceptsOrderItems should] equal:@NO];
+            [[staffKind.acceptsOrders should] equal:@YES];
         });
         
         it(@"maps parsed restaurant JSON to AMRestaurant and hooks it up", ^{

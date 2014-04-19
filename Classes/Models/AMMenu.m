@@ -18,7 +18,8 @@
 {
     return @{@"identifier" : @"id",
              @"name" : @"name",
-             @"menuSections": @"menu_sections"};
+             @"menuSections": @"menu_sections",
+             @"isActive" : @"active"};
 }
 
 +(NSValueTransformer *)createdAtJSONTransformer

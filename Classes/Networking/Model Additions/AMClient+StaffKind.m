@@ -29,12 +29,14 @@
 -(NSURLSessionDataTask *)updateStaffKind:(AMStaffKind *)staffKind
                              withNewName:(NSString *)name
                                newScopes:(AMOAuthScope)scopes
+                        newAcceptsOrders:(BOOL)acceptsOrders
+                    newAcceptsOrderItems:(BOOL)acceptsOrderitems
                               completion:(StaffKindCompletion)completion
 {
     NSAssert(staffKind.identifier, @"identifier cannot be nil");
     NSString *urlString = [@"staff_kinds/" stringByAppendingString:staffKind.identifier.description];
     return [self PUT:urlString
-          parameters:@{@"name" : name, @"scopes" : [AMOAuthToken stringFromOption:scopes]}
+          parameters:@{@"name" : name, @"accept_orders" : @(acceptsOrders), @"accept_order_items" : @(acceptsOrderitems) ,@"scopes" : [AMOAuthToken stringFromOption:scopes]}
              success:^(NSURLSessionDataTask *task, id responseObject) {
                  AMStaffKind *staffKind = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
                  if(completion) completion(staffKind, nil);

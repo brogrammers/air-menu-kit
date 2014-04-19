@@ -105,6 +105,8 @@ Restaurants > Staff Kinds
 
 -(NSURLSessionDataTask *)createStaffKindOfRestaurant:(AMRestaurant *)restaurant
                                             withName:(NSString *)name
+                                        acceptOrders:(BOOL)acceptsOrders
+                                   acceptsOrderItems:(BOOL)acceptsOrderItems
                                           completion:(RestaurantStaffKindCompletion)completion;
 /*
 Restaurants > Staff Members

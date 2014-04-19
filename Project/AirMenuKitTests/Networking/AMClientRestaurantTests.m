@@ -434,7 +434,7 @@ describe(@"AMClient+Restaurant", ^{
                              nameOfResponseFile:@"staff_kind.json"
                                    responseCode:200];
                 AMRestaurant *restaurant = [[AMRestaurant alloc] initWithDictionary:@{@"identifier" : @1} error:nil];
-                task = [[AMClient sharedClient] createStaffKindOfRestaurant:restaurant withName:@"aname" completion:^(AMStaffKind *staffKind, NSError *error) {
+                task = [[AMClient sharedClient] createStaffKindOfRestaurant:restaurant withName:@"aname" acceptOrders:YES acceptsOrderItems:YES completion:^(AMStaffKind *staffKind, NSError *error) {
                     createdStaffKind = staffKind;
                 }];
             });
@@ -452,7 +452,9 @@ describe(@"AMClient+Restaurant", ^{
             });
             
             it(@"sends paramters in HTTP body", ^{
-                [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"name" : @"aname"}];
+                [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"name" : @"aname",
+                                                                                   @"accept_orders" : @"1",
+                                                                                   @"accept_order_items" : @"1"}];
             });
         });
         

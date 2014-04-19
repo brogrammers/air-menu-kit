@@ -9,11 +9,17 @@
 #import "AMClient.h"
 #import "AMUser.h"
 #import "AMDevice.h"
+#import "AMNotification.h"
+#import "AMOrder.h"
+#import "AMOrderItem.h"
 
 typedef void (^UserCompletion)(AMUser *user, NSError *error);
 typedef void (^UserDevicesCompletion)(NSArray *devices, NSError *error);
 typedef void (^UserDeviceCompletion)(AMDevice *device, NSError *error);
 typedef void (^UserNotificationsCompletion)(NSArray *notifications, NSError *error);
+typedef void (^UserOrderItemsCompletion)(NSArray *orderItems, NSError *error);
+typedef void (^UserOrdersCompletion)(NSArray *orders, NSError *error);
+typedef void (^UserNotificationCompletion)(AMNotification *notification, NSError *error);
 
 @interface AMClient (User)
 -(NSURLSessionDataTask *)findUserWithIdentifier:(NSString *)identifier
@@ -46,4 +52,12 @@ typedef void (^UserNotificationsCompletion)(NSArray *notifications, NSError *err
 
 -(NSURLSessionDataTask *)findNotificationsOfCurrentUser:(UserNotificationsCompletion)completion;
 
+-(NSURLSessionDataTask *)findOrdersOfCurrentUserWithState:(AMOrderState)state
+                                               completion:(UserOrdersCompletion)completion;
+
+-(NSURLSessionDataTask *)findOrderItemsOfCurrentUserWithState:(AMOrderItemState)state
+                                                   completion:(UserOrderItemsCompletion)completion;
+
+-(NSURLSessionDataTask *)dismissNotifiation:(AMNotification *)notification
+                    ofCurrentUserCompletion:(UserNotificationCompletion)completion;
 @end

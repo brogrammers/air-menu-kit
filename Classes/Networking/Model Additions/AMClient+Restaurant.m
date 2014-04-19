@@ -254,12 +254,14 @@
 
 -(NSURLSessionDataTask *)createStaffKindOfRestaurant:(AMRestaurant *)restaurant
                                             withName:(NSString *)name
+                                        acceptOrders:(BOOL)acceptsOrders
+                                   acceptsOrderItems:(BOOL)acceptsOrderItems
                                           completion:(RestaurantStaffKindCompletion)completion
 {
     NSAssert(restaurant.identifier, @"restaurants identifier cannot be nil");
     NSString *urlString = [@"restaurants/" stringByAppendingFormat:@"%@/%@", restaurant.identifier, @"staff_kinds"];
     return [self POST:urlString
-           parameters:@{@"name" : name}
+           parameters:@{@"name" : name, @"accept_orders" : @(acceptsOrders), @"accept_order_items" : @(acceptsOrderItems)}
               success:^(NSURLSessionDataTask *task, id responseObject) {
                   AMStaffKind *staffKind = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
                   if(completion) completion(staffKind, nil);

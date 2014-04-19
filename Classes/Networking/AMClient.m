@@ -47,7 +47,7 @@
                              @"client_secret": clientSecret,
                              @"username" : username,
                              @"password" : password,
-                             @"scope" : [self evaluateScopesParameter:scopes]};
+                             @"scope" : [AMOAuthToken stringFromOption:scopes]};
     
     return [self POST:@"/api/oauth2/access_tokens"
            parameters:params
@@ -80,56 +80,6 @@
     {
         return NO;
     }
-}
-
--(NSString *)evaluateScopesParameter:(AMOAuthScope)scopes
-{
-    NSMutableString *scopesString = [[NSMutableString alloc] init];
-    if (scopes & AMOAuthScopeBasic)
-    {
-        [scopesString appendString:@"basic "];
-    }
-    
-    if(scopes & AMOAuthScopeUser)
-    {
-        [scopesString appendString:@"user "];
-    }
-    
-    if (scopes & AMOAuthScopeDeveloper)
-    {
-        [scopesString appendString:@"developer,"];
-    }
-    
-    if(scopes & AMOAuthScopeOwner)
-    {
-        [scopesString appendString:@"owner "];
-    }
-    
-    if(scopes & AMOAuthScopeGetMenus)
-    {
-        [scopesString appendString:@"get_menus "];
-    }
-    
-    if(scopes & AMOAuthScopeAddMenus)
-    {
-        [scopesString appendString:@"add_menus "];
-    }
-    
-    if(scopes & AMOAuthScopeAddActiveMenus)
-    {
-        [scopesString appendString:@"add_active_menus "];
-    }
-    
-    if(scopes & AMOAuthScopeTrusted)
-    {
-        [scopesString appendString:@"trusted "];
-    }
-    
-    if (scopesString.length > 0) {
-        scopesString = [[scopesString substringToIndex:scopesString.length - 1] mutableCopy];
-    }
-    
-    return scopesString;
 }
 
 #pragma mark - HTTP method overrides to support common error handlers

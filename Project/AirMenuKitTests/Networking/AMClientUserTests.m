@@ -278,6 +278,94 @@ describe(@"AMClient+User", ^{
                [[expectFutureValue(foundNotifications) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"notifications.json"]];
            });
        });
+       
+       context(@"on find orders", ^{
+           __block NSURLSessionDataTask *task;
+           __block NSArray *foundOrders;
+           
+           beforeAll(^{
+               [TestToolBox stubRequestWithURL:[baseURL stringByAppendingString:@"me/orders?state=approved"]
+                                    httpMethod:@"GET"
+                            nameOfResponseFile:@"orders.json"
+                                  responseCode:200];
+               
+               task = [[AMClient sharedClient] findOrdersOfCurrentUserWithState:AMOrderStateApproved completion:^(NSArray *orders, NSError *error) {
+                   foundOrders = orders;
+               }];
+           });
+           
+           it(@"uses GET method", ^{
+               [[task.originalRequest.HTTPMethod should] equal:@"GET"];
+           });
+           
+           it(@"calls /me/orders", ^{
+               [[task.originalRequest.URL.absoluteString should] equal:[baseURL stringByAppendingString:@"me/orders?state=approved"]];
+           });
+           
+           it(@"creates array of order", ^{
+               [[expectFutureValue(foundOrders) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"orders.json"]];
+           });
+        });
+       
+       context(@"on find order items", ^{
+           __block NSURLSessionDataTask *task;
+           __block NSArray *foundOrderItems;
+           
+           beforeAll(^{
+               [TestToolBox stubRequestWithURL:[baseURL stringByAppendingString:@"me/order_items?state=new"]
+                                    httpMethod:@"GET"
+                            nameOfResponseFile:@"order_items.json"
+                                  responseCode:200];
+               
+               task = [[AMClient sharedClient] findOrderItemsOfCurrentUserWithState:AMOrderItemStateNew completion:^(NSArray *orderItems, NSError *error) {
+                   foundOrderItems = orderItems;
+               }];
+           });
+           
+           it(@"uses GET method", ^{
+               [[task.originalRequest.HTTPMethod should] equal:@"GET"];
+           });
+           
+           it(@"calls /me/order_items", ^{
+               [[task.originalRequest.URL.absoluteString should] equal:[baseURL stringByAppendingString:@"me/order_items?state=new"]];
+           });
+           
+           it(@"creates array of order items", ^{
+               [[expectFutureValue(foundOrderItems) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"order_items.json"]];
+           });
+       });
+       
+       context(@"on dismiss notification", ^{
+           __block NSURLSessionDataTask *task;
+           __block AMNotification *dismissedNotification;
+           beforeAll(^{
+               [TestToolBox stubRequestWithURL:[baseURL stringByAppendingString:@"notifications/1"]
+                                    httpMethod:@"PUT"
+                            nameOfResponseFile:@"notification.json"
+                                  responseCode:200];
+               
+               AMNotification *notification = [[AMNotification alloc] initWithDictionary:@{@"identifier" : @1} error:nil];
+               task = [[AMClient sharedClient] dismissNotifiation:notification ofCurrentUserCompletion:^(AMNotification *notification, NSError *error) {
+                   dismissedNotification = notification;
+               }];
+           });
+           
+           it(@"uses PUT method", ^{
+               [[task.originalRequest.HTTPMethod should] equal:@"PUT"];
+           });
+           
+           it(@"calls /notifications/1", ^{
+               [[task.originalRequest.URL.absoluteString should] equal:[baseURL stringByAppendingString:@"notifications/1"]];
+           });
+           
+           it(@"creates notification object", ^{
+               [[expectFutureValue(dismissedNotification) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"notification.json"]];
+           });
+           
+           it(@"sends parameters in HTTP body", ^{
+               [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"read" : @"1"}];
+           });
+       });
    });
 });
 SPEC_END

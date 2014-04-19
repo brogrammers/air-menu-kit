@@ -51,7 +51,7 @@ describe(@"AMClient+StaffKind", ^{
                              nameOfResponseFile:@"staff_kind.json"
                                    responseCode:200];
                 AMStaffKind *staffKind = [[AMStaffKind alloc] initWithDictionary:@{@"identifier" : @"1"} error:nil];
-                task = [[AMClient sharedClient] updateStaffKind:staffKind withNewName:@"aname" newScopes:(AMOAuthScopeAddMenus | AMOAuthScopeAddOrders) completion:^(AMStaffKind *staffKind, NSError *error) {
+                task = [[AMClient sharedClient] updateStaffKind:staffKind withNewName:@"aname" newScopes:(AMOAuthScopeAddMenus | AMOAuthScopeAddOrders) newAcceptsOrders:YES newAcceptsOrderItems:YES completion:^(AMStaffKind *staffKind, NSError *error) {
                     updatedStaffKind = staffKind;
                 }];
             });
@@ -69,7 +69,10 @@ describe(@"AMClient+StaffKind", ^{
             });
             
             it(@"sends parameters in HTTP body", ^{
-                [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"name" : @"aname", @"scopes" : @"add_menus add_orders"}];
+                [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"name" : @"aname",
+                                                                                   @"scopes" : @"add_menus add_orders",
+                                                                                   @"accept_orders" : @"1",
+                                                                                   @"accept_order_items" : @"1"}];
             });
         });
         

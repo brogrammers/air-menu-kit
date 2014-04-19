@@ -16,6 +16,9 @@ typedef void (^CompanyRestaurantsCompletion) (NSArray *restaurants, NSError *err
 
 @interface AMClient (Company)
 
+-(NSURLSessionDataTask *)findCompanyWithIdentifier:(NSString *)identifier
+                                        completion:(CompanyCompletion)completion;
+
 -(NSURLSessionDataTask *)createCompanyWithName:(NSString *)name
                                        website:(NSString *)website
                                 addressLineOne:(NSString *)lineOne
@@ -25,9 +28,6 @@ typedef void (^CompanyRestaurantsCompletion) (NSArray *restaurants, NSError *err
                                          state:(NSString *)state
                                        country:(NSString *)country
                                     completion:(CompanyCompletion)completion;
-
--(NSURLSessionDataTask *)findCompanyWithIdentifier:(NSString *)identifier
-                                        completion:(CompanyCompletion)completion;
 
 -(NSURLSessionDataTask *)updateCompanyWithIdentifier:(NSString *)identifier
                                          withNewName:(NSString *)name

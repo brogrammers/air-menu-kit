@@ -134,4 +134,63 @@
                  if(completion) completion(nil, error);
              }];
 }
+
+-(NSURLSessionDataTask *)findOrdersOfCurrentUserWithState:(AMOrderState)state
+                                               completion:(UserOrdersCompletion)completion
+{
+    NSDictionary *states =  @{@(AMOrderStateNew) : @"new",
+                              @(AMOrderStateOpen) : @"open",
+                              @(AMOrderStateApproved) : @"approved",
+                              @(AMOrderStateCancelled) : @"cancelled",
+                              @(AMOrderStateServed) : @"served",
+                              @(AMOrderStatePaid) : @"paid"};
+    return [self GET:@"me/orders"
+          parameters:@{@"state" : states[@(state)]}
+             success:^(NSURLSessionDataTask *task, id responseObject) {
+                 NSArray *orders = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
+                 if(completion) completion(orders, nil);
+             }
+             failure:^(NSURLSessionDataTask *task, NSError *error) {
+                 if(completion) completion(nil, error);
+             }];
+}
+
+-(NSURLSessionDataTask *)findOrderItemsOfCurrentUserWithState:(AMOrderItemState)state
+                                                   completion:(UserOrderItemsCompletion)completion
+{
+    NSDictionary *states = @{@(AMOrderItemStateNew) : @"new",
+                             @(AMOrderItemStateApproved) : @"approved",
+                             @(AMOrderItemStateDeclined) : @"declined",
+                             @(AMOrderItemStateBeingPrepared) : @"start_prepare",
+                             @(AMOrderItemStatePrepared) : @"end_prepare",
+                             @(AMOrderItemStateServed) : @"served"};
+    
+    return [self GET:@"me/order_items"
+          parameters:@{@"state" : states[@(state)]}
+             success:^(NSURLSessionDataTask *task, id responseObject) {
+                 NSArray *orderItems = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
+                 if(completion) completion(orderItems, nil);
+             }
+             failure:^(NSURLSessionDataTask *task, NSError *error) {
+                 if(completion) completion(nil, error);
+             }];
+}
+
+-(NSURLSessionDataTask *)dismissNotifiation:(AMNotification *)notification
+                    ofCurrentUserCompletion:(UserNotificationCompletion)completion
+{
+    NSAssert(notification.identifier, @"notifications identifier cannot be nil");
+    NSString *urlString = [@"notifications/" stringByAppendingString:notification.identifier.description];
+    return [self PUT:urlString
+          parameters:@{@"read" : @(YES)}
+             success:^(NSURLSessionDataTask *task, id responseObject) {
+                 AMNotification *notification = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
+                 if(completion) completion(notification, nil);
+             }
+             failure:^(NSURLSessionDataTask *task, NSError *error) {
+                 if(completion) completion(nil, error);
+             }];
+}
+
+
 @end
