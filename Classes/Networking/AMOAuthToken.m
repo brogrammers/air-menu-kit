@@ -91,6 +91,31 @@
             AMOAuthScopeCreateStaffMembers;
 }
 
++(NSArray *)stringsFromOptions:(AMOAuthScope)scope
+{
+    NSMutableArray *scopesArray = [NSMutableArray array];
+    [[self numberToScopesMapping] eachKey:^(NSNumber *value) {
+        AMOAuthScope option = [value unsignedIntegerValue];
+        if(option & scope)
+        {
+            [scopesArray addObject:[self numberToScopesMapping][@(option)]];
+        }
+    }];
+    return scopesArray;
+}
+
++(NSString *)stringFromOption:(AMOAuthScope)scope
+{
+    NSArray *scopeStrings = [self stringsFromOptions:scope];
+    NSMutableString *string = [@"" mutableCopy];
+    [scopeStrings each:^(NSString *object) {
+        [string appendString:object];
+        [string appendString:@" "];
+    }];
+    [string deleteCharactersInRange:NSMakeRange(string.length - 1, 1)];
+    return string;
+}
+
 +(NSDictionary *)JSONKeyPathsByPropertyKey
 {
     return @{@"token" : @"token",

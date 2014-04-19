@@ -24,19 +24,25 @@ typedef void (^UserNotificationsCompletion)(NSArray *notifications, NSError *err
                                    password:(NSString *)password
                                  completion:(UserCompletion)completion;
 
+
 /*
  Current user
  */
 
 -(NSURLSessionDataTask *)findCurrentUser:(UserCompletion)completion;
 
--(NSURLSessionDataTask *)findDevicesOfCurrentUser:(UserDevicesCompletion)completiom;
+-(NSURLSessionDataTask *)updateCurrentUserWithNewName:(NSString *)name
+                                          newPassword:(NSString *)password
+                                       newPhoneNumber:(NSString *)phoneNumber
+                                           completion:(UserCompletion)completion;
+
+-(NSURLSessionDataTask *)findDevicesOfCurrentUser:(UserDevicesCompletion)completion;
 
 -(NSURLSessionDataTask *)createDeviceOfCurrentUserWithName:(NSString *)name
                                                       uuid:(NSString *)uuid
                                                      token:(NSString *)token
                                                   platform:(NSString *)platform
-                                                completion:(UserDevicesCompletion)completion;
+                                                completion:(UserDeviceCompletion)completion;
 
 -(NSURLSessionDataTask *)findNotificationsOfCurrentUser:(UserNotificationsCompletion)completion;
 

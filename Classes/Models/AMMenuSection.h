@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <Mantle/Mantle.h>
+#import "AMStaffKind.h"
 
 @interface AMMenuSection : MTLModel <MTLJSONSerializing>
 @property (nonatomic, strong, readonly) NSNumber *identifier;
 @property (nonatomic, strong, readonly) NSString *name;
 @property (nonatomic, strong, readonly) NSString *details;
 @property (nonatomic, strong, readonly) NSArray *menuItems;
+@property (nonatomic, strong, readonly) AMStaffKind *staffKind;
 @end

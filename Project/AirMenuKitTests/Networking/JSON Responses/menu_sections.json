@@ -3,7 +3,21 @@
                 {
                       "id": 1,
                       "name": "Foods",
-                      "description": "main dishes"
+                      "description": "main dishes",
+                      "staff_kind" : {
+                        "id": 1,
+                        "name": "Manager"
+                      }
+                },
+                {
+                      "id": 2,
+                      "name": "Foods",
+                      "description": "main dishes",
+                      "staff_kind" : {
+                        "id": 1,
+                        "name": "Manager"
+                      }
                 }
             ]
 }
+

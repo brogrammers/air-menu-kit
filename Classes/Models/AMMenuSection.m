@@ -19,7 +19,8 @@
     return  @{@"identifier" : @"id",
               @"name" : @"name",
               @"details" : @"description",
-              @"menuItems" : @"menu_items"};
+              @"menuItems" : @"menu_items",
+              @"staffKind" : @"staff_kind"};
 }
 
 +(NSValueTransformer *)menuItemsJSONTransformer
@@ -27,4 +28,8 @@
     return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:[AMMenuItem class]];
 }
 
++(NSValueTransformer *)staffKindJSONTransformer
+{
+    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[AMStaffKind class]];
+}
 @end

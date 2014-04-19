@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Mantle/Mantle.h>
+#import "AMStaffKind.h"
 
 @interface AMMenuItem : MTLModel <MTLJSONSerializing>
 @property (nonatomic, strong, readonly) NSNumber *identifier;
@@ -15,4 +16,5 @@
 @property (nonatomic, strong, readonly) NSString *details;
 @property (nonatomic, strong, readonly) NSNumber *price;
 @property (nonatomic, strong, readonly) NSString *currency;
+@property (nonatomic, strong, readonly) AMStaffKind *staffKind;
 @end

@@ -40,21 +40,84 @@ describe(@"AMClient+MenuSection", ^{
            });
        });
        
+       context(@"on update menu section", ^{
+           __block NSURLSessionDataTask *task;
+           __block AMMenuSection *updatedSection;
+           
+           beforeAll(^{
+               
+               [TestToolBox stubRequestWithURL:[baseURL stringByAppendingString:@"menu_sections/1"]
+                                    httpMethod:@"PUT"
+                            nameOfResponseFile:@"menu_section.json"
+                                  responseCode:200];
+               
+               AMMenuSection *section = [[AMMenuSection alloc] initWithDictionary:@{@"identifier" : @1} error:nil];
+               task = [[AMClient sharedClient] updateMenuSection:section withNewName:@"aname" newDescription:@"adesc" newStaffKindIdentifier:@"1" completion:^(AMMenuSection *section, NSError *error) {
+                   updatedSection = section;
+               }];
+           });
+           
+           it(@"uses PUT method", ^{
+               [[task.originalRequest.HTTPMethod should] equal:@"PUT"];
+           });
+           
+           it(@"calls /menu_sections/1", ^{
+               [[task.originalRequest.URL.absoluteString should] equal:[baseURL stringByAppendingString:@"menu_sections/1"]];
+           });
+           
+           it(@"creates menu section object", ^{
+               [[expectFutureValue(updatedSection) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"menu_section.json"]];
+           });
+           
+           it(@"sends parameters in HTTP body", ^{
+               [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"name" : @"aname", @"description" : @"adesc", @"staff_kind_id" : @"1"}];
+           });
+       });
+       
+       context(@"on delete menu section", ^{
+           __block NSURLSessionDataTask *task;
+           __block AMMenuSection *deletedSection;
+           
+           beforeAll(^{
+               [TestToolBox stubRequestWithURL:[baseURL stringByAppendingString:@"menu_sections/1"]
+                                    httpMethod:@"DELETE"
+                            nameOfResponseFile:@"menu_section.json"
+                                  responseCode:200];
+               AMMenuSection *section = [[AMMenuSection alloc] initWithDictionary:@{@"identifier" : @1} error:nil];
+               task = [[AMClient sharedClient] deleteMenuSection:section completion:^(AMMenuSection *section, NSError *error) {
+                   deletedSection = section;
+               }];
+           });
+           
+           it(@"uses DELETE method", ^{
+               [[task.originalRequest.HTTPMethod should] equal:@"DELETE"];
+           });
+           
+           it(@"calls /menu_sections/1", ^{
+               [[task.originalRequest.URL.absoluteString should] equal:[baseURL stringByAppendingString:@"menu_sections/1"]];
+           });
+           
+           it(@"creates menu section object", ^{
+               [[expectFutureValue(deletedSection) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"menu_section.json"]];
+           });
+       });
+       
        context(@"on create menu item", ^{
            __block NSURLSessionDataTask *task;
-           __block AMMenuSection *section;
            __block AMMenuItem *newItem;
+           
             beforeAll(^{
                 [TestToolBox stubRequestWithURL:[baseURL stringByAppendingString:@"menu_sections/1/menu_items"]
                                      httpMethod:@"POST"
                              nameOfResponseFile:@"menu_item.json"
                                    responseCode:200];
-                section = [TestToolBox objectFromJSONFromFile:@"menu_section.json"];
+                AMMenuSection *section = [[AMMenuSection alloc] initWithDictionary:@{@"identifier" : @1} error:nil];
                 task = [[AMClient sharedClient] createItemOfSection:section
                                                            withName:@"name"
                                                         description:@"some item"
                                                               price:@1.0
                                                            currency:@"EUR"
+                                                        staffKindId:@"1"
                                                          completion:^(AMMenuItem *item, NSError *error) {
                                                              newItem = item;
                                                          }];
@@ -76,7 +139,8 @@ describe(@"AMClient+MenuSection", ^{
                 [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"name" : @"name",
                                                                                    @"description" : @"some item",
                                                                                    @"price" : @"1",
-                                                                                   @"currency" : @"EUR"}];
+                                                                                   @"currency" : @"EUR",
+                                                                                   @"staff_kind_id" : @"1"}];
             
         
             });
@@ -84,14 +148,13 @@ describe(@"AMClient+MenuSection", ^{
        
        context(@"on find items of section", ^{
            __block NSURLSessionDataTask *task;
-           __block AMMenuSection *section;
            __block NSArray *menuItems;
            beforeAll(^{
                [TestToolBox stubRequestWithURL:[baseURL stringByAppendingString:@"menu_sections/1/menu_items"]
                                     httpMethod:@"GET"
                             nameOfResponseFile:@"menu_items.json"
                                   responseCode:200];
-               section = [TestToolBox objectFromJSONFromFile:@"menu_section.json"];
+               AMMenuSection *section = [[AMMenuSection alloc] initWithDictionary:@{@"identifier" : @1} error:nil];
                task = [[AMClient sharedClient] findItemsOfSection:section completion:^(NSArray *items, NSError *error) {
                    menuItems = items;
                }];

@@ -1,7 +1,20 @@
 {
     "menu_section": {
-        "id": 1,
-        "name": "Foods",
-        "description": "main dishes"
+        "id": 3,
+        "name": "Some Menu Section",
+        "description": "blah",
+        "staff_kind": {
+            "id": 1,
+            "name": "Manager",
+            "accept_orders": null,
+            "accept_order_items": null,
+            "restaurant": {
+                "id": 1,
+                "name": "The Church"
+            },
+            "scopes": [
+            
+            ]
+        }
     }
 }

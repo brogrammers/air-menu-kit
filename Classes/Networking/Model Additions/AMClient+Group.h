@@ -27,6 +27,10 @@ typedef void (^GroupStaffMemberCompletion)(AMStaffMember *staffMember, NSError *
 -(NSURLSessionDataTask *)deleteGroup:(AMGroup *)group
                           completion:(GroupCompletion)completion;
 
+/*
+ Group > Staff Members
+ */
+
 -(NSURLSessionDataTask *)findStaffMembersOfGroup:(AMGroup *)group
                                       completion:(GroupStaffMembersCompletion)completion;
 

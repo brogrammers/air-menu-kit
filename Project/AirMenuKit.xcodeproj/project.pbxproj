@@ -23,6 +23,14 @@
 		710AD72618A026B900AA1038 /* AMMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 710AD72518A026B900AA1038 /* AMMenu.m */; };
 		710AD72918A026CC00AA1038 /* AMMenuSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 710AD72818A026CC00AA1038 /* AMMenuSection.m */; };
 		710AD72C18A026D600AA1038 /* AMMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 710AD72B18A026D600AA1038 /* AMMenuItem.m */; };
+		71115C4D190224EF000E87C4 /* AMClient+Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 71115C4C190224EF000E87C4 /* AMClient+Order.m */; };
+		71115C50190224F6000E87C4 /* AMClient+OrderItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 71115C4F190224F6000E87C4 /* AMClient+OrderItem.m */; };
+		71115C5319022516000E87C4 /* AMClient+StaffKind.m in Sources */ = {isa = PBXBuildFile; fileRef = 71115C5219022516000E87C4 /* AMClient+StaffKind.m */; };
+		71115C5619022521000E87C4 /* AMClient+StaffMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 71115C5519022521000E87C4 /* AMClient+StaffMember.m */; };
+		71115C5819022A3E000E87C4 /* AMClientOrderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71115C5719022A3E000E87C4 /* AMClientOrderTests.m */; };
+		71115C5A19022A4B000E87C4 /* AMClientOrderItemTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71115C5919022A4B000E87C4 /* AMClientOrderItemTests.m */; };
+		71115C5C19022A56000E87C4 /* AMClientStaffKindTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71115C5B19022A56000E87C4 /* AMClientStaffKindTests.m */; };
+		71115C5E19022A6C000E87C4 /* AMClientStaffMemberTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71115C5D19022A6C000E87C4 /* AMClientStaffMemberTests.m */; };
 		71173FA118A067F400DF24EB /* NSNumberFormatter+AirMenuNumberFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 71173FA018A067F400DF24EB /* NSNumberFormatter+AirMenuNumberFormat.m */; };
 		71173FA418A06AF300DF24EB /* AMAddressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71173FA318A06AF300DF24EB /* AMAddressTests.m */; };
 		71173FA618A17BAB00DF24EB /* AMMenuItemTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71173FA518A17BAB00DF24EB /* AMMenuItemTests.m */; };
@@ -181,6 +189,18 @@
 		710AD72818A026CC00AA1038 /* AMMenuSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMMenuSection.m; sourceTree = "<group>"; };
 		710AD72A18A026D600AA1038 /* AMMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMMenuItem.h; sourceTree = "<group>"; };
 		710AD72B18A026D600AA1038 /* AMMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMMenuItem.m; sourceTree = "<group>"; };
+		71115C4B190224EF000E87C4 /* AMClient+Order.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AMClient+Order.h"; sourceTree = "<group>"; };
+		71115C4C190224EF000E87C4 /* AMClient+Order.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AMClient+Order.m"; sourceTree = "<group>"; };
+		71115C4E190224F6000E87C4 /* AMClient+OrderItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AMClient+OrderItem.h"; sourceTree = "<group>"; };
+		71115C4F190224F6000E87C4 /* AMClient+OrderItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AMClient+OrderItem.m"; sourceTree = "<group>"; };
+		71115C5119022516000E87C4 /* AMClient+StaffKind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AMClient+StaffKind.h"; sourceTree = "<group>"; };
+		71115C5219022516000E87C4 /* AMClient+StaffKind.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AMClient+StaffKind.m"; sourceTree = "<group>"; };
+		71115C5419022521000E87C4 /* AMClient+StaffMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AMClient+StaffMember.h"; sourceTree = "<group>"; };
+		71115C5519022521000E87C4 /* AMClient+StaffMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AMClient+StaffMember.m"; sourceTree = "<group>"; };
+		71115C5719022A3E000E87C4 /* AMClientOrderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMClientOrderTests.m; sourceTree = "<group>"; };
+		71115C5919022A4B000E87C4 /* AMClientOrderItemTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMClientOrderItemTests.m; sourceTree = "<group>"; };
+		71115C5B19022A56000E87C4 /* AMClientStaffKindTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMClientStaffKindTests.m; sourceTree = "<group>"; };
+		71115C5D19022A6C000E87C4 /* AMClientStaffMemberTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMClientStaffMemberTests.m; sourceTree = "<group>"; };
 		71173F9F18A067F400DF24EB /* NSDateFormatter+AirMenuTimestamp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+AirMenuTimestamp.h"; sourceTree = "<group>"; };
 		71173FA018A067F400DF24EB /* NSNumberFormatter+AirMenuNumberFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumberFormatter+AirMenuNumberFormat.m"; sourceTree = "<group>"; };
 		71173FA318A06AF300DF24EB /* AMAddressTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMAddressTests.m; sourceTree = "<group>"; };
@@ -458,6 +478,14 @@
 				71496A9818CD40C800045AFD /* AMClient+User.m */,
 				71B2ABF818FDCA5300238DC1 /* AMClient+Group.h */,
 				71B2ABF918FDCA5300238DC1 /* AMClient+Group.m */,
+				71115C4B190224EF000E87C4 /* AMClient+Order.h */,
+				71115C4C190224EF000E87C4 /* AMClient+Order.m */,
+				71115C4E190224F6000E87C4 /* AMClient+OrderItem.h */,
+				71115C4F190224F6000E87C4 /* AMClient+OrderItem.m */,
+				71115C5119022516000E87C4 /* AMClient+StaffKind.h */,
+				71115C5219022516000E87C4 /* AMClient+StaffKind.m */,
+				71115C5419022521000E87C4 /* AMClient+StaffMember.h */,
+				71115C5519022521000E87C4 /* AMClient+StaffMember.m */,
 			);
 			path = "Model Additions";
 			sourceTree = "<group>";
@@ -498,6 +526,10 @@
 				716863C518B94FA1005D68B3 /* AMClientMenuItemTests.m */,
 				71496A9A18CD420500045AFD /* AMClientUserTests.m */,
 				71B2ABFB18FDDA2000238DC1 /* AMClientGroupTests.m */,
+				71115C5719022A3E000E87C4 /* AMClientOrderTests.m */,
+				71115C5919022A4B000E87C4 /* AMClientOrderItemTests.m */,
+				71115C5B19022A56000E87C4 /* AMClientStaffKindTests.m */,
+				71115C5D19022A6C000E87C4 /* AMClientStaffMemberTests.m */,
 			);
 			name = Netowrking;
 			path = Networking;
@@ -722,12 +754,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				71E3FD8B18AB10D200BD00C2 /* AMObjectBuilder.m in Sources */,
+				71115C5319022516000E87C4 /* AMClient+StaffKind.m in Sources */,
 				71173FA118A067F400DF24EB /* NSNumberFormatter+AirMenuNumberFormat.m in Sources */,
 				7119583218FADBBD0065BB3A /* AMNotification.m in Sources */,
+				71115C5619022521000E87C4 /* AMClient+StaffMember.m in Sources */,
 				716C573318A197C800D95228 /* NSDateFormatter+AirMenuTimestamp.m in Sources */,
 				71A0D3AB18AC33390070465E /* AMClient+MenuSection.m in Sources */,
 				710AD71D189FDF6400AA1038 /* AMClient.m in Sources */,
 				710AD72018A0268800AA1038 /* AMCompany.m in Sources */,
+				71115C4D190224EF000E87C4 /* AMClient+Order.m in Sources */,
 				7119583518FADBD90065BB3A /* AMGroup.m in Sources */,
 				7109CBFB18DA58D300D6003E /* NSDictionary+NullReplacement.m in Sources */,
 				7119582318FADAA30065BB3A /* AMOrder.m in Sources */,
@@ -748,6 +783,7 @@
 				71E3FD7E18AACB6F00BD00C2 /* AMOAuthApplication.m in Sources */,
 				71B2ABFA18FDCA5300238DC1 /* AMClient+Group.m in Sources */,
 				7174341A18AA76C200A83C61 /* AMOAuthToken.m in Sources */,
+				71115C50190224F6000E87C4 /* AMClient+OrderItem.m in Sources */,
 				71496A9018CD340E00045AFD /* AMUser.m in Sources */,
 				71A0D3AE18AC335E0070465E /* AMClient+MenuItem.m in Sources */,
 			);
@@ -760,6 +796,7 @@
 				7119583918FADC830065BB3A /* AMOrderTests.m in Sources */,
 				71710E6418A436C200A2390B /* AMRestaurantTests.m in Sources */,
 				7108ADA118B5846400A413DA /* AMClientRestaurantTests.m in Sources */,
+				71115C5E19022A6C000E87C4 /* AMClientStaffMemberTests.m in Sources */,
 				716863C018B9388D005D68B3 /* AMClientMenuSectionTests.m in Sources */,
 				71B2ABFC18FDDA2000238DC1 /* AMClientGroupTests.m in Sources */,
 				71496A9218CD342100045AFD /* AMUserTests.m in Sources */,
@@ -770,12 +807,15 @@
 				71E3FD8018AACB8D00BD00C2 /* AMOAuthApplicationTests.m in Sources */,
 				713F953218A0328400623CA8 /* AMCompanyTests.m in Sources */,
 				71600A1C18B5069F00DFB9B6 /* AMClientCompanyTests.m in Sources */,
+				71115C5A19022A4B000E87C4 /* AMClientOrderItemTests.m in Sources */,
 				71496A9918CD40C800045AFD /* AMClient+User.m in Sources */,
 				714C068818B538A9004EAD04 /* TestToolBox.m in Sources */,
 				716C573518A1A40D00D95228 /* AMMenuSectionTests.m in Sources */,
 				71173FA618A17BAB00DF24EB /* AMMenuItemTests.m in Sources */,
 				7119583718FADC780065BB3A /* AMGroupTests.m in Sources */,
 				7119583B18FADCA00065BB3A /* AMOrderItemTests.m in Sources */,
+				71115C5819022A3E000E87C4 /* AMClientOrderTests.m in Sources */,
+				71115C5C19022A56000E87C4 /* AMClientStaffKindTests.m in Sources */,
 				71E3FD7B18AA784700BD00C2 /* AMOAuthTokenTests.m in Sources */,
 				71496A9B18CD420500045AFD /* AMClientUserTests.m in Sources */,
 				7119584118FAE0060065BB3A /* AMDeviceTests.m in Sources */,

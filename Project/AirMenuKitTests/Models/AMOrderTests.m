@@ -20,7 +20,7 @@ describe(@"AMOrder", ^{
         beforeAll(^{
             order = [[AMOrder alloc] init];
             [order setValuesForKeysWithDictionary:@{@"identifier" : @1,
-                                                    @"state" : @"new",
+                                                    @"state" : @(AMOrderStateNew),
                                                     @"approvedAt" : [NSDate dateWithTimeIntervalSince1970:1],
                                                     @"servedAt" : [NSDate dateWithTimeIntervalSince1970:1],
                                                     @"cancelledAt" : [NSDate dateWithTimeIntervalSince1970:1],
@@ -42,7 +42,7 @@ describe(@"AMOrder", ^{
         });
         
         it(@"has state attribute", ^{
-            [[order.state should] equal:@"new"];
+            [[@(order.state) should] equal:@(AMOrderStateNew)];
         });
         
         it(@"has approved at attribute", ^{
@@ -137,6 +137,16 @@ describe(@"AMOrder", ^{
             NSValueTransformer *transformer = objc_msgSend([AMOrder class], NSSelectorFromString(@"servedAtJSONTransformer"));
             [[transformer shouldNot] beNil];
         });
+        
+        it(@"implements stateJSONTransformer", ^{
+            [[[AMOrder class] should] respondToSelector:NSSelectorFromString(@"stateJSONTransformer")];
+        });
+        
+        it(@"returns NSString transformer from stateJSONTransformer", ^{
+            NSValueTransformer *valueTransformer = objc_msgSend([AMOrder class], NSSelectorFromString(@"stateJSONTransformer"));
+            [[[valueTransformer transformedValue:@"new"] should] equal:@(AMOrderStateNew)];
+            [[[valueTransformer reverseTransformedValue:@(AMOrderStateNew)] should] equal:@"new"];
+        });
     });
     
     context(@"mapping", ^{
@@ -167,7 +177,7 @@ describe(@"AMOrder", ^{
         
         it(@"maps parsed order JSON to AMOrder object", ^{
             [[order.identifier should] equal:@1];
-            [[order.state should] equal:@"new"];
+            [[@(order.state) should] equal:@(AMOrderStateNew)];
             [[order.approvedAt should] equal:[[NSDateFormatter sharedAirMenuFormatter] dateFromString:@"2014-04-12T23:24:53Z"]];
             [[order.servedAt should] equal:[[NSDateFormatter sharedAirMenuFormatter] dateFromString:@"2014-04-12T23:24:53Z"]];
             [[order.cancelledAt should] equal:[[NSDateFormatter sharedAirMenuFormatter] dateFromString:@"2014-04-12T23:24:53Z"]];            
@@ -186,7 +196,7 @@ describe(@"AMOrder", ^{
         
         it(@"maps parsed order items JSON and hooks it up to AMMenu object", ^{
             [[[order.orderItems[0] identifier] should] equal:@1];
-            [[[(AMOrderItem *)order.orderItems[0] state] should] equal:@"new"];
+            [[@([(AMOrderItem *)order.orderItems[0] state]) should] equal:@(AMOrderItemStateNew)];
         });
     });
 });

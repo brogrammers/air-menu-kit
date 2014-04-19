@@ -74,22 +74,64 @@
               }];
 }
 
--(NSURLSessionDataTask *)findDevicesOfCurrentUser:(UserDevicesCompletion)completiom
+-(NSURLSessionDataTask *)updateCurrentUserWithNewName:(NSString *)name
+                                          newPassword:(NSString *)password
+                                       newPhoneNumber:(NSString *)phoneNumber
+                                           completion:(UserCompletion)completion
 {
-    return nil;
+    return [self POST:@"me"
+           parameters:@{@"name" : name, @"password" : password, @"phone" : phoneNumber }
+              success:^(NSURLSessionDataTask *task, id responseObject) {
+                  AMUser *user = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
+                  if(completion) completion(user, nil);
+              }
+              failure:^(NSURLSessionDataTask *task, NSError *error) {
+                  if(completion) completion(nil, error);
+              }];
+}
+
+-(NSURLSessionDataTask *)findDevicesOfCurrentUser:(UserDevicesCompletion)completion
+{
+    
+    return [self GET:@"me/devices"
+          parameters:nil
+             success:^(NSURLSessionDataTask *task, id responseObject) {
+                 NSArray *devices = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
+                 if(completion) completion(devices, nil);
+             }
+             failure:^(NSURLSessionDataTask *task, NSError *error) {
+                 if(completion) completion(nil, error);
+             }];
 }
 
 -(NSURLSessionDataTask *)createDeviceOfCurrentUserWithName:(NSString *)name
                                                       uuid:(NSString *)uuid
                                                      token:(NSString *)token
                                                   platform:(NSString *)platform
-                                                completion:(UserDevicesCompletion)completion
+                                                completion:(UserDeviceCompletion)completion
 {
-    return nil;
+    return [self POST:@"me/devices"
+           parameters:@{@"name" : name, @"uuid" : uuid, @"token" : token, @"platform" : platform}
+              success:^(NSURLSessionDataTask *task, id responseObject) {
+                  AMDevice *device = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
+                  if(completion) completion(device, nil);
+              }
+              failure:^(NSURLSessionDataTask *task, NSError *error) {
+                  if(completion) completion(nil, error);
+              }];
 }
 
 -(NSURLSessionDataTask *)findNotificationsOfCurrentUser:(UserNotificationsCompletion)completion
 {
-    return nil;
+    return [self GET:@"me/notifications"
+          parameters:nil
+             success:^(NSURLSessionDataTask *task, id responseObject) {
+                 NSArray *notifications = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
+                 if(completion) completion(notifications, nil);
+
+             }
+             failure:^(NSURLSessionDataTask *task, NSError *error) {
+                 if(completion) completion(nil, error);
+             }];
 }
 @end

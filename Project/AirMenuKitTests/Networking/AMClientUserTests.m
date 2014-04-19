@@ -151,17 +151,132 @@ describe(@"AMClient+User", ^{
            });
        });
        
+       context(@"on update current user", ^{
+           __block NSURLSessionDataTask *task;
+           __block AMUser *updatedMe;
+           
+           beforeAll(^{
+               [TestToolBox stubRequestWithURL:[baseURL stringByAppendingString:@"me"]
+                                    httpMethod:@"POST"
+                            nameOfResponseFile:@"user.json"
+                                  responseCode:200];
+               task = [[AMClient sharedClient] updateCurrentUserWithNewName:@"aname" newPassword:@"apass" newPhoneNumber:@"12345" completion:^(AMUser *user, NSError *error) {
+                   updatedMe = user;
+               }];
+           });
+           
+           it(@"uses POST method", ^{
+               [[task.originalRequest.HTTPMethod should] equal:@"POST"];
+           });
+           
+           it(@"calls /me", ^{
+               [[task.originalRequest.URL.absoluteString should] equal:[baseURL stringByAppendingString:@"me"]];
+           });
+           
+           it(@"creates user object", ^{
+               [[expectFutureValue(updatedMe) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"user.json"]];
+           });
+           
+           it(@"sends parameters in HTTP body", ^{
+               [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"name" : @"aname",
+                                                                                  @"password" : @"apass",
+                                                                                  @"phone" : @"12345"}];
+           });
+       });
+       
        context(@"on find davice of current user", ^{
+           __block NSURLSessionDataTask *task;
+           __block NSArray *foundDevices;
+           beforeAll(^{
+               
+               [TestToolBox stubRequestWithURL:[baseURL stringByAppendingString:@"me/devices"]
+                                    httpMethod:@"GET"
+                            nameOfResponseFile:@"devices.json"
+                                  responseCode:200];
+               
+               task = [[AMClient sharedClient] findDevicesOfCurrentUser:^(NSArray *devices, NSError *error) {
+                   foundDevices = devices;
+               }];
+           });
            
+           it(@"uses GET method", ^{
+               [[task.originalRequest.HTTPMethod should] equal:@"GET"];
+           });
            
+           it(@"calls /me/devices", ^{
+               [[task.originalRequest.URL.absoluteString should] equal:[baseURL stringByAppendingString:@"me/devices"]];
+           });
+           
+           it(@"create array of devices", ^{
+               [[expectFutureValue(foundDevices) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"devices.json"]];
+           });
        });
        
        context(@"on create device of current user", ^{
+           __block NSURLSessionDataTask *task;
+           __block AMDevice *createdDevice;
            
+           beforeAll(^{
+               [TestToolBox stubRequestWithURL:[baseURL stringByAppendingString:@"me/devices"]
+                                    httpMethod:@"POST"
+                            nameOfResponseFile:@"device.json"
+                                  responseCode:200];
+               
+               task = [[AMClient sharedClient] createDeviceOfCurrentUserWithName:@"adevice"
+                                                                            uuid:@"auuid"
+                                                                           token:@"atoken"
+                                                                        platform:@"aplatform"
+                                                                      completion:^(AMDevice *device, NSError *error) {
+                                                                          createdDevice = device;
+                                                                      }];
+           });
+           
+           it(@"uses POST method", ^{
+               [[task.originalRequest.HTTPMethod should] equal:@"POST"];
+           });
+           
+           it(@"calls /me/devices", ^{
+               [[task.originalRequest.URL.absoluteString should] equal:[baseURL stringByAppendingString:@"me/devices"]];
+           });
+           
+           it(@"creates device object", ^{
+               [[expectFutureValue(createdDevice) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"device.json"]];
+           });
+           
+           it(@"sends parameters in HTTP body", ^{
+               [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"name" : @"adevice",
+                                                                                  @"uuid" : @"auuid",
+                                                                                  @"token" : @"atoken",
+                                                                                  @"platform" : @"aplatform"}];
+           });
        });
        
        context(@"on find notifiations of currrent user", ^{
+           __block NSURLSessionDataTask *task;
+           __block NSArray *foundNotifications;
            
+           beforeAll(^{
+               [TestToolBox stubRequestWithURL:[baseURL stringByAppendingString:@"me/notifications"]
+                                    httpMethod:@"GET"
+                            nameOfResponseFile:@"notifications.json"
+                                  responseCode:200];
+               
+               task = [[AMClient sharedClient] findNotificationsOfCurrentUser:^(NSArray *notifications, NSError *error) {
+                   foundNotifications = notifications;
+               }];
+           });
+           
+           it(@"uses GET method", ^{
+               [[task.originalRequest.HTTPMethod should] equal:@"GET"];
+           });
+           
+           it(@"calls /me/notifications", ^{
+               [[task.originalRequest.URL.absoluteString should] equal:[baseURL stringByAppendingString:@"me/notifications"]];
+           });
+           
+           it(@"creates array of notifications object", ^{
+               [[expectFutureValue(foundNotifications) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"notifications.json"]];
+           });
        });
    });
 });

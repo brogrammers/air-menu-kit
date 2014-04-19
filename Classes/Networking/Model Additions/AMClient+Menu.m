@@ -26,15 +26,51 @@
              }];
 }
 
+-(NSURLSessionDataTask *)deleteMenu:(AMMenu *)menu completion:(MenuCompletion)completion
+{
+    NSAssert(menu.identifier, @"menu identifier cannot be nil");
+    NSString *urlString = [@"menus/" stringByAppendingString:menu.identifier.description];
+    return [self DELETE:urlString
+             parameters:nil
+                success:^(NSURLSessionDataTask *task, id responseObject) {
+                    AMMenu *menu = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
+                    if(completion) completion(menu,nil);
+                }
+                failure:^(NSURLSessionDataTask *task, NSError *error) {
+                    if(completion) completion(nil, error);
+                }];
+}
+
+-(NSURLSessionDataTask *)updateMenu:(AMMenu *)menu newActive:(BOOL)isActive completion:(MenuCompletion)completion;
+{
+    NSAssert(menu.identifier, @"menu identifier cannot be nil");
+    NSString *urlString = [@"menus/" stringByAppendingString:menu.identifier.description];
+    return [self PUT:urlString
+          parameters:@{@"active" : @(isActive)}
+             success:^(NSURLSessionDataTask *task, id responseObject) {
+                 AMMenu *menu = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
+                 if(completion) completion(menu,nil);
+             }
+             failure:^(NSURLSessionDataTask *task, NSError *error) {
+                 if(completion) completion(nil, error);
+
+             }];
+}
+
+/*
+ Menu > Menu Sections
+ */
+
 -(NSURLSessionDataTask *)createSectionOfMenu:(AMMenu *)menu
                                     withName:(NSString *)name
                                  description:(NSString *)description
+                                 staffKindId:(NSString *)staffKindIdentifier
                                   completion:(MenuSectionCompletion)completion
 {
     NSAssert(menu.identifier, @"menus identifier cannot be nil");
     NSString *urlString = [@"menus/" stringByAppendingFormat:@"%@/%@", menu.identifier, @"menu_sections"];
     return [self POST:urlString
-           parameters:@{@"name" : name, @"description" : description }
+           parameters:@{@"name" : name, @"description" : description, @"staff_kind_id" : staffKindIdentifier }
               success:^(NSURLSessionDataTask *task, id responseObject) {
                   AMMenuSection *menuSection = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
                   if(completion) completion(menuSection, nil);

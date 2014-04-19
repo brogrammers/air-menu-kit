@@ -23,7 +23,8 @@ describe(@"AMMenuItem", ^{
                                                        @"name" : @"a name",
                                                        @"details" : @"a description",
                                                        @"price" : @(10),
-                                                       @"currency" : @"EUR"}];
+                                                       @"currency" : @"EUR",
+                                                       @"staffKind" : [AMStaffKind new]}];
         });
         
         
@@ -54,6 +55,10 @@ describe(@"AMMenuItem", ^{
         it(@"has currency property", ^{
             [[menuItem.currency should] equal:@"EUR"];
         });
+        
+        it(@"has staff kind property", ^{
+            [[menuItem.staffKind should] equal:[AMStaffKind new]];
+        });
     });
     
     context(@"class", ^{
@@ -63,24 +68,46 @@ describe(@"AMMenuItem", ^{
                                               @"name" : @"name",
                                               @"details" : @"description",
                                               @"price" : @"price",
-                                              @"currency" : @"currency"};
+                                              @"currency" : @"currency",
+                                              @"staffKind" : @"staff_kind"};
             [[mapping should] equal:expectedMapping];
+        });
+        
+        it(@"implement staffKindJSONtransformer", ^{
+            [[[AMMenuItem class] should] respondToSelector:NSSelectorFromString(@"staffKindJSONTransformer")];
+        });
+        
+        it(@"returns dictionary staff kind transformer from staffKindJSONTransformer", ^{
+            NSValueTransformer *transformer = objc_msgSend([AMMenuItem class], NSSelectorFromString(@"staffKindJSONTransformer"));
+            [[transformer shouldNot] beNil];
         });
     });
     
     context(@"mapping", ^{
+        __block NSDictionary *parsedMenuItemJson;
+        __block NSDictionary *parsedStaffKindJSON;
+        __block AMMenuItem *item;
+        beforeAll(^{
+            parsedStaffKindJSON = @{@"id" : @1, @"name" : @"aname"};
+            parsedMenuItemJson = @{@"id" : @1,
+                                    @"name" : @"Large fries",
+                                    @"description" : @"Tasty home made fries",
+                                    @"price" : @1.28,
+                                    @"currency" : @"EUR",
+                                    @"staff_kind" : parsedStaffKindJSON};
+            item = [MTLJSONAdapter modelOfClass:[AMMenuItem class] fromJSONDictionary:parsedMenuItemJson error:nil];
+        });
         it(@"maps parsed menu item JSON to AMMenuItem object", ^{
-            NSDictionary *parsedMenuItemJson = @{@"id" : @1,
-                                                 @"name" : @"Large fries",
-                                                 @"description" : @"Tasty home made fries",
-                                                 @"price" : @1.28,
-                                                 @"currency" : @"EUR"};
-            AMMenuItem *menuItem = [MTLJSONAdapter modelOfClass:[AMMenuItem class] fromJSONDictionary:parsedMenuItemJson error:nil];
-            [[menuItem.identifier should] equal:@1];
-            [[menuItem.name should] equal:@"Large fries"];
-            [[menuItem.details should] equal:@"Tasty home made fries"];
-            [[menuItem.price should] equal:@(1.28)];
-            [[menuItem.currency should] equal:@"EUR"];
+            [[item.identifier should] equal:@1];
+            [[item.name should] equal:@"Large fries"];
+            [[item.details should] equal:@"Tasty home made fries"];
+            [[item.price should] equal:@(1.28)];
+            [[item.currency should] equal:@"EUR"];
+        });
+        
+        it(@"maps parsed staff kind ", ^{
+            [[item.staffKind.identifier should] equal:@1];
+            [[item.staffKind.name should] equal:@"aname"];
         });
     });
 });

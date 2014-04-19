@@ -25,7 +25,8 @@ describe(@"AMMenuSection", ^{
             [section setValuesForKeysWithDictionary:@{@"identifier" : @1,
                                                       @"name" : @"a name",
                                                       @"details" : @"a description",
-                                                      @"menuItems" : @[[[AMMenuItem alloc] init],[[AMMenuItem alloc] init]]}];
+                                                      @"menuItems" : @[[[AMMenuItem alloc] init],[[AMMenuItem alloc] init]],
+                                                      @"staffKind" : [AMStaffKind new]}];
         });
         
         it(@"subclasses MTLModel", ^{
@@ -52,6 +53,10 @@ describe(@"AMMenuSection", ^{
             [[section.menuItems should] equal:@[[[AMMenuItem alloc] init],[[AMMenuItem alloc] init]]];
         });
         
+        it(@"has staff kind attribute", ^{
+            [[section.staffKind should] equal:[AMStaffKind new]];
+        });
+        
     });
     
     context(@"class", ^{
@@ -60,7 +65,8 @@ describe(@"AMMenuSection", ^{
             NSDictionary *expectedMapping = @{@"identifier" : @"id",
                                               @"name" : @"name",
                                               @"details" : @"description",
-                                              @"menuItems" : @"menu_items"};
+                                              @"menuItems" : @"menu_items",
+                                              @"staffKind" : @"staff_kind"};
             [[mapping should] equal:expectedMapping];
         });
         
@@ -72,14 +78,25 @@ describe(@"AMMenuSection", ^{
             NSValueTransformer *transformer = objc_msgSend([AMMenuSection class], NSSelectorFromString(@"menuItemsJSONTransformer"));
             [[transformer shouldNot] beNil];
         });
+        
+        it(@"responds to staffKindJSONTransformer", ^{
+            [[[AMMenuSection class] should] respondToSelector:NSSelectorFromString(@"staffKindJSONTransformer")];
+        });
+        
+        it(@"returns dictionary staff kind transformer from staffKindJSONTransformer", ^{
+            NSValueTransformer *transformer = objc_msgSend([AMMenuSection class], NSSelectorFromString(@"staffKindJSONTransformer"));
+            [[transformer shouldNot] beNil];
+        });
     });
     
     context(@"mapping", ^{
         __block AMMenuSection *section;
         __block NSDictionary *parsedMenuSectionJSON;
+        __block NSDictionary *parsedStaffKindJSON;
         __block NSArray *parsedMenuItemsJSON;
         
         beforeAll(^{
+            parsedStaffKindJSON = @{@"id" : @1, @"name" : @"aname"};
             
             NSDictionary *parsedMenuItemJSON = @{@"id" : @1,
                                                  @"name" : @"Large fries",
@@ -90,7 +107,8 @@ describe(@"AMMenuSection", ^{
             parsedMenuSectionJSON = @{@"id" : @1,
                                       @"name" : @"Main Courses",
                                       @"description" : @"Tasty & Cheap main courses",
-                                      @"menu_items" : parsedMenuItemsJSON};
+                                      @"menu_items" : parsedMenuItemsJSON,
+                                      @"staff_kind" : parsedStaffKindJSON};
             section = [MTLJSONAdapter modelOfClass:[AMMenuSection class] fromJSONDictionary:parsedMenuSectionJSON error:nil];
         });
         
@@ -110,6 +128,11 @@ describe(@"AMMenuSection", ^{
                 [[[item price] should] equal:@(1.28)];
                 [[[item currency] should] equal:@"EUR"];
             }
+        });
+        
+        it(@"maps parsed staff kind ", ^{
+            [[section.staffKind.identifier should] equal:@1];
+            [[section.staffKind.name should] equal:@"aname"];
         });
     });
 });

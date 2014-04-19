@@ -27,17 +27,58 @@
              }];
 }
 
+-(NSURLSessionDataTask *)updateMenuSection:(AMMenuSection *)section
+                               withNewName:(NSString *)name
+                            newDescription:(NSString *)description
+                    newStaffKindIdentifier:(NSString *)identifier
+                                completion:(MenuSectionCompletion)completion
+{
+    NSAssert(identifier, @"identifier cannot be nil");
+    NSString *urlString = [@"menu_sections/" stringByAppendingString:section.identifier.description];
+    return [self PUT:urlString
+          parameters:@{@"name" : name, @"description" : description, @"staff_kind_id" : identifier}
+             success:^(NSURLSessionDataTask *task, id responseObject) {
+                 AMMenuSection *section = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
+                 if(completion) completion(section, nil);
+             }
+             failure:^(NSURLSessionDataTask *task, NSError *error) {
+                 if(completion) completion(nil, error);
+             }];
+}
+
+-(NSURLSessionDataTask *)deleteMenuSection:(AMMenuSection *)section
+                                completion:(MenuSectionCompletion)completion
+{
+    NSAssert(section.identifier, @"identifier cannot be nil");
+    NSString *urlString = [@"menu_sections/" stringByAppendingString:section.identifier.description];
+    return [self DELETE:urlString
+             parameters:nil
+                success:^(NSURLSessionDataTask *task, id responseObject) {
+                    AMMenuSection *section = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
+                    if(completion) completion(section, nil);
+                }
+                failure:^(NSURLSessionDataTask *task, NSError *error) {
+                    if(completion) completion(nil, error);
+                }];
+}
+
+/*
+ Menu Section > Menu Item
+ */
+
+
 -(NSURLSessionDataTask *)createItemOfSection:(AMMenuSection *)section
                                     withName:(NSString *)name
                                  description:(NSString *)description
                                        price:(NSNumber *)price
                                     currency:(NSString *)currency
-                                  completion:(MenuSectionItemCompletion)completion
+                                 staffKindId:(NSString *)staffKindIdentifier
+                                  completion:(MenuSectionItemCompletion)completion;
 {
     NSAssert(section.identifier, @"sections identifier cannot be nil");
     NSString *urlString = [@"menu_sections/" stringByAppendingFormat:@"%@/%@", section.identifier, @"menu_items"];
     return [self POST:urlString
-           parameters:@{@"name" : name, @"description" : description, @"price" : price, @"currency" : currency}
+           parameters:@{@"name" : name, @"description" : description, @"price" : price, @"currency" : currency, @"staff_kind_id" : staffKindIdentifier}
               success:^(NSURLSessionDataTask *task, id responseObject) {
                   AMMenuItem *menuItem = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
                   if(completion) completion(menuItem, nil);

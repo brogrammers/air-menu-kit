@@ -79,4 +79,14 @@
 {
     return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[AMMenuItem class]];
 }
+
++(NSValueTransformer *)stateJSONTransformer
+{
+    return [NSValueTransformer mtl_valueMappingTransformerWithDictionary:@{@"new" : @(AMOrderItemStateNew),
+                                                                           @"approved" : @(AMOrderItemStateApproved),
+                                                                           @"declined" : @(AMOrderItemStateDeclined),
+                                                                           @"start_prepare" : @(AMOrderItemStateBeingPrepared),
+                                                                           @"end_prepare" : @(AMOrderItemStatePrepared),
+                                                                           @"served" : @(AMOrderItemStateServed) }];
+}
 @end

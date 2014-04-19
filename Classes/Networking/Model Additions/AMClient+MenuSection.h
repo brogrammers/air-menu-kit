@@ -19,11 +19,25 @@ typedef void (^MenuSectionItemsCompletion) (NSArray *items, NSError *error);
 -(NSURLSessionDataTask *)findMenuSectionWithIdentifier:(NSString *)identifier
                                             completion:(MenuSectionCompletion)completion;
 
+-(NSURLSessionDataTask *)updateMenuSection:(AMMenuSection *)section
+                               withNewName:(NSString *)name
+                            newDescription:(NSString *)description
+                    newStaffKindIdentifier:(NSString *)identifier
+                                completion:(MenuSectionCompletion)completion;
+
+-(NSURLSessionDataTask *)deleteMenuSection:(AMMenuSection *)section
+                                completion:(MenuSectionCompletion)completion;
+
+/*
+ Menu Section > Menu Items
+ */
+
 -(NSURLSessionDataTask *)createItemOfSection:(AMMenuSection *)section
                                     withName:(NSString *)name
                                  description:(NSString *)description
                                        price:(NSNumber *)price
                                     currency:(NSString *)currency
+                                 staffKindId:(NSString *)staffKindIdentifier
                                   completion:(MenuSectionItemCompletion)completion;
 
 -(NSURLSessionDataTask *)findItemsOfSection:(AMMenuSection *)section

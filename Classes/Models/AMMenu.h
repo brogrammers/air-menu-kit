@@ -10,7 +10,7 @@
 #import <Mantle/Mantle.h>
 
 @interface AMMenu : MTLModel <MTLJSONSerializing>
-@property (nonatomic, strong, readonly) NSString *identifier;
+@property (nonatomic, strong, readonly) NSNumber *identifier;
 @property (nonatomic, strong, readonly) NSString *name;
 @property (nonatomic, strong, readonly) NSArray *menuSections;
 @end

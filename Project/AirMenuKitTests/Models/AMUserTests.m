@@ -180,7 +180,7 @@ describe(@"AMUser", ^{
         it(@"it maps parsed order JSON and hooks it up", ^{
             AMOrder *order = user.currentOrders[0];
             [[order.identifier should] equal:@1];
-            [[order.state should] equal:@"new"];
+            [[@(order.state) should] equal:@(AMOrderStateNew)];
         });
     });
 });

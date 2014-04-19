@@ -51,6 +51,8 @@ typedef NS_ENUM(NSUInteger, AMOAuthGrantType) {
 @property (nonatomic, strong, readonly) NSArray *scopes;
 +(NSDictionary *)numberToScopesMapping;
 +(NSDictionary *)scopesToNumberMapping;
++(NSArray *)stringsFromOptions:(AMOAuthScope)scope;
++(NSString *)stringFromOption:(AMOAuthScope)scope;
 +(AMOAuthScope)allScopes;
 @end
 

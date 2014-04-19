@@ -10,9 +10,16 @@
 #import "AMRestaurant.h"
 #import "AMUser.h"
 
+typedef enum AMOrderState { AMOrderStateNew,
+                            AMOrderStateOpen,
+                            AMOrderStateApproved,
+                            AMOrderStateCancelled,
+                            AMOrderStateServed,
+                            AMOrderStatePaid  } AMOrderState;
+
 @interface AMOrder : MTLModel <MTLJSONSerializing>
 @property (nonatomic, readonly, strong) NSNumber *identifier;
-@property (nonatomic, readonly, strong) NSString *state;
+@property (nonatomic, readonly) AMOrderState state;
 @property (nonatomic, readonly, strong) NSDate *approvedAt;
 @property (nonatomic, readonly, strong) NSDate *servedAt;
 @property (nonatomic, readonly, strong) NSDate *cancelledAt;

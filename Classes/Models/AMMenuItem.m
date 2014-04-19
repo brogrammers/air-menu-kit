@@ -20,16 +20,13 @@
              @"name" : @"name",
              @"details" : @"description",
              @"price" : @"price",
-             @"currency" : @"currency"};
+             @"currency" : @"currency",
+             @"staffKind" : @"staff_kind"};
 }
 
-+(NSValueTransformer *)updatedAtJSONTransformer
++(NSValueTransformer *)staffKindJSONTransformer
 {
-    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSString *str) {
-        return [[NSDateFormatter sharedAirMenuFormatter] dateFromString:str];
-    } reverseBlock:^(NSDate *date) {
-        return [[NSDateFormatter sharedAirMenuFormatter] stringFromDate:date];
-    }];
+    return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[AMStaffKind class]];
 }
 
 @end

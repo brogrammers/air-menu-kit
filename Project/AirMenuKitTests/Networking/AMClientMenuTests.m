@@ -44,6 +44,67 @@ describe(@"AMClient+Menu", ^{
             });
         });
         
+        context(@"on delete menu", ^{
+            __block NSURLSessionDataTask *task;
+            __block AMMenu *deletedMenu;
+            
+            beforeAll(^{
+                [TestToolBox stubRequestWithURL:[baseURL stringByAppendingString:@"menus/1"]
+                                     httpMethod:@"DELETE"
+                             nameOfResponseFile:@"menu.json"
+                                   responseCode:200];
+                AMMenu *menu = [[AMMenu alloc] initWithDictionary:@{@"identifier" : @1} error:nil];
+                task = [[AMClient sharedClient] deleteMenu:menu completion:^(AMMenu *menu, NSError *error) {
+                    deletedMenu = menu;
+                }];
+            });
+            
+            it(@"uses DELETE method", ^{
+                [[task.originalRequest.HTTPMethod should] equal:@"DELETE"];
+            });
+            
+            it(@"calls /menus/1", ^{
+                [[task.originalRequest.URL.absoluteString should] equal:[baseURL stringByAppendingString:@"menus/1"]];
+            });
+            
+            it(@"creates menu object", ^{
+                [[expectFutureValue(deletedMenu) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"menu.json"]];
+            });
+        });
+        
+        
+        context(@"on update menu", ^{
+            __block NSURLSessionDataTask *task;
+            __block AMMenu *updatedMenu;
+            
+            beforeAll(^{
+                [TestToolBox stubRequestWithURL:[baseURL stringByAppendingString:@"menus/1"]
+                                     httpMethod:@"PUT"
+                             nameOfResponseFile:@"menu.json"
+                                   responseCode:200];
+                AMMenu *menu = [[AMMenu alloc] initWithDictionary:@{@"identifier" : @1} error:nil];
+                task = [[AMClient sharedClient] updateMenu:menu newActive:YES completion:^(AMMenu *menu, NSError *error) {
+                    updatedMenu = menu;
+                }];
+            });
+            
+            it(@"uses PUT method", ^{
+                [[task.originalRequest.HTTPMethod should] equal:@"PUT"];
+            });
+            
+            it(@"calls /menus/1", ^{
+                [[task.originalRequest.URL.absoluteString should] equal:[baseURL stringByAppendingString:@"menus/1"]];
+            });
+            
+            it(@"creates menu object", ^{
+                [[expectFutureValue(updatedMenu) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"menu.json"]];
+            });
+            
+            it(@"sends parameters in HTTP body", ^{
+                [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"active" : @"1"}];
+            });
+        });
+        
         context(@"on create menu section", ^{
             
             __block NSURLSessionDataTask *task;
@@ -59,6 +120,7 @@ describe(@"AMClient+Menu", ^{
                 task = [[AMClient sharedClient] createSectionOfMenu:menu
                                                            withName:@"another section"
                                                         description:@"blah"
+                                                        staffKindId:@"1"
                                                          completion:^(AMMenuSection *section, NSError *error) {
                                                              newMenuSection = section;
                                                          }];
@@ -78,7 +140,8 @@ describe(@"AMClient+Menu", ^{
             
             it(@"sends parameters in HTTP body", ^{
                 [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"name" : @"another section",
-                                                                                   @"description" : @"blah"}];
+                                                                                   @"description" : @"blah",
+                                                                                   @"staff_kind_id" : @"1"}];
             });
         });
         

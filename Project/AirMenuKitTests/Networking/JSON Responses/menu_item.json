@@ -1,9 +1,20 @@
 {
     "menu_item": {
-        "id": 1,
-        "name": "blah",
+        "id": 3,
+        "name": "Some Menu Section",
         "description": "blah",
-        "price": 4.32,
-        "currency": "EUR"
+        "staff_kind": {
+            "id": 1,
+            "name": "Manager",
+            "accept_orders": null,
+            "accept_order_items": null,
+            "restaurant": {
+                "id": 1,
+                "name": "The Church"
+            },
+            "scopes": [
+            
+            ]
+        }
     }
 }

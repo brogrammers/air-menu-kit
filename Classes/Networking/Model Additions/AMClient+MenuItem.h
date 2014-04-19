@@ -16,4 +16,15 @@ typedef void (^MenuItemCompletion)(AMMenuItem *item, NSError *error);
 -(NSURLSessionDataTask *)findMenuItemWithIdentifier:(NSString *)identifier
                                          completion:(MenuItemCompletion)completion;
 
+-(NSURLSessionDataTask *)updateMenuItem:(AMMenuItem *)item
+                            withNewName:(NSString *)name
+                         newDescription:(NSString *)description
+                               newPrice:(NSNumber *)price
+                            newCurrency:(NSString *)currency
+                         newStaffKindId:(NSString *)staffKindIdentifier
+                             completion:(MenuItemCompletion)completion;
+
+-(NSURLSessionDataTask *)deleteMenuItem:(AMMenuItem *)menuItem
+                             completion:(MenuItemCompletion)completion;
+
 @end

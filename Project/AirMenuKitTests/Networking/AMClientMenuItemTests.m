@@ -41,6 +41,67 @@ describe(@"AMClient+AMMenuItem", ^{
            });
        });
     });
+    
+    context(@"on update menu item", ^{
+        __block NSURLSessionDataTask *task;
+        __block AMMenuItem *updatedItem;
+        beforeAll(^{
+            [TestToolBox stubRequestWithURL:[baseURL stringByAppendingString:@"menu_items/1"]
+                                 httpMethod:@"PUT"
+                         nameOfResponseFile:@"menu_item.json"
+                               responseCode:200];
+            
+            AMMenuItem *menuItem = [[AMMenuItem alloc] initWithDictionary:@{@"identifier" : @1} error:nil];
+            task = [[AMClient sharedClient] updateMenuItem:menuItem withNewName:@"newname" newDescription:@"newdesc" newPrice:@2.5 newCurrency:@"newcurr" newStaffKindId:@"1" completion:^(AMMenuItem *item, NSError *error) {
+                updatedItem = item;
+            }];
+        });
+        
+        it(@"uses PUT method", ^{
+            [[task.originalRequest.HTTPMethod should] equal:@"PUT"];
+        });
+        
+        it(@"calls /menu_items/1", ^{
+            [[task.originalRequest.URL.absoluteString should] equal:[baseURL stringByAppendingString:@"menu_items/1"]];
+        });
+        
+        it(@"creates menu item object", ^{
+            [[expectFutureValue(updatedItem) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"menu_item.json"]];
+        });
+        
+        it(@"sends parameters in HTTP body", ^{
+            [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"name" : @"newname", @"description" : @"newdesc", @"price" : @"2.5", @"currency" : @"newcurr", @"staff_kind_id" : @"1"}];
+        });
+    });
+    
+    context(@"on delete menu item", ^{
+        __block NSURLSessionDataTask *task;
+        __block AMMenuItem *deletedItem;
+        
+        beforeAll(^{
+            [TestToolBox stubRequestWithURL:[baseURL stringByAppendingString:@"menu_items/1"]
+                                 httpMethod:@"DELETE"
+                         nameOfResponseFile:@"menu_item.json"
+                               responseCode:200];
+            
+            AMMenuItem *menuItem = [[AMMenuItem alloc] initWithDictionary:@{@"identifier" : @1} error:nil];
+            task = [[AMClient sharedClient] deleteMenuItem:menuItem completion:^(AMMenuItem *item, NSError *error) {
+                deletedItem = item;
+            }];
+        });
+        
+        it(@"uses DELETE method", ^{
+            [[task.originalRequest.HTTPMethod should] equal:@"DELETE"];
+        });
+        
+        it(@"calls /menu_items/1", ^{
+            [[task.originalRequest.URL.absoluteString should] equal:[baseURL stringByAppendingString:@"menu_items/1"]];
+        });
+        
+        it(@"crates menu item object", ^{
+            [[expectFutureValue(deletedItem) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"menu_item.json"]];
+        });
+    });
 });
 
 SPEC_END

@@ -64,5 +64,14 @@
         return [[NSDateFormatter sharedAirMenuFormatter] stringFromDate:date];
     }];
 }
++(NSValueTransformer *)stateJSONTransformer
+{
+    return [NSValueTransformer mtl_valueMappingTransformerWithDictionary:@{@"new" : @(AMOrderStateNew),
+                                                                           @"open" : @(AMOrderStateOpen),
+                                                                           @"approved" : @(AMOrderStateApproved),
+                                                                           @"cancelled" : @(AMOrderStateCancelled),
+                                                                           @"served" : @(AMOrderStateServed),
+                                                                           @"paid" : @(AMOrderStatePaid)}];
+}
 
 @end
