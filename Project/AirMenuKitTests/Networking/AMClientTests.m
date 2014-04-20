@@ -27,7 +27,7 @@ describe(@"AMMenuClient", ^{
             
             beforeAll(^{
                 
-              [TestToolBox stubRequestWithURL:@"https://edge.air-menu.com/api/oauth2/access_tokens"
+              [TestToolBox stubRequestWithURL:@"https://edge-api.air-menu.com/api/oauth2/access_tokens"
                                    httpMethod:@"POST"
                            nameOfResponseFile:@"access_token.json"
                                  responseCode:200];
@@ -60,7 +60,7 @@ describe(@"AMMenuClient", ^{
             
             
             it(@"calls oauth2/access_tokens", ^{
-                [[task.originalRequest.URL.absoluteString should] equal:@"https://edge.air-menu.com/api/oauth2/access_tokens"];
+                [[task.originalRequest.URL.absoluteString should] equal:@"https://edge-api.air-menu.com/api/oauth2/access_tokens"];
             });
             
             it(@"creates access token object", ^{
