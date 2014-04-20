@@ -8,7 +8,7 @@
 
 #import "AMStaffMember.h"
 #import "AMOAuthToken.h"
-
+#import <ObjectiveSugar/ObjectiveSugar.h>
 @implementation AMStaffMember
 +(NSDictionary *)JSONKeyPathsByPropertyKey
 {

@@ -27,7 +27,7 @@ describe(@"AMMenuClient", ^{
             
             beforeAll(^{
                 
-              [TestToolBox stubRequestWithURL:@"https://stage.air-menu.com/api/oauth2/access_tokens"
+              [TestToolBox stubRequestWithURL:@"https://edge.air-menu.com/api/oauth2/access_tokens"
                                    httpMethod:@"POST"
                            nameOfResponseFile:@"access_token.json"
                                  responseCode:200];
@@ -49,7 +49,7 @@ describe(@"AMMenuClient", ^{
             });
             
             afterAll(^{
-                [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"accesss_token"];
+                [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"access_token"];
                 [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"ABCD"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
             });
@@ -60,11 +60,11 @@ describe(@"AMMenuClient", ^{
             
             
             it(@"calls oauth2/access_tokens", ^{
-                [[task.originalRequest.URL.absoluteString should] equal:@"https://stage.air-menu.com/api/oauth2/access_tokens"];
+                [[task.originalRequest.URL.absoluteString should] equal:@"https://edge.air-menu.com/api/oauth2/access_tokens"];
             });
             
             it(@"creates access token object", ^{
-                //[[expectFutureValue(newToken) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"access_token.json"]];
+                [[expectFutureValue(newToken.token) shouldEventually] equal:[[TestToolBox objectFromJSONFromFile:@"access_token.json"] token]];
             });
             
             it(@"sends parameters in HTTP body", ^{
@@ -83,10 +83,8 @@ describe(@"AMMenuClient", ^{
             });
             
             it(@"saves current token to NSUerDefaults and removes value under for old token from user defaults", ^{
-                NSString *oldToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"access_token"];
-                [[[[NSUserDefaults standardUserDefaults] objectForKey:oldToken] should] beNil];
-                NSString *token = [[NSUserDefaults standardUserDefaults] stringForKey:@"acesss_token"];
-                [[token should] equal:[[TestToolBox objectFromJSONFromFile:@"access_token.json"] token]];
+                [[[[NSUserDefaults standardUserDefaults] objectForKey:@"ABCD"] should] beNil];
+                [[expectFutureValue([[NSUserDefaults standardUserDefaults] stringForKey:@"access_token"]) shouldEventuallyBeforeTimingOutAfter(10.0)] equal:[[TestToolBox objectFromJSONFromFile:@"access_token.json"] token]];
             });
        });
         

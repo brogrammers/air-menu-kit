@@ -31,6 +31,18 @@
 		71115C5A19022A4B000E87C4 /* AMClientOrderItemTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71115C5919022A4B000E87C4 /* AMClientOrderItemTests.m */; };
 		71115C5C19022A56000E87C4 /* AMClientStaffKindTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71115C5B19022A56000E87C4 /* AMClientStaffKindTests.m */; };
 		71115C5E19022A6C000E87C4 /* AMClientStaffMemberTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71115C5D19022A6C000E87C4 /* AMClientStaffMemberTests.m */; };
+		71115C621903433A000E87C4 /* AMGroup.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7119583318FADBD90065BB3A /* AMGroup.h */; };
+		71115C631903433A000E87C4 /* AMOrder.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7119582118FADAA30065BB3A /* AMOrder.h */; };
+		71115C641903433A000E87C4 /* AMOrderItem.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7119582418FADAB10065BB3A /* AMOrderItem.h */; };
+		71115C651903433A000E87C4 /* AMStaffKind.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7119582718FADB070065BB3A /* AMStaffKind.h */; };
+		71115C661903433A000E87C4 /* AMStaffMember.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7119582A18FADB450065BB3A /* AMStaffMember.h */; };
+		71115C671903433A000E87C4 /* AMDevice.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7119582D18FADBA60065BB3A /* AMDevice.h */; };
+		71115C681903433A000E87C4 /* AMNotification.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7119583018FADBBD0065BB3A /* AMNotification.h */; };
+		71115C691903433A000E87C4 /* AMClient+Group.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 71B2ABF818FDCA5300238DC1 /* AMClient+Group.h */; };
+		71115C6A1903433A000E87C4 /* AMClient+Order.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 71115C4B190224EF000E87C4 /* AMClient+Order.h */; };
+		71115C6B1903433A000E87C4 /* AMClient+OrderItem.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 71115C4E190224F6000E87C4 /* AMClient+OrderItem.h */; };
+		71115C6C1903433A000E87C4 /* AMClient+StaffKind.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 71115C5119022516000E87C4 /* AMClient+StaffKind.h */; };
+		71115C6D1903433A000E87C4 /* AMClient+StaffMember.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 71115C5419022521000E87C4 /* AMClient+StaffMember.h */; };
 		71173FA118A067F400DF24EB /* NSNumberFormatter+AirMenuNumberFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 71173FA018A067F400DF24EB /* NSNumberFormatter+AirMenuNumberFormat.m */; };
 		71173FA418A06AF300DF24EB /* AMAddressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71173FA318A06AF300DF24EB /* AMAddressTests.m */; };
 		71173FA618A17BAB00DF24EB /* AMMenuItemTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71173FA518A17BAB00DF24EB /* AMMenuItemTests.m */; };
@@ -140,6 +152,18 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				71115C621903433A000E87C4 /* AMGroup.h in CopyFiles */,
+				71115C631903433A000E87C4 /* AMOrder.h in CopyFiles */,
+				71115C641903433A000E87C4 /* AMOrderItem.h in CopyFiles */,
+				71115C651903433A000E87C4 /* AMStaffKind.h in CopyFiles */,
+				71115C661903433A000E87C4 /* AMStaffMember.h in CopyFiles */,
+				71115C671903433A000E87C4 /* AMDevice.h in CopyFiles */,
+				71115C681903433A000E87C4 /* AMNotification.h in CopyFiles */,
+				71115C691903433A000E87C4 /* AMClient+Group.h in CopyFiles */,
+				71115C6A1903433A000E87C4 /* AMClient+Order.h in CopyFiles */,
+				71115C6B1903433A000E87C4 /* AMClient+OrderItem.h in CopyFiles */,
+				71115C6C1903433A000E87C4 /* AMClient+StaffKind.h in CopyFiles */,
+				71115C6D1903433A000E87C4 /* AMClient+StaffMember.h in CopyFiles */,
 				717DFD6518DA64DD003D6609 /* AirMenuKit.h in CopyFiles */,
 				717DFD6618DA64DD003D6609 /* AMAddress.h in CopyFiles */,
 				717DFD6718DA64DD003D6609 /* AMUser.h in CopyFiles */,

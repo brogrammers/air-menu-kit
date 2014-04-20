@@ -7,7 +7,7 @@
 //
 
 #import "AMOAuthToken.h"
-#import <ObjectiveSugar/NSNumber+ObjectiveSugar.h>
+#import <ObjectiveSugar/ObjectiveSugar.h>
 
 @implementation AMOAuthToken
 

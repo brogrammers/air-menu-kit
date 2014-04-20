@@ -9,6 +9,7 @@
 #import "AMUser.h"
 #import "AMOAuthToken.h"
 #import "AMOrder.h"
+#import <ObjectiveSugar/ObjectiveSugar.h>
 
 @implementation AMUser
 
