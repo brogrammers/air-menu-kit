@@ -34,9 +34,14 @@
                                 completion:(MenuSectionCompletion)completion
 {
     NSAssert(identifier, @"identifier cannot be nil");
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    if(name) [params setObject:name forKey:@"name"];
+    if(description) [params setObject:description forKey:@"description"];
+    if(identifier) [params setObject:identifier forKey:@"staff_kind_id"];
+    
     NSString *urlString = [@"menu_sections/" stringByAppendingString:section.identifier.description];
     return [self PUT:urlString
-          parameters:@{@"name" : name, @"description" : description, @"staff_kind_id" : identifier}
+          parameters:params
              success:^(NSURLSessionDataTask *task, id responseObject) {
                  AMMenuSection *section = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
                  if(completion) completion(section, nil);
@@ -73,19 +78,44 @@
                                        price:(NSNumber *)price
                                     currency:(NSString *)currency
                                  staffKindId:(NSString *)staffKindIdentifier
-                                  completion:(MenuSectionItemCompletion)completion;
+                                      avatar:(UIImage *)avatar
+                                  completion:(MenuSectionItemCompletion)completion
 {
     NSAssert(section.identifier, @"sections identifier cannot be nil");
+    NSAssert(name, @"name identifier cannot be nil");
+    NSAssert(price, @"price identifier cannot be nil");
+    NSAssert(description, @"description identifier cannot be nil");
+    NSAssert(currency, @"currency identifier cannot be nil");
+    NSMutableDictionary *params = [@{@"name" : name, @"description" : description, @"price" : price, @"currency" : currency} mutableCopy];
+    if(staffKindIdentifier) [params setObject:staffKindIdentifier forKey:@"staff_kind_id"];
     NSString *urlString = [@"menu_sections/" stringByAppendingFormat:@"%@/%@", section.identifier, @"menu_items"];
-    return [self POST:urlString
-           parameters:@{@"name" : name, @"description" : description, @"price" : price, @"currency" : currency, @"staff_kind_id" : staffKindIdentifier}
-              success:^(NSURLSessionDataTask *task, id responseObject) {
-                  AMMenuItem *menuItem = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
-                  if(completion) completion(menuItem, nil);
-              }
-              failure:^(NSURLSessionDataTask *task, NSError *error) {
-                  if(completion) completion(nil, error);
-              }];
+    if(avatar)
+    {
+        return [self POST:urlString
+               parameters:params
+constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+                      [formData appendPartWithFormData:UIImagePNGRepresentation(avatar) name:@"avatar"];
+                  }
+                  success:^(NSURLSessionDataTask *task, id responseObject) {
+                      AMMenuItem *menuItem = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
+                      if(completion) completion(menuItem, nil);
+                  }
+                  failure:^(NSURLSessionDataTask *task, NSError *error) {
+                      if(completion) completion(nil, error);
+                  }];
+    }
+    else
+    {
+        return [self POST:urlString
+               parameters:params
+                  success:^(NSURLSessionDataTask *task, id responseObject) {
+                      AMMenuItem *menuItem = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
+                      if(completion) completion(menuItem, nil);
+                  }
+                  failure:^(NSURLSessionDataTask *task, NSError *error) {
+                      if(completion) completion(nil, error);
+                  }];
+    }
 }
 
 -(NSURLSessionDataTask *)findItemsOfSection:(AMMenuSection *)section

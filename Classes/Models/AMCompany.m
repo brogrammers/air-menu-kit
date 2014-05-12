@@ -35,4 +35,18 @@
     return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
 
+-(BOOL)isEqual:(id)object
+{
+    if(self.class == [object class]) {
+        return  [self.identifier isEqualToNumber:[(AMCompany *)object identifier]] ||
+        (!self.identifier && ![(AMCompany *)object identifier]);
+    }
+    return NO;}
+
+-(NSUInteger)hash
+{
+    return [self.identifier hash];
+}
+
+
 @end

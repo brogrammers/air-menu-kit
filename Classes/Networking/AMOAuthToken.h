@@ -22,25 +22,49 @@ typedef NS_OPTIONS(NSUInteger, AMOAuthScope)
     AMOAuthScopeUser = 1 << 3,
     AMOAuthScopeDeveloper = 1 << 4,
     AMOAuthScopeOwner = 1 << 5,
+    //menus
     AMOAuthScopeGetMenus = 1 << 6,
     AMOAuthScopeAddMenus = 1 << 7,
     AMOAuthScopeAddActiveMenus = 1 << 8,
-    AMOAuthScopeGetCurrentOrders = 1 << 9,
-    AMOAuthScopeAddOrders = 1 << 10,
-    AMOAuthScopeUpdateOrders = 1 << 11,
-    AMOAuthScopeGetGroups = 1 << 12,
-    AMOAuthScopeCreateGroups = 1 << 13,
-    AMOAuthScopeGetDevices = 1 << 14,
-    AMOAuthScopeCreateDevices = 1 << 15,
-    AMOAuthScopeGetStaffKinds = 1 <<  16,
-    AMOAuthScopeCreateStaffKinds = 1 << 17,
-    AMOAuthScopeGetStaffMembers = 1 << 18,
-    AMOAuthScopeCreateStaffMembers = 1 << 19
+    AMOAuthScopeUpdateMenus = 1 << 9,
+    AMOAuthScopeDeleteMenus = 1 << 10,
+    //orders
+    AMOAuthScopeGetOrders = 1 << 11,
+    AMOAuthScopeAddOrders = 1 << 12,
+    AMOAuthScopeUpdateOrders = 1 << 13,
+    //groups
+    AMOAuthScopeGetGroups = 1 << 14,
+    AMOAuthScopeCreateGroups = 1 << 15,
+    AMOAuthScopeUpdateGroups = 1 << 16,
+    AMOAuthScopeDeleteGroups = 1 << 17,
+    //device
+    AMOAuthScopeGetDevices = 1 << 18,
+    AMOAuthScopeCreateDevices = 1 << 19,
+    AMOAuthScopeUpdateDevices = 1 << 20,
+    AMOAuthScopeDeleteDevices = 1 << 21,
+    //staff kinds
+    AMOAuthScopeGetStaffKinds = 1 <<  22,
+    AMOAuthScopeCreateStaffKinds = 1 << 23,
+    AMOAuthScopeUpdateStaffKinds = 1 << 24,
+    AMOAuthScopeDeleteStaffKinds = 1 << 25,
+    //staff members
+    AMOAuthScopeGetStaffMembers = 1 << 26,
+    AMOAuthScopeCreateStaffMembers = 1 << 27,
+    AMOAuthScopeDeleteStaffMembers = 1 << 28,
+    AMOAuthScopeUpdateStaffMembers = 1 << 29,
+    //payment
+    AMOAuthScopeCreatePayments = 1 << 30,
+    //hours
+    AMOAuthScopeCreateOpeningHours = 1 << 31,
+    AMOAuthScopeGetOpeningHours = 1 << 32,
+    AMOAuthScopeUpdateOpeningHours = 1 << 33,
+    AMOAuthScopeDeleteOpeningHours = 1 << 34
 };
 
 typedef NS_ENUM(NSUInteger, AMOAuthGrantType) {
     AMOAuthGrantTypePassword,
     AMOAuthGrantTypeCredential,
+    AMOAuthGrantTypeRefresh
 };
 
 @interface AMOAuthToken : MTLModel <MTLJSONSerializing>

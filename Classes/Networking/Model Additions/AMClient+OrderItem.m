@@ -40,7 +40,11 @@
                              @(AMOrderItemStateBeingPrepared) : @"start_prepare",
                              @(AMOrderItemStatePrepared) : @"end_prepare",
                              @(AMOrderItemStateServed) : @"served"};
-    NSDictionary *params = @{@"comment" : comment, @"count" : count, @"state" : states[@(state)]};
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    if(comment) [params setObject:comment forKey:@"comment"];
+    if(count) [params setObject:count forKey:@"count"];
+    if(state != AMOrderItemStateNone) [params setObject:states[@(state)] forKey:@"state"];
+    
     return [self PUT:urlString
           parameters:params
              success:^(NSURLSessionDataTask *task, id responseObject) {

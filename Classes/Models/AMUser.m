@@ -24,7 +24,8 @@
              @"phoneNumber" : @"phone",
              @"currentOrders" : @"current_orders",
              @"company" : @"company",
-             @"unreadCount" : @"unread_count"};
+             @"unreadCount" : @"unread_count",
+             @"avatar" : @"avatar"};
 }
 
 +(NSValueTransformer *)typeJSONTransformer
@@ -42,6 +43,15 @@
 +(NSValueTransformer *)currentOrdersJSONTransformer
 {
     return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:[AMOrder class]];
+}
+
++(NSValueTransformer *)avatarJSONTransformer
+{
+    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *avatarURL) {
+        return [NSURL URLWithString:avatarURL];
+    } reverseBlock:^id(NSURL *avatarURL) {
+        return avatarURL.absoluteString;
+    }];
 }
 
 +(NSValueTransformer *)scopesJSONTransformer
@@ -65,6 +75,19 @@
         }];
         return transformed;
     }];
+}
+
+-(BOOL)isEqual:(id)object
+{
+    if(self.class == [object class]) {
+        return  [self.identifier isEqualToNumber:[(AMUser *)object identifier]] ||
+        (!self.identifier && ![(AMUser *)object identifier]);
+    }
+    return NO;}
+
+-(NSUInteger)hash
+{
+    return [self.identifier hash];
 }
 
 @end

@@ -23,6 +23,9 @@
 #import "AMStaffMember.h"
 #import "AMDevice.h"
 #import "AMNotification.h"
+#import "AMCreditCard.h"
+#import "AMReview.h"
+#import "AMOpeningHour.h"
 
 SPEC_BEGIN(AMObjectBuilderTests)
 
@@ -216,6 +219,52 @@ describe(@"AMObjectBuilder", ^{
         [[notifications should] beKindOfClass:[NSArray class]];
         [[[notifications objectAtIndex:0] should] beKindOfClass:[AMNotification class]];
     });
+    
+    it(@"returns credit card when json root is notification", ^{
+        NSData *creditCardData = [NSData dataWithContentsOfFile:OHPathForFileInBundle(@"credit_card.json", nil)];
+        NSDictionary *creditCardJSON = [NSJSONSerialization JSONObjectWithData:creditCardData options:0 error:nil];
+        id creditCard = [[AMObjectBuilder sharedInstance] objectFromJSON:creditCardJSON];
+        [[creditCard should] beKindOfClass:[AMCreditCard class]];
+    });
+    
+    it(@"returns aray credit cards when json root is notificatons", ^{
+        NSData *creditCardsData = [NSData dataWithContentsOfFile:OHPathForFileInBundle(@"credit_cards.json", nil)];
+        NSDictionary *creditCardsJSON = [NSJSONSerialization JSONObjectWithData:creditCardsData options:0 error:nil];
+        id creditCards = [[AMObjectBuilder sharedInstance] objectFromJSON:creditCardsJSON];
+        [[creditCards should] beKindOfClass:[NSArray class]];
+        [[[creditCards objectAtIndex:0] should] beKindOfClass:[AMCreditCard class]];
+    });
+    
+    it(@"returns review when json root is review", ^{
+        NSData *reviewData = [NSData dataWithContentsOfFile:OHPathForFileInBundle(@"review.json", nil)];
+        NSDictionary *reviewJSON = [NSJSONSerialization JSONObjectWithData:reviewData options:0 error:nil];
+        id review = [[AMObjectBuilder sharedInstance] objectFromJSON:reviewJSON];
+        [[review should] beKindOfClass:[AMReview class]];
+    });
+    
+    it(@"returns aray reviews when json root is reviews", ^{
+        NSData *reviewsData = [NSData dataWithContentsOfFile:OHPathForFileInBundle(@"reviews.json", nil)];
+        NSDictionary *reviewsJSON = [NSJSONSerialization JSONObjectWithData:reviewsData options:0 error:nil];
+        id reviews = [[AMObjectBuilder sharedInstance] objectFromJSON:reviewsJSON];
+        [[reviews should] beKindOfClass:[NSArray class]];
+        [[[reviews objectAtIndex:0] should] beKindOfClass:[AMReview class]];
+    });
+    
+    it(@"returns opening hour when json root is opening_hour", ^{
+        NSData *openingHourData = [NSData dataWithContentsOfFile:OHPathForFileInBundle(@"opening_hour.json", nil)];
+        NSDictionary *openingHourJSON = [NSJSONSerialization JSONObjectWithData:openingHourData options:0 error:nil];
+        id openingHour = [[AMObjectBuilder sharedInstance] objectFromJSON:openingHourJSON];
+        [[openingHour should] beKindOfClass:[AMOpeningHour class]];
+    });
+    
+    it(@"returns aray opening hours when json root is opening hours", ^{
+        NSData *openingHoursData = [NSData dataWithContentsOfFile:OHPathForFileInBundle(@"opening_hours.json", nil)];
+        NSDictionary *openingHoursJSON = [NSJSONSerialization JSONObjectWithData:openingHoursData options:0 error:nil];
+        id openingHours = [[AMObjectBuilder sharedInstance] objectFromJSON:openingHoursJSON];
+        [[openingHours should] beKindOfClass:[NSArray class]];
+        [[[openingHours objectAtIndex:0] should] beKindOfClass:[AMOpeningHour class]];
+    });
+
 });
 
 SPEC_END

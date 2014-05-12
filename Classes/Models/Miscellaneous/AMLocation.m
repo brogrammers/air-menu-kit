@@ -7,12 +7,26 @@
 //
 
 #import "AMLocation.h"
+#define kVerySmallValue (0.00000000001)
 
 @implementation AMLocation
 -(BOOL)isEqual:(CLLocation *)object
 {
     return  object.class == self.class &&
-            object.coordinate.latitude == self.coordinate.latitude &&
-            object.coordinate.longitude == self.coordinate.longitude;
+    [self firstDouble:[self distanceFromLocation:object] isEqualTo:0];
+}
+
+- (BOOL)firstDouble:(double)first isEqualTo:(double)second
+{
+    if(fabsf(first - second) < kVerySmallValue)
+        return YES;
+    else
+        return NO;
+}
+
+- (NSUInteger) hash
+{
+    NSUInteger theHash = (NSUInteger) (self.coordinate.latitude * 360 + self.coordinate.longitude);
+    return theHash;
 }
 @end

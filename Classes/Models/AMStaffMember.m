@@ -20,7 +20,8 @@
              @"restaurant" : @"restaurant",
              @"device" : @"device",
              @"group" : @"group",
-             @"kind" : @"staff_kind"};
+             @"kind" : @"staff_kind",
+             @"avatar" : @"avatar"};
 }
 
 +(NSValueTransformer *)restaurantJSONTransformer
@@ -43,6 +44,15 @@
     return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[AMStaffKind class]];
 }
 
++(NSValueTransformer *)avatarJSONTransformer
+{
+    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *avatarURL) {
+        return [NSURL URLWithString:avatarURL];
+    } reverseBlock:^id(NSURL *avatarURL) {
+        return avatarURL.absoluteString;
+    }];
+}
+
 +(NSValueTransformer *)scopesJSONTransformer
 {
     return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSArray *scopesStrings) {
@@ -59,4 +69,18 @@
         return transformed;
     }];
 }
+
+-(BOOL)isEqual:(id)object
+{
+    if(self.class == [object class]) {
+        return  [self.identifier isEqualToNumber:[(AMStaffMember *)object identifier]] ||
+        (!self.identifier && ![(AMStaffMember *)object identifier]);
+    }
+    return NO;}
+
+-(NSUInteger)hash
+{
+    return [self.identifier hash];
+}
+
 @end

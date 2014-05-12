@@ -31,7 +31,8 @@ describe(@"AMUser", ^{
                                                    @"unreadCount" : @1,
                                                    @"phoneNumber" : @"12345",
                                                    @"company" : [AMCompany new],
-                                                   @"currentOrders" : @[[AMOrder new]]}];
+                                                   @"currentOrders" : @[[AMOrder new]],
+                                                   @"avatar" : [NSURL URLWithString:@"https://gravatar.com"]}];
         });
         
         it(@"subclasses MTLModel", ^{
@@ -82,6 +83,9 @@ describe(@"AMUser", ^{
             [[user.currentOrders should] equal:@[[AMOrder new]]];
         });
         
+        it(@"has avater attribute", ^{
+            [[user.avatar should] equal:[NSURL URLWithString:@"https://gravatar.com"]];
+        });
     });
     
     context(@"class", ^{
@@ -96,7 +100,8 @@ describe(@"AMUser", ^{
                                               @"phoneNumber" : @"phone",
                                               @"currentOrders" : @"current_orders",
                                               @"company" : @"company",
-                                              @"unreadCount" : @"unread_count"};
+                                              @"unreadCount" : @"unread_count",
+                                              @"avatar" : @"avatar"};
             [[mapping should] equal:expectedMapping];
         });
         
@@ -139,6 +144,14 @@ describe(@"AMUser", ^{
             [[valueTransformer shouldNot] beNil];
         });
         
+        it(@"implements avatarJSONTransformer", ^{
+            [[[AMUser class] should] respondToSelector:NSSelectorFromString(@"avatarJSONTransformer")];
+        });
+        
+        it(@"returns NSURL transformer from avatarJSONTransforemr", ^{
+            NSValueTransformer *valueTransformer = objc_msgSend([AMUser class], NSSelectorFromString(@"avatarJSONTransformer"));
+            [[[valueTransformer transformedValue:@"http://google.com"] should] equal:[NSURL URLWithString:@"http://google.com"]];
+        });
     });
     
     context(@"mapping", ^{

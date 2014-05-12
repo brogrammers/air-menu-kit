@@ -38,6 +38,7 @@ typedef void (^MenuSectionItemsCompletion) (NSArray *items, NSError *error);
                                        price:(NSNumber *)price
                                     currency:(NSString *)currency
                                  staffKindId:(NSString *)staffKindIdentifier
+                                      avatar:(UIImage *)avatar
                                   completion:(MenuSectionItemCompletion)completion;
 
 -(NSURLSessionDataTask *)findItemsOfSection:(AMMenuSection *)section

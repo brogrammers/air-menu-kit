@@ -38,8 +38,10 @@
                              @(AMOrderStateCancelled) : @"cancelled",
                              @(AMOrderStateServed) : @"served",
                              @(AMOrderStatePaid) : @"paid"};
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    if(state != AMOrderStateNone) [params setObject:states[@(state)] forKey:@"state"];
     return [self  PUT:urlString
-           parameters:@{@"state" : states[@(state)]}
+           parameters:params
               success:^(NSURLSessionDataTask *task, id responseObject) {
                   AMOrder *order = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
                   if(completion) completion(order, nil);
@@ -92,6 +94,10 @@
                                      completion:(OrderOrderItemCompletion)completion
 {
     NSAssert(order.identifier, @"orders identifier cannot be nil");
+    NSAssert(comment, @"comment cannot be nil");
+    NSAssert(count, @"count identifier cannot be nil");
+    NSAssert(menuItemId, @"menu item id identifier cannot be nil");
+    
     NSString *urlString = [NSString stringWithFormat:@"orders/%@/order_items", order.identifier.description];
     NSDictionary *params = @{@"comment" : comment, @"count" : count, @"menu_item_id" : menuItemId};
     return [self POST:urlString
@@ -105,4 +111,25 @@
               }];
 }
 
+/*
+ Order > Payments
+ */
+
+-(NSURLSessionDataTask *)createPaymentForORder:(AMOrder *)order
+                              withCreditCardId:(NSString *)creditCardId
+                                    completion:(OrderPaymentStatus)completion
+{
+    NSAssert(order.identifier, @"orders identifier cannot be nil");
+    NSAssert(creditCardId, @"credit card identifier cannot be nil");
+    NSString *urlString = [NSString stringWithFormat:@"orders/%@/payments", order.identifier.description];
+    NSDictionary *params = @{@"credit_card_id" : creditCardId};
+    return [self POST:urlString
+           parameters:params
+              success:^(NSURLSessionDataTask *task, id responseObject) {
+                  if(completion) completion(responseObject[@"payment"][@"type"], nil);
+              }
+              failure:^(NSURLSessionDataTask *task, NSError *error) {
+                  if(completion) completion(nil, error);
+              }];
+}
 @end

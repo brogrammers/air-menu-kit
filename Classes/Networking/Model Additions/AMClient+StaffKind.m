@@ -34,9 +34,14 @@
                               completion:(StaffKindCompletion)completion
 {
     NSAssert(staffKind.identifier, @"identifier cannot be nil");
+    NSAssert(name, @"name cannot be nil");
+    NSDictionary *params = @{@"name" : name,
+                             @"accept_orders" : @(acceptsOrders),
+                             @"accept_order_items" : @(acceptsOrderitems),
+                             @"scopes" : [AMOAuthToken stringFromOption:scopes]};
     NSString *urlString = [@"staff_kinds/" stringByAppendingString:staffKind.identifier.description];
     return [self PUT:urlString
-          parameters:@{@"name" : name, @"accept_orders" : @(acceptsOrders), @"accept_order_items" : @(acceptsOrderitems) ,@"scopes" : [AMOAuthToken stringFromOption:scopes]}
+          parameters:params
              success:^(NSURLSessionDataTask *task, id responseObject) {
                  AMStaffKind *staffKind = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
                  if(completion) completion(staffKind, nil);

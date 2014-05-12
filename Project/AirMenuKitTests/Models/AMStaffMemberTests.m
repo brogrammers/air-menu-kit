@@ -27,7 +27,8 @@ describe(@"AMStaffMember", ^{
                                                           @"device" : [AMDevice new],
                                                           @"group" : [AMGroup new],
                                                           @"kind" : [AMStaffKind new],
-                                                          @"restaurant" : [AMRestaurant new]}];
+                                                          @"restaurant" : [AMRestaurant new],
+                                                          @"avatar" : [NSURL URLWithString:@"https://gravatar.com"]}];
         });
         
         it(@"sublcasses MTLModel", ^{
@@ -73,6 +74,10 @@ describe(@"AMStaffMember", ^{
         it(@"has restaurant attribute", ^{
             [[staffMember.restaurant should] equal:[AMRestaurant new]];
         });
+        
+        it(@"has avater attribute", ^{
+            [[staffMember.avatar should] equal:[NSURL URLWithString:@"https://gravatar.com"]];
+        });
     });
     
     context(@"class", ^{
@@ -86,7 +91,8 @@ describe(@"AMStaffMember", ^{
                                               @"restaurant" : @"restaurant",
                                               @"device" : @"device",
                                               @"group" : @"group",
-                                              @"kind" : @"staff_kind"};
+                                              @"kind" : @"staff_kind",
+                                              @"avatar" : @"avatar"};
             [[mapping should] equal:expectedMapping];
         });
         
@@ -133,6 +139,15 @@ describe(@"AMStaffMember", ^{
         it(@"returns dictionary staff kind transformer from kindJSONTransformer", ^{
             NSValueTransformer *valueTransformer = objc_msgSend([AMStaffMember class], NSSelectorFromString(@"kindJSONTransformer"));
             [[valueTransformer shouldNot] beNil];
+        });
+        
+        it(@"implements avatarJSONTransformer", ^{
+            [[[AMStaffMember class] should] respondToSelector:NSSelectorFromString(@"avatarJSONTransformer")];
+        });
+        
+        it(@"returns NSURL transformer from avatarJSONTransforemr", ^{
+            NSValueTransformer *valueTransformer = objc_msgSend([AMStaffMember class], NSSelectorFromString(@"avatarJSONTransformer"));
+            [[[valueTransformer transformedValue:@"http://google.com"] should] equal:[NSURL URLWithString:@"http://google.com"]];
         });
     });
     

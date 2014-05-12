@@ -25,6 +25,8 @@ describe(@"AMNotification", ^{
                                                            @"createdAt" :[NSDate dateWithTimeIntervalSince1970:1]}];
         });
         
+        
+        
         it(@"subclasses MTLModel", ^{
             [[notification should] beKindOfClass:[MTLModel class]];
         });

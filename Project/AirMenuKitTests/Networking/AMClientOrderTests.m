@@ -164,6 +164,41 @@ describe(@"AMClient+Order", ^{
                 [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"comment" : @"acomm", @"count" : @"1", @"menu_item_id" : @"1"}];
             });
         });
+        
+        context(@"on add payment", ^{
+            __block NSURLSessionDataTask *task;
+            __block NSString *receivedStatus;
+            
+            beforeAll(^{
+                [TestToolBox stubRequestWithURL:[baseURL stringByAppendingString:@"orders/1/payments"]
+                                     httpMethod:@"POST"
+                             nameOfResponseFile:@"payment.json"
+                                   responseCode:200];
+                AMOrder *order = [[AMOrder alloc] initWithDictionary:@{@"identifier" : @(1)} error:nil];
+                task = [[AMClient sharedClient] createPaymentForORder:order
+                                                     withCreditCardId:@"1"
+                                                           completion:^(NSString *status, NSError *error) {
+                                                               receivedStatus = status;
+                                                           }];
+            });
+            
+            it(@"uses POST method", ^{
+                [[task.originalRequest.HTTPMethod should] equal:@"POST"];
+            });
+            
+            it(@"calls /orders/1/order_items", ^{
+                [[task.originalRequest.URL.absoluteString should] equal:[baseURL stringByAppendingString:@"orders/1/payments"]];
+            });
+            
+            it(@"creates status object", ^{
+                [[expectFutureValue(receivedStatus) shouldEventually] equal:@"success"];
+            });
+            
+            it(@"sends parameters in HTTP body", ^{
+                [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"credit_card_id" : @"1"}];
+            });
+        });
+        
     });
 });
 

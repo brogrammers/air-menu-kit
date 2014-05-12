@@ -118,6 +118,7 @@ describe(@"AMClient+MenuSection", ^{
                                                               price:@1.0
                                                            currency:@"EUR"
                                                         staffKindId:@"1"
+                                                             avatar:nil
                                                          completion:^(AMMenuItem *item, NSError *error) {
                                                              newItem = item;
                                                          }];

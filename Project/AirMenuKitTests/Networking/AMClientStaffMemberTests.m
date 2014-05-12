@@ -52,7 +52,7 @@ describe(@"AMClient+StaffMember", ^{
                                    responseCode:200];
                 
                 AMStaffMember *member = [[AMStaffMember alloc] initWithDictionary:@{@"identifier" : @1} error:nil];
-                task = [[AMClient sharedClient] updateStaffMember:member WithNewName:@"aname" newPassword:@"apass" newEmail:@"amail" newStaffKindId:@"1" completion:^(AMStaffMember *staffMember, NSError *error) {
+                task = [[AMClient sharedClient] updateStaffMember:member withNewName:@"aname" newPassword:@"apass" newEmail:@"amail" newStaffKindId:@"1" avatar:nil completion:^(AMStaffMember *staffMember, NSError *error) {
                     updatedStaffMember = staffMember;
                 }];
             });

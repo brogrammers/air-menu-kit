@@ -10,12 +10,13 @@
 #import "AMOrder.h"
 #import "AMMenuItem.h"
 
-typedef enum AMOrderItemState { AMOrderItemStateNew,
-                                AMOrderItemStateApproved,
-                                AMOrderItemStateDeclined,
-                                AMOrderItemStateBeingPrepared,
-                                AMOrderItemStatePrepared,
-                                AMOrderItemStateServed } AMOrderItemState;
+typedef enum AMOrderItemState { AMOrderItemStateNone = 0,
+                                AMOrderItemStateNew = 1,
+                                AMOrderItemStateApproved = 2,
+                                AMOrderItemStateDeclined = 3 ,
+                                AMOrderItemStateBeingPrepared = 4,
+                                AMOrderItemStatePrepared = 5,
+                                AMOrderItemStateServed = 6} AMOrderItemState;
 
 @interface AMOrderItem : MTLModel <MTLJSONSerializing>
 @property (nonatomic, readonly, strong) NSNumber *identifier;

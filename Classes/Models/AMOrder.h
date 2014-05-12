@@ -10,12 +10,13 @@
 #import "AMRestaurant.h"
 #import "AMUser.h"
 
-typedef enum AMOrderState { AMOrderStateNew,
-                            AMOrderStateOpen,
-                            AMOrderStateApproved,
-                            AMOrderStateCancelled,
-                            AMOrderStateServed,
-                            AMOrderStatePaid  } AMOrderState;
+typedef enum AMOrderState { AMOrderStateNone = 0,
+                            AMOrderStateNew = 1,
+                            AMOrderStateOpen = 2,
+                            AMOrderStateApproved = 3,
+                            AMOrderStateCancelled = 4,
+                            AMOrderStateServed = 5,
+                            AMOrderStatePaid = 6 } AMOrderState;
 
 @interface AMOrder : MTLModel <MTLJSONSerializing>
 @property (nonatomic, readonly, strong) NSNumber *identifier;
@@ -26,4 +27,5 @@ typedef enum AMOrderState { AMOrderStateNew,
 @property (nonatomic, readonly, strong) AMRestaurant *restaurant;
 @property (nonatomic, readonly, strong) AMUser *user;
 @property (nonatomic, readonly, strong) NSArray *orderItems;
+@property (nonatomic, readonly, strong) NSString *tableNumber;
 @end

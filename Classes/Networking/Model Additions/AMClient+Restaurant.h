@@ -14,7 +14,10 @@
 #import "AMOrder.h"
 #import "AMStaffKind.h"
 #import "AMStaffMember.h"
+#import "AMOpeningHour.h"
+#import "AMReview.h"
 
+typedef void (^RestaurantRangeCompletion) (NSArray *restaurants, NSError *error);
 typedef void (^RestaurantCompletion) (AMRestaurant *restaurant, NSError *error);
 typedef void (^RestaurantMenuCompletion) (AMMenu *menu, NSError *error);
 typedef void (^RestaurantMenusCompletion) (NSArray *menus, NSError *error);
@@ -28,8 +31,17 @@ typedef void (^RestaurantStaffKindCompletion) (AMStaffKind *staffKind, NSError *
 typedef void (^RestaurantStaffKindsCompletion) (NSArray *staffKinds, NSError *error);
 typedef void (^RestaurantStaffMemberCompletion) (AMStaffMember *staffMember, NSError *error);
 typedef void (^RestaurantStaffMembersCompletion) (NSArray *staffMembers, NSError *error);
+typedef void (^RestaurantOpeningHourCompletion) (AMOpeningHour *openingHour, NSError *error);
+typedef void (^RestaurantOpeningHoursCompletion) (NSArray *openingHours, NSError *error);
+typedef void (^RestaurantReviewsCompletion) (NSArray *reviews, NSError *error);
+typedef void (^RestaurantReviewCompletion) (AMReview *review, NSError *error);
 
 @interface AMClient (Restaurant)
+
+-(NSURLSessionDataTask *)findRestaurantsAtLatitude:(double)latitude
+                                         longitude:(double)longitude
+                                       withinRange:(double)range
+                                        completion:(RestaurantRangeCompletion)completion;
 
 -(NSURLSessionDataTask *)findRestaurantWithIdentifier:(NSString *)identifier
                                            completion:(RestaurantCompletion)completion;
@@ -37,6 +49,7 @@ typedef void (^RestaurantStaffMembersCompletion) (NSArray *staffMembers, NSError
 
 -(NSURLSessionDataTask *)updateRestaurant:(AMRestaurant *)restaurant
                               withNewName:(NSString *)name
+                           newDescription:(NSString *)description
                         newAddressLineOne:(NSString *)lineOne
                         newAddressLineTwo:(NSString *)lineTwo
                                   newCity:(NSString *)city
@@ -94,6 +107,7 @@ Restaurants > Orders
                                      completion:(RestaurantOrdersCompletion)completion;
 
 -(NSURLSessionDataTask *)createOrderOfRestaurant:(AMRestaurant *)restaurant
+                                   atTableNumber:(NSString *)tableNumber
                                       completion:(RestaurantOrderCompletion)completion;
 
 /*
@@ -121,6 +135,33 @@ Restaurants > Staff Members
                                                password:(NSString *)password
                                                   email:(NSString *)email
                                               staffKind:(NSString *)staffKindIdentifier
+                                                 avatar:(UIImage *)avatar
                                              completion:(RestaurantStaffMemberCompletion)completion;
+
+/*
+ Restaurants > Reviews
+ */
+
+-(NSURLSessionDataTask *)findReviewsOfRestaurant:(AMRestaurant *)restaurant
+                                      completion:(RestaurantReviewsCompletion)completion;
+
+-(NSURLSessionDataTask *)createReviewOfRestaurant:(AMRestaurant *)restaurant
+                                      withSubject:(NSString *)subject
+                                          message:(NSString *)message
+                                           rating:(NSInteger)rating
+                                       completion:(RestaurantReviewCompletion)completion;
+
+/*
+ Restaurants > Opening Hours
+ */
+
+-(NSURLSessionDataTask *)findOpeningHoursOfRestaurant:(AMRestaurant *)restaurant
+                                           completion:(RestaurantOpeningHoursCompletion)completion;
+
+-(NSURLSessionDataTask *)createOpeningHourOfRestaurant:(AMRestaurant *)restaurant
+                                                   day:(NSString *)day
+                                                 start:(NSDate *)startDate
+                                                   end:(NSDate *)endDate
+                                            completion:(RestaurantOpeningHourCompletion)completion;
 
 @end

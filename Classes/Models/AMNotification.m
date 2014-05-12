@@ -26,5 +26,21 @@
         return [[NSDateFormatter sharedAirMenuFormatter] dateFromString:str];
     } reverseBlock:^(NSDate *date) {
         return [[NSDateFormatter sharedAirMenuFormatter] stringFromDate:date];
-    }];}
+    }];
+}
+
+-(BOOL)isEqual:(id)object
+{
+    if(self.class == [object class]) {
+        return  [self.identifier isEqualToNumber:[(AMNotification *)object identifier]] ||
+        (!self.identifier && ![(AMNotification *)object identifier]);
+    }
+    return NO;
+}
+
+-(NSUInteger)hash
+{
+    return [self.identifier hash];
+}
+
 @end

@@ -83,7 +83,7 @@ describe(@"AMClient+Menu", ^{
                              nameOfResponseFile:@"menu.json"
                                    responseCode:200];
                 AMMenu *menu = [[AMMenu alloc] initWithDictionary:@{@"identifier" : @1} error:nil];
-                task = [[AMClient sharedClient] updateMenu:menu newActive:YES completion:^(AMMenu *menu, NSError *error) {
+                task = [[AMClient sharedClient] updateMenu:menu newActive:YES newName:@"aname" completion:^(AMMenu *menu, NSError *error) {
                     updatedMenu = menu;
                 }];
             });
@@ -101,7 +101,8 @@ describe(@"AMClient+Menu", ^{
             });
             
             it(@"sends parameters in HTTP body", ^{
-                [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"active" : @"1"}];
+                [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"active" : @"true",
+                                                                                   @"name" : @"aname"}];
             });
         });
         

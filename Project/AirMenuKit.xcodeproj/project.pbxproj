@@ -110,6 +110,25 @@
 		717DFD6D18DA64DD003D6609 /* AMClient+User.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 71496A9718CD40C800045AFD /* AMClient+User.h */; };
 		717DFD6E18DA64DD003D6609 /* AMOAuthToken.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7174341818AA76C200A83C61 /* AMOAuthToken.h */; };
 		717DFD6F18DA64DD003D6609 /* AMOAuthApplication.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 71E3FD7C18AACB6F00BD00C2 /* AMOAuthApplication.h */; };
+		718BC50F19204B9A0039F621 /* AMCreditCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 718BC50E19204B9A0039F621 /* AMCreditCard.m */; };
+		718BC5111920517A0039F621 /* AMCreditCardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 718BC5101920517A0039F621 /* AMCreditCardTests.m */; };
+		718BC513192052800039F621 /* credit_card.json in Resources */ = {isa = PBXBuildFile; fileRef = 718BC512192052800039F621 /* credit_card.json */; };
+		718BC515192052B60039F621 /* credit_cards.json in Resources */ = {isa = PBXBuildFile; fileRef = 718BC514192052B60039F621 /* credit_cards.json */; };
+		718BC518192058590039F621 /* AMClient+CreditCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 718BC517192058590039F621 /* AMClient+CreditCard.m */; };
+		718BC51A19205AB00039F621 /* AMClientCreditCardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 718BC51919205AB00039F621 /* AMClientCreditCardTests.m */; };
+		718BC51D192063120039F621 /* AMClient+Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 718BC51C192063120039F621 /* AMClient+Device.m */; };
+		718BC51F192066450039F621 /* AMClientDeviceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 718BC51E192066450039F621 /* AMClientDeviceTests.m */; };
+		718BC52119208C570039F621 /* opening_hour.json in Resources */ = {isa = PBXBuildFile; fileRef = 718BC52019208C570039F621 /* opening_hour.json */; };
+		718BC52319208C740039F621 /* opening_hours.json in Resources */ = {isa = PBXBuildFile; fileRef = 718BC52219208C740039F621 /* opening_hours.json */; };
+		718BC52719208CE50039F621 /* AMOpeningHour.m in Sources */ = {isa = PBXBuildFile; fileRef = 718BC52519208CD60039F621 /* AMOpeningHour.m */; };
+		718BC52B19208D160039F621 /* AMReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 718BC52919208D100039F621 /* AMReview.m */; };
+		718BC52D19208D300039F621 /* review.json in Resources */ = {isa = PBXBuildFile; fileRef = 718BC52C19208D300039F621 /* review.json */; };
+		718BC52F19208D380039F621 /* reviews.json in Resources */ = {isa = PBXBuildFile; fileRef = 718BC52E19208D380039F621 /* reviews.json */; };
+		718BC531192097FE0039F621 /* AMReviewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 718BC530192097FE0039F621 /* AMReviewTests.m */; };
+		718BC533192098080039F621 /* AMOpeningHourTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 718BC532192098080039F621 /* AMOpeningHourTests.m */; };
+		718BC5371920A3ED0039F621 /* AMClient+OpeningHour.m in Sources */ = {isa = PBXBuildFile; fileRef = 718BC5351920A3E80039F621 /* AMClient+OpeningHour.m */; };
+		718BC5391920A7AB0039F621 /* AMClientOpeningHourTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 718BC5381920A7AB0039F621 /* AMClientOpeningHourTests.m */; };
+		718BC53B1920B2770039F621 /* payment.json in Resources */ = {isa = PBXBuildFile; fileRef = 718BC53A1920B2770039F621 /* payment.json */; };
 		71A0D3A218AC33220070465E /* AMClient+Company.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A0D3A118AC33220070465E /* AMClient+Company.m */; };
 		71A0D3A518AC33280070465E /* AMClient+Restaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A0D3A418AC33280070465E /* AMClient+Restaurant.m */; };
 		71A0D3A818AC33310070465E /* AMClient+Menu.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A0D3A718AC33310070465E /* AMClient+Menu.m */; };
@@ -292,6 +311,31 @@
 		7174341918AA76C200A83C61 /* AMOAuthToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMOAuthToken.m; sourceTree = "<group>"; };
 		7174C17D18FAEB6100A9F2B5 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		717DFD6418DA6357003D6609 /* AirMenuKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AirMenuKit.h; sourceTree = "<group>"; };
+		718BC50D19204B9A0039F621 /* AMCreditCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMCreditCard.h; sourceTree = "<group>"; };
+		718BC50E19204B9A0039F621 /* AMCreditCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMCreditCard.m; sourceTree = "<group>"; };
+		718BC5101920517A0039F621 /* AMCreditCardTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMCreditCardTests.m; sourceTree = "<group>"; };
+		718BC512192052800039F621 /* credit_card.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = credit_card.json; sourceTree = "<group>"; };
+		718BC514192052B60039F621 /* credit_cards.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = credit_cards.json; sourceTree = "<group>"; };
+		718BC516192058590039F621 /* AMClient+CreditCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AMClient+CreditCard.h"; sourceTree = "<group>"; };
+		718BC517192058590039F621 /* AMClient+CreditCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AMClient+CreditCard.m"; sourceTree = "<group>"; };
+		718BC51919205AB00039F621 /* AMClientCreditCardTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMClientCreditCardTests.m; sourceTree = "<group>"; };
+		718BC51B192063120039F621 /* AMClient+Device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AMClient+Device.h"; sourceTree = "<group>"; };
+		718BC51C192063120039F621 /* AMClient+Device.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AMClient+Device.m"; sourceTree = "<group>"; };
+		718BC51E192066450039F621 /* AMClientDeviceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMClientDeviceTests.m; sourceTree = "<group>"; };
+		718BC52019208C570039F621 /* opening_hour.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = opening_hour.json; sourceTree = "<group>"; };
+		718BC52219208C740039F621 /* opening_hours.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = opening_hours.json; sourceTree = "<group>"; };
+		718BC52419208CD60039F621 /* AMOpeningHour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMOpeningHour.h; sourceTree = "<group>"; };
+		718BC52519208CD60039F621 /* AMOpeningHour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMOpeningHour.m; sourceTree = "<group>"; };
+		718BC52819208D100039F621 /* AMReview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMReview.h; sourceTree = "<group>"; };
+		718BC52919208D100039F621 /* AMReview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMReview.m; sourceTree = "<group>"; };
+		718BC52C19208D300039F621 /* review.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = review.json; sourceTree = "<group>"; };
+		718BC52E19208D380039F621 /* reviews.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = reviews.json; sourceTree = "<group>"; };
+		718BC530192097FE0039F621 /* AMReviewTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMReviewTests.m; sourceTree = "<group>"; };
+		718BC532192098080039F621 /* AMOpeningHourTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMOpeningHourTests.m; sourceTree = "<group>"; };
+		718BC5341920A3E80039F621 /* AMClient+OpeningHour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AMClient+OpeningHour.h"; sourceTree = "<group>"; };
+		718BC5351920A3E80039F621 /* AMClient+OpeningHour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AMClient+OpeningHour.m"; sourceTree = "<group>"; };
+		718BC5381920A7AB0039F621 /* AMClientOpeningHourTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMClientOpeningHourTests.m; sourceTree = "<group>"; };
+		718BC53A1920B2770039F621 /* payment.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = payment.json; sourceTree = "<group>"; };
 		71A0D3A018AC33220070465E /* AMClient+Company.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AMClient+Company.h"; sourceTree = "<group>"; };
 		71A0D3A118AC33220070465E /* AMClient+Company.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AMClient+Company.m"; sourceTree = "<group>"; };
 		71A0D3A318AC33280070465E /* AMClient+Restaurant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AMClient+Restaurant.h"; sourceTree = "<group>"; };
@@ -413,6 +457,12 @@
 				7119582E18FADBA60065BB3A /* AMDevice.m */,
 				7119583018FADBBD0065BB3A /* AMNotification.h */,
 				7119583118FADBBD0065BB3A /* AMNotification.m */,
+				718BC50D19204B9A0039F621 /* AMCreditCard.h */,
+				718BC50E19204B9A0039F621 /* AMCreditCard.m */,
+				718BC52419208CD60039F621 /* AMOpeningHour.h */,
+				718BC52519208CD60039F621 /* AMOpeningHour.m */,
+				718BC52819208D100039F621 /* AMReview.h */,
+				718BC52919208D100039F621 /* AMReview.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -510,6 +560,12 @@
 				71115C5219022516000E87C4 /* AMClient+StaffKind.m */,
 				71115C5419022521000E87C4 /* AMClient+StaffMember.h */,
 				71115C5519022521000E87C4 /* AMClient+StaffMember.m */,
+				718BC516192058590039F621 /* AMClient+CreditCard.h */,
+				718BC517192058590039F621 /* AMClient+CreditCard.m */,
+				718BC51B192063120039F621 /* AMClient+Device.h */,
+				718BC51C192063120039F621 /* AMClient+Device.m */,
+				718BC5341920A3E80039F621 /* AMClient+OpeningHour.h */,
+				718BC5351920A3E80039F621 /* AMClient+OpeningHour.m */,
 			);
 			path = "Model Additions";
 			sourceTree = "<group>";
@@ -531,6 +587,9 @@
 				7119583E18FADFE40065BB3A /* AMStaffMemberTests.m */,
 				7119584018FAE0060065BB3A /* AMDeviceTests.m */,
 				7119584218FAE0290065BB3A /* AMNotificationTests.m */,
+				718BC5101920517A0039F621 /* AMCreditCardTests.m */,
+				718BC530192097FE0039F621 /* AMReviewTests.m */,
+				718BC532192098080039F621 /* AMOpeningHourTests.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -554,6 +613,9 @@
 				71115C5919022A4B000E87C4 /* AMClientOrderItemTests.m */,
 				71115C5B19022A56000E87C4 /* AMClientStaffKindTests.m */,
 				71115C5D19022A6C000E87C4 /* AMClientStaffMemberTests.m */,
+				718BC51919205AB00039F621 /* AMClientCreditCardTests.m */,
+				718BC51E192066450039F621 /* AMClientDeviceTests.m */,
+				718BC5381920A7AB0039F621 /* AMClientOpeningHourTests.m */,
 			);
 			name = Netowrking;
 			path = Networking;
@@ -599,6 +661,13 @@
 				710928A718FD59E7009760F2 /* groups.json */,
 				71DC141918FB9D6D001C8185 /* staff_kind.json */,
 				71DC141B18FB9DC4001C8185 /* staff_kinds.json */,
+				718BC512192052800039F621 /* credit_card.json */,
+				718BC514192052B60039F621 /* credit_cards.json */,
+				718BC52019208C570039F621 /* opening_hour.json */,
+				718BC52219208C740039F621 /* opening_hours.json */,
+				718BC52C19208D300039F621 /* review.json */,
+				718BC52E19208D380039F621 /* reviews.json */,
+				718BC53A1920B2770039F621 /* payment.json */,
 			);
 			path = "JSON Responses";
 			sourceTree = "<group>";
@@ -677,14 +746,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				718BC53B1920B2770039F621 /* payment.json in Resources */,
 				71DC141018FB60DF001C8185 /* device.json in Resources */,
 				7108ADA318B8E8CE00A413DA /* menus.json in Resources */,
 				716863C218B93C26005D68B3 /* menu_item.json in Resources */,
 				714C068A18B55982004EAD04 /* restaurant.json in Resources */,
+				718BC52119208C570039F621 /* opening_hour.json in Resources */,
+				718BC52D19208D300039F621 /* review.json in Resources */,
 				710928A218FD4922009760F2 /* staff_member.json in Resources */,
 				716863C418B93C31005D68B3 /* menu_items.json in Resources */,
 				71DBA7C518BAC978001CBC32 /* access_token.json in Resources */,
 				71DC141C18FB9DC4001C8185 /* staff_kinds.json in Resources */,
+				718BC515192052B60039F621 /* credit_cards.json in Resources */,
+				718BC513192052800039F621 /* credit_card.json in Resources */,
+				718BC52F19208D380039F621 /* reviews.json in Resources */,
 				713F324018FB423E004E2F1F /* order_item.json in Resources */,
 				716863BC18B927DC005D68B3 /* menu_section.json in Resources */,
 				71DC140E18FB60C1001C8185 /* devices.json in Resources */,
@@ -694,6 +769,7 @@
 				713F324218FB427C004E2F1F /* order.json in Resources */,
 				71DC141418FB723F001C8185 /* notification.json in Resources */,
 				710928A418FD4931009760F2 /* staff_members.json in Resources */,
+				718BC52319208C740039F621 /* opening_hours.json in Resources */,
 				7132E4681848EA8A00B2E356 /* InfoPlist.strings in Resources */,
 				71DC141618FB7281001C8185 /* order_items.json in Resources */,
 				710928A818FD59E7009760F2 /* groups.json in Resources */,
@@ -781,6 +857,7 @@
 				71115C5319022516000E87C4 /* AMClient+StaffKind.m in Sources */,
 				71173FA118A067F400DF24EB /* NSNumberFormatter+AirMenuNumberFormat.m in Sources */,
 				7119583218FADBBD0065BB3A /* AMNotification.m in Sources */,
+				718BC50F19204B9A0039F621 /* AMCreditCard.m in Sources */,
 				71115C5619022521000E87C4 /* AMClient+StaffMember.m in Sources */,
 				716C573318A197C800D95228 /* NSDateFormatter+AirMenuTimestamp.m in Sources */,
 				71A0D3AB18AC33390070465E /* AMClient+MenuSection.m in Sources */,
@@ -794,8 +871,10 @@
 				7119582618FADAB10065BB3A /* AMOrderItem.m in Sources */,
 				713F953B18A040F500623CA8 /* AMAddress.m in Sources */,
 				710AD72618A026B900AA1038 /* AMMenu.m in Sources */,
+				718BC52719208CE50039F621 /* AMOpeningHour.m in Sources */,
 				7119582C18FADB450065BB3A /* AMStaffMember.m in Sources */,
 				710AD72C18A026D600AA1038 /* AMMenuItem.m in Sources */,
+				718BC52B19208D160039F621 /* AMReview.m in Sources */,
 				7119582918FADB070065BB3A /* AMStaffKind.m in Sources */,
 				710AD72318A0269F00AA1038 /* AMRestaurant.m in Sources */,
 				71A0D3A218AC33220070465E /* AMClient+Company.m in Sources */,
@@ -810,6 +889,7 @@
 				71115C50190224F6000E87C4 /* AMClient+OrderItem.m in Sources */,
 				71496A9018CD340E00045AFD /* AMUser.m in Sources */,
 				71A0D3AE18AC335E0070465E /* AMClient+MenuItem.m in Sources */,
+				718BC5371920A3ED0039F621 /* AMClient+OpeningHour.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -821,14 +901,20 @@
 				71710E6418A436C200A2390B /* AMRestaurantTests.m in Sources */,
 				7108ADA118B5846400A413DA /* AMClientRestaurantTests.m in Sources */,
 				71115C5E19022A6C000E87C4 /* AMClientStaffMemberTests.m in Sources */,
+				718BC5111920517A0039F621 /* AMCreditCardTests.m in Sources */,
+				718BC518192058590039F621 /* AMClient+CreditCard.m in Sources */,
 				716863C018B9388D005D68B3 /* AMClientMenuSectionTests.m in Sources */,
 				71B2ABFC18FDDA2000238DC1 /* AMClientGroupTests.m in Sources */,
 				71496A9218CD342100045AFD /* AMUserTests.m in Sources */,
 				71E3FD8818AB040A00BD00C2 /* AMClientTests.m in Sources */,
 				71E3FD8D18AC0C7000BD00C2 /* AMObjectBuilderTests.m in Sources */,
+				718BC51A19205AB00039F621 /* AMClientCreditCardTests.m in Sources */,
+				718BC51D192063120039F621 /* AMClient+Device.m in Sources */,
 				71173FA418A06AF300DF24EB /* AMAddressTests.m in Sources */,
 				716863C618B94FA1005D68B3 /* AMClientMenuItemTests.m in Sources */,
 				71E3FD8018AACB8D00BD00C2 /* AMOAuthApplicationTests.m in Sources */,
+				718BC51F192066450039F621 /* AMClientDeviceTests.m in Sources */,
+				718BC531192097FE0039F621 /* AMReviewTests.m in Sources */,
 				713F953218A0328400623CA8 /* AMCompanyTests.m in Sources */,
 				71600A1C18B5069F00DFB9B6 /* AMClientCompanyTests.m in Sources */,
 				71115C5A19022A4B000E87C4 /* AMClientOrderItemTests.m in Sources */,
@@ -839,8 +925,10 @@
 				7119583718FADC780065BB3A /* AMGroupTests.m in Sources */,
 				7119583B18FADCA00065BB3A /* AMOrderItemTests.m in Sources */,
 				71115C5819022A3E000E87C4 /* AMClientOrderTests.m in Sources */,
+				718BC5391920A7AB0039F621 /* AMClientOpeningHourTests.m in Sources */,
 				71115C5C19022A56000E87C4 /* AMClientStaffKindTests.m in Sources */,
 				71E3FD7B18AA784700BD00C2 /* AMOAuthTokenTests.m in Sources */,
+				718BC533192098080039F621 /* AMOpeningHourTests.m in Sources */,
 				71496A9B18CD420500045AFD /* AMClientUserTests.m in Sources */,
 				7119584118FAE0060065BB3A /* AMDeviceTests.m in Sources */,
 				7119583F18FADFE40065BB3A /* AMStaffMemberTests.m in Sources */,

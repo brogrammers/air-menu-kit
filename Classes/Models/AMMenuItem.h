@@ -17,4 +17,5 @@
 @property (nonatomic, strong, readonly) NSNumber *price;
 @property (nonatomic, strong, readonly) NSString *currency;
 @property (nonatomic, strong, readonly) AMStaffKind *staffKind;
+@property (nonatomic, strong, readonly) NSURL *avatar;
 @end

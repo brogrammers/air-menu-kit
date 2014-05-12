@@ -13,6 +13,7 @@
 typedef void (^OrderCompletion)(AMOrder *order, NSError *error);
 typedef void (^OrderOrderItemsCompletion) (NSArray *orderItems, NSError *error);
 typedef void (^OrderOrderItemCompletion) (AMOrderItem *orderItem, NSError *error);
+typedef void (^OrderPaymentStatus)(NSString *status, NSError *error);
 
 @interface AMClient (Order)
 
@@ -38,5 +39,13 @@ typedef void (^OrderOrderItemCompletion) (AMOrderItem *orderItem, NSError *error
                                           count:(NSNumber *)count
                                      menuItemId:(NSString *)menuItemId
                                      completion:(OrderOrderItemCompletion)completion;
+
+/*
+ Order > Payments
+ */
+
+-(NSURLSessionDataTask *)createPaymentForORder:(AMOrder *)order
+                              withCreditCardId:(NSString *)creditCardId
+                                    completion:(OrderPaymentStatus)completion;
 
 @end

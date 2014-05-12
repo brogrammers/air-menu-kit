@@ -27,4 +27,18 @@
 {
     return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:[AMStaffMember class]];
 }
+
+-(BOOL)isEqual:(id)object
+{
+    if(self.class == [object class]) {
+        return  [self.identifier isEqualToNumber:[(AMGroup *)object identifier]] ||
+        (!self.identifier && ![(AMGroup *)object identifier]);
+    }
+    return NO;}
+
+-(NSUInteger)hash
+{
+    return [self.identifier hash];
+}
+
 @end

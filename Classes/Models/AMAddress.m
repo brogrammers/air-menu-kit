@@ -25,4 +25,17 @@
              };
 }
 
+-(BOOL)isEqual:(id)object
+{
+    if(self.class == [object class]) {
+        return  [self.identifier isEqualToNumber:[(AMAddress *)object identifier]] ||
+        (!self.identifier && ![(AMAddress *)object identifier]);
+    }
+    return NO;}
+
+-(NSUInteger)hash
+{
+    return [self.identifier hash];
+}
+
 @end

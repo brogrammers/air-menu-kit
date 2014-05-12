@@ -26,7 +26,8 @@ describe(@"AMOrder", ^{
                                                     @"cancelledAt" : [NSDate dateWithTimeIntervalSince1970:1],
                                                     @"restaurant" : [AMRestaurant new],
                                                     @"user" : [AMUser new],
-                                                    @"orderItems" : @[[AMOrderItem new]]}];
+                                                    @"orderItems" : @[[AMOrderItem new]],
+                                                    @"tableNumber" : @"1"}];
         });
         
         it(@"sublcasses MTLModel", ^{
@@ -68,6 +69,10 @@ describe(@"AMOrder", ^{
         it(@"has order items attribute", ^{
             [[order.orderItems should] equal:@[[AMOrderItem new]]];
         });
+        
+        it(@"has tble number attribute", ^{
+            [[order.tableNumber should] equal:@"1"];
+        });
     });
     
     context(@"class", ^{
@@ -80,7 +85,8 @@ describe(@"AMOrder", ^{
                                               @"cancelledAt" : @"cancelled_time",
                                               @"user" : @"user",
                                               @"restaurant" : @"restaurant",
-                                              @"orderItems" : @"order_items"};
+                                              @"orderItems" : @"order_items",
+                                              @"tableNumber" : @"table_number"};
             [[mapping should] equal:expectedMapping];
         });
         

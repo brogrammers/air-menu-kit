@@ -8,8 +8,32 @@
 
 #import "AMClient+Restaurant.h"
 #import "AMObjectBuilder.h"
+#import "NSDateFormatter+AirMenuTimestamp.h"
 
 @implementation AMClient (Restaurant)
+
+-(NSURLSessionDataTask *)findRestaurantsAtLatitude:(double)latitude
+                                         longitude:(double)longitude
+                                       withinRange:(double)range
+                                        completion:(RestaurantRangeCompletion)completion
+{
+    
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setPositiveFormat:@"0.00000000"];
+    NSDictionary *params = @{@"latitude" : [numberFormatter stringFromNumber:@(latitude)],
+                             @"longitude" : [numberFormatter stringFromNumber:@(latitude)],
+                             @"offset" : @(range)};
+    NSString *urlString = @"restaurants/";
+    return [self GET:urlString
+          parameters:params
+             success:^(NSURLSessionDataTask *task, id responseObject) {
+                 NSArray *restaurants = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
+                 if(completion) completion(restaurants, nil);
+             }
+             failure:^(NSURLSessionDataTask *task, NSError *error) {
+                 if(completion) completion(nil, error);
+             }];
+}
 
 -(NSURLSessionDataTask *)findRestaurantWithIdentifier:(NSString *)identifier
                                            completion:(RestaurantCompletion)completion
@@ -30,6 +54,7 @@
 
 -(NSURLSessionDataTask *)updateRestaurant:(AMRestaurant *)restaurant
                               withNewName:(NSString *)name
+                           newDescription:(NSString *)description
                         newAddressLineOne:(NSString *)lineOne
                         newAddressLineTwo:(NSString *)lineTwo
                                   newCity:(NSString *)city
@@ -38,19 +63,22 @@
                                newCountry:(NSString *)country
                               newLatitude:(double)latitude
                              newLongitude:(double)longitude
-                            newCompletion:(RestaurantCompletion)completion
+                            newCompletion:(RestaurantCompletion)completion;
 {
     NSAssert(restaurant.identifier, @"restaurant identifier cannot be nil");
-    NSString *urlString = [@"restaurants/" stringByAppendingString:restaurant.identifier.description];
-    NSDictionary *params = @{@"name" : name,
-                             @"address_1" : lineOne,
-                             @"address_2" : lineTwo,
-                             @"city" : city,
-                             @"county" : county,
-                             @"state" : state,
-                             @"country" : country,
-                             @"latitude" : @(latitude).description,
-                             @"longitude" : @(longitude).description};
+    NSString *urlString = [@"restaurants/" stringByAppendingString:restaurant.identifier.description];    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    if(name) [params setObject:name forKey:@"name"];
+    if(description) [params setObject:description forKey:@"description"];
+    if(lineOne) [params setObject:lineOne forKey:@"address_1"];
+    if(lineTwo) [params setObject:lineTwo forKey:@"address_2"];
+    if(city) [params setObject:city forKey:@"city"];
+    if(county) [params setObject:county forKey:@"county"];
+    if(country) [params setObject:country forKey:@"country"];
+    if(state) [params setObject:state forKey:@"state"];
+    if(latitude) [params setObject:@(latitude).description forKey:@"latitude"];
+    if(longitude) [params setObject:@(longitude).description forKey:@"longitude"];
+    
     return [self PUT:urlString
           parameters:params
              success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -104,9 +132,12 @@
                                      completion:(RestaurantMenuCompletion)completion
 {
     NSAssert(restaurant.identifier, @"restaurants identifier cannot be nil");
+    NSAssert(name, @"name cannot be nil");
     NSString *urlString = [@"restaurants/" stringByAppendingFormat:@"%@/%@", restaurant.identifier, @"menus"];
+    NSMutableDictionary *params = [@{@"name" : name} mutableCopy];
+    [params setObject:(active ? @YES : @NO) forKey:@"active"];
     return [self POST:urlString
-           parameters:@{@"name" : name, @"active" : (active ? @YES : @NO)}
+           parameters:params
               success:^(NSURLSessionDataTask *task, id responseObject) {
                   AMMenu *menu = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
                   if(completion) completion(menu, nil);
@@ -145,9 +176,14 @@
                                        completion:(RestaurantDeviceCompletion)completion;
 {
     NSAssert(restaurant.identifier, @"restaurants identifier cannot be nil");
+    NSAssert(name, @"name cannot be nil");
+    NSAssert(uuid, @"uuid identifier cannot be nil");
+    NSAssert(platform, @"platform identifier cannot be nil");
+    NSMutableDictionary *params = [@{@"name" : name, @"uuid" : uuid, @"platform" : platform} mutableCopy];
+    if(token) [params setObject:token forKey:@"token"];
     NSString *urlString = [@"restaurants/" stringByAppendingFormat:@"%@/%@", restaurant.identifier, @"devices"];
     return [self POST:urlString
-           parameters:@{@"name" : name, @"uuid" : uuid, @"token" : token, @"platform" : platform}
+           parameters:params
               success:^(NSURLSessionDataTask *task, id responseObject) {
                   AMDevice *device = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
                   if(completion) completion(device, nil);
@@ -184,6 +220,7 @@
                                       completion:(RestaurantGroupCompletion)completion
 {
     NSAssert(restaurant.identifier, @"restaurants identifier cannot be nil");
+    NSAssert(name, @"name cannot be nil");
     NSString *urlString = [@"restaurants/" stringByAppendingFormat:@"%@/%@", restaurant.identifier, @"groups"];
     return [self POST:urlString
            parameters:@{@"name" : name}
@@ -217,12 +254,15 @@
 }
 
 -(NSURLSessionDataTask *)createOrderOfRestaurant:(AMRestaurant *)restaurant
+                                   atTableNumber:(NSString *)tableNumber
                                       completion:(RestaurantOrderCompletion)completion
 {
     NSAssert(restaurant.identifier, @"restaurants identifier cannot be nil");
     NSString *urlString = [@"restaurants/" stringByAppendingFormat:@"%@/%@", restaurant.identifier, @"orders"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    if(tableNumber) [params setObject:tableNumber forKey:@"table_number"];
     return [self POST:urlString
-           parameters:nil
+           parameters:params
               success:^(NSURLSessionDataTask *task, id responseObject) {
                   AMOrder *order = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
                   if(completion) completion(order, nil);
@@ -259,9 +299,13 @@
                                           completion:(RestaurantStaffKindCompletion)completion
 {
     NSAssert(restaurant.identifier, @"restaurants identifier cannot be nil");
+    NSAssert(name, @"name cannot be nil");
+    NSDictionary *params = @{@"name" : name,
+                             @"accept_orders" : acceptsOrders ? @"true" : @"false",
+                             @"accept_order_items" : acceptsOrderItems ? @"true" : @"false"};
     NSString *urlString = [@"restaurants/" stringByAppendingFormat:@"%@/%@", restaurant.identifier, @"staff_kinds"];
     return [self POST:urlString
-           parameters:@{@"name" : name, @"accept_orders" : @(acceptsOrders), @"accept_order_items" : @(acceptsOrderItems)}
+           parameters:params
               success:^(NSURLSessionDataTask *task, id responseObject) {
                   AMStaffKind *staffKind = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
                   if(completion) completion(staffKind, nil);
@@ -297,20 +341,137 @@
                                                password:(NSString *)password
                                                   email:(NSString *)email
                                               staffKind:(NSString *)staffKindIdentifier
+                                                 avatar:(UIImage *)avatar
                                              completion:(RestaurantStaffMemberCompletion)completion
 {
     NSAssert(restaurant.identifier, @"restaurants identifier cannot be nil");
+    NSAssert(name, @"name cannot be nil");
+    NSAssert(username, @"username cannot be nil");
+    NSAssert(password, @"password cannot be nil");
+    NSAssert(email, @"email cannot be nil");
+    NSAssert(staffKindIdentifier, @"staff kind identifier cannot be nil");
+    
+    NSDictionary *params = @{@"name" : name,
+                             @"username" : username,
+                             @"password" : password,
+                             @"email" : email,
+                             @"staff_kind_id" : staffKindIdentifier};
     NSString *urlString = [@"restaurants/" stringByAppendingFormat:@"%@/%@", restaurant.identifier, @"staff_members"];
+
+    if(avatar)
+    {
+        return [self POST:urlString
+               parameters:params
+constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+                    [formData appendPartWithFormData:UIImagePNGRepresentation(avatar) name:@"avatar"];
+                  }
+                  success:^(NSURLSessionDataTask *task, id responseObject) {
+                      AMStaffMember *staffMember = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
+                      if(completion) completion(staffMember, nil);
+                  }
+                  failure:^(NSURLSessionDataTask *task, NSError *error) {
+                      if(completion) completion(nil, error);
+                  }];
+    }
+    else
+    {
+        return [self POST:urlString
+               parameters:params
+                  success:^(NSURLSessionDataTask *task, id responseObject) {
+                      AMStaffMember *staffMember = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
+                      if(completion) completion(staffMember, nil);
+                  }
+                  failure:^(NSURLSessionDataTask *task, NSError *error) {
+                      if(completion) completion(nil, error);
+                  }];
+    }
+}
+
+/*
+ Restaurants > Reviews
+ */
+
+-(NSURLSessionDataTask *)findReviewsOfRestaurant:(AMRestaurant *)restaurant
+                                      completion:(RestaurantReviewsCompletion)completion
+{
+    NSAssert(restaurant.identifier, @"restaurants identifier cannot be nil");
+    NSString *urlString = [@"restaurants/" stringByAppendingFormat:@"%@/%@", restaurant.identifier, @"reviews"];
+    return [self GET:urlString
+          parameters:nil
+             success:^(NSURLSessionDataTask *task, id responseObject) {
+                 NSArray *reviews = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
+                 if(completion) completion(reviews, nil);
+             }
+             failure:^(NSURLSessionDataTask *task, NSError *error) {
+                 if(completion) completion(nil, error);
+             }];
+}
+
+-(NSURLSessionDataTask *)createReviewOfRestaurant:(AMRestaurant *)restaurant
+                                      withSubject:(NSString *)subject
+                                          message:(NSString *)message
+                                           rating:(NSInteger)rating
+                                       completion:(RestaurantReviewCompletion)completion
+{
+    NSAssert(restaurant.identifier, @"restaurants identifier cannot be nil");
+    NSAssert(subject, @"subject cannot be nil");
+    NSAssert(message, @"message cannot be nil");
+    NSString *urlString = [@"restaurants/" stringByAppendingFormat:@"%@/%@", restaurant.identifier, @"reviews"];
+    NSDictionary *params = @{@"subject" : subject, @"message" : message, @"rating": @(rating)};
     return [self POST:urlString
-           parameters:@{@"name" : name, @"username" : username, @"password" : password, @"email" : email, @"staff_kind_id" : staffKindIdentifier}
+           parameters:params
               success:^(NSURLSessionDataTask *task, id responseObject) {
-                  AMStaffMember *staffMember = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
-                  if(completion) completion(staffMember, nil);
+                  AMReview *review = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
+                  if(completion) completion(review, nil);
               }
               failure:^(NSURLSessionDataTask *task, NSError *error) {
                   if(completion) completion(nil, error);
               }];
 }
 
+/*
+ Restaurants > Opening Hours
+ */
+
+-(NSURLSessionDataTask *)findOpeningHoursOfRestaurant:(AMRestaurant *)restaurant
+                                           completion:(RestaurantOpeningHoursCompletion)completion
+{
+    NSAssert(restaurant.identifier, @"restaurants identifier cannot be nil");
+    NSString *urlString = [@"restaurants/" stringByAppendingFormat:@"%@/%@", restaurant.identifier, @"opening_hours"];
+    return [self GET:urlString
+          parameters:nil
+             success:^(NSURLSessionDataTask *task, id responseObject) {
+                 NSArray *openingHours = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
+                 if(completion) completion(openingHours, nil);
+             }
+             failure:^(NSURLSessionDataTask *task, NSError *error) {
+                 if(completion) completion(nil, error);
+             }];
+}
+
+-(NSURLSessionDataTask *)createOpeningHourOfRestaurant:(AMRestaurant *)restaurant
+                                                   day:(NSString *)day
+                                                 start:(NSDate *)startDate
+                                                   end:(NSDate *)endDate
+                                            completion:(RestaurantOpeningHourCompletion)completion
+{
+    NSAssert(restaurant.identifier, @"restaurants identifier cannot be nil");
+    NSAssert(day, @"day cannot be nil");
+    NSAssert(startDate, @"start date cannot be nil");
+    NSAssert(endDate, @"end date cannot ben nil");
+    NSDictionary *params = @{@"day" : day,
+                             @"start" : [[NSDateFormatter sharedAirMenuFormatter] stringFromDate:startDate],
+                             @"end" : [[NSDateFormatter sharedAirMenuFormatter] stringFromDate:endDate]};
+    NSString *urlString = [@"restaurants/" stringByAppendingFormat:@"%@/%@", restaurant.identifier, @"opening_hours"];
+    return [self POST:urlString
+           parameters:params
+              success:^(NSURLSessionDataTask *task, id responseObject) {
+                  AMOpeningHour *openingHour = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
+                  if(completion) completion(openingHour, nil);
+              }
+              failure:^(NSURLSessionDataTask *task, NSError *error) {
+                  if(completion) completion(nil, error);
+              }];
+}
 
 @end

@@ -9,7 +9,65 @@
 #import "AMClient.h"
 #import "AMObjectBuilder.h"
 
+
+static NSString * const JSONResponseSerializerWithDataKey = @"JSONResponseSerializerWithDataKey";
+
+@interface JSONResponseSerializerWithData : AFJSONResponseSerializer
+@end
+
+@implementation JSONResponseSerializerWithData
+- (id)responseObjectForResponse:(NSURLResponse *)response
+                           data:(NSData *)data
+                          error:(NSError *__autoreleasing *)error
+{
+    if (![self validateResponse:(NSHTTPURLResponse *)response data:data error:error]) {
+        if (*error != nil) {
+            NSMutableDictionary *userInfo = [(*error).userInfo mutableCopy];
+            id object = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            if(object)
+            {
+                userInfo[JSONResponseSerializerWithDataKey] = object;
+            }
+            NSError *newError = [NSError errorWithDomain:(*error).domain code:(*error).code userInfo:userInfo];
+            (*error) = newError;
+        }
+        
+        return (nil);
+    }
+    
+    return ([super responseObjectForResponse:response data:data error:error]);
+}
+@end
+
 @implementation AMClient
+@synthesize errorHandlers = _errorHandlers;
+
+-(NSDictionary *)errorHandlers
+{
+    if(!_errorHandlers)
+    {
+        _errorHandlers = [NSMutableDictionary dictionary];
+    }
+
+    return _errorHandlers;
+}
+
+-(void)registerHadnler:(ErrorHandler)handler forErrorCode:(NSString *)code
+{
+    NSMutableDictionary *errorHandlers = (NSMutableDictionary *) self.errorHandlers;
+    errorHandlers[code] = [handler copy];
+}
+
+-(void)executeHandlerForError:(NSError *)error
+{
+    NSInteger statusCode =[[[error userInfo] objectForKey:@"AFNetworkingOperationFailingURLResponseErrorKey"] statusCode];
+    ErrorHandler handler = self.errorHandlers[[@(statusCode) description]];
+    if(handler)
+    {
+        handler();
+    }
+}
+
 +(instancetype)sharedClient
 {
     static dispatch_once_t onceToken;
@@ -19,6 +77,7 @@
         AFSecurityPolicy *securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
         securityPolicy.allowInvalidCertificates = YES;
         sharedClient.securityPolicy = securityPolicy;
+        sharedClient.responseSerializer = [JSONResponseSerializerWithData serializer];
         [sharedClient setSessionDidReceiveAuthenticationChallengeBlock:
          ^NSURLSessionAuthChallengeDisposition(NSURLSession *session,
                                                NSURLAuthenticationChallenge *challenge,
@@ -59,6 +118,40 @@
                   }
                   AMOAuthToken *token = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
                   [self.requestSerializer setValue:[@"Bearer " stringByAppendingString:token.token] forHTTPHeaderField:@"Authorization"];
+                  [[NSUserDefaults standardUserDefaults] setObject:token.refreshToken forKey:@"refresh_token"];
+                  [[NSUserDefaults standardUserDefaults] setObject:token.token forKey:@"access_token"];
+                  [[NSUserDefaults standardUserDefaults] synchronize];
+                  if(completion) completion(token, nil);
+              }
+              failure:^(NSURLSessionDataTask *task, NSError *error) {
+                  if(completion) completion(nil, error);
+              }];
+}
+
+-(NSURLSessionDataTask *)refreshWithClientID:(NSString *)clientID
+                                      secret:(NSString *)clientSecret
+                                  completion:(AuthenticateCompletion)completion
+{
+    NSAssert(clientID, @"clientID cannot be nil");
+    NSAssert(clientSecret, @"clientSecret cannot be nil");
+    NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:@"refresh_token"];
+    NSDictionary *params = @{@"grant_type" : @"refresh", @"client_id" : clientID, @"client_secret" : clientSecret, @"refresh_token" : token};
+    return [self POST:@"/api/oauth2/access_tokens"
+           parameters:params
+              success:^(NSURLSessionDataTask *task, id responseObject) {
+                  NSString *oldAccessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"access_token"];
+                  AMOAuthToken *token = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
+                  if (oldAccessToken)
+                  {
+                      id userObject = [[NSUserDefaults standardUserDefaults] objectForKey:oldAccessToken];
+                      [[NSUserDefaults standardUserDefaults] setObject:nil forKey:oldAccessToken];
+                      if (userObject)
+                      {
+                          [[NSUserDefaults standardUserDefaults] setObject:userObject forKey:token.token];
+                      }
+                  }
+                  [self.requestSerializer setValue:[@"Bearer " stringByAppendingString:token.token] forHTTPHeaderField:@"Authorization"];
+                  [[NSUserDefaults standardUserDefaults] setObject:token.refreshToken forKey:@"refresh_token"];
                   [[NSUserDefaults standardUserDefaults] setObject:token.token forKey:@"access_token"];
                   [[NSUserDefaults standardUserDefaults] synchronize];
                   if(completion) completion(token, nil);
@@ -106,6 +199,7 @@
                   }
               }
               failure:^(NSURLSessionDataTask *task, NSError *error){
+                  [self executeHandlerForError:error];
                   if(failure) failure(task, error);
               }];
 }
@@ -126,6 +220,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                   if(success) success(task, responseObject);
                }
                failure:^(NSURLSessionDataTask *task, NSError *error) {
+                 [self executeHandlerForError:error];
                   if(failure) failure(task, error);
                }];
 }
@@ -140,7 +235,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
             parameters:parameters
                success:^(NSURLSessionDataTask *task, id responseObject) {
                    NSHTTPURLResponse *urlResponse = (NSHTTPURLResponse *)task.response;
-                   if (urlResponse.statusCode == 200)
+                   if (urlResponse.statusCode == 200 || urlResponse.statusCode == 201)
                    {
                        success(task, responseObject);
                    }
@@ -153,6 +248,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                    }
                }
                failure:^(NSURLSessionDataTask *task, NSError *error) {
+                   [self executeHandlerForError:error];
                    if(failure) failure(task, error);
                }];
 }
@@ -168,6 +264,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                   if(success) success(task, responseObject);
               }
               failure:^(NSURLSessionDataTask *task, NSError *error){
+                  [self executeHandlerForError:error];
                   if(failure) failure(task, error);
               }];
 }
@@ -183,6 +280,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                      if(success) success(task, responseObject);
                  }
                  failure:^(NSURLSessionDataTask *task, NSError *error){
+                    [self executeHandlerForError:error];
                      if(failure) failure(task, error);
                  }];
 }
@@ -198,6 +296,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                     if(success) success(task, responseObject);
                 }
                 failure:^(NSURLSessionDataTask *task, NSError *error){
+                    [self executeHandlerForError:error];
                     if(failure) failure(task, error);
                 }];
 }

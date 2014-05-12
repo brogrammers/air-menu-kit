@@ -20,7 +20,8 @@
              @"cancelledAt" : @"cancelled_time",
              @"user" : @"user",
              @"restaurant" : @"restaurant",
-             @"orderItems" : @"order_items"};
+             @"orderItems" : @"order_items",
+             @"tableNumber" : @"table_number"};
 }
 
 +(NSValueTransformer *)restaurantJSONTransformer
@@ -72,6 +73,20 @@
                                                                            @"cancelled" : @(AMOrderStateCancelled),
                                                                            @"served" : @(AMOrderStateServed),
                                                                            @"paid" : @(AMOrderStatePaid)}];
+}
+
+-(BOOL)isEqual:(id)object
+{
+    if(self.class == [object class]) {
+        return  [self.identifier isEqualToNumber:[(AMOrder *)object identifier]] ||
+        (!self.identifier && ![(AMOrder *)object identifier]);
+    }
+    return NO;
+}
+
+-(NSUInteger)hash
+{
+    return [self.identifier hash];
 }
 
 @end

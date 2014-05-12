@@ -21,4 +21,5 @@
 @property (nonatomic, strong, readonly) AMAddress *address;
 @property (nonatomic, strong, readonly) AMMenu *menu;
 @property (nonatomic, strong, readonly) AMLocation *location;
+@property (nonatomic, strong, readonly) NSURL *avatar;
 @end

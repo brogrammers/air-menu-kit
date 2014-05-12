@@ -125,10 +125,15 @@ describe(@"AMClient+User", ^{
                                     httpMethod:@"POST"
                             nameOfResponseFile:@"user.json"
                                   responseCode:200];
-               
-               task = [[AMClient sharedClient] createUserWithName:@"Max Hoffmann" username:@"tsov" password:@"pass123" completion:^(AMUser *user, NSError *error) {
-                   createdUser = user;
-               }];
+               task = [[AMClient sharedClient] createUserWithName:@"Max Hoffmann"
+                                                            email:@"email@example.com"
+                                                            phone:@"12345"
+                                                         username:@"tsov"
+                                                         password:@"pass123" 
+                                                           avatar:nil
+                                                       completion:^(AMUser *user, NSError *error) {
+                                                           createdUser = user;
+                                                       }];
            });
            
            it(@"uses POST method", ^{
@@ -147,7 +152,9 @@ describe(@"AMClient+User", ^{
            it(@"sends parameters in HTTP body", ^{
                [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"name" : @"Max Hoffmann",
                                                                                   @"username" : @"tsov",
-                                                                                  @"password" : @"pass123"}];
+                                                                                  @"password" : @"pass123",
+                                                                                  @"email" : @"email%40example.com",
+                                                                                  @"phone" : @"12345"}];
            });
        });
        
@@ -157,16 +164,16 @@ describe(@"AMClient+User", ^{
            
            beforeAll(^{
                [TestToolBox stubRequestWithURL:[baseURL stringByAppendingString:@"me"]
-                                    httpMethod:@"POST"
+                                    httpMethod:@"PUT"
                             nameOfResponseFile:@"user.json"
                                   responseCode:200];
-               task = [[AMClient sharedClient] updateCurrentUserWithNewName:@"aname" newPassword:@"apass" newPhoneNumber:@"12345" completion:^(AMUser *user, NSError *error) {
+               task = [[AMClient sharedClient] updateCurrentUserWithNewName:@"aname" newPassword:@"apass" newEmail:@"email" newPhoneNumber:@"12345" newAvatar:nil completion:^(AMUser *user, NSError *error) {
                    updatedMe = user;
                }];
            });
            
-           it(@"uses POST method", ^{
-               [[task.originalRequest.HTTPMethod should] equal:@"POST"];
+           it(@"uses PUT method", ^{
+               [[task.originalRequest.HTTPMethod should] equal:@"PUT"];
            });
            
            it(@"calls /me", ^{
@@ -180,7 +187,8 @@ describe(@"AMClient+User", ^{
            it(@"sends parameters in HTTP body", ^{
                [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"name" : @"aname",
                                                                                   @"password" : @"apass",
-                                                                                  @"phone" : @"12345"}];
+                                                                                  @"phone" : @"12345",
+                                                                                  @"email" : @"email"}];
            });
        });
        
@@ -364,6 +372,77 @@ describe(@"AMClient+User", ^{
            
            it(@"sends parameters in HTTP body", ^{
                [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"read" : @"1"}];
+           });
+       });
+       
+       context(@"on find credit cards", ^{
+           __block NSURLSessionDataTask *task;
+           __block NSArray *foundCards;
+           
+           beforeAll(^{
+               [TestToolBox stubRequestWithURL:[baseURL stringByAppendingString:@"me/credit_cards"]
+                                    httpMethod:@"GET"
+                            nameOfResponseFile:@"credit_cards.json"
+                                  responseCode:200];
+               
+               task = [[AMClient sharedClient] findCreditCardsOfCurentUserCompletion:^(NSArray *creditCards, NSError *error) {
+                   foundCards = creditCards;
+               }];
+           });
+           
+           it(@"uses GET method", ^{
+               [[task.originalRequest.HTTPMethod should] equal:@"GET"];
+           });
+           
+           it(@"calls /me/credit_cards", ^{
+               [[task.originalRequest.URL.absoluteString should] equal:[baseURL stringByAppendingString:@"me/credit_cards"]];
+           });
+           
+           it(@"creates array of credit card objects", ^{
+               [[expectFutureValue(foundCards) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"credit_cards.json"]];
+           });
+           
+       });
+       
+       context(@"on create credit card", ^{
+           
+           __block NSURLSessionDataTask *task;
+           __block AMCreditCard *createdCard;
+           
+           beforeAll(^{
+               [TestToolBox stubRequestWithURL:[baseURL stringByAppendingString:@"me/credit_cards"]
+                                    httpMethod:@"POST"
+                            nameOfResponseFile:@"credit_card.json"
+                                  responseCode:200];
+               
+               task = [[AMClient sharedClient] createCreditCardOfCurrentUserWithNumber:@"12345"
+                                                                              cardType:@"VISA"
+                                                                           expiryMonth:@"05"
+                                                                            expiryYear:@"2012"
+                                                                                   cvc:@"123"
+                                                                            completion:^(AMCreditCard *creditCard, NSError *error) {
+                   createdCard = creditCard;
+               }];
+           });
+           
+           it(@"uses POST method", ^{
+               [[task.originalRequest.HTTPMethod should] equal:@"POST"];
+           });
+           
+           it(@"calls /me/credit_cards", ^{
+               [[task.originalRequest.URL.absoluteString should] equal:[baseURL stringByAppendingString:@"me/credit_cards"]];
+           });
+           
+           it(@"creates array of credit card objects", ^{
+               [[expectFutureValue(createdCard) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"credit_card.json"]];
+           });
+           
+           it(@"sends parameters in HTTP body", ^{
+               [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"number" : @"12345",
+                                                                                  @"type" : @"VISA",
+                                                                                  @"month" : @"05",
+                                                                                  @"year" : @"2012",
+                                                                                  @"cvc" : @"123"}];
            });
        });
    });

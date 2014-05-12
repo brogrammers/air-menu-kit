@@ -30,8 +30,14 @@
 -(NSURLSessionDataTask *)findCurrentUser:(UserCompletion)completion
 {
     NSString *accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"access_token"];
+    if(!accessToken)
+    {
+        completion(nil, [[NSError alloc] initWithDomain:@"com.air-menu.api" code:-1 userInfo:@{@"cause" : @"not logged in!!"}]);
+        return nil;
+    }
+    
     id userResponseObject = [[NSUserDefaults standardUserDefaults] objectForKey:accessToken];
-    if(accessToken && userResponseObject)
+    if(userResponseObject)
     {
         AMUser *user = [[AMObjectBuilder sharedInstance] objectFromJSON:userResponseObject];
         if(completion) completion(user, nil);
@@ -55,39 +61,100 @@
 }
 
 -(NSURLSessionDataTask *)createUserWithName:(NSString *)name
+                                      email:(NSString *)email
+                                      phone:(NSString *)phone
                                    username:(NSString *)username
                                    password:(NSString *)password
-                                 completion:(UserCompletion)completion
+                                     avatar:(UIImage *)avatar
+                                 completion:(UserCompletion)completion;
 
 {
     NSAssert(name, @"name cannot be nil");
     NSAssert(username, @"username cannot be nil");
+    NSAssert(email, @"password cannot be nil");
+    NSAssert(phone, @"password cannot be nil");
     NSAssert(password, @"password cannot be nil");
-    return [self POST:@"users"
-           parameters:@{@"name" : name, @"username" : username, @"password" : password}
-              success:^(NSURLSessionDataTask *task, id responseObject) {
-                  AMUser *user = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
-                  if(completion) completion(user, nil);
-              }
-              failure:^(NSURLSessionDataTask *task, NSError *error) {
-                  if(completion) completion(nil, error);
-              }];
+    NSDictionary *params = @{@"name" : name,
+                             @"username" : username,
+                             @"password" : password,
+                             @"phone" : phone,
+                             @"email" : email};
+    if(avatar)
+    {
+        return [self POST:@"users"
+               parameters:params
+constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+                        [formData appendPartWithFormData:UIImagePNGRepresentation(avatar) name:@"avatar"];
+                  }
+                  success:^(NSURLSessionDataTask *task, id responseObject) {
+                      AMUser *user = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
+                      if(completion) completion(user, nil);
+                  }
+                  failure:^(NSURLSessionDataTask *task, NSError *error) {
+                      if(completion) completion(nil, error);
+                  }];
+    }
+    else
+    {
+        return [self POST:@"users"
+               parameters:params
+                  success:^(NSURLSessionDataTask *task, id responseObject) {
+                      AMUser *user = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
+                      if(completion) completion(user, nil);
+                  }
+                  failure:^(NSURLSessionDataTask *task, NSError *error) {
+                      if(completion) completion(nil, error);
+                  }];
+    }
 }
 
 -(NSURLSessionDataTask *)updateCurrentUserWithNewName:(NSString *)name
                                           newPassword:(NSString *)password
+                                             newEmail:(NSString *)email
                                        newPhoneNumber:(NSString *)phoneNumber
+                                            newAvatar:(UIImage *)avatar
                                            completion:(UserCompletion)completion
 {
-    return [self POST:@"me"
-           parameters:@{@"name" : name, @"password" : password, @"phone" : phoneNumber }
-              success:^(NSURLSessionDataTask *task, id responseObject) {
-                  AMUser *user = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
-                  if(completion) completion(user, nil);
-              }
-              failure:^(NSURLSessionDataTask *task, NSError *error) {
-                  if(completion) completion(nil, error);
-              }];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    if(name) [params setObject:name forKey:@"name"];
+    if(password) [params setObject:password forKey:@"password"];
+    if(email) [params setObject:email forKey:@"email"];
+    if(phoneNumber) [params setObject:phoneNumber forKey:@"phone"];
+    if(avatar)
+    {
+        NSMutableURLRequest *request = [self.requestSerializer multipartFormRequestWithMethod:@"PUT"
+                                                                                   URLString:[[NSURL URLWithString:@"me" relativeToURL:self.baseURL] absoluteString]
+                                                                                  parameters:params
+                                                                   constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+                                                                       [formData appendPartWithFormData:UIImagePNGRepresentation(avatar) name:@"avatar"];
+                                                                   } error:nil];
+        NSURLSessionDataTask *task = [self dataTaskWithRequest:request
+                                             completionHandler:^(NSURLResponse * __unused response, id responseObject, NSError *error) {
+            if (error)
+            {
+                AMUser *user = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
+                if (completion) completion(user, error);
+            }
+            else
+            {
+                if (completion) completion(nil, error);
+            }
+        }];
+        [task resume];
+        return task;
+    }
+    else
+    {
+        return [self PUT:@"me"
+              parameters:params
+                 success:^(NSURLSessionDataTask *task, id responseObject) {
+                     AMUser *user = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
+                     if(completion) completion(user, nil);
+                  }
+                  failure:^(NSURLSessionDataTask *task, NSError *error) {
+                      if(completion) completion(nil, error);
+                  }];
+    }
 }
 
 -(NSURLSessionDataTask *)findDevicesOfCurrentUser:(UserDevicesCompletion)completion
@@ -192,5 +259,39 @@
              }];
 }
 
+-(NSURLSessionDataTask *)findCreditCardsOfCurentUserCompletion:(UserCreditCardsCompletion)completion
+{
+    return [self GET:@"me/credit_cards"
+          parameters:nil
+             success:^(NSURLSessionDataTask *task, id responseObject) {
+                 NSArray *creditCards = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
+                 if(completion) completion(creditCards, nil);
+             }
+             failure:^(NSURLSessionDataTask *task, NSError *error) {
+                 if(completion) completion(nil, error);
+             }];
+}
 
+-(NSURLSessionDataTask *)createCreditCardOfCurrentUserWithNumber:(NSString *)number
+                                                        cardType:(NSString *)type
+                                                     expiryMonth:(NSString *)month
+                                                      expiryYear:(NSString *)year
+                                                             cvc:(NSString *)cvc
+                                                      completion:(UserCreditCardCompletion)completion
+{
+    NSAssert(number, @"number cannot be nil");
+    NSAssert(type, @"type cannot be nil");
+    NSAssert(month, @"month cannot be nil");
+    NSAssert(year, @"year cannot be nil");
+    NSAssert(cvc, @"cvc cannot be nil");
+    NSDictionary *params = @{@"number" : number, @"year" : year,  @"type" : type, @"month" : month, @"cvc" : cvc};
+    return [self POST:@"me/credit_cards"
+           parameters:params
+              success:^(NSURLSessionDataTask *task, id responseObject) {
+                  AMCreditCard *creditCard = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
+                  if(completion) completion(creditCard, nil);
+              } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                  if(completion) completion(nil, error);
+              }];
+}
 @end

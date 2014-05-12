@@ -12,6 +12,7 @@
 #import "AMNotification.h"
 #import "AMOrder.h"
 #import "AMOrderItem.h"
+#import "AMCreditCard.h"
 
 typedef void (^UserCompletion)(AMUser *user, NSError *error);
 typedef void (^UserDevicesCompletion)(NSArray *devices, NSError *error);
@@ -20,14 +21,20 @@ typedef void (^UserNotificationsCompletion)(NSArray *notifications, NSError *err
 typedef void (^UserOrderItemsCompletion)(NSArray *orderItems, NSError *error);
 typedef void (^UserOrdersCompletion)(NSArray *orders, NSError *error);
 typedef void (^UserNotificationCompletion)(AMNotification *notification, NSError *error);
+typedef void (^UserCreditCardCompletion)(AMCreditCard *creditCard, NSError *error);
+typedef void (^UserCreditCardsCompletion)(NSArray *creditCards, NSError *error);
 
 @interface AMClient (User)
+
 -(NSURLSessionDataTask *)findUserWithIdentifier:(NSString *)identifier
                                      completion:(UserCompletion)completion;
 
 -(NSURLSessionDataTask *)createUserWithName:(NSString *)name
+                                      email:(NSString *)email
+                                      phone:(NSString *)phone
                                    username:(NSString *)username
                                    password:(NSString *)password
+                                     avatar:(UIImage *)avatar
                                  completion:(UserCompletion)completion;
 
 
@@ -39,7 +46,9 @@ typedef void (^UserNotificationCompletion)(AMNotification *notification, NSError
 
 -(NSURLSessionDataTask *)updateCurrentUserWithNewName:(NSString *)name
                                           newPassword:(NSString *)password
+                                             newEmail:(NSString *)email
                                        newPhoneNumber:(NSString *)phoneNumber
+                                            newAvatar:(UIImage *)avatar
                                            completion:(UserCompletion)completion;
 
 -(NSURLSessionDataTask *)findDevicesOfCurrentUser:(UserDevicesCompletion)completion;
@@ -60,4 +69,13 @@ typedef void (^UserNotificationCompletion)(AMNotification *notification, NSError
 
 -(NSURLSessionDataTask *)dismissNotifiation:(AMNotification *)notification
                     ofCurrentUserCompletion:(UserNotificationCompletion)completion;
+
+-(NSURLSessionDataTask *)findCreditCardsOfCurentUserCompletion:(UserCreditCardsCompletion)completion;
+
+-(NSURLSessionDataTask *)createCreditCardOfCurrentUserWithNumber:(NSString *)number
+                                                        cardType:(NSString *)type
+                                                     expiryMonth:(NSString *)month
+                                                      expiryYear:(NSString *)year
+                                                             cvc:(NSString *)cvc
+                                                      completion:(UserCreditCardCompletion)completion;
 @end

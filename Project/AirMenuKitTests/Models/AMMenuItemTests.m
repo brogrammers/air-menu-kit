@@ -24,7 +24,8 @@ describe(@"AMMenuItem", ^{
                                                        @"details" : @"a description",
                                                        @"price" : @(10),
                                                        @"currency" : @"EUR",
-                                                       @"staffKind" : [AMStaffKind new]}];
+                                                       @"staffKind" : [AMStaffKind new],
+                                                       @"avatar" : [NSURL URLWithString:@"https://gravatar.com"]}];
         });
         
         
@@ -59,6 +60,10 @@ describe(@"AMMenuItem", ^{
         it(@"has staff kind property", ^{
             [[menuItem.staffKind should] equal:[AMStaffKind new]];
         });
+        
+        it(@"has avater attribute", ^{
+            [[menuItem.avatar should] equal:[NSURL URLWithString:@"https://gravatar.com"]];
+        });
     });
     
     context(@"class", ^{
@@ -69,7 +74,8 @@ describe(@"AMMenuItem", ^{
                                               @"details" : @"description",
                                               @"price" : @"price",
                                               @"currency" : @"currency",
-                                              @"staffKind" : @"staff_kind"};
+                                              @"staffKind" : @"staff_kind",
+                                              @"avatar" : @"avatar"};
             [[mapping should] equal:expectedMapping];
         });
         
@@ -80,6 +86,16 @@ describe(@"AMMenuItem", ^{
         it(@"returns dictionary staff kind transformer from staffKindJSONTransformer", ^{
             NSValueTransformer *transformer = objc_msgSend([AMMenuItem class], NSSelectorFromString(@"staffKindJSONTransformer"));
             [[transformer shouldNot] beNil];
+        });
+        
+
+        it(@"implements avatarJSONTransformer", ^{
+            [[[AMMenuItem class] should] respondToSelector:NSSelectorFromString(@"avatarJSONTransformer")];
+        });
+        
+        it(@"returns NSURL transformer from avatarJSONTransforemr", ^{
+            NSValueTransformer *valueTransformer = objc_msgSend([AMMenuItem class], NSSelectorFromString(@"avatarJSONTransformer"));
+            [[[valueTransformer transformedValue:@"http://google.com"] should] equal:[NSURL URLWithString:@"http://google.com"]];
         });
     });
     

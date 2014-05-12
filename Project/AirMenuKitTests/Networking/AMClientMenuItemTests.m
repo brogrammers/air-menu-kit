@@ -52,7 +52,7 @@ describe(@"AMClient+AMMenuItem", ^{
                                responseCode:200];
             
             AMMenuItem *menuItem = [[AMMenuItem alloc] initWithDictionary:@{@"identifier" : @1} error:nil];
-            task = [[AMClient sharedClient] updateMenuItem:menuItem withNewName:@"newname" newDescription:@"newdesc" newPrice:@2.5 newCurrency:@"newcurr" newStaffKindId:@"1" completion:^(AMMenuItem *item, NSError *error) {
+            task = [[AMClient sharedClient] updateMenuItem:menuItem withNewName:@"newname" newDescription:@"newdesc" newPrice:@2.5 newCurrency:@"newcurr" newStaffKindId:@"1" avatar:nil completion:^(AMMenuItem *item, NSError *error) {
                 updatedItem = item;
             }];
         });
@@ -70,7 +70,7 @@ describe(@"AMClient+AMMenuItem", ^{
         });
         
         it(@"sends parameters in HTTP body", ^{
-            [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"name" : @"newname", @"description" : @"newdesc", @"price" : @"2.5", @"currency" : @"newcurr", @"staff_kind_id" : @"1"}];
+            [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"name" : @"newname", @"description" : @"newdesc", @"price" : @"2.50", @"currency" : @"newcurr", @"staff_kind_id" : @"1"}];
         });
     });
     

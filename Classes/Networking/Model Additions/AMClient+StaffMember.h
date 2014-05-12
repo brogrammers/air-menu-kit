@@ -17,10 +17,11 @@ typedef void (^StaffMemberCompletion)(AMStaffMember *staffMember, NSError *error
                                             completion:(StaffMemberCompletion)completion;
 
 -(NSURLSessionDataTask *)updateStaffMember:(AMStaffMember *)staffMember
-                               WithNewName:(NSString *)name
+                               withNewName:(NSString *)name
                                newPassword:(NSString *)password
                                   newEmail:(NSString *)email
                             newStaffKindId:(NSString *)staffKindIdentifier
+                                    avatar:(UIImage *)avatar
                                 completion:(StaffMemberCompletion)completion;
 
 -(NSURLSessionDataTask *)deleteStaffMember:(AMStaffMember *)staffMember

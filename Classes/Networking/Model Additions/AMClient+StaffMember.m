@@ -27,24 +27,58 @@
 }
 
 -(NSURLSessionDataTask *)updateStaffMember:(AMStaffMember *)staffMember
-                               WithNewName:(NSString *)name
+                               withNewName:(NSString *)name
                                newPassword:(NSString *)password
                                   newEmail:(NSString *)email
                             newStaffKindId:(NSString *)staffKindIdentifier
-                                completion:(StaffMemberCompletion)completion
+                                    avatar:(UIImage *)avatar
+                                completion:(StaffMemberCompletion)completion;
+
 {
     NSAssert(staffMember.identifier, @"identifier cannot be nil");
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    if(name) [params setObject:name forKey:@"name"];
+    if(password) [params setObject:password forKey:@"password"];
+    if(email) [params setObject:email forKey:@"email"];
+    if(staffKindIdentifier) [params setObject:staffKindIdentifier forKey:@"staff_kind_id"];
     NSString *urlString = [@"staff_members/" stringByAppendingString:staffMember.identifier.description];
-    NSDictionary *params = @{@"name" : name, @"password" : password, @"email" : email, @"staff_kind_id" : staffKindIdentifier};
-    return [self PUT:urlString
-          parameters:params
-             success:^(NSURLSessionDataTask *task, id responseObject) {
-                 AMStaffMember *member = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
-                 if(completion) completion(member, nil);
-             }
-             failure:^(NSURLSessionDataTask *task, NSError *error) {
-                 if(completion) completion(nil, error);
-             }];
+    
+    if(avatar)
+    {
+        NSMutableURLRequest *request = [self.requestSerializer multipartFormRequestWithMethod:@"PUT"
+                                                                                    URLString:[[NSURL URLWithString:urlString relativeToURL:self.baseURL] absoluteString]
+                                                                                   parameters:params
+                                                                    constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+                                                                        [formData appendPartWithFormData:UIImagePNGRepresentation(avatar) name:@"avatar"];
+                                                                    } error:nil];
+        NSURLSessionDataTask *task = [self dataTaskWithRequest:request
+                                             completionHandler:^(NSURLResponse * __unused response, id responseObject, NSError *error) {
+                                                 if (error)
+                                                 {
+                                                     AMStaffMember *member = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
+                                                     if (completion) completion(member, error);
+                                                 }
+                                                 else
+                                                 {
+                                                     if (completion) completion(nil, error);
+                                                 }
+                                             }];
+        [task resume];
+        return task;
+
+    }
+    else
+    {
+        return [self PUT:urlString
+              parameters:params
+                 success:^(NSURLSessionDataTask *task, id responseObject) {
+                     AMStaffMember *member = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
+                     if(completion) completion(member, nil);
+                 }
+                 failure:^(NSURLSessionDataTask *task, NSError *error) {
+                     if(completion) completion(nil, error);
+                 }];
+    }
 }
 
 -(NSURLSessionDataTask *)deleteStaffMember:(AMStaffMember *)staffMember

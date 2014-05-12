@@ -11,11 +11,43 @@
 #import "AMClient+Restaurant.h"
 #import "AMRestaurant.h"
 #import "TestToolBox.h"
+#import "NSDateFormatter+AirMenuTimestamp.h"
 
 SPEC_BEGIN(AMClientRestaurantTests)
 
 describe(@"AMClient+Restaurant", ^{
     context(@"with error free flow", ^{
+        
+        context(@"on finds restaurants", ^{
+            __block NSURLSessionDataTask *task;
+            __block NSArray *foundRestaurants;
+            
+            beforeAll(^{
+                [TestToolBox stubRequestWithURL:[baseURL stringByAppendingString:@"restaurants/?latitude=99.99000000&longitude=99.99000000&offset=99.98999999999999"]
+                                     httpMethod:@"GET"
+                             nameOfResponseFile:@"restaurants.json"
+                                   responseCode:200];
+                task = [[AMClient sharedClient] findRestaurantsAtLatitude:99.99
+                                                                longitude:99.99
+                                                              withinRange:99.99
+                                                               completion:^(NSArray *restaurants, NSError *error) {
+                                                                   foundRestaurants = restaurants;
+                                                               }];
+            });
+            
+            it(@"uses GET method", ^{
+                [[task.originalRequest.HTTPMethod should] equal:@"GET"];
+            });
+            
+            it(@"calls /restaurants with query", ^{
+                [[task.originalRequest.URL.absoluteString should] equal:[baseURL stringByAppendingString:@"restaurants/?latitude=99.99000000&longitude=99.99000000&offset=99.98999999999999"]];
+            });
+            
+            it(@"creates array of restaurants object", ^{
+                [[expectFutureValue(foundRestaurants) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"restaurants.json"]];
+            });
+        });
+        
         context(@"on find restaurant", ^{
             __block NSURLSessionDataTask *task;
             __block AMRestaurant *foundRestaurant;
@@ -52,8 +84,10 @@ describe(@"AMClient+Restaurant", ^{
                                    responseCode:200];
                 
                 AMRestaurant *restaurant = [[AMRestaurant alloc] initWithDictionary:@{@"identifier" : @1} error:nil];
+                
                 task = [[AMClient sharedClient] updateRestaurant:restaurant
                                                      withNewName:@"aname"
+                                                  newDescription:@"desc"
                                                newAddressLineOne:@"line1"
                                                newAddressLineTwo:@"line2"
                                                          newCity:@"city"
@@ -81,6 +115,7 @@ describe(@"AMClient+Restaurant", ^{
             
             it(@"sends parameters in HTTP body", ^{
                 [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"name" : @"aname",
+                                                                                   @"description" : @"desc",
                                                                                    @"address_1" : @"line1",
                                                                                    @"address_2" : @"line2",
                                                                                    @"city" : @"city",
@@ -369,7 +404,9 @@ describe(@"AMClient+Restaurant", ^{
                              nameOfResponseFile:@"order.json"
                                    responseCode:200];
                 AMRestaurant *restaurant = [[AMRestaurant alloc] initWithDictionary:@{@"identifier" : @1} error:nil];
-                task = [[AMClient sharedClient] createOrderOfRestaurant:restaurant completion:^(AMOrder *order, NSError *error) {
+                task = [[AMClient sharedClient] createOrderOfRestaurant:restaurant
+                                                          atTableNumber:@"1"
+                                                             completion:^(AMOrder *order, NSError *error) {
                     createdOrder = order;
                 }];
             });
@@ -387,7 +424,7 @@ describe(@"AMClient+Restaurant", ^{
             });
             
             it(@"sends parameters in HTTP body", ^{
-                [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{}];
+                [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"table_number" : @"1"}];
             });
         });
         
@@ -453,8 +490,8 @@ describe(@"AMClient+Restaurant", ^{
             
             it(@"sends paramters in HTTP body", ^{
                 [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"name" : @"aname",
-                                                                                   @"accept_orders" : @"1",
-                                                                                   @"accept_order_items" : @"1"}];
+                                                                                   @"accept_orders" : @"true",
+                                                                                   @"accept_order_items" : @"true"}];
             });
         });
         
@@ -502,7 +539,7 @@ describe(@"AMClient+Restaurant", ^{
                                    responseCode:200];
                 
                 AMRestaurant *restaurant = [[AMRestaurant alloc] initWithDictionary:@{@"identifier" : @1} error:nil];
-                task = [[AMClient sharedClient] createStaffMemberOfResstaurant:restaurant withName:@"aname" username:@"ausername" password:@"apass" email:@"anemail" staffKind:@"1" completion:^(AMStaffMember *staffMember, NSError *error) {
+                task = [[AMClient sharedClient] createStaffMemberOfResstaurant:restaurant withName:@"aname" username:@"ausername" password:@"apass" email:@"anemail" staffKind:@"1" avatar:nil completion:^(AMStaffMember *staffMember, NSError *error) {
                     createdStaffMember = staffMember;
                 }];
             });
@@ -521,6 +558,138 @@ describe(@"AMClient+Restaurant", ^{
             
             it(@"sends parameters in HTTP body", ^{
                 [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"name" : @"aname", @"username" : @"ausername", @"password" : @"apass", @"email" : @"anemail" , @"staff_kind_id" : @"1" }];
+            });
+        });
+        
+        context(@"on find reviews", ^{
+            __block NSURLSessionDataTask *task;
+            __block NSArray *foundReviews;
+            
+            beforeAll(^{
+                [TestToolBox stubRequestWithURL:[baseURL stringByAppendingString:@"restaurants/1/reviews"]
+                                     httpMethod:@"GET"
+                             nameOfResponseFile:@"reviews.json"
+                                   responseCode:200];
+                AMRestaurant *restaurant = [[AMRestaurant alloc] initWithDictionary:@{@"identifier" : @(1)} error:nil];
+                task = [[AMClient sharedClient] findReviewsOfRestaurant:restaurant completion:^(NSArray *reviews, NSError *error) {
+                    foundReviews = reviews;
+                }];
+            });
+            
+            it(@"uses get method", ^{
+                [[task.originalRequest.HTTPMethod should] equal:@"GET"];
+            });
+            
+            it(@"calls restaurant/1/reviews", ^{
+                [[task.originalRequest.URL.absoluteString should] equal:[baseURL stringByAppendingString:@"restaurants/1/reviews"]];
+            });
+            
+            it(@"creates array of review objects", ^{
+                [[expectFutureValue(foundReviews) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"reviews.json"]];
+            });
+        });
+        
+        context(@"on create review", ^{
+            __block NSURLSessionDataTask *task;
+            __block AMReview *createdReview;
+            beforeAll(^{
+                [TestToolBox stubRequestWithURL:[baseURL stringByAppendingString:@"restaurants/1/reviews"]
+                                     httpMethod:@"POST"
+                             nameOfResponseFile:@"review.json"
+                                   responseCode:200];
+                AMRestaurant *restaurant = [[AMRestaurant alloc] initWithDictionary:@{@"identifier" : @(1)} error:nil];
+                task = [[AMClient sharedClient] createReviewOfRestaurant:restaurant
+                                                             withSubject:@"sub"
+                                                                 message:@"msg"
+                                                                  rating:2
+                                                              completion:^(AMReview *review, NSError *error) {
+                                                                  createdReview = review;
+                                                              }];
+            });
+            
+            it(@"uses POST method", ^{
+                [[task.originalRequest.HTTPMethod should] equal:@"POST"];
+            });
+            
+            it(@"calls restaurant/1/reviews", ^{
+                [[task.originalRequest.URL.absoluteString should] equal:[baseURL stringByAppendingString:@"restaurants/1/reviews"]];
+            });
+            
+            it(@"creates review member object", ^{
+                [[expectFutureValue(createdReview) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"review.json"]];
+            });
+            
+            it(@"sends parameters in HTTP body", ^{
+                [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"subject" : @"sub",
+                                                                                   @"message" : @"msg",
+                                                                                   @"rating" : @"2"}];
+            });
+
+        });
+        
+        context(@"on find opening hours", ^{
+            __block NSURLSessionDataTask *task;
+            __block NSArray *foundHours;
+            beforeAll(^{
+                [TestToolBox stubRequestWithURL:[baseURL stringByAppendingString:@"restaurants/1/opening_hours"]
+                                     httpMethod:@"GET"
+                             nameOfResponseFile:@"opening_hours.json"
+                                   responseCode:200];
+                AMRestaurant *restaurant = [[AMRestaurant alloc] initWithDictionary:@{@"identifier" : @(1)} error:nil];
+                task = [[AMClient sharedClient] findOpeningHoursOfRestaurant:restaurant completion:^(NSArray *openingHours, NSError *error) {
+                    foundHours = openingHours;
+                }];
+            });
+            
+            it(@"uses get method", ^{
+                [[task.originalRequest.HTTPMethod should] equal:@"GET"];
+            });
+            
+            it(@"calls restaurant/1/opening_hour", ^{
+                [[task.originalRequest.URL.absoluteString should] equal:[baseURL stringByAppendingString:@"restaurants/1/opening_hours"]];
+            });
+            
+            it(@"creates review member object", ^{
+                [[expectFutureValue(foundHours) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"opening_hours.json"]];
+            });
+        });
+        
+        context(@"on create opening hour", ^{
+            __block NSURLSessionDataTask *task;
+            __block AMOpeningHour *createdHour;
+            
+            beforeAll(^{
+                [TestToolBox stubRequestWithURL:[baseURL stringByAppendingString:@"restaurants/1/opening_hours"]
+                                     httpMethod:@"POST"
+                             nameOfResponseFile:@"opening_hour.json"
+                                   responseCode:200];
+                AMRestaurant *restaurant = [[AMRestaurant alloc] initWithDictionary:@{@"identifier" : @(1)} error:nil];
+                task = [[AMClient sharedClient] createOpeningHourOfRestaurant:restaurant
+                                                                          day:@"monday"
+                                                                        start:[NSDate dateWithTimeIntervalSince1970:1]
+                                                                          end:[NSDate dateWithTimeIntervalSince1970:1] completion:^(AMOpeningHour *openingHour, NSError *error) {
+                                                                              createdHour = openingHour;
+                                                                          }];
+            });
+            
+            it(@"uses POST method", ^{
+                [[task.originalRequest.HTTPMethod should] equal:@"POST"];
+            });
+            
+            it(@"calls restaurant/1/opening_hour", ^{
+                [[task.originalRequest.URL.absoluteString should] equal:[baseURL stringByAppendingString:@"restaurants/1/opening_hours"]];
+            });
+            
+            it(@"creates opening hour object", ^{
+                [[expectFutureValue(createdHour) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"opening_hour.json"]];
+            });
+            
+            it(@"sends parameters in HTTP body", ^{
+                NSString *dateString = [[NSDateFormatter sharedAirMenuFormatter] stringFromDate:[NSDate dateWithTimeIntervalSince1970:1]];
+                dateString = [dateString stringByReplacingOccurrencesOfString:@":" withString:@"%3A"];
+                [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"day" : @"monday",
+                                                                                   @"start" : dateString,
+                                                                                   @"end" : dateString}];
             });
         });
     });

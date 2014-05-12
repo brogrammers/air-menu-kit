@@ -32,10 +32,12 @@
                           completion:(GroupCompletion)completion
 {
     NSAssert(group.identifier, @"group identifier cannot be nil");
-    NSAssert(name, @"name cannot be nil");
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    if(name) [params setObject:name forKey:@"name"];
+    
     NSString *urlString = [@"groups/" stringByAppendingString:group.identifier.description];
     return [self PUT:urlString
-          parameters:@{@"name" : name}
+          parameters:params
              success:^(NSURLSessionDataTask *task, id responseObject) {
                  AMGroup *group = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
                  if(completion) completion(group, nil);

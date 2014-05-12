@@ -21,6 +21,9 @@
 #import "AMStaffMember.h"
 #import "AMDevice.h"
 #import "AMNotification.h"
+#import "AMCreditCard.h"
+#import "AMOpeningHour.h"
+#import "AMReview.h"
 
 static NSString *const kAMOAuthToken = @"access_token";
 static NSString *const kAMCompany = @"company";
@@ -48,6 +51,12 @@ static NSString *const kAMDevice = @"device";
 static NSString *const kAMDevices = @"devices";
 static NSString *const kAMNotification = @"notification";
 static NSString *const kAMNotifications = @"notifications";
+static NSString *const kAMCreditCard = @"credit_card";
+static NSString *const kAMCreditCards = @"credit_cards";
+static NSString *const kAMOpeningHour = @"opening_hour";
+static NSString *const kAMOpeningHours = @"opening_hours";
+static NSString *const kAMReview = @"review";
+static NSString *const kAMReviews = @"reviews";
 
 @interface AMObjectBuilder()
 @property (nonatomic, strong) NSDictionary *classByJSONKey;
@@ -83,7 +92,10 @@ static NSString *const kAMNotifications = @"notifications";
                             kAMStaffKind : [AMStaffKind class],
                             kAMStaffMember : [AMStaffMember class],
                             kAMDevice : [AMDevice class],
-                            kAMNotification : [AMNotification class]};
+                            kAMNotification : [AMNotification class],
+                            kAMCreditCard : [AMCreditCard class],
+                            kAMReview : [AMReview class],
+                            kAMOpeningHour : [AMOpeningHour class]};
     }
     return _classByJSONKey;
 }
@@ -102,7 +114,10 @@ static NSString *const kAMNotifications = @"notifications";
                                  kAMStaffKinds : [AMStaffKind class],
                                  kAMStaffMembers : [AMStaffMember class],
                                  kAMDevices : [AMDevice class],
-                                 kAMNotifications: [AMNotification class]};
+                                 kAMNotifications: [AMNotification class],
+                                 kAMCreditCards : [AMCreditCard class],
+                                 kAMReviews : [AMReview class],
+                                 kAMOpeningHours : [AMOpeningHour class]};
     }
     return _classByJSONArrayKey;
 }

@@ -29,30 +29,30 @@ typedef void (^CompanyRestaurantsCompletion) (NSArray *restaurants, NSError *err
                                        country:(NSString *)country
                                     completion:(CompanyCompletion)completion;
 
--(NSURLSessionDataTask *)updateCompanyWithIdentifier:(NSString *)identifier
-                                         withNewName:(NSString *)name
-                                          newWebsite:(NSString *)website
-                                   newAddressLineOne:(NSString *)lineOne
-                                   newAddressLineTwo:(NSString *)lineTwo
-                                             newCity:(NSString *)city
-                                           newCounty:(NSString *)county
-                                            newState:(NSString *)state
-                                          newCountry:(NSString *)country
-                                          completion:(CompanyCompletion)completion;
+-(NSURLSessionDataTask *)updateCompany:(AMCompany *)company
+                           withNewName:(NSString *)name
+                            newWebsite:(NSString *)website
+                     newAddressLineOne:(NSString *)lineOne
+                     newAddressLineTwo:(NSString *)lineTwo
+                               newCity:(NSString *)city
+                             newCounty:(NSString *)county
+                              newState:(NSString *)state
+                            newCountry:(NSString *)country
+                            completion:(CompanyCompletion)completion;
 
-
--(NSURLSessionDataTask *)deleteCompanyWithIdentifier:(NSString *)identifier
-                                          completion:(CompanyCompletion)completion;
+-(NSURLSessionDataTask *)deleteCompany:(AMCompany *)company
+                            completion:(CompanyCompletion)completion;
 
 /*
  Restaurants of company
  */
 
+-(NSURLSessionDataTask *)findRestaurantsOfCompany:(AMCompany *)company
+                                       completion:(CompanyRestaurantsCompletion)completion;
+
 -(NSURLSessionDataTask *)createRestaurantOfCompany:(AMCompany *)company
+                                       description:(NSString *)description
                                           withName:(NSString *)name
-                                           loyalty:(BOOL)loyalty
-                                       remoteOrder:(BOOL)remoteOrder
-                                    conversionRate:(NSNumber *)rate
                                     addressLineOne:(NSString *)lineOne
                                     addressLineTwo:(NSString *)lineTwo
                                               city:(NSString *)city
@@ -61,8 +61,7 @@ typedef void (^CompanyRestaurantsCompletion) (NSArray *restaurants, NSError *err
                                            country:(NSString *)country
                                           latitude:(double)latitude
                                          longitude:(double)longitude
+                                             image:(UIImage *)image
                                         completion:(CompanyRestaurantCompletion)completion;
 
--(NSURLSessionDataTask *)findRestaurantsOfCompany:(AMCompany *)company
-                                       completion:(CompanyRestaurantsCompletion)completion;
 @end

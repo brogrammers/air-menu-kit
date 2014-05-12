@@ -1,0 +1,13 @@
+{
+    "review": {
+        "id": 1,
+        "subject": "Awesome",
+        "message": "The food is good, the service is fast and the location is perfect!",
+        "rating": 4,
+        "user": {
+            "id": 1,
+            "name": "Max Hoffmann",
+            "avatar": "/uploads/identity/avatar/1/avatar.png"
+        }
+    }
+}

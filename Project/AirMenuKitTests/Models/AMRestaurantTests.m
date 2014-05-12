@@ -28,7 +28,8 @@ describe(@"AMRestaurant", ^{
                                                          @"address" : [AMAddress new],
                                                          @"loyalty" : @YES,
                                                          @"menu" : [AMMenu new],
-                                                         @"location" : [CLRegion new]}];
+                                                         @"location" : [CLRegion new],
+                                                         @"avatar" : [NSURL URLWithString:@"https://gravatar.com"]}];
         });
         
         it(@"subclasses MTLModel", ^{
@@ -71,6 +72,9 @@ describe(@"AMRestaurant", ^{
             [[restaurant.location should] equal:[CLRegion new]];
         });
         
+        it(@"has avater attribute", ^{
+            [[restaurant.avatar should] equal:[NSURL URLWithString:@"https://gravatar.com"]];
+        });
     });
     
     context(@"class", ^{
@@ -83,7 +87,8 @@ describe(@"AMRestaurant", ^{
                                               @"conversionRate" : @"conversion_rate",
                                               @"address" : @"address",
                                               @"menu" : @"menu",
-                                              @"location" : @"location"};
+                                              @"location" : @"location",
+                                              @"avatar" : @"avatar"};
             [[mapping should] equal:expectedMapping];
         });
         
@@ -114,6 +119,15 @@ describe(@"AMRestaurant", ^{
             NSDictionary *location = @{@"latitude" : @999.999,
                                        @"longitude" : @999.999};
             [[[valueTransformer reverseTransformedValue:[valueTransformer transformedValue:location]] should] equal:location];
+        });
+        
+        it(@"implements avatarJSONTransformer", ^{
+            [[[AMRestaurant class] should] respondToSelector:NSSelectorFromString(@"avatarJSONTransformer")];
+        });
+        
+        it(@"returns NSURL transformer from avatarJSONTransforemr", ^{
+            NSValueTransformer *valueTransformer = objc_msgSend([AMRestaurant class], NSSelectorFromString(@"avatarJSONTransformer"));
+            [[[valueTransformer transformedValue:@"http://google.com"] should] equal:[NSURL URLWithString:@"http://google.com"]];
         });
     });
     

@@ -19,7 +19,8 @@
              @"conversionRate" : @"conversion_rate",
              @"address" : @"address",
              @"menu" : @"menu",
-             @"location" : @"location"};
+             @"location" : @"location",
+             @"avatar" : @"avatar"};
 }
 
 +(NSValueTransformer *)addressJSONTransformer
@@ -32,6 +33,15 @@
     return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[AMMenu class]];
 }
 
++(NSValueTransformer *)avatarJSONTransformer
+{
+    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *avatarURL) {
+        return [NSURL URLWithString:avatarURL];
+    } reverseBlock:^id(NSURL *avatarURL) {
+        return avatarURL.absoluteString;
+    }];
+}
+
 +(NSValueTransformer *)locationJSONTransformer
 {
     return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSDictionary *location) {
@@ -41,5 +51,19 @@
                  @"longitude" : @(location.coordinate.longitude)};
     }];
 }
+
+-(BOOL)isEqual:(id)object
+{
+    if(self.class == [object class]) {
+        return  [self.identifier isEqualToNumber:[(AMRestaurant *)object identifier]] ||
+        (!self.identifier && ![(AMRestaurant *)object identifier]);
+    }
+    return NO;}
+
+-(NSUInteger)hash
+{
+    return [self.identifier hash];
+}
+
 
 @end

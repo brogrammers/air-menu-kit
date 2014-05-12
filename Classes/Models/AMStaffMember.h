@@ -22,4 +22,5 @@
 @property (nonatomic, readonly, strong) AMDevice *device;
 @property (nonatomic, readonly, strong) AMGroup *group;
 @property (nonatomic, readonly, strong) AMStaffKind *kind;
+@property (nonatomic, readonly, strong) NSURL *avatar;
 @end

@@ -12,83 +12,126 @@
 @implementation AMOAuthToken
 
 #pragma mark - Mantle framework mapping hooks
+
++(NSArray *)scopesStrings
+{
+    return  @[ @"basic",
+               @"admin",
+               @"trusted",
+               @"user",
+               @"developer",
+               @"owner",
+               //menus
+               @"get_menus",
+               @"add_menus",
+               @"add_active_menus",
+               @"update_menus",
+               @"delete_menus",
+               //orders
+               @"get_orders",
+               @"add_orders",
+               @"update_orders",
+               //groups
+               @"get_groups",
+               @"create_groups",
+               @"update_groups",
+               @"delete_groups",
+               //devices
+               @"get_devices",
+               @"create_devices",
+               @"update_devices",
+               @"delete_devices",
+               //staff kinds
+               @"get_staff_kinds",
+               @"create_staff_kinds",
+               @"update_staff_kinds",
+               @"delete_staff_kinds",
+               //staff members
+               @"get_staff_members",
+               @"create_staff_members",
+               @"delete_staff_members",
+               @"update_staff_members",
+               //payments
+               @"create_payments",
+               //openinng hours
+               @"get_opening_hours",
+               @"create_opening_hours",
+               @"update_opening_hours",
+               @"delete_opening_hours"];
+}
+
++(NSArray *)scopesNumbers
+{
+    return     @[@(AMOAuthScopeBasic),
+                 @(AMOAuthScopeAdmin),
+                 @(AMOAuthScopeTrusted),
+                 @(AMOAuthScopeUser),
+                 @(AMOAuthScopeDeveloper),
+                 @(AMOAuthScopeOwner),
+                 //menus
+                 @(AMOAuthScopeGetMenus),
+                 @(AMOAuthScopeAddMenus),
+                 @(AMOAuthScopeAddActiveMenus),
+                 @(AMOAuthScopeUpdateMenus),
+                 @(AMOAuthScopeDeleteMenus),
+                 //orders
+                 @(AMOAuthScopeGetOrders),
+                 @(AMOAuthScopeAddOrders),
+                 @(AMOAuthScopeUpdateOrders),
+                 //groups
+                 @(AMOAuthScopeGetGroups),
+                 @(AMOAuthScopeCreateGroups),
+                 @(AMOAuthScopeUpdateGroups),
+                 @(AMOAuthScopeDeleteGroups),
+                 //device
+                 @(AMOAuthScopeGetDevices),
+                 @(AMOAuthScopeCreateDevices),
+                 @(AMOAuthScopeUpdateDevices),
+                 @(AMOAuthScopeDeleteDevices),
+                 //staff kinds
+                 @(AMOAuthScopeGetStaffKinds),
+                 @(AMOAuthScopeCreateStaffKinds),
+                 @(AMOAuthScopeUpdateStaffKinds),
+                 @(AMOAuthScopeDeleteStaffKinds),
+                 //staff members
+                 @(AMOAuthScopeGetStaffMembers),
+                 @(AMOAuthScopeCreateStaffMembers),
+                 @(AMOAuthScopeDeleteStaffMembers),
+                 @(AMOAuthScopeUpdateStaffMembers),
+                 //payment
+                 @(AMOAuthScopeCreatePayments),
+                 //hours
+                 @(AMOAuthScopeCreateOpeningHours),
+                 @(AMOAuthScopeGetOpeningHours),
+                 @(AMOAuthScopeUpdateOpeningHours),
+                 @(AMOAuthScopeDeleteOpeningHours)];
+}
+
 +(NSDictionary *)numberToScopesMapping
 {
-    return @{
-                 @(AMOAuthScopeNone) : @"",
-                 @(AMOAuthScopeBasic) : @"basic",
-                 @(AMOAuthScopeAdmin) : @"admin",
-                 @(AMOAuthScopeTrusted) : @"trusted",
-                 @(AMOAuthScopeUser) : @"user",
-                 @(AMOAuthScopeDeveloper) : @"developer",
-                 @(AMOAuthScopeOwner) : @"owner",
-                 @(AMOAuthScopeGetMenus) : @"get_menus",
-                 @(AMOAuthScopeAddMenus) : @"add_menus",
-                 @(AMOAuthScopeAddActiveMenus) : @"add_active_menus",
-                 @(AMOAuthScopeGetCurrentOrders) : @"get_current_orders",
-                 @(AMOAuthScopeAddOrders) : @"add_orders",
-                 @(AMOAuthScopeUpdateOrders) : @"update_orders",
-                 @(AMOAuthScopeGetGroups) : @"get_groups",
-                 @(AMOAuthScopeCreateGroups) : @"create_groups",
-                 @(AMOAuthScopeGetDevices) : @"get_devices",
-                 @(AMOAuthScopeCreateDevices) : @"create_devices",
-                 @(AMOAuthScopeGetStaffKinds) : @"get_staff_kinds",
-                 @(AMOAuthScopeCreateStaffKinds) : @"create_staff_kinds",
-                 @(AMOAuthScopeGetStaffMembers) : @"get_staff_members",
-                 @(AMOAuthScopeCreateStaffMembers) : @"create_staff_members"
-             };
+    NSMutableDictionary *mapping = [NSMutableDictionary dictionary];
+    [[self scopesNumbers] eachWithIndex:^(NSNumber *scope, NSUInteger index) {
+        [mapping setObject:[self scopesStrings][index] forKey:scope];
+    }];
+    return mapping;
 }
 
 +(NSDictionary *)scopesToNumberMapping
 {
-    return @{
-                 @"" : @(AMOAuthScopeNone),
-                 @"basic" : @(AMOAuthScopeBasic),
-                 @"admin" : @(AMOAuthScopeAdmin),
-                 @"trusted" : @(AMOAuthScopeTrusted),
-                 @"user" : @(AMOAuthScopeUser),
-                 @"developer" : @(AMOAuthScopeDeveloper),
-                 @"owner" : @(AMOAuthScopeOwner),
-                 @"get_menus" : @(AMOAuthScopeGetMenus),
-                 @"add_menus" :@(AMOAuthScopeAddMenus),
-                 @"add_active_menus" : @(AMOAuthScopeAddActiveMenus),
-                 @"get_current_orders" : @(AMOAuthScopeGetCurrentOrders),
-                 @"add_orders" : @(AMOAuthScopeAddOrders),
-                 @"update_orders" : @(AMOAuthScopeUpdateOrders),
-                 @"get_groups" : @(AMOAuthScopeGetGroups),
-                 @"create_groups" :  @(AMOAuthScopeCreateGroups),
-                 @"get_devices" :  @(AMOAuthScopeGetDevices),
-                 @"create_devices" : @(AMOAuthScopeCreateDevices),
-                 @"get_staff_kinds" : @(AMOAuthScopeGetStaffKinds),
-                 @"create_staff_kinds" : @(AMOAuthScopeCreateStaffKinds),
-                 @"get_staff_members" : @(AMOAuthScopeGetStaffMembers),
-                 @"create_staff_members" : @(AMOAuthScopeCreateStaffMembers)
-             };
-
+    NSMutableDictionary *mapping = [NSMutableDictionary dictionary];
+    [[self scopesStrings] eachWithIndex:^(NSString *scope, NSUInteger index) {
+        [mapping setObject:[self scopesNumbers][index] forKey:scope];
+    }];
+    return mapping;
 }
 
 +(AMOAuthScope)allScopes
 {
-    return  AMOAuthScopeBasic &
-            AMOAuthScopeAdmin &
-            AMOAuthScopeTrusted &
-            AMOAuthScopeUser &
-            AMOAuthScopeDeveloper &
-            AMOAuthScopeOwner &
-            AMOAuthScopeGetMenus &
-            AMOAuthScopeAddMenus &
-            AMOAuthScopeAddActiveMenus &
-            AMOAuthScopeGetCurrentOrders &
-            AMOAuthScopeAddOrders &
-            AMOAuthScopeUpdateOrders &
-            AMOAuthScopeGetGroups &
-            AMOAuthScopeCreateGroups &
-            AMOAuthScopeGetDevices &
-            AMOAuthScopeCreateDevices &
-            AMOAuthScopeGetStaffKinds &
-            AMOAuthScopeCreateStaffKinds &
-            AMOAuthScopeGetStaffMembers &
-            AMOAuthScopeCreateStaffMembers;
+    __block AMOAuthScope scopes = AMOAuthScopeNone;
+    [[self scopesNumbers] each:^(NSNumber *scope) {
+        scopes |= [scope unsignedIntegerValue];
+    }];
+    return scopes;
 }
 
 +(NSArray *)stringsFromOptions:(AMOAuthScope)scope

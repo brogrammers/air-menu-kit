@@ -14,6 +14,7 @@
 @property (nonatomic, readonly, strong) NSString *name;
 @property (nonatomic, readonly, strong) AMRestaurant *restaurant;
 @property (nonatomic, readonly, strong) NSArray *scopes;
-@property (nonatomic, readonly) NSNumber *acceptsOrders;
-@property (nonatomic, readonly) NSNumber *acceptsOrderItems;
+@property (nonatomic, readonly, strong) NSArray *members;
+@property (nonatomic, readonly, strong) NSNumber *acceptsOrders;
+@property (nonatomic, readonly, strong) NSNumber *acceptsOrderItems;
 @end

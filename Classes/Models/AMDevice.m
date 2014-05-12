@@ -17,4 +17,19 @@
             @"token" : @"token",
             @"platform" : @"platform"};
 }
+
+-(BOOL)isEqual:(id)object
+{
+    if(self.class == [object class]) {
+        return  [self.identifier isEqualToNumber:[(AMDevice *)object identifier]] ||
+                (!self.identifier && ![(AMDevice *)object identifier]);
+    }
+    return NO;
+}
+
+-(NSUInteger)hash
+{
+    return [self.identifier hash];
+}
+
 @end

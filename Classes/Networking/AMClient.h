@@ -11,12 +11,14 @@
 #import "AMOAuthToken.h"
 
 typedef void (^AuthenticateCompletion)(AMOAuthToken *token, NSError *error);
+typedef void (^ErrorHandler)();
 
 static NSString *baseURL = @"https://edge-api.air-menu.com/api/v1/";
 static NSString *airMenuApiErrorDomain = @"com.air-menu.api";
 
 @interface AMClient : AFHTTPSessionManager
-
+@property (nonatomic, readonly, strong) NSDictionary *errorHandlers;
+-(void)registerHadnler:(ErrorHandler)handler forErrorCode:(NSString *)code;
 +(instancetype)sharedClient;
 
 -(NSURLSessionDataTask *)authenticateWithClientID:(NSString *)clientID
@@ -25,6 +27,12 @@ static NSString *airMenuApiErrorDomain = @"com.air-menu.api";
                                          password:(NSString *)password
                                            scopes:(AMOAuthScope)scopes
                                        completion:(AuthenticateCompletion)completion;
+
+-(NSURLSessionDataTask *)refreshWithClientID:(NSString *)clientID
+                                      secret:(NSString *)clientSecret
+                                  completion:(AuthenticateCompletion)completion;
+
+
 -(BOOL)isLoggedIn;
 
 @end

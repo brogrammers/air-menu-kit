@@ -109,18 +109,19 @@ describe(@"AMClient+Companies", ^{
                              nameOfResponseFile:@"company.json"
                                    responseCode:200];
                 
-                task = [[AMClient sharedClient] updateCompanyWithIdentifier:@"1"
-                                                               withNewName:@"new_name"
-                                                                newWebsite:@"new_website"
-                                                         newAddressLineOne:@"new_address_line_1"
-                                                         newAddressLineTwo:@"new_address_line_2"
-                                                                   newCity:@"new_city"
-                                                                 newCounty:@"new_county"
-                                                                  newState:@"new_state"
-                                                                newCountry:@"new_country"
-                                                                completion:^(AMCompany *company, NSError *error) {
-                                                                    updatedCompany = company;
-                                                                }];
+                AMCompany *company = [[AMCompany alloc] initWithDictionary:@{@"identifier" : @(1)} error:nil];
+                task = [[AMClient sharedClient] updateCompany:company
+                                                  withNewName:@"new_name"
+                                                   newWebsite:@"new_website"
+                                            newAddressLineOne:@"new_address_line_1"
+                                            newAddressLineTwo:@"new_address_line_2"
+                                                      newCity:@"new_city"
+                                                    newCounty:@"new_county"
+                                                     newState:@"new_state"
+                                                   newCountry:@"new_country"
+                                                   completion:^(AMCompany *company, NSError *error) {
+                                                            updatedCompany = company;
+                                                    }];
                 
             });
             
@@ -159,8 +160,8 @@ describe(@"AMClient+Companies", ^{
                                     httpMethod:@"DELETE"
                             nameOfResponseFile:@"company.json"
                                   responseCode:200];
-                
-                task = [[AMClient sharedClient] deleteCompanyWithIdentifier:@"1" completion:^(AMCompany *company, NSError *error) {
+                AMCompany *company = [[AMCompany alloc] initWithDictionary:@{@"identifier" : @(1)} error:nil];
+                task = [[AMClient sharedClient] deleteCompany:company completion:^(AMCompany *company, NSError *error) {
                     deletedCompany = company;
                 }];
             });
@@ -190,10 +191,8 @@ describe(@"AMClient+Companies", ^{
                                    responseCode:200];
                 companyOfRestaurant = [TestToolBox objectFromJSONFromFile:@"company.json"];
                 task = [[AMClient sharedClient] createRestaurantOfCompany:companyOfRestaurant
+                                                              description:@"desc"
                                                                  withName:@"The Church 2"
-                                                                  loyalty:NO
-                                                              remoteOrder:NO
-                                                           conversionRate:@(0)
                                                            addressLineOne:@"blah"
                                                            addressLineTwo:@"blah"
                                                                      city:@"Dublin"
@@ -202,11 +201,10 @@ describe(@"AMClient+Companies", ^{
                                                                   country:@"Ireland"
                                                                  latitude:999.999
                                                                 longitude:999.999
+                                                                    image:nil
                                                                completion:^(AMRestaurant *restaurant, NSError *error) {
                                                                    newRestaurant = restaurant;
-                                                               }
-                        ];
-                
+                                                               }];
             });
             
             it(@"uses POST method", ^{
@@ -224,9 +222,7 @@ describe(@"AMClient+Companies", ^{
             
             it(@"sends parameters in HTTP body", ^{
                 [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"name" : @"The Church 2",
-                                                                                   @"loyalty" : @"0",
-                                                                                   @"remote_order" : @"0",
-                                                                                   @"conversion_rate" : @"0",
+                                                                                   @"description" : @"desc",
                                                                                    @"address_1" : @"blah",
                                                                                    @"address_2" : @"blah",
                                                                                    @"city" : @"Dublin",

@@ -17,6 +17,7 @@ typedef enum {AMUserTypeUser, AMUserTypeOwner, AMUserTypeStaffMember} AMUserType
 @property (nonatomic, readonly, strong) NSString *name;
 @property (nonatomic, readonly, strong) NSString *username;
 @property (nonatomic, readonly, strong) NSNumber *unreadCount;
+@property (nonatomic, readonly, strong) NSURL *avatar;
 @property (nonatomic, readonly) AMUserType type;
 @property (nonatomic, readonly, strong) NSString *phoneNumber;
 @property (nonatomic, readonly, strong) NSString *email;

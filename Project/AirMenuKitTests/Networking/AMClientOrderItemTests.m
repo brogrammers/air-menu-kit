@@ -53,9 +53,13 @@ describe(@"AMClient+OrderItem", ^{
                                    responseCode:200];
                 
                 AMOrderItem *orderItem = [[AMOrderItem alloc] initWithDictionary:@{@"identifier" : @1} error:nil];
-                task = [[AMClient sharedClient] updateOrderItem:orderItem withNewComment:@"acomm" newCount:@1 newState:AMOrderItemStateDeclined completion:^(AMOrderItem *order, NSError *error) {
-                    updatedOrder = order;
-                }];
+                task = [[AMClient sharedClient] updateOrderItem:orderItem
+                                                 withNewComment:@"acomm"
+                                                       newCount:@1
+                                                       newState:AMOrderItemStateDeclined
+                                                     completion:^(AMOrderItem *order, NSError *error) {
+                                                         updatedOrder = order;
+                                                     }];
             });
             
             it(@"uses PUT method", ^{
@@ -71,7 +75,7 @@ describe(@"AMClient+OrderItem", ^{
             });
             
             it(@"sends parameters in HTTP body", ^{
-                [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"comment" : @"acomm", @"count" : @"1", @"state" : @"declined"}];
+                [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"comment" : @"acomm", @"count" : @"1",  @"state" : @"declined"}];
             });
         });
         

@@ -68,7 +68,8 @@ describe(@"AMStaffKind", ^{
                                               @"restaurant" : @"restaurant",
                                               @"scopes" : @"scopes",
                                               @"acceptsOrders" : @"accept_orders",
-                                              @"acceptsOrderItems" : @"accept_order_items"};
+                                              @"acceptsOrderItems" : @"accept_order_items",
+                                              @"members" : @"staff_members"};
             [[mapping should] equal:expectedMapping];
         });
         

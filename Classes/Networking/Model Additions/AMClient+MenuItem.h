@@ -22,6 +22,7 @@ typedef void (^MenuItemCompletion)(AMMenuItem *item, NSError *error);
                                newPrice:(NSNumber *)price
                             newCurrency:(NSString *)currency
                          newStaffKindId:(NSString *)staffKindIdentifier
+                                 avatar:(UIImage *)avatar
                              completion:(MenuItemCompletion)completion;
 
 -(NSURLSessionDataTask *)deleteMenuItem:(AMMenuItem *)menuItem

@@ -113,6 +113,71 @@ describe(@"AMMenuClient", ^{
                 });
             });
         });
+        
+        context(@"on refresh token", ^{
+            __block NSURLSessionDataTask *task;
+            __block AMOAuthToken *newToken;
+
+            beforeAll(^{
+                [TestToolBox stubRequestWithURL:@"https://edge-api.air-menu.com/api/oauth2/access_tokens"
+                                     httpMethod:@"POST"
+                             nameOfResponseFile:@"access_token.json"
+                                   responseCode:200];
+                
+                
+                [[NSUserDefaults standardUserDefaults] setObject:@"ABCD" forKey:@"access_token"];
+                [[NSUserDefaults standardUserDefaults] setObject:@"ABCDE" forKey:@"refresh_token"];
+                [[NSUserDefaults standardUserDefaults] setObject:@[@"old user"] forKey:@"ABCD"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+                
+                task = [[AMClient sharedClient] refreshWithClientID:@"id"
+                                                             secret:@"secret"
+                                                         completion:^(AMOAuthToken *token, NSError *error) {
+                                                             newToken = token;
+                                                         }];
+            });
+            
+            afterAll(^{
+                [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"access_token"];
+                [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"ABCD"];
+                [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"refresh_token"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+            });
+            
+            it(@"ressignes user object to new access token", ^{
+                [[expectFutureValue([[NSUserDefaults standardUserDefaults] objectForKey:newToken.token]) shouldEventually] equal:@[@"old user"]];
+            });
+            
+            it(@"sends parameters in HTTP body", ^{
+                [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"client_id" : @"id",
+                                                                                   @"client_secret" : @"secret",
+                                                                                   @"refresh_token" : @"ABCDE",
+                                                                                   @"grant_type" : @"refresh"}];
+            });
+            
+            it(@"uses POST method", ^{
+                [[task.originalRequest.HTTPMethod should] equal:@"POST"];
+            });
+            
+            
+            it(@"calls oauth2/access_tokens", ^{
+                [[task.originalRequest.URL.absoluteString should] equal:@"https://edge-api.air-menu.com/api/oauth2/access_tokens"];
+            });
+            it(@"creates access token object", ^{
+                [[expectFutureValue(newToken.token) shouldEventually] equal:[[TestToolBox objectFromJSONFromFile:@"access_token.json"] token]];
+            });
+            
+            it(@"sets token as Authorization HTTP header ", ^{
+                NSString *token = [[TestToolBox objectFromJSONFromFile:@"access_token.json"] token];
+                NSString *headerExpected = [@"Bearer " stringByAppendingString:token];
+                [[expectFutureValue([AMClient sharedClient].requestSerializer.HTTPRequestHeaders[@"Authorization"]) shouldEventually] equal:headerExpected];
+            });
+            
+            it(@"saves current token to NSUerDefaults and removes value under for old token from user defaults", ^{
+                [[[[NSUserDefaults standardUserDefaults] objectForKey:@"ABCD"] should] beNil];
+                [[expectFutureValue([[NSUserDefaults standardUserDefaults] stringForKey:@"access_token"]) shouldEventuallyBeforeTimingOutAfter(10.0)] equal:[[TestToolBox objectFromJSONFromFile:@"access_token.json"] token]];
+            });
+        });
     });
 });
 

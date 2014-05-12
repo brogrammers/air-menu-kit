@@ -19,10 +19,14 @@ typedef void (^MenuSectionsCompletion)(NSArray *sections, NSError *error);
 -(NSURLSessionDataTask *)findMenuWithIdentifier:(NSString *)identifier
                                      completion:(MenuCompletion)completion;
 
--(NSURLSessionDataTask *)deleteMenu:(AMMenu *)menu completion:(MenuCompletion)completion;
+-(NSURLSessionDataTask *)deleteMenu:(AMMenu *)menu
+                         completion:(MenuCompletion)completion;
 
 
--(NSURLSessionDataTask *)updateMenu:(AMMenu *)menu newActive:(BOOL)isActive completion:(MenuCompletion)completion;
+-(NSURLSessionDataTask *)updateMenu:(AMMenu *)menu
+                          newActive:(BOOL)isActive
+                            newName:(NSString *)name
+                         completion:(MenuCompletion)completion;
 
 /*
  Menu > Menu Sections

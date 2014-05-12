@@ -89,4 +89,19 @@
                                                                            @"end_prepare" : @(AMOrderItemStatePrepared),
                                                                            @"served" : @(AMOrderItemStateServed) }];
 }
+
+-(BOOL)isEqual:(id)object
+{
+    if(self.class == [object class]) {
+        return  [self.identifier isEqualToNumber:[(AMOrderItem *)object identifier]] ||
+        (!self.identifier && ![(AMOrderItem *)object identifier]);
+    }
+    return NO;
+}
+
+-(NSUInteger)hash
+{
+    return [self.identifier hash];
+}
+
 @end

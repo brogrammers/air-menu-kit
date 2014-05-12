@@ -45,4 +45,17 @@
     return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:[AMMenuSection class]];
 }
 
+-(BOOL)isEqual:(id)object
+{
+    if(self.class == [object class]) {
+        return  [self.identifier isEqualToNumber:[(AMMenu *)object identifier]] ||
+        (!self.identifier && ![(AMMenu *)object identifier]);
+    }
+    return NO;}
+
+-(NSUInteger)hash
+{
+    return [self.identifier hash];
+}
+
 @end
