@@ -22,4 +22,18 @@
 {
     return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[AMUser class]];
 }
+
+-(BOOL)isEqual:(id)object
+{
+    if(self.class == [object class]) {
+        return  [self.identifier isEqualToNumber:[(AMReview *)object identifier]] ||
+        (!self.identifier && ![(AMReview *)object identifier]);
+    }
+    return NO;
+}
+
+-(NSUInteger)hash
+{
+    return [self.identifier hash];
+}
 @end
