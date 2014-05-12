@@ -11,6 +11,7 @@
 #import "NSDateFormatter+AirMenuTimestamp.h"
 
 @implementation AMClient (OpeningHour)
+
 -(NSURLSessionDataTask *)findOpeningHourWithIdentifier:(NSString *)identifier
                                             completion:(OpeningHourCompletion)completion
 {

@@ -23,7 +23,7 @@
 #import "AMClient+StaffMember.h"
 #import "AMClient+CreditCard.h"
 #import "AMClient+Device.h"
-#import "AMClient+OpeningHour.h
+#import "AMClient+OpeningHour.h"
 
 //models
 #import "AMCompany.h"
@@ -34,14 +34,14 @@
 #import "AMMenuItem.h"
 #import "AMUser.h"
 #import "AMAddress.h"
-#import "AMGroup.h
+#import "AMGroup.h"
 #import "AMOrder.h"
 #import "AMOrderItem.h"
 #import "AMStaffKind.h"
 #import "AMStaffMember.h"
 #import "AMDevice.h"
 #import "AMNotification.h"
-#import "AMCreditCard.h
+#import "AMCreditCard.h"
 #import "AMOpeningHour.h"
-#import "AMReview.h
+#import "AMReview.h"
 #import "AMLocation.h"
