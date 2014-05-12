@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 air-menu. All rights reserved.
 //
 
-
 //networking
 #import "AMClient.h"
 #import "AMOAuthToken.h"
@@ -22,9 +21,13 @@
 #import "AMClient+OrderItem.h"
 #import "AMClient+StaffKind.h"
 #import "AMClient+StaffMember.h"
+#import "AMClient+CreditCard.h"
+#import "AMClient+Device.h"
+#import "AMClient+OpeningHour.h
 
 //models
 #import "AMCompany.h"
+#import "AMAddress"
 #import "AMRestaurant.h"
 #import "AMMenu.h"
 #import "AMMenuSection.h"
@@ -38,3 +41,7 @@
 #import "AMStaffMember.h"
 #import "AMDevice.h"
 #import "AMNotification.h"
+#import "AMCreditCard.h
+#import "AMOpeningHour.h"
+#import "AMReview.h
+#import "AMLocation"

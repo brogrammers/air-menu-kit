@@ -60,6 +60,13 @@
 		7119583F18FADFE40065BB3A /* AMStaffMemberTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7119583E18FADFE40065BB3A /* AMStaffMemberTests.m */; };
 		7119584118FAE0060065BB3A /* AMDeviceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7119584018FAE0060065BB3A /* AMDeviceTests.m */; };
 		7119584318FAE0290065BB3A /* AMNotificationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7119584218FAE0290065BB3A /* AMNotificationTests.m */; };
+		71314E011920F257005F1395 /* AMLocation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 71F3677618FD2D6500A6FE1E /* AMLocation.h */; };
+		71314E021920F257005F1395 /* AMCreditCard.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 718BC50D19204B9A0039F621 /* AMCreditCard.h */; };
+		71314E031920F257005F1395 /* AMOpeningHour.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 718BC52419208CD60039F621 /* AMOpeningHour.h */; };
+		71314E041920F257005F1395 /* AMReview.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 718BC52819208D100039F621 /* AMReview.h */; };
+		71314E051920F257005F1395 /* AMClient+CreditCard.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 718BC516192058590039F621 /* AMClient+CreditCard.h */; };
+		71314E061920F257005F1395 /* AMClient+Device.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 718BC51B192063120039F621 /* AMClient+Device.h */; };
+		71314E071920F257005F1395 /* AMClient+OpeningHour.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 718BC5341920A3E80039F621 /* AMClient+OpeningHour.h */; };
 		7132E44E1848EA8A00B2E356 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7132E44D1848EA8A00B2E356 /* Foundation.framework */; };
 		7132E45C1848EA8A00B2E356 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7132E45B1848EA8A00B2E356 /* XCTest.framework */; };
 		7132E45D1848EA8A00B2E356 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7132E44D1848EA8A00B2E356 /* Foundation.framework */; };
@@ -171,6 +178,13 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				71314E011920F257005F1395 /* AMLocation.h in CopyFiles */,
+				71314E021920F257005F1395 /* AMCreditCard.h in CopyFiles */,
+				71314E031920F257005F1395 /* AMOpeningHour.h in CopyFiles */,
+				71314E041920F257005F1395 /* AMReview.h in CopyFiles */,
+				71314E051920F257005F1395 /* AMClient+CreditCard.h in CopyFiles */,
+				71314E061920F257005F1395 /* AMClient+Device.h in CopyFiles */,
+				71314E071920F257005F1395 /* AMClient+OpeningHour.h in CopyFiles */,
 				71115C621903433A000E87C4 /* AMGroup.h in CopyFiles */,
 				71115C631903433A000E87C4 /* AMOrder.h in CopyFiles */,
 				71115C641903433A000E87C4 /* AMOrderItem.h in CopyFiles */,
