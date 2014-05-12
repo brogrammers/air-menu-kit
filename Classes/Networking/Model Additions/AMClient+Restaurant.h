@@ -121,6 +121,7 @@ Restaurants > Staff Kinds
                                             withName:(NSString *)name
                                         acceptOrders:(BOOL)acceptsOrders
                                    acceptsOrderItems:(BOOL)acceptsOrderItems
+                                              scopes:(AMOAuthScope)scopes
                                           completion:(RestaurantStaffKindCompletion)completion;
 /*
 Restaurants > Staff Members
@@ -136,6 +137,7 @@ Restaurants > Staff Members
                                                   email:(NSString *)email
                                               staffKind:(NSString *)staffKindIdentifier
                                                  avatar:(UIImage *)avatar
+                                                 scopes:(AMOAuthScope)scopes
                                              completion:(RestaurantStaffMemberCompletion)completion;
 
 /*

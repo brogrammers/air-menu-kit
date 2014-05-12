@@ -296,13 +296,15 @@
                                             withName:(NSString *)name
                                         acceptOrders:(BOOL)acceptsOrders
                                    acceptsOrderItems:(BOOL)acceptsOrderItems
-                                          completion:(RestaurantStaffKindCompletion)completion
+                                              scopes:(AMOAuthScope)scopes
+                                          completion:(RestaurantStaffKindCompletion)completion;
 {
     NSAssert(restaurant.identifier, @"restaurants identifier cannot be nil");
     NSAssert(name, @"name cannot be nil");
-    NSDictionary *params = @{@"name" : name,
-                             @"accept_orders" : acceptsOrders ? @"true" : @"false",
-                             @"accept_order_items" : acceptsOrderItems ? @"true" : @"false"};
+    NSMutableDictionary *params = [@{@"name" : name,
+                                    @"accept_orders" : acceptsOrders ? @"true" : @"false",
+                                    @"accept_order_items" : acceptsOrderItems ? @"true" : @"false"} mutableCopy];
+    if (scopes != AMOAuthScopeNone) [params setObject:[AMOAuthToken stringFromOption:scopes] forKey:@"scopes"];
     NSString *urlString = [@"restaurants/" stringByAppendingFormat:@"%@/%@", restaurant.identifier, @"staff_kinds"];
     return [self POST:urlString
            parameters:params
@@ -342,7 +344,8 @@
                                                   email:(NSString *)email
                                               staffKind:(NSString *)staffKindIdentifier
                                                  avatar:(UIImage *)avatar
-                                             completion:(RestaurantStaffMemberCompletion)completion
+                                                 scopes:(AMOAuthScope)scopes
+                                             completion:(RestaurantStaffMemberCompletion)completion;
 {
     NSAssert(restaurant.identifier, @"restaurants identifier cannot be nil");
     NSAssert(name, @"name cannot be nil");
@@ -351,11 +354,12 @@
     NSAssert(email, @"email cannot be nil");
     NSAssert(staffKindIdentifier, @"staff kind identifier cannot be nil");
     
-    NSDictionary *params = @{@"name" : name,
-                             @"username" : username,
-                             @"password" : password,
-                             @"email" : email,
-                             @"staff_kind_id" : staffKindIdentifier};
+    NSMutableDictionary *params = [@{@"name" : name,
+                                    @"username" : username,
+                                    @"password" : password,
+                                    @"email" : email,
+                                    @"staff_kind_id" : staffKindIdentifier} mutableCopy];
+    if (scopes != AMOAuthScopeNone) [params setObject:[AMOAuthToken stringFromOption:scopes] forKey:@"scopes"];
     NSString *urlString = [@"restaurants/" stringByAppendingFormat:@"%@/%@", restaurant.identifier, @"staff_members"];
 
     if(avatar)

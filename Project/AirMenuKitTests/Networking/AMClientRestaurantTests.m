@@ -471,7 +471,7 @@ describe(@"AMClient+Restaurant", ^{
                              nameOfResponseFile:@"staff_kind.json"
                                    responseCode:200];
                 AMRestaurant *restaurant = [[AMRestaurant alloc] initWithDictionary:@{@"identifier" : @1} error:nil];
-                task = [[AMClient sharedClient] createStaffKindOfRestaurant:restaurant withName:@"aname" acceptOrders:YES acceptsOrderItems:YES completion:^(AMStaffKind *staffKind, NSError *error) {
+                task = [[AMClient sharedClient] createStaffKindOfRestaurant:restaurant withName:@"aname" acceptOrders:YES acceptsOrderItems:YES scopes:AMOAuthScopeAddMenus completion:^(AMStaffKind *staffKind, NSError *error) {
                     createdStaffKind = staffKind;
                 }];
             });
@@ -491,7 +491,8 @@ describe(@"AMClient+Restaurant", ^{
             it(@"sends paramters in HTTP body", ^{
                 [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"name" : @"aname",
                                                                                    @"accept_orders" : @"true",
-                                                                                   @"accept_order_items" : @"true"}];
+                                                                                   @"accept_order_items" : @"true",
+                                                                                   @"scopes" : @"add_menus"}];
             });
         });
         
@@ -539,7 +540,7 @@ describe(@"AMClient+Restaurant", ^{
                                    responseCode:200];
                 
                 AMRestaurant *restaurant = [[AMRestaurant alloc] initWithDictionary:@{@"identifier" : @1} error:nil];
-                task = [[AMClient sharedClient] createStaffMemberOfResstaurant:restaurant withName:@"aname" username:@"ausername" password:@"apass" email:@"anemail" staffKind:@"1" avatar:nil completion:^(AMStaffMember *staffMember, NSError *error) {
+                task = [[AMClient sharedClient] createStaffMemberOfResstaurant:restaurant withName:@"aname" username:@"ausername" password:@"apass" email:@"anemail" staffKind:@"1" avatar:nil scopes:AMOAuthScopeAddMenus completion:^(AMStaffMember *staffMember, NSError *error) {
                     createdStaffMember = staffMember;
                 }];
             });
@@ -557,7 +558,7 @@ describe(@"AMClient+Restaurant", ^{
             });
             
             it(@"sends parameters in HTTP body", ^{
-                [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"name" : @"aname", @"username" : @"ausername", @"password" : @"apass", @"email" : @"anemail" , @"staff_kind_id" : @"1" }];
+                [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"name" : @"aname", @"username" : @"ausername", @"password" : @"apass", @"email" : @"anemail" , @"staff_kind_id" : @"1", @"scopes" : @"add_menus" }];
             });
         });
         

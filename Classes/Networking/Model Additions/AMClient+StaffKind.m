@@ -34,11 +34,11 @@
                               completion:(StaffKindCompletion)completion
 {
     NSAssert(staffKind.identifier, @"identifier cannot be nil");
-    NSAssert(name, @"name cannot be nil");
-    NSDictionary *params = @{@"name" : name,
-                             @"accept_orders" : @(acceptsOrders),
-                             @"accept_order_items" : @(acceptsOrderitems),
-                             @"scopes" : [AMOAuthToken stringFromOption:scopes]};
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    if(name) [params setObject:name forKey:@"name"];
+    if(scopes != AMOAuthScopeNone) [params setObject:[AMOAuthToken stringFromOption:scopes] forKey:@"scopes"];
+    [params setObject:acceptsOrders ? @"true" : @"false" forKey:@"accept_orders"];
+    [params setObject:acceptsOrderitems ? @"true" : @"false" forKey:@"accept_order_items"];
     NSString *urlString = [@"staff_kinds/" stringByAppendingString:staffKind.identifier.description];
     return [self PUT:urlString
           parameters:params

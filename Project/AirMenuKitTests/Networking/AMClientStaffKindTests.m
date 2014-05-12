@@ -71,8 +71,9 @@ describe(@"AMClient+StaffKind", ^{
             it(@"sends parameters in HTTP body", ^{
                 [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"name" : @"aname",
                                                                                    @"scopes" : @"add_menus add_orders",
-                                                                                   @"accept_orders" : @"1",
-                                                                                   @"accept_order_items" : @"1"}];
+                                                                                   @"accept_orders" : @"true",
+                                                                                   @"accept_order_items" : @"true",
+                                                                                   @"scopes" : @"add_menus add_orders"}];
             });
         });
         

@@ -52,7 +52,7 @@ describe(@"AMClient+StaffMember", ^{
                                    responseCode:200];
                 
                 AMStaffMember *member = [[AMStaffMember alloc] initWithDictionary:@{@"identifier" : @1} error:nil];
-                task = [[AMClient sharedClient] updateStaffMember:member withNewName:@"aname" newPassword:@"apass" newEmail:@"amail" newStaffKindId:@"1" avatar:nil completion:^(AMStaffMember *staffMember, NSError *error) {
+                task = [[AMClient sharedClient] updateStaffMember:member withNewName:@"aname" newPassword:@"apass" newEmail:@"amail" newStaffKindId:@"1" avatar:nil newScopes:AMOAuthScopeAddMenus completion:^(AMStaffMember *staffMember, NSError *error) {
                     updatedStaffMember = staffMember;
                 }];
             });
@@ -70,7 +70,7 @@ describe(@"AMClient+StaffMember", ^{
             });
             
             it(@"sends parameters in HTTP body", ^{
-                [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"name" : @"aname", @"password" : @"apass", @"email" : @"amail", @"staff_kind_id" : @"1"}];
+                [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"name" : @"aname", @"password" : @"apass", @"email" : @"amail", @"staff_kind_id" : @"1", @"scopes" : @"add_menus"}];
             });
         });
         

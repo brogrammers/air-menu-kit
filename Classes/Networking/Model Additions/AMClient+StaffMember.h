@@ -22,6 +22,7 @@ typedef void (^StaffMemberCompletion)(AMStaffMember *staffMember, NSError *error
                                   newEmail:(NSString *)email
                             newStaffKindId:(NSString *)staffKindIdentifier
                                     avatar:(UIImage *)avatar
+                                 newScopes:(AMOAuthScope)scopes
                                 completion:(StaffMemberCompletion)completion;
 
 -(NSURLSessionDataTask *)deleteStaffMember:(AMStaffMember *)staffMember

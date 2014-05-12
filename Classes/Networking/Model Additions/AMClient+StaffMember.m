@@ -32,6 +32,7 @@
                                   newEmail:(NSString *)email
                             newStaffKindId:(NSString *)staffKindIdentifier
                                     avatar:(UIImage *)avatar
+                                 newScopes:(AMOAuthScope)scopes
                                 completion:(StaffMemberCompletion)completion;
 
 {
@@ -41,6 +42,8 @@
     if(password) [params setObject:password forKey:@"password"];
     if(email) [params setObject:email forKey:@"email"];
     if(staffKindIdentifier) [params setObject:staffKindIdentifier forKey:@"staff_kind_id"];
+    if(scopes != AMOAuthScopeNone) [params setObject:[AMOAuthToken stringFromOption:scopes] forKey:@"scopes"];
+
     NSString *urlString = [@"staff_members/" stringByAppendingString:staffMember.identifier.description];
     
     if(avatar)
