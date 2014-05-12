@@ -27,7 +27,7 @@
 
 //models
 #import "AMCompany.h"
-#import "AMAddress"
+#import "AMAddress.h"
 #import "AMRestaurant.h"
 #import "AMMenu.h"
 #import "AMMenuSection.h"
@@ -44,4 +44,4 @@
 #import "AMCreditCard.h
 #import "AMOpeningHour.h"
 #import "AMReview.h
-#import "AMLocation"
+#import "AMLocation.h"
