@@ -18,6 +18,7 @@
 @property (nonatomic, strong, readonly) NSNumber *loyalty;
 @property (nonatomic, strong, readonly) NSNumber *remoteOrder;
 @property (nonatomic, strong, readonly) NSNumber *conversionRate;
+@property (nonatomic, strong, readonly) NSNumber *rating;
 @property (nonatomic, strong, readonly) AMAddress *address;
 @property (nonatomic, strong, readonly) AMMenu *menu;
 @property (nonatomic, strong, readonly) AMLocation *location;

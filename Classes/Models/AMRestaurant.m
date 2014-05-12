@@ -20,7 +20,8 @@
              @"address" : @"address",
              @"menu" : @"menu",
              @"location" : @"location",
-             @"avatar" : @"avatar"};
+             @"avatar" : @"avatar",
+             @"rating" : @"rating"};
 }
 
 +(NSValueTransformer *)addressJSONTransformer
