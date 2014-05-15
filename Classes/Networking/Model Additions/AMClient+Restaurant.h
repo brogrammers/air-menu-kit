@@ -59,6 +59,7 @@ typedef void (^RestaurantReviewCompletion) (AMReview *review, NSError *error);
                                newCountry:(NSString *)country
                               newLatitude:(double)latitude
                              newLongitude:(double)longitude
+                                    image:(UIImage *)avatar
                             newCompletion:(RestaurantCompletion)completion;
 
 -(NSURLSessionDataTask *)deleteRestaurant:(AMRestaurant *)restaurant

@@ -16,7 +16,7 @@
              @"expiryMonth" : @"month",
              @"expiryYear" : @"year",
              @"number" : @"number",
-             @"cvc", @"cvc"};
+             @"cvc" : @"cvc"};
 }
 
 -(BOOL)isEqual:(id)object

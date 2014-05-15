@@ -64,7 +64,8 @@
                                newCountry:(NSString *)country
                               newLatitude:(double)latitude
                              newLongitude:(double)longitude
-                            newCompletion:(RestaurantCompletion)completion
+                                    image:(UIImage *)avatar
+                            newCompletion:(RestaurantCompletion)completion;
 {
     NSAssert(restaurant.identifier, @"restaurant identifier cannot be nil");
     NSString *urlString = [@"restaurants/" stringByAppendingString:restaurant.identifier.description];    
@@ -80,16 +81,42 @@
     if(latitude) [params setObject:@(latitude).description forKey:@"latitude"];
     if(longitude) [params setObject:@(longitude).description forKey:@"longitude"];
     if(category) [params setObject:category forKey:@"category"];
-    
-    return [self PUT:urlString
-          parameters:params
-             success:^(NSURLSessionDataTask *task, id responseObject) {
-                 AMRestaurant *restaurant = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
-                 if(completion) completion(restaurant, nil);
-             }
-             failure:^(NSURLSessionDataTask *task, NSError *error) {
-                 if(completion) completion(nil, error);
-             }];
+
+    if(avatar)
+    {
+        NSMutableURLRequest *request = [self.requestSerializer multipartFormRequestWithMethod:@"PUT"
+                                                                                    URLString:[[NSURL URLWithString:urlString relativeToURL:self.baseURL] absoluteString]
+                                                                                   parameters:params
+                                                                    constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+                                                                        [formData appendPartWithFormData:UIImagePNGRepresentation(avatar) name:@"avatar"];
+                                                                    } error:nil];
+        NSURLSessionDataTask *task = [self dataTaskWithRequest:request
+                                             completionHandler:^(NSURLResponse * __unused response, id responseObject, NSError *error) {
+                                                 if (error)
+                                                 {
+                                                     AMRestaurant *restaurant = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
+                                                     if (completion) completion(restaurant, error);
+                                                 }
+                                                 else
+                                                 {
+                                                     if (completion) completion(nil, error);
+                                                 }
+                                             }];
+        [task resume];
+        return task;
+    }
+    else
+    {
+        return [self PUT:urlString
+              parameters:params
+                 success:^(NSURLSessionDataTask *task, id responseObject) {
+                     AMRestaurant *restaurant = [[AMObjectBuilder sharedInstance] objectFromJSON:responseObject];
+                     if(completion) completion(restaurant, nil);
+                 }
+                 failure:^(NSURLSessionDataTask *task, NSError *error) {
+                     if(completion) completion(nil, error);
+                 }];
+    }
 }
 
 -(NSURLSessionDataTask *)deleteRestaurant:(AMRestaurant *)restaurant
