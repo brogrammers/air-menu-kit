@@ -138,6 +138,7 @@
 }
 
 -(NSURLSessionDataTask *)createRestaurantOfCompany:(AMCompany *)company
+                                          category:(NSString *)category
                                        description:(NSString *)description
                                           withName:(NSString *)name
                                     addressLineOne:(NSString *)lineOne
@@ -152,8 +153,18 @@
                                         completion:(CompanyRestaurantCompletion)completion
 {
     NSAssert(company.identifier, @"the company object must have a identifier present");
+    NSAssert(category, @"category cannot be nil");
+    NSAssert(description, @"description cannot be nil");
+    NSAssert(name, @"name cannot be nil");
+    NSAssert(lineOne, @"address line one cannot be nil");
+    NSAssert(lineTwo, @"address line two cannot be nil");
+    NSAssert(city, @"city cannot be nil");
+    NSAssert(county, @"county cannot be nil");
+    NSAssert(country, @"country cannot be nil");
+    
     NSString *urlString = [NSString stringWithFormat:@"companies/%@/restaurants", company.identifier];
     NSMutableDictionary *parameters = [@{@"name" : name,
+                                        @"category" : category,
                                         @"description" : description,
                                         @"address_1" : lineOne,
                                         @"address_2" : lineTwo,
@@ -163,7 +174,6 @@
                                         @"latitude" : @(latitude),
                                         @"longitude" : @(longitude)} mutableCopy];
     if(state) [parameters setObject:state forKey:@"state"];
-    
     
     if(image)
     {

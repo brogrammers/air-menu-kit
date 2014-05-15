@@ -49,6 +49,7 @@ typedef void (^RestaurantReviewCompletion) (AMReview *review, NSError *error);
 
 -(NSURLSessionDataTask *)updateRestaurant:(AMRestaurant *)restaurant
                               withNewName:(NSString *)name
+                              newCategory:(NSString *)category
                            newDescription:(NSString *)description
                         newAddressLineOne:(NSString *)lineOne
                         newAddressLineTwo:(NSString *)lineTwo

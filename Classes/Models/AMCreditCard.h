@@ -15,4 +15,5 @@
 @property (nonatomic, readwrite, strong) NSString *expiryMonth;
 @property (nonatomic, readwrite, strong) NSString *expiryYear;
 @property (nonatomic, readwrite, strong) NSString *number;
+@property (nonatomic, readwrite, strong) NSString *cvc
 @end

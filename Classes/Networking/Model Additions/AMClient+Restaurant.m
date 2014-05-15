@@ -54,6 +54,7 @@
 
 -(NSURLSessionDataTask *)updateRestaurant:(AMRestaurant *)restaurant
                               withNewName:(NSString *)name
+                              newCategory:(NSString *)category
                            newDescription:(NSString *)description
                         newAddressLineOne:(NSString *)lineOne
                         newAddressLineTwo:(NSString *)lineTwo
@@ -63,7 +64,7 @@
                                newCountry:(NSString *)country
                               newLatitude:(double)latitude
                              newLongitude:(double)longitude
-                            newCompletion:(RestaurantCompletion)completion;
+                            newCompletion:(RestaurantCompletion)completion
 {
     NSAssert(restaurant.identifier, @"restaurant identifier cannot be nil");
     NSString *urlString = [@"restaurants/" stringByAppendingString:restaurant.identifier.description];    
@@ -78,6 +79,7 @@
     if(state) [params setObject:state forKey:@"state"];
     if(latitude) [params setObject:@(latitude).description forKey:@"latitude"];
     if(longitude) [params setObject:@(longitude).description forKey:@"longitude"];
+    if(category) [params setObject:category forKey:@"category"];
     
     return [self PUT:urlString
           parameters:params

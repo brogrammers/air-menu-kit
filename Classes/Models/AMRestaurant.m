@@ -21,7 +21,8 @@
              @"menu" : @"menu",
              @"location" : @"location",
              @"avatar" : @"avatar",
-             @"rating" : @"rating"};
+             @"rating" : @"rating",
+             @"category" : @"category"};
 }
 
 +(NSValueTransformer *)addressJSONTransformer

@@ -284,7 +284,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     NSAssert(month, @"month cannot be nil");
     NSAssert(year, @"year cannot be nil");
     NSAssert(cvc, @"cvc cannot be nil");
-    NSDictionary *params = @{@"number" : number, @"year" : year,  @"type" : type, @"month" : month, @"cvc" : cvc};
+    NSDictionary *params = @{@"number" : number, @"year" : year,  @"card_type" : type, @"month" : month, @"cvc" : cvc};
     return [self POST:@"me/credit_cards"
            parameters:params
               success:^(NSURLSessionDataTask *task, id responseObject) {

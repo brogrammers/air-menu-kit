@@ -15,7 +15,8 @@
              @"cardType" : @"card_type",
              @"expiryMonth" : @"month",
              @"expiryYear" : @"year",
-             @"number" : @"number"};
+             @"number" : @"number",
+             @"cvc", @"cvc"};
 }
 
 -(BOOL)isEqual:(id)object
