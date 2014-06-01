@@ -8,9 +8,27 @@
 
 #import <Mantle/Mantle.h>
 
+/**
+ *  AMOpeningHour represents daily time range at which restaurant is opened.
+ */
 @interface AMOpeningHour : MTLModel <MTLJSONSerializing>
+/**
+ *  Unique identifier.
+ */
 @property (nonatomic, readonly, strong) NSNumber *identifier;
+
+/**
+ *  Which day this hour refers to.
+ */
 @property (nonatomic, readonly, strong) NSString *day;
+
+/**
+ *  Opening time.
+ */
 @property (nonatomic, readonly, strong) NSDate *startTime;
+
+/**
+ *  Closing time.
+ */
 @property (nonatomic, readonly, strong) NSDate *endTime;
 @end

@@ -8,6 +8,9 @@
 
 #import <CoreLocation/CoreLocation.h>
 
-@interface AMLocation : CLLocation
+/**
+ *  Subclass of CLLocation provided to implement isEqual
+ */
 
+@interface AMLocation : CLLocation
 @end

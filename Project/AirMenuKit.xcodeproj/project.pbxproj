@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		716641DC193BA95F00F121A7 /* Documentation */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 716641DF193BA95F00F121A7 /* Build configuration list for PBXAggregateTarget "Documentation" */;
+			buildPhases = (
+				716641E0193BA9D000F121A7 /* Build Documentation */,
+			);
+			dependencies = (
+			);
+			name = Documentation;
+			productName = Documentation;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		35C6636F86084676A8F03BCF /* libPods-AirMenuKitTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4D6450282584DFB83C8BE38 /* libPods-AirMenuKitTests.a */; };
 		7108AD9F18B5741B00A413DA /* restaurants.json in Resources */ = {isa = PBXBuildFile; fileRef = 7108AD9E18B5741B00A413DA /* restaurants.json */; };
@@ -751,6 +765,7 @@
 			targets = (
 				7132E4491848EA8A00B2E356 /* AirMenuKit */,
 				7132E4591848EA8A00B2E356 /* AirMenuKitTests */,
+				716641DC193BA95F00F121A7 /* Documentation */,
 			);
 		};
 /* End PBXProject section */
@@ -829,6 +844,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		716641E0193BA9D000F121A7 /* Build Documentation */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build Documentation";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/appledoc \\\n--project-name \"AirMenuKit\" \\\n--project-company \"AirMenu\" \\\n--company-id \"com.air-menu\" \\\n--docset-atom-filename \"AirMenuKit.atom\" \\\n--docset-feed-url \"https://github.com/brogrammers/air-menu-kit/%DOCSETATOMFILENAME\" \\\n--docset-package-url \"https://github.com/brogrammers/air-menu-kit/%DOCSETPACKAGEFILENAME\" \\\n--docset-fallback-url \"https://github.com/brogrammers/air-menu-kit\" \\\n--output \"~/help\" \\\n--logformat xcode \\\n--keep-undocumented-objects \\\n--keep-undocumented-members \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--ignore \"*.m\" \\\n--ignore \"NSArray+NullReplacement.h\" \\\n--ignore \"NSDictionary+NullReplacement.h\" \\\n--ignore \"AMObjectBuilder.h\" \\\n--ignore \"NSNumberFormatter+AirMenuNumberFormat.h\" \\\n--ignore \"NSDateFormatter+AirMenuTimestamp.h\" \\\n--ignore Pods \\\n--ignore AirMenuKitTests \\\n\"${PROJECT_DIR}/../Classes\"";
 		};
 		7BF244358E454485B49F99C6 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1141,6 +1170,20 @@
 			};
 			name = Release;
 		};
+		716641DD193BA95F00F121A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		716641DE193BA95F00F121A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1167,6 +1210,15 @@
 			buildConfigurations = (
 				7132E4711848EA8A00B2E356 /* Debug */,
 				7132E4721848EA8A00B2E356 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		716641DF193BA95F00F121A7 /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				716641DD193BA95F00F121A7 /* Debug */,
+				716641DE193BA95F00F121A7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

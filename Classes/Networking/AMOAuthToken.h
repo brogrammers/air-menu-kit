@@ -67,16 +67,74 @@ typedef NS_ENUM(NSUInteger, AMOAuthGrantType) {
     AMOAuthGrantTypeRefresh
 };
 
+
+/**
+ *  AMOAuthToken represents OAuth2 implementation of access token.
+ */
 @interface AMOAuthToken : MTLModel <MTLJSONSerializing>
+
+/**
+ * Token string
+ */
 @property (nonatomic, strong, readonly) NSString *token;
+
+/**
+ *  Refresh token string
+ */
 @property (nonatomic, strong, readonly) NSString *refreshToken;
+
+/**
+ *
+ */
 @property (nonatomic, strong, readonly) NSString *type;
+
+/**
+ *  Token expiry date
+ */
 @property (nonatomic, strong, readonly) NSDate *expiresAt;
+
+/**
+ *  Scopes that this token is authenticated for
+ */
 @property (nonatomic, strong, readonly) NSArray *scopes;
+
+/**
+ *  Map of scope numbers to their equivalent string
+ *
+ *  @return mapping
+ */
 +(NSDictionary *)numberToScopesMapping;
+
+/**
+ *  Map scope string to their equivalent number
+ *
+ *  @return mapping
+ */
+
 +(NSDictionary *)scopesToNumberMapping;
+/**
+ *  Given scope or'd option map to string array
+ *
+ *  @param scope or'd scope option
+ *
+ *  @return array of scope strings
+ */
 +(NSArray *)stringsFromOptions:(AMOAuthScope)scope;
+
+/**
+ *  Given scope or'd option map it to single space separated string
+ *
+ *  @param scope or'd scope option
+ *
+ *  @return space separated scopes
+ */
 +(NSString *)stringFromOption:(AMOAuthScope)scope;
+
+/**
+ *  All possible scopes option
+ *
+ *  @return or'd scope option that represents all possible scopes
+ */
 +(AMOAuthScope)allScopes;
 @end
 

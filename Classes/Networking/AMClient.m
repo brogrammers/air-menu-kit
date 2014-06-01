@@ -52,7 +52,7 @@ static NSString * const JSONResponseSerializerWithDataKey = @"JSONResponseSerial
     return _errorHandlers;
 }
 
--(void)registerHadnler:(ErrorHandler)handler forErrorCode:(NSString *)code
+-(void)registerHandler:(ErrorHandler)handler forErrorCode:(NSString *)code
 {
     NSMutableDictionary *errorHandlers = (NSMutableDictionary *) self.errorHandlers;
     errorHandlers[code] = [handler copy];

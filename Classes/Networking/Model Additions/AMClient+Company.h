@@ -10,28 +10,8 @@
 #import "AMCompany.h"
 #import "AMRestaurant.h"
 
-/**
- *  Company completion block
- *
- *  @param company company fetched
- *  @param error   error that occured
- */
 typedef void (^CompanyCompletion) (AMCompany *company, NSError *error);
-
-/**
- *  Restaurant completion block
- *
- *  @param restaurant restaurant fetched
- *  @param error      error that occured
- */
 typedef void (^CompanyRestaurantCompletion) (AMRestaurant *restaurant, NSError *error);
-
-/**
- *  Restaurants completion block
- *
- *  @param restaurants array of restaurants fetched
- *  @param error       error that occured
- */
 typedef void (^CompanyRestaurantsCompletion) (NSArray *restaurants, NSError *error);
 
 @interface AMClient (Company)
@@ -44,6 +24,7 @@ typedef void (^CompanyRestaurantsCompletion) (NSArray *restaurants, NSError *err
  *
  *  @return task spawed by the method
  */
+
 -(NSURLSessionDataTask *)findCompanyWithIdentifier:(NSString *)identifier
                                         completion:(CompanyCompletion)completion;
 
@@ -62,6 +43,7 @@ typedef void (^CompanyRestaurantsCompletion) (NSArray *restaurants, NSError *err
  *
  *  @return task spawned by the method
  */
+
 -(NSURLSessionDataTask *)createCompanyWithName:(NSString *)name
                                        website:(NSString *)website
                                 addressLineOne:(NSString *)lineOne
@@ -87,6 +69,7 @@ typedef void (^CompanyRestaurantsCompletion) (NSArray *restaurants, NSError *err
  *
  *  @return task spawned by the method
  */
+
 -(NSURLSessionDataTask *)updateCompany:(AMCompany *)company
                            withNewName:(NSString *)name
                             newWebsite:(NSString *)website
@@ -109,10 +92,6 @@ typedef void (^CompanyRestaurantsCompletion) (NSArray *restaurants, NSError *err
 -(NSURLSessionDataTask *)deleteCompany:(AMCompany *)company
                             completion:(CompanyCompletion)completion;
 
-/*
- Restaurants of company
- */
-
 /**
  *  GET /companies/:id/restaurants
  *
@@ -124,7 +103,26 @@ typedef void (^CompanyRestaurantsCompletion) (NSArray *restaurants, NSError *err
 -(NSURLSessionDataTask *)findRestaurantsOfCompany:(AMCompany *)company
                                        completion:(CompanyRestaurantsCompletion)completion;
 
-
+/**
+ *  POST /companies/:id/restaurants
+ *
+ *  @param company     company to create restaurant for - required
+ *  @param category    category of restaurant
+ *  @param description description of restaurant
+ *  @param name        name of the restaurant
+ *  @param lineOne     line one of address
+ *  @param lineTwo     line two of address
+ *  @param city        city
+ *  @param county      county
+ *  @param state       state - US only
+ *  @param country     country
+ *  @param latitude    latitiude position
+ *  @param longitude   longitude position
+ *  @param image       image to serve as avatar
+ *  @param completion  block to execute upon completion
+ *
+ *  @return task spawned by the method
+ */
 -(NSURLSessionDataTask *)createRestaurantOfCompany:(AMCompany *)company
                                           category:(NSString *)category
                                        description:(NSString *)description

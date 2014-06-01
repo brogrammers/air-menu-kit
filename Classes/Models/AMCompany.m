@@ -41,12 +41,12 @@
         return  [self.identifier isEqualToNumber:[(AMCompany *)object identifier]] ||
         (!self.identifier && ![(AMCompany *)object identifier]);
     }
-    return NO;}
+    return NO;
+}
 
 -(NSUInteger)hash
 {
     return [self.identifier hash];
 }
-
 
 @end

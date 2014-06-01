@@ -13,9 +13,30 @@ typedef void (^CreditCardCompletion)(AMCreditCard *creditCard, NSError *error);
 
 
 @interface AMClient (CreditCard)
+
+/**
+ *  GET /credit_cards/:id
+ *
+ *  @param identifier identifier of the credit card - requred
+ *  @param completion block exectued upon completion
+ *
+ *  @return spawned data task
+ */
 -(NSURLSessionDataTask *)findCreditCardWithIdentifier:(NSString *)identifier
                                            completion:(CreditCardCompletion)completion;
-
+/**
+ *  PUT /credit_cards/:id
+ *
+ *  @param creditCard credit card to update - required
+ *  @param number     new credit card number
+ *  @param type       new credit card type
+ *  @param month      new credit card exipry month
+ *  @param year       new credit card expiry year
+ *  @param cvc        new credit card cvc
+ *  @param completion new credit card completion
+ *
+ *  @return spawned data task
+ */
 -(NSURLSessionDataTask *)updateCreditCard:(AMCreditCard *)creditCard
                             withNewNumber:(NSString *)number
                               newCardType:(NSString *)type
@@ -24,6 +45,14 @@ typedef void (^CreditCardCompletion)(AMCreditCard *creditCard, NSError *error);
                                    newCVC:(NSString *)cvc
                                completion:(CreditCardCompletion)completion;
 
+/**
+ *  DELETE /credit_cards/:id
+ *
+ *  @param card       credit card do delete - required
+ *  @param completion block to execute upon completion
+ *
+ *  @return spawned data task
+ */
 -(NSURLSessionDataTask *)deleteCreditCard:(AMCreditCard *)card
                                completion:(CreditCardCompletion)completion;
 
