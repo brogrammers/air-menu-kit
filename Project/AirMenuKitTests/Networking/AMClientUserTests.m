@@ -17,7 +17,6 @@ describe(@"AMClient+User", ^{
        context(@"on find user", ^{
            __block NSURLSessionDataTask *task;
            __block AMUser *foundUser;
-           
            beforeAll(^{
                [TestToolBox stubRequestWithURL:[baseURL stringByAppendingString:@"users/1"]
                                     httpMethod:@"GET"
