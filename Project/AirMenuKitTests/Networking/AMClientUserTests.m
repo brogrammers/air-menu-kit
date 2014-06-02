@@ -124,6 +124,7 @@ describe(@"AMClient+User", ^{
                                     httpMethod:@"POST"
                             nameOfResponseFile:@"user.json"
                                   responseCode:200];
+               
                task = [[AMClient sharedClient] createUserWithName:@"Max Hoffmann"
                                                             email:@"email@example.com"
                                                             phone:@"12345"
@@ -145,7 +146,6 @@ describe(@"AMClient+User", ^{
            
            it(@"creates user object", ^{
                [[expectFutureValue(createdUser) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:[TestToolBox objectFromJSONFromFile:@"user.json"]];
-
            });
            
            it(@"sends parameters in HTTP body", ^{
