@@ -36,7 +36,7 @@ describe(@"AMClient+Device", ^{
            });
            
            it(@"creates device object", ^{
-               [[expectFutureValue(foundDevice) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"device.json"]];
+               [[expectFutureValue(foundDevice) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:[TestToolBox objectFromJSONFromFile:@"device.json"]];
            });
        });
        
@@ -71,7 +71,7 @@ describe(@"AMClient+Device", ^{
            });
            
            it(@"creates device object", ^{
-                [[expectFutureValue(updatedDevice) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"device.json"]];
+                [[expectFutureValue(updatedDevice) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:[TestToolBox objectFromJSONFromFile:@"device.json"]];
            });
            
            it(@"sends parameters in HTTP body", ^{
@@ -107,7 +107,7 @@ describe(@"AMClient+Device", ^{
            });
            
            it(@"creates device object", ^{
-                [[expectFutureValue(deletedDevice) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"device.json"]];
+                [[expectFutureValue(deletedDevice) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:[TestToolBox objectFromJSONFromFile:@"device.json"]];
            });
        });
    });

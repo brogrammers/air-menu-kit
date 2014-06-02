@@ -37,7 +37,7 @@ describe(@"AMClient+StaffMember", ^{
             });
             
             it(@"creates staff member object", ^{
-                [[expectFutureValue(foundStaffMember) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"staff_member.json"]];
+                [[expectFutureValue(foundStaffMember) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:[TestToolBox objectFromJSONFromFile:@"staff_member.json"]];
             });
         });
         
@@ -66,7 +66,7 @@ describe(@"AMClient+StaffMember", ^{
             });
             
             it(@"creates staff member object", ^{
-                [[expectFutureValue(updatedStaffMember) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"staff_member.json"]];
+                [[expectFutureValue(updatedStaffMember) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:[TestToolBox objectFromJSONFromFile:@"staff_member.json"]];
             });
             
             it(@"sends parameters in HTTP body", ^{
@@ -98,7 +98,7 @@ describe(@"AMClient+StaffMember", ^{
             });
             
             it(@"creates staff member object", ^{
-                [[expectFutureValue(deletedStaffMember) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"staff_member.json"]];
+                [[expectFutureValue(deletedStaffMember) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:[TestToolBox objectFromJSONFromFile:@"staff_member.json"]];
             });
         });
     });

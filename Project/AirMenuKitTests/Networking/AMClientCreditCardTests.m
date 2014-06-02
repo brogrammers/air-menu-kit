@@ -38,7 +38,7 @@ describe(@"AMClient+AMCreditCard", ^{
             });
             
             it(@"creates credt card object", ^{
-                [[expectFutureValue(card) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"credit_card.json"]];
+                [[expectFutureValue(card) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:[TestToolBox objectFromJSONFromFile:@"credit_card.json"]];
             });
         });
         
@@ -73,7 +73,7 @@ describe(@"AMClient+AMCreditCard", ^{
             });
             
             it(@"creates credt card object", ^{
-                [[expectFutureValue(card) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"credit_card.json"]];
+                [[expectFutureValue(card) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:[TestToolBox objectFromJSONFromFile:@"credit_card.json"]];
             });
             
             
@@ -111,7 +111,7 @@ describe(@"AMClient+AMCreditCard", ^{
             });
             
             it(@"creates credt card object", ^{
-                [[expectFutureValue(card) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"credit_card.json"]];
+                [[expectFutureValue(card) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:[TestToolBox objectFromJSONFromFile:@"credit_card.json"]];
             });
         });
     });

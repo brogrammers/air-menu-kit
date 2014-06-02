@@ -38,7 +38,7 @@ describe(@"AMClient+Order", ^{
             });
             
             it(@"creates order object", ^{
-                [[expectFutureValue(foundOrder) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"order.json"]];
+                [[expectFutureValue(foundOrder) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:[TestToolBox objectFromJSONFromFile:@"order.json"]];
             });
         });
         
@@ -66,7 +66,7 @@ describe(@"AMClient+Order", ^{
             });
             
             it(@"creates order object", ^{
-                [[expectFutureValue(updatedOrder) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"order.json"]];
+                [[expectFutureValue(updatedOrder) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:[TestToolBox objectFromJSONFromFile:@"order.json"]];
             });
             
             it(@"sends paramters in HTTP body", ^{
@@ -98,7 +98,7 @@ describe(@"AMClient+Order", ^{
             });
             
             it(@"creates order object", ^{
-                [[expectFutureValue(deletedOrder) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"order.json"]];
+                [[expectFutureValue(deletedOrder) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:[TestToolBox objectFromJSONFromFile:@"order.json"]];
             });
         
         });
@@ -128,7 +128,7 @@ describe(@"AMClient+Order", ^{
             });
             
             it(@"creates array of order items object", ^{
-                [[expectFutureValue(foundOrderItems) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"order_items.json"]];
+                [[expectFutureValue(foundOrderItems) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:[TestToolBox objectFromJSONFromFile:@"order_items.json"]];
             });
         });
         
@@ -157,7 +157,7 @@ describe(@"AMClient+Order", ^{
             });
             
             it(@"creates order item object", ^{
-                [[expectFutureValue(createdOrderItem) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"order_item.json"]];
+                [[expectFutureValue(createdOrderItem) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:[TestToolBox objectFromJSONFromFile:@"order_item.json"]];
             });
             
             it(@"sends paramters in HTTP body", ^{
@@ -191,7 +191,7 @@ describe(@"AMClient+Order", ^{
             });
             
             it(@"creates status object", ^{
-                [[expectFutureValue(receivedStatus) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:@"success"];
+                [[expectFutureValue(receivedStatus) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:@"success"];
             });
             
             it(@"sends parameters in HTTP body", ^{

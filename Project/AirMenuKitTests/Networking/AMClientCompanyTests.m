@@ -54,7 +54,7 @@ describe(@"AMClient+Companies", ^{
             
             it(@"creates a company object", ^{
                 AMCompany *company = [TestToolBox objectFromJSONFromFile:@"company.json"];
-                [[expectFutureValue(newCompany) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:company];
+                [[expectFutureValue(newCompany) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:company];
             });
             
             it(@"sends parameters in the HTTP body", ^{
@@ -95,7 +95,7 @@ describe(@"AMClient+Companies", ^{
             
             it(@"creates a company object", ^{
                 AMCompany *company = [TestToolBox objectFromJSONFromFile:@"company.json"];
-                [[expectFutureValue(foundCompany) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:company];
+                [[expectFutureValue(foundCompany) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:company];
             });
         });
         
@@ -135,7 +135,7 @@ describe(@"AMClient+Companies", ^{
             
             it(@"creates a company object", ^{
                 AMCompany *company = [TestToolBox objectFromJSONFromFile:@"company.json"];
-                [[expectFutureValue(updatedCompany) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:company];
+                [[expectFutureValue(updatedCompany) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:company];
             });
             
             it(@"sends parameters in HTTP body", ^{
@@ -175,7 +175,7 @@ describe(@"AMClient+Companies", ^{
             });
             
             it(@"creates a company object", ^{
-                [[expectFutureValue(deletedCompany) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"company.json"]];
+                [[expectFutureValue(deletedCompany) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:[TestToolBox objectFromJSONFromFile:@"company.json"]];
             });
         });
         
@@ -218,7 +218,7 @@ describe(@"AMClient+Companies", ^{
             
             it(@"creates a restaurant object", ^{
                 AMRestaurant *restaurant = [TestToolBox objectFromJSONFromFile:@"restaurant.json"];
-                [[expectFutureValue(newRestaurant) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:restaurant];
+                [[expectFutureValue(newRestaurant) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:restaurant];
             });
             
             it(@"sends parameters in HTTP body", ^{
@@ -262,7 +262,7 @@ describe(@"AMClient+Companies", ^{
             
             it(@"creates an array of restaurants", ^{
                 NSArray *restaurants = [TestToolBox objectFromJSONFromFile:@"restaurants.json"];
-                [[expectFutureValue(foundRestaurants) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:restaurants];
+                [[expectFutureValue(foundRestaurants) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:restaurants];
             });
         });
     });

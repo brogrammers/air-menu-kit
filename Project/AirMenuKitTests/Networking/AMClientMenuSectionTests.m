@@ -36,7 +36,7 @@ describe(@"AMClient+MenuSection", ^{
            });
            
            it(@"creates a menu section object", ^{
-               [[expectFutureValue(sectionFound) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"menu_section.json"]];
+               [[expectFutureValue(sectionFound) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:[TestToolBox objectFromJSONFromFile:@"menu_section.json"]];
            });
        });
        
@@ -66,7 +66,7 @@ describe(@"AMClient+MenuSection", ^{
            });
            
            it(@"creates menu section object", ^{
-               [[expectFutureValue(updatedSection) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"menu_section.json"]];
+               [[expectFutureValue(updatedSection) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:[TestToolBox objectFromJSONFromFile:@"menu_section.json"]];
            });
            
            it(@"sends parameters in HTTP body", ^{
@@ -98,7 +98,7 @@ describe(@"AMClient+MenuSection", ^{
            });
            
            it(@"creates menu section object", ^{
-               [[expectFutureValue(deletedSection) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"menu_section.json"]];
+               [[expectFutureValue(deletedSection) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:[TestToolBox objectFromJSONFromFile:@"menu_section.json"]];
            });
        });
        
@@ -133,7 +133,7 @@ describe(@"AMClient+MenuSection", ^{
             });
            
             it(@"creates a menu item object", ^{
-                [[expectFutureValue(newItem) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"menu_item.json"]];
+                [[expectFutureValue(newItem) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:[TestToolBox objectFromJSONFromFile:@"menu_item.json"]];
             });
            
             it(@"sends parameters in HTTP body", ^{
@@ -170,7 +170,7 @@ describe(@"AMClient+MenuSection", ^{
            });
            
            it(@"creates arry of menu items object", ^{
-               [[expectFutureValue(menuItems) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"menu_items.json"]];
+               [[expectFutureValue(menuItems) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:[TestToolBox objectFromJSONFromFile:@"menu_items.json"]];
            });
        });
    });

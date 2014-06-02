@@ -37,7 +37,7 @@ describe(@"AMClient+StaffKind", ^{
             });
             
             it(@"creates staff kind object", ^{
-                [[expectFutureValue(foundStaffKind) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"staff_kind.json"]];
+                [[expectFutureValue(foundStaffKind) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:[TestToolBox objectFromJSONFromFile:@"staff_kind.json"]];
             });
         });
         
@@ -61,11 +61,11 @@ describe(@"AMClient+StaffKind", ^{
             });
             
             it(@"calls /staff_kinds/1", ^{
-                [[task.originalRequest.URL.absoluteString shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[baseURL stringByAppendingString:@"staff_kinds/1"]];
+                [[task.originalRequest.URL.absoluteString shouldEventuallyBeforeTimingOutAfter(5.0)] equal:[baseURL stringByAppendingString:@"staff_kinds/1"]];
             });
             
             it(@"creates staff kind object", ^{
-                [[expectFutureValue(updatedStaffKind) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"staff_kind.json"]];
+                [[expectFutureValue(updatedStaffKind) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:[TestToolBox objectFromJSONFromFile:@"staff_kind.json"]];
             });
             
             it(@"sends parameters in HTTP body", ^{
@@ -101,7 +101,7 @@ describe(@"AMClient+StaffKind", ^{
             });
             
             it(@"creates staff kind object", ^{
-                [[expectFutureValue(deletedStaffKind) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"staff_kind.json"]];
+                [[expectFutureValue(deletedStaffKind) shouldEventuallyBeforeTimingOutAfter(5.0)] equal:[TestToolBox objectFromJSONFromFile:@"staff_kind.json"]];
             });
         });
     });
