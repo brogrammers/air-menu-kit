@@ -64,7 +64,7 @@ describe(@"AMMenuClient", ^{
             });
             
             it(@"creates access token object", ^{
-                [[expectFutureValue(newToken.token) shouldEventually] equal:[[TestToolBox objectFromJSONFromFile:@"access_token.json"] token]];
+                [[expectFutureValue(newToken.token) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[[TestToolBox objectFromJSONFromFile:@"access_token.json"] token]];
             });
             
             it(@"sends parameters in HTTP body", ^{
@@ -79,7 +79,7 @@ describe(@"AMMenuClient", ^{
             it(@"sets token as Authorization HTTP header ", ^{
                 NSString *token = [[TestToolBox objectFromJSONFromFile:@"access_token.json"] token];
                 NSString *headerExpected = [@"Bearer " stringByAppendingString:token];
-                [[expectFutureValue([AMClient sharedClient].requestSerializer.HTTPRequestHeaders[@"Authorization"]) shouldEventually] equal:headerExpected];
+                [[expectFutureValue([AMClient sharedClient].requestSerializer.HTTPRequestHeaders[@"Authorization"]) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:headerExpected];
             });
             
             it(@"saves current token to NSUerDefaults and removes value under for old token from user defaults", ^{
@@ -109,7 +109,7 @@ describe(@"AMMenuClient", ^{
                 
                 it(@"sets access token on the client", ^{
                     NSString *headerExpected = [@"Bearer " stringByAppendingString:@"ABCD"];
-                    [[expectFutureValue([AMClient sharedClient].requestSerializer.HTTPRequestHeaders[@"Authorization"]) shouldEventually] equal:headerExpected];
+                    [[expectFutureValue([AMClient sharedClient].requestSerializer.HTTPRequestHeaders[@"Authorization"]) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:headerExpected];
                 });
             });
         });
@@ -145,7 +145,7 @@ describe(@"AMMenuClient", ^{
             });
             
             it(@"ressignes user object to new access token", ^{
-                [[expectFutureValue([[NSUserDefaults standardUserDefaults] objectForKey:newToken.token]) shouldEventually] equal:@[@"old user"]];
+                [[expectFutureValue([[NSUserDefaults standardUserDefaults] objectForKey:newToken.token]) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:@[@"old user"]];
             });
             
             it(@"sends parameters in HTTP body", ^{
@@ -164,13 +164,13 @@ describe(@"AMMenuClient", ^{
                 [[task.originalRequest.URL.absoluteString should] equal:@"https://edge-api.air-menu.com/api/oauth2/access_tokens"];
             });
             it(@"creates access token object", ^{
-                [[expectFutureValue(newToken.token) shouldEventually] equal:[[TestToolBox objectFromJSONFromFile:@"access_token.json"] token]];
+                [[expectFutureValue(newToken.token) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[[TestToolBox objectFromJSONFromFile:@"access_token.json"] token]];
             });
             
             it(@"sets token as Authorization HTTP header ", ^{
                 NSString *token = [[TestToolBox objectFromJSONFromFile:@"access_token.json"] token];
                 NSString *headerExpected = [@"Bearer " stringByAppendingString:token];
-                [[expectFutureValue([AMClient sharedClient].requestSerializer.HTTPRequestHeaders[@"Authorization"]) shouldEventually] equal:headerExpected];
+                [[expectFutureValue([AMClient sharedClient].requestSerializer.HTTPRequestHeaders[@"Authorization"]) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:headerExpected];
             });
             
             it(@"saves current token to NSUerDefaults and removes value under for old token from user defaults", ^{

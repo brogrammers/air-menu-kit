@@ -38,7 +38,7 @@ describe(@"AMClient+Group", ^{
             });
             
             it(@"creates group object", ^{
-                [[expectFutureValue(foundGroup) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"group.json"]];
+                [[expectFutureValue(foundGroup) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"group.json"]];
             });
         });
         
@@ -67,7 +67,7 @@ describe(@"AMClient+Group", ^{
             });
             
             it(@"crates group object", ^{
-                [[expectFutureValue(updatedGroup) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"group.json"]];
+                [[expectFutureValue(updatedGroup) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"group.json"]];
             });
             
             it(@"sends parameters in HTTP body", ^{
@@ -100,7 +100,7 @@ describe(@"AMClient+Group", ^{
             });
             
             it(@"creates group object", ^{
-                [[expectFutureValue(deletedGroup) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"group.json"]];
+                [[expectFutureValue(deletedGroup) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"group.json"]];
             });
         });
         
@@ -128,7 +128,7 @@ describe(@"AMClient+Group", ^{
             });
             
             it(@"creates array of staff members", ^{
-                [[expectFutureValue(foundMembers) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"staff_members.json"]];
+                [[expectFutureValue(foundMembers) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"staff_members.json"]];
             });
         });
         
@@ -157,7 +157,7 @@ describe(@"AMClient+Group", ^{
             });
             
             it(@"creates staff member object", ^{
-                [[expectFutureValue(newMember) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"staff_member.json"]];
+                [[expectFutureValue(newMember) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"staff_member.json"]];
             });
             
             it(@"sends parameters in HTTP body", ^{

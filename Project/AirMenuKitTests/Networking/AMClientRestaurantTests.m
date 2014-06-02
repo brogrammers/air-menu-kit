@@ -44,7 +44,7 @@ describe(@"AMClient+Restaurant", ^{
             });
             
             it(@"creates array of restaurants object", ^{
-                [[expectFutureValue(foundRestaurants) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"restaurants.json"]];
+                [[expectFutureValue(foundRestaurants) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"restaurants.json"]];
             });
         });
         
@@ -70,7 +70,7 @@ describe(@"AMClient+Restaurant", ^{
             });
             
             it(@"creates restaurant object", ^{
-                [[expectFutureValue(foundRestaurant) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"restaurant.json"]];
+                [[expectFutureValue(foundRestaurant) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"restaurant.json"]];
             });
         });
         
@@ -112,7 +112,7 @@ describe(@"AMClient+Restaurant", ^{
             });
             
             it(@"creates restaurant object", ^{
-                [[expectFutureValue(updatedRestaurant) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"restaurant.json"]];
+                [[expectFutureValue(updatedRestaurant) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"restaurant.json"]];
             });
             
             it(@"sends parameters in HTTP body", ^{
@@ -154,7 +154,7 @@ describe(@"AMClient+Restaurant", ^{
             });
             
             it(@"creates restaurant object", ^{
-                [[expectFutureValue(deletedRestaurant) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"restaurant.json"]];
+                [[expectFutureValue(deletedRestaurant) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"restaurant.json"]];
             });
         });
         
@@ -185,7 +185,7 @@ describe(@"AMClient+Restaurant", ^{
             });
             
             it(@"creates menus objects", ^{
-                [[expectFutureValue(foundMenus) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"menus.json"]];
+                [[expectFutureValue(foundMenus) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"menus.json"]];
             });
         });
         
@@ -217,7 +217,7 @@ describe(@"AMClient+Restaurant", ^{
             });
             
             it(@"creates a menu object", ^{
-                [[expectFutureValue(menuCreated) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"menu.json"]];
+                [[expectFutureValue(menuCreated) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"menu.json"]];
             });
             
             it(@"sends parameters in HTTP body", ^{
@@ -255,7 +255,7 @@ describe(@"AMClient+Restaurant", ^{
             });
             
             it(@"creates array of devices", ^{
-                [[expectFutureValue(foundDevices) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"devices.json"]];
+                [[expectFutureValue(foundDevices) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"devices.json"]];
             });
             
         });
@@ -288,7 +288,7 @@ describe(@"AMClient+Restaurant", ^{
             });
             
             it(@"creates device object", ^{
-                [[expectFutureValue(createdDevice) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"device.json"]];
+                [[expectFutureValue(createdDevice) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"device.json"]];
             });
             
             it(@"sends paramters in HTTP body", ^{
@@ -324,7 +324,7 @@ describe(@"AMClient+Restaurant", ^{
             });
             
             it(@"calls creates array of groups object", ^{
-                [[expectFutureValue(foundGroups) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"groups.json"]];
+                [[expectFutureValue(foundGroups) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"groups.json"]];
             });
         });
         
@@ -356,7 +356,7 @@ describe(@"AMClient+Restaurant", ^{
             });
             
             it(@"creates group object", ^{
-                [[expectFutureValue(createdGroup) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"group.json"]];
+                [[expectFutureValue(createdGroup) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"group.json"]];
             });
             
             it(@"sends parameters in HTTP body", ^{
@@ -393,7 +393,7 @@ describe(@"AMClient+Restaurant", ^{
             });
             
             it(@"creates array of orders object", ^{
-                [[expectFutureValue(foundOrders) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"orders.json"]];
+                [[expectFutureValue(foundOrders) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"orders.json"]];
             });
         });
         
@@ -423,7 +423,7 @@ describe(@"AMClient+Restaurant", ^{
             });
             
             it(@"crates order object", ^{
-                [[expectFutureValue(createdOrder) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"order.json"]];
+                [[expectFutureValue(createdOrder) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"order.json"]];
             });
             
             it(@"sends parameters in HTTP body", ^{
@@ -459,7 +459,7 @@ describe(@"AMClient+Restaurant", ^{
             });
             
             it(@"creates array of staff kind object", ^{
-                [[expectFutureValue(foundStaffKinds) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"staff_kinds.json"]];
+                [[expectFutureValue(foundStaffKinds) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"staff_kinds.json"]];
             });
         });
         
@@ -488,7 +488,7 @@ describe(@"AMClient+Restaurant", ^{
             });
             
             it(@"creates staff kind object", ^{
-                [[expectFutureValue(createdStaffKind) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"staff_kind.json"]];
+                [[expectFutureValue(createdStaffKind) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"staff_kind.json"]];
             });
             
             it(@"sends paramters in HTTP body", ^{
@@ -528,7 +528,7 @@ describe(@"AMClient+Restaurant", ^{
             });
             
             it(@"it creates array of staff kinds object", ^{
-                [[expectFutureValue(foundStaffMembers) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"staff_members.json"]];
+                [[expectFutureValue(foundStaffMembers) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"staff_members.json"]];
             });
         });
         
@@ -557,7 +557,7 @@ describe(@"AMClient+Restaurant", ^{
             });
             
             it(@"creates staff member object", ^{
-                [[expectFutureValue(createdStaffMember) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"staff_member.json"]];
+                [[expectFutureValue(createdStaffMember) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"staff_member.json"]];
             });
             
             it(@"sends parameters in HTTP body", ^{
@@ -589,7 +589,7 @@ describe(@"AMClient+Restaurant", ^{
             });
             
             it(@"creates array of review objects", ^{
-                [[expectFutureValue(foundReviews) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"reviews.json"]];
+                [[expectFutureValue(foundReviews) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"reviews.json"]];
             });
         });
         
@@ -620,7 +620,7 @@ describe(@"AMClient+Restaurant", ^{
             });
             
             it(@"creates review member object", ^{
-                [[expectFutureValue(createdReview) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"review.json"]];
+                [[expectFutureValue(createdReview) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"review.json"]];
             });
             
             it(@"sends parameters in HTTP body", ^{
@@ -654,7 +654,7 @@ describe(@"AMClient+Restaurant", ^{
             });
             
             it(@"creates review member object", ^{
-                [[expectFutureValue(foundHours) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"opening_hours.json"]];
+                [[expectFutureValue(foundHours) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"opening_hours.json"]];
             });
         });
         
@@ -685,7 +685,7 @@ describe(@"AMClient+Restaurant", ^{
             });
             
             it(@"creates opening hour object", ^{
-                [[expectFutureValue(createdHour) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"opening_hour.json"]];
+                [[expectFutureValue(createdHour) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"opening_hour.json"]];
             });
             
             it(@"sends parameters in HTTP body", ^{

@@ -37,7 +37,7 @@ describe(@"AMClient+AMMenuItem", ^{
            });
            
            it(@"creates menu item object", ^{
-               [[expectFutureValue(foundItem) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"menu_item.json"]];
+               [[expectFutureValue(foundItem) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"menu_item.json"]];
            });
        });
     });
@@ -66,7 +66,7 @@ describe(@"AMClient+AMMenuItem", ^{
         });
         
         it(@"creates menu item object", ^{
-            [[expectFutureValue(updatedItem) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"menu_item.json"]];
+            [[expectFutureValue(updatedItem) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"menu_item.json"]];
         });
         
         it(@"sends parameters in HTTP body", ^{
@@ -99,7 +99,7 @@ describe(@"AMClient+AMMenuItem", ^{
         });
         
         it(@"crates menu item object", ^{
-            [[expectFutureValue(deletedItem) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"menu_item.json"]];
+            [[expectFutureValue(deletedItem) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"menu_item.json"]];
         });
     });
 });

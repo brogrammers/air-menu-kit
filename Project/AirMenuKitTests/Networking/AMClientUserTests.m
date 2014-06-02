@@ -37,7 +37,7 @@ describe(@"AMClient+User", ^{
            });
            
            it(@"creates user object", ^{
-               [[expectFutureValue(foundUser) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"user.json"]];
+               [[expectFutureValue(foundUser) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"user.json"]];
            });
        });
        
@@ -74,11 +74,11 @@ describe(@"AMClient+User", ^{
            });
            
            it(@"crates user object", ^{
-               [[expectFutureValue(currentMe) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"me.json"]];
+               [[expectFutureValue(currentMe) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"me.json"]];
            });
            
            it(@"saves current user json to NSUserDefaults under current access token", ^{
-               [[expectFutureValue(currentMeFromUserDefaults) shouldEventually] equal:currentMe];
+               [[expectFutureValue(currentMeFromUserDefaults) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:currentMe];
            });
        });
        
@@ -111,7 +111,7 @@ describe(@"AMClient+User", ^{
            });
            
           it(@"uses saved user object instead of calling the webservice", ^{
-              [[expectFutureValue(currentFoundUser) shouldEventually] equal:savedUser];              
+              [[expectFutureValue(currentFoundUser) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:savedUser];              
           });
        });
        
@@ -144,7 +144,7 @@ describe(@"AMClient+User", ^{
            });
            
            it(@"creates user object", ^{
-               [[expectFutureValue(createdUser) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"user.json"]];
+               [[expectFutureValue(createdUser) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"user.json"]];
 
            });
            
@@ -180,7 +180,7 @@ describe(@"AMClient+User", ^{
            });
            
            it(@"creates user object", ^{
-               [[expectFutureValue(updatedMe) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"user.json"]];
+               [[expectFutureValue(updatedMe) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"user.json"]];
            });
            
            it(@"sends parameters in HTTP body", ^{
@@ -215,7 +215,7 @@ describe(@"AMClient+User", ^{
            });
            
            it(@"create array of devices", ^{
-               [[expectFutureValue(foundDevices) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"devices.json"]];
+               [[expectFutureValue(foundDevices) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"devices.json"]];
            });
        });
        
@@ -247,7 +247,7 @@ describe(@"AMClient+User", ^{
            });
            
            it(@"creates device object", ^{
-               [[expectFutureValue(createdDevice) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"device.json"]];
+               [[expectFutureValue(createdDevice) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"device.json"]];
            });
            
            it(@"sends parameters in HTTP body", ^{
@@ -282,7 +282,7 @@ describe(@"AMClient+User", ^{
            });
            
            it(@"creates array of notifications object", ^{
-               [[expectFutureValue(foundNotifications) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"notifications.json"]];
+               [[expectFutureValue(foundNotifications) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"notifications.json"]];
            });
        });
        
@@ -310,7 +310,7 @@ describe(@"AMClient+User", ^{
            });
            
            it(@"creates array of order", ^{
-               [[expectFutureValue(foundOrders) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"orders.json"]];
+               [[expectFutureValue(foundOrders) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"orders.json"]];
            });
         });
        
@@ -338,7 +338,7 @@ describe(@"AMClient+User", ^{
            });
            
            it(@"creates array of order items", ^{
-               [[expectFutureValue(foundOrderItems) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"order_items.json"]];
+               [[expectFutureValue(foundOrderItems) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"order_items.json"]];
            });
        });
        
@@ -366,7 +366,7 @@ describe(@"AMClient+User", ^{
            });
            
            it(@"creates notification object", ^{
-               [[expectFutureValue(dismissedNotification) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"notification.json"]];
+               [[expectFutureValue(dismissedNotification) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"notification.json"]];
            });
            
            it(@"sends parameters in HTTP body", ^{
@@ -398,7 +398,7 @@ describe(@"AMClient+User", ^{
            });
            
            it(@"creates array of credit card objects", ^{
-               [[expectFutureValue(foundCards) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"credit_cards.json"]];
+               [[expectFutureValue(foundCards) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"credit_cards.json"]];
            });
            
        });
@@ -433,7 +433,7 @@ describe(@"AMClient+User", ^{
            });
            
            it(@"creates array of credit card objects", ^{
-               [[expectFutureValue(createdCard) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"credit_card.json"]];
+               [[expectFutureValue(createdCard) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"credit_card.json"]];
            });
            
            it(@"sends parameters in HTTP body", ^{

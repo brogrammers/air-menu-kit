@@ -40,7 +40,7 @@ describe(@"AMClient+Menu", ^{
             });
             
             it(@"creates a menu object", ^{
-                [[expectFutureValue(menuFound) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"menu.json"]];
+                [[expectFutureValue(menuFound) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"menu.json"]];
             });
         });
         
@@ -68,7 +68,7 @@ describe(@"AMClient+Menu", ^{
             });
             
             it(@"creates menu object", ^{
-                [[expectFutureValue(deletedMenu) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"menu.json"]];
+                [[expectFutureValue(deletedMenu) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"menu.json"]];
             });
         });
         
@@ -97,7 +97,7 @@ describe(@"AMClient+Menu", ^{
             });
             
             it(@"creates menu object", ^{
-                [[expectFutureValue(updatedMenu) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"menu.json"]];
+                [[expectFutureValue(updatedMenu) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"menu.json"]];
             });
             
             it(@"sends parameters in HTTP body", ^{
@@ -136,7 +136,7 @@ describe(@"AMClient+Menu", ^{
             });
             
             it(@"creates a menu section object", ^{
-                [[expectFutureValue(newMenuSection) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"menu_section.json"]];
+                [[expectFutureValue(newMenuSection) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"menu_section.json"]];
             });
             
             it(@"sends parameters in HTTP body", ^{
@@ -173,7 +173,7 @@ describe(@"AMClient+Menu", ^{
             });
             
             it(@"creates array of menu sections object", ^{
-                [[expectFutureValue(menuSections) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"menu_sections.json"]];
+                [[expectFutureValue(menuSections) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"menu_sections.json"]];
             });
         });
     });

@@ -36,7 +36,7 @@ describe(@"AMClient+OpeningHour", ^{
             });
             
             it(@"creates opeing hour object", ^{
-                [[expectFutureValue(foundHour) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"opening_hour.json"]];
+                [[expectFutureValue(foundHour) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"opening_hour.json"]];
             });
         });
         
@@ -67,7 +67,7 @@ describe(@"AMClient+OpeningHour", ^{
             });
             
             it(@"creates opeing hour object", ^{
-                [[expectFutureValue(updatedHour) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"opening_hour.json"]];
+                [[expectFutureValue(updatedHour) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"opening_hour.json"]];
             });
             
             it(@"sends parameters in HTTP body", ^{
@@ -103,7 +103,7 @@ describe(@"AMClient+OpeningHour", ^{
             });
             
             it(@"creates opeing hour object", ^{
-                [[expectFutureValue(deletedHour) shouldEventually] equal:[TestToolBox objectFromJSONFromFile:@"opening_hour.json"]];
+                [[expectFutureValue(deletedHour) shouldEventuallyBeforeTimingOutAfter(60.0)] equal:[TestToolBox objectFromJSONFromFile:@"opening_hour.json"]];
             });
         });
     });
