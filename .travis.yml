@@ -1,6 +1,7 @@
 language: objective-c
 before_install:
  - cd Project
+ - brew upgrade xctool
  - gem update cocoapods
  - pod install
  - cd ..	
