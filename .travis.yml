@@ -1,7 +1,10 @@
 language: objective-c
 before_install:
  - cd Project
- - gem update cocoapods
+ - export LANG=en_US.UTF-8
+ - gem update cocoapods --no-rdoc
+ - brew update
+ - brew upgrade xctool
  - pod install
  - cd ..	
 script:
