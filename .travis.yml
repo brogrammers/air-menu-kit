@@ -1,6 +1,7 @@
 language: objective-c
 before_install:
  - cd Project
+ - gem update cocoapods
  - pod install
  - cd ..	
 script:
