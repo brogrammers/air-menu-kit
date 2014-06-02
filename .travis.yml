@@ -1,4 +1,4 @@
 language: objective-c
 script:
- - xctool -workspace AirMenuKit.xcworkspace -scheme AirMenuKit -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
- - xctool test -workspace AirMenuKit.xcworkspace -scheme AirMenuKitTests -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+ - xctool -workspace Project/AirMenuKit.xcworkspace -scheme AirMenuKit -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+ - xctool test -workspace Project/AirMenuKit.xcworkspace -scheme AirMenuKitTests -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
