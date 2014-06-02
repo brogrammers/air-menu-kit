@@ -87,6 +87,7 @@ describe(@"AMClient+Restaurant", ^{
                 
                 task = [[AMClient sharedClient] updateRestaurant:restaurant
                                                      withNewName:@"aname"
+                                                     newCategory:@"acat"
                                                   newDescription:@"desc"
                                                newAddressLineOne:@"line1"
                                                newAddressLineTwo:@"line2"
@@ -96,6 +97,7 @@ describe(@"AMClient+Restaurant", ^{
                                                       newCountry:@"country"
                                                      newLatitude:999.999
                                                     newLongitude:999.999
+                                                           image:nil
                                                    newCompletion:^(AMRestaurant *restaurant, NSError *error) {
                                                        updatedRestaurant = restaurant;
                                                    }];
@@ -123,7 +125,8 @@ describe(@"AMClient+Restaurant", ^{
                                                                                    @"state" : @"state",
                                                                                    @"country" : @"country",
                                                                                    @"latitude" : @"999.999",
-                                                                                   @"longitude" : @"999.999"}];
+                                                                                   @"longitude" : @"999.999",
+                                                                                   @"category" : @"acat"}];
             });
         });
         

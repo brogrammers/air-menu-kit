@@ -191,7 +191,8 @@ describe(@"AMClient+Companies", ^{
                                    responseCode:200];
                 companyOfRestaurant = [TestToolBox objectFromJSONFromFile:@"company.json"];
                 task = [[AMClient sharedClient] createRestaurantOfCompany:companyOfRestaurant
-                                                              description:@"desc"
+                                                                 category:@"acat"
+                                                              description:@"desc" 
                                                                  withName:@"The Church 2"
                                                            addressLineOne:@"blah"
                                                            addressLineTwo:@"blah"
@@ -230,7 +231,8 @@ describe(@"AMClient+Companies", ^{
                                                                                    @"state": @"Dublin",
                                                                                    @"country" : @"Ireland",
                                                                                    @"latitude" : @"999.999",
-                                                                                   @"longitude" : @"999.999"}];
+                                                                                   @"longitude" : @"999.999",
+                                                                                   @"category" : @"acat"}];
             });
         });
         

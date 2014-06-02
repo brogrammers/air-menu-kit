@@ -62,6 +62,7 @@ describe(@"AMCreditCard", ^{
                                               @"cardType" : @"card_type",
                                               @"expiryMonth" : @"month",
                                               @"expiryYear" : @"year",
+                                              @"cvc" : @"cvc",
                                               @"number" : @"number"};
             [[mapping should] equal:expectedMapping];
         });

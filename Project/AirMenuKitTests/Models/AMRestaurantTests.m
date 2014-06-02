@@ -88,7 +88,9 @@ describe(@"AMRestaurant", ^{
                                               @"address" : @"address",
                                               @"menu" : @"menu",
                                               @"location" : @"location",
-                                              @"avatar" : @"avatar"};
+                                              @"avatar" : @"avatar",
+                                              @"rating" : @"rating",
+                                              @"category" : @"category"};
             [[mapping should] equal:expectedMapping];
         });
         

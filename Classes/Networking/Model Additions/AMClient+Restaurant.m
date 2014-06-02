@@ -65,7 +65,7 @@
                               newLatitude:(double)latitude
                              newLongitude:(double)longitude
                                     image:(UIImage *)avatar
-                            newCompletion:(RestaurantCompletion)completion;
+                            newCompletion:(RestaurantCompletion)completion
 {
     NSAssert(restaurant.identifier, @"restaurant identifier cannot be nil");
     NSString *urlString = [@"restaurants/" stringByAppendingString:restaurant.identifier.description];    

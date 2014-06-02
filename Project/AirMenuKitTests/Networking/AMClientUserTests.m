@@ -439,7 +439,7 @@ describe(@"AMClient+User", ^{
            
            it(@"sends parameters in HTTP body", ^{
                [[[TestToolBox bodyOfRequest:task.originalRequest] should] equal:@{@"number" : @"12345",
-                                                                                  @"type" : @"VISA",
+                                                                                  @"card_type" : @"VISA",
                                                                                   @"month" : @"05",
                                                                                   @"year" : @"2012",
                                                                                   @"cvc" : @"123"}];
